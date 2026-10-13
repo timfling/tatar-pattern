@@ -1,0 +1,112 @@
+{
+  "schema_version": "tp-composition-review/1.0.0",
+  "rules": [
+    {
+      "id": "RULE-01",
+      "severity": "prohibition",
+      "scope": "asset_identity",
+      "text": "Не применять запись к другому SHA или к texture без её отдельной геометрической сверки.",
+      "basis": "technical_identity"
+    },
+    {
+      "id": "RULE-02",
+      "severity": "recommendation",
+      "scope": "aesthetic",
+      "text": "Начать с одного предмета/подгруппы семейства и согласованных толщин/детализации; разнотипные материалы развести по роли и масштабу.",
+      "basis": "D01"
+    },
+    {
+      "id": "RULE-03",
+      "severity": "recommendation",
+      "scope": "readability",
+      "text": "Не уменьшать до потери внутренних полей; размеры/просветы проверять после поворота на финальном фоне.",
+      "basis": "D01"
+    },
+    {
+      "id": "RULE-04",
+      "severity": "prohibition",
+      "scope": "joined_repeat_claim",
+      "text": "Не объявлять бесшовным историческим периодом отрезок с неизвестными концами; состояния joined-repeat не равны discrete rapport.",
+      "basis": "unknown_period_geometry"
+    },
+    {
+      "id": "RULE-05",
+      "severity": "unknown",
+      "scope": "cultural",
+      "text": "Наличие общего цветка/цвета/музейного источника не доказывает культурную совместимость пары.",
+      "basis": "absence_of_pair_specific_evidence"
+    },
+    {
+      "id": "RULE-06",
+      "severity": "prohibition",
+      "scope": "transformation_attribution",
+      "text": "Не выдавать новую симметрию/реконструкцию за восстановленный исторический факт; неизвестный текст не отражать автоматически.",
+      "basis": "preserve_uncertainty_and_text_direction"
+    },
+    {
+      "id": "EX-01",
+      "codes": [
+        "TP-E-072",
+        "TP-E-074",
+        "TP-E-128"
+      ],
+      "severity": "recommendation",
+      "scope": "specific_use",
+      "basis": "visual_review",
+      "reason": "Не делать равными по размеру и детализации; 128 только малый акцент."
+    },
+    {
+      "id": "EX-02",
+      "codes": [
+        "TP-E-106",
+        "TP-E-107",
+        "TP-E-129"
+      ],
+      "severity": "recommendation",
+      "scope": "specific_use",
+      "basis": "visual_review",
+      "reason": "129 проще; отдельная роль малого акцента."
+    },
+    {
+      "id": "EX-03",
+      "codes": [
+        "TP-E-079",
+        "TP-E-080",
+        "TP-E-081",
+        "TP-E-082",
+        "TP-E-088",
+        "TP-E-089"
+      ],
+      "severity": "recommendation",
+      "scope": "specific_use",
+      "basis": "visual_review",
+      "reason": "Радиальная раскладка меняет предметное направление подвесок; предпочтительна вертикаль."
+    },
+    {
+      "id": "EX-04",
+      "codes": [
+        "TP-E-020",
+        "TP-E-019"
+      ],
+      "severity": "unknown",
+      "scope": "specific_use",
+      "basis": "visual_review",
+      "reason": "Порт крепления 020 не подтверждён в flat; сцепление с 019 требует отдельной проверки, не автоматического склеивания."
+    },
+    {
+      "id": "EX-05",
+      "codes": [
+        "TP-E-043",
+        "TP-E-044",
+        "TP-E-060",
+        "TP-E-057",
+        "TP-E-076",
+        "TP-E-105"
+      ],
+      "severity": "prohibition",
+      "scope": "specific_use",
+      "basis": "visual_review",
+      "reason": "Не подменять неизвестные краевые узлы автоматически сваренным периодом."
+    }
+  ]
+}

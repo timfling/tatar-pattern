@@ -1,0 +1,13 @@
+[project]
+name = "tatar-pattern-backend"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "psycopg[binary]>=3.2,<4",
+  "pillow>=11,<13", "argon2-cffi>=23,<26", "email-validator>=2,<3", "python-dotenv>=1,<2"
+]
+[dependency-groups]
+dev = ["pytest>=8,<10", "httpx>=0.28,<1"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

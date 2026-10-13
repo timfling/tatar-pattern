@@ -1,0 +1,14 @@
+**
+!backend/
+!backend/app/
+!backend/app/**
+!backend/scripts/
+!backend/scripts/**
+!backend/pyproject.toml
+!backend/uv.lock
+!db/
+!db/migrations/
+!db/migrations/**
+**/__pycache__/
+**/*.pyc
+**/.env*

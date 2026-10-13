@@ -1,0 +1,14 @@
+**
+!frontend/
+!frontend/package.json
+!frontend/package-lock.json
+!frontend/src/
+!frontend/src/**
+!frontend/public/
+!frontend/public/**
+!frontend/next.config.ts
+!frontend/tsconfig.json
+!frontend/next-env.d.ts
+!frontend/postcss.config.mjs
+**/.env*
+**/.DS_Store

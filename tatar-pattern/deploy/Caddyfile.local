@@ -1,0 +1,22 @@
+{
+  admin off
+  auto_https off
+}
+:8081 {
+  bind 127.0.0.1
+  respond /healthz 200
+}
+:80 {
+  @api path /api /api/*
+  handle @api {
+    reverse_proxy backend:8000 {
+      header_up X-Forwarded-For {remote_host}
+      transport http {
+        response_header_timeout 120s
+      }
+    }
+  }
+  handle {
+    reverse_proxy frontend:3000
+  }
+}

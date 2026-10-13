@@ -1,0 +1,38 @@
+{
+  email {$ACME_EMAIL}
+  admin off
+}
+:8081 {
+  bind 127.0.0.1
+  respond /healthz 200
+}
+{$DOMAIN} {
+  encode zstd gzip
+  header {
+    X-Content-Type-Options nosniff
+    Referrer-Policy strict-origin-when-cross-origin
+    Strict-Transport-Security "max-age=31536000"
+    -Server
+  }
+  request_body {
+    max_size 1MB
+  }
+  @private path /docs /docs/* /redoc /openapi.json /api/docs /api/openapi.json
+  respond @private 404
+  @api path /api /api/*
+  handle @api {
+    # Preserve /api. Overwrite spoofable incoming forwarding headers.
+    reverse_proxy backend:8000 {
+      header_up X-Forwarded-For {remote_host}
+      header_up X-Forwarded-Proto {scheme}
+      transport http {
+        dial_timeout 5s
+        response_header_timeout 120s
+      }
+    }
+  }
+  handle {
+    reverse_proxy frontend:3000
+  }
+  # No request access log: avoids query strings and account identifiers.
+}

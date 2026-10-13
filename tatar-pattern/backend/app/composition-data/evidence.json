@@ -1,0 +1,3650 @@
+{
+  "schema_version": "tp-composition-review/1.0.0",
+  "entries": [
+    {
+      "id": "C01",
+      "type": "scholarly_or_museum_context",
+      "title": "Орнамент",
+      "author": "Г.Ф. Валеева-Сулейманова",
+      "publication_date": null,
+      "access_date": "2026-10-12",
+      "url": "https://tatarica.org/ru/razdely/kultura/iskusstvo/izobrazitelnoe-iskusstvo-i-dpi/ornament",
+      "locator": "Абзацы о криволинейных формах, вложенных контурах, профиле/развёрнутом виде цветов и волнообразном побеге",
+      "basis": "Поддерживает работу с внутренними цветными полями, фоном и ветвями; не определяет символику конкретного TP-E.",
+      "verified_scope": "article_read; not expert verification of dataset",
+      "supports_universal_symbolism": false
+    },
+    {
+      "id": "C02",
+      "type": "scholarly_or_museum_context",
+      "title": "Гравировка",
+      "author": "Г.Ф. Валеева-Сулейманова",
+      "publication_date": null,
+      "access_date": "2026-10-12",
+      "url": "https://tatarica.org/ru/razdely/narody/tatary/narodnoe-iskusstvo/gravirovka",
+      "locator": "Абзацы о линейном/контурном характере гравировки XVIII — начала XX века и размещении на изделиях",
+      "basis": "Поддерживает отдельный язык линейных металлических полей; не означает, что ажур и гравировка — одна техника.",
+      "verified_scope": "article_read; not expert verification of dataset",
+      "supports_universal_symbolism": false
+    },
+    {
+      "id": "C03",
+      "type": "scholarly_or_museum_context",
+      "title": "Полотенце",
+      "author": "Г.Ф. Валеева-Сулейманова",
+      "publication_date": null,
+      "access_date": "2026-10-12",
+      "url": "https://tatarica.org/ru/razdely/narody/tatary/narodnoe-iskusstvo/polotence",
+      "locator": "Абзацы «Узоры на тканых полотенцах…» и «На старинных полотенцах…»",
+      "basis": "Полосовая и сетчатая композиции, главная широкая полоса и узкие бордюры подтверждены для описанного комплекса; это не запрет иных современных схем.",
+      "verified_scope": "article_read; not expert verification of dataset",
+      "supports_universal_symbolism": false
+    },
+    {
+      "id": "C04",
+      "type": "scholarly_or_museum_context",
+      "title": "Ткачество",
+      "author": "Р.Р. Батыршин; Г.Ф. Валеева-Сулейманова",
+      "publication_date": null,
+      "access_date": "2026-10-12",
+      "url": "https://tatarica.org/ru/razdely/narody/tatary/narodnoe-iskusstvo/tkachestvo",
+      "locator": "Разделы «Закладное ткачество» и «Браное ткачество», абзац о сопоставлении ведущего мотива основной полосы с мелким рисунком бордюров",
+      "basis": "Поддерживает иерархию размеров и полосы/сети в тканых комплексах; точная техника каждого кадра остаётся по manifest.",
+      "verified_scope": "article_read; not expert verification of dataset",
+      "supports_universal_symbolism": false
+    },
+    {
+      "id": "C05",
+      "type": "scholarly_or_museum_context",
+      "title": "Мозаика кожаная",
+      "author": "Г.Ф. Валеева-Сулейманова",
+      "publication_date": null,
+      "access_date": "2026-10-12",
+      "url": "https://tatarica.org/ru/razdely/narody/tatary/narodnoe-iskusstvo/mozaika-kozhanaya",
+      "locator": "Раздел «История»: абзацы о вертикальной оси голенища, декоре стыков и массивности криволинейных форм",
+      "basis": "Размещение связано с конструкцией обуви; обоснована отдельная роль крупного поля/соединителя. Не утверждается симметрия каждого изолированного листа.",
+      "verified_scope": "article_read; not expert verification of dataset",
+      "supports_universal_symbolism": false
+    },
+    {
+      "id": "C06",
+      "type": "scholarly_or_museum_context",
+      "title": "Намазлык",
+      "author": "Г.Ф. Валеева-Сулейманова",
+      "publication_date": null,
+      "access_date": "2026-10-12",
+      "url": "https://tatarica.org/ru/razdely/religiya/islam/namazlyk",
+      "locator": "Абзацы о П-образной кайме, центральном мотиве, боковых букетах и изгибающейся веточке",
+      "basis": "Поддерживает поле/рамку/иерархию букетов для описанного типа вышивки; общая симметрия предмета не доказывает симметрию TP-E-020.",
+      "verified_scope": "article_read; not expert verification of dataset",
+      "supports_universal_symbolism": false
+    },
+    {
+      "id": "C07",
+      "type": "scholarly_or_museum_context",
+      "title": "Шамаиль",
+      "author": "Г.Ф. Валеева-Сулейманова",
+      "publication_date": null,
+      "access_date": "2026-10-12",
+      "url": "https://tatarica.org/ru/razdely/kultura/iskusstvo/izobrazitelnoe-iskusstvo-i-dpi/shamail",
+      "locator": "Определение; абзацы о сакральном контексте, сочетании каллиграфии и цветочно-растительного декора",
+      "basis": "Религиозный предмет и отделённый декоративный мотив должны описываться раздельно; универсального запрета на декоративный цветок источник не устанавливает.",
+      "verified_scope": "article_read; not expert verification of dataset",
+      "supports_universal_symbolism": false
+    },
+    {
+      "id": "C08",
+      "type": "scholarly_or_museum_context",
+      "title": "Выставка «Мир керамики»",
+      "author": "З.Г. Фазлиахметова; Г.Х. Еникеева; Л.Е. Похвалинская; Л.Е. Енькова; Ф.А. Зиязов; участие Б.А. Шубина",
+      "publication_date": "2001-12-21 exhibition opening",
+      "access_date": "2026-10-12",
+      "url": "https://v1.tatmuseum.ru/nm/exh_03.htm",
+      "locator": "Абзацы о мастерской 1912 г. и эскизах И.А. Ильинского с татарским орнаментом",
+      "basis": "Поддерживает региональный контекст пестречинской керамики и пересечение художественных традиций; музейное хранение не делает каждый мотив этнически исключительным.",
+      "verified_scope": "article_read; not expert verification of dataset",
+      "supports_universal_symbolism": false
+    },
+    {
+      "id": "BIB01",
+      "type": "bibliography_only",
+      "title": "Орнамент казанских татар",
+      "author": "Ф.Х. Валеев",
+      "publication_date": "1969",
+      "url": "https://search.rsl.ru/ru/record/01007290179",
+      "locator": "Библиографическая карточка, 204 с., 8 л. ил.",
+      "basis": "Полный текст не изучен; не используется как доказательство конкретной композиционной нормы."
+    },
+    {
+      "id": "D01",
+      "type": "designer_proposal",
+      "title": "Композиционная ревизия TATAR PATTERN",
+      "author": "Codex, агент датасета; не эксперт",
+      "publication_date": "2026-10-12",
+      "path": "README.md",
+      "basis": "Роли, диапазоны углов, точки, интервалы, масштаб, семейства и пилот — визуальные рекомендации, требующие проверки на финальном render."
+    },
+    {
+      "id": "OBS-TP-E-008",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-008 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-01.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-008.png",
+          "sha256": "7951be4be242d99adf8871fa77630d8578f7ef1b85981f69196a71a677f8b19e"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-008.png",
+          "sha256": "06a589b65714db758d777254d1047ffb760f5307fab71c1cc9197c19d922ff97"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9295.jpg",
+          "sha256": "c073d205dadeeea11426e5855d129393415a2f5d40317cc52039f43dedefec6c"
+        }
+      ],
+      "basis": {
+        "geometry": "Смещённый вправо синий медальон, розово-красный венчик, коричневые побеги слева; единой зеркальной оси нет.",
+        "context": "Угол растительной рамки вокруг арабской надписи; кроп затрагивает более широкую композицию."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-009",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-009 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-01.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-009.png",
+          "sha256": "38f8164623f8c317bb13fe160d54fd399d845ce3121b2d68266904ef7bfd6b9c"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-009.png",
+          "sha256": "7aecba86531b52a31a31c8d62f3c92d9a23cc84ff6ddef6507092cc7098255a6"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9309.jpg",
+          "sha256": "28944acbe7b05ca941aeb458f23437a7552c6b975613b7bf752ecdc47e967c6c"
+        }
+      ],
+      "basis": {
+        "geometry": "Вытянутая красная диагональная фигура с центральным цветком и неравными золотыми волютами.",
+        "context": "Угловой сектор вокруг круглого поля каллиграфии; диагональ обусловлена местом в рамке."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-010",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-010 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-01.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-010.png",
+          "sha256": "97364a69b143e41a9ba7a6ba5c4e6cbc019eb7fed51c58d2de9608a81f495e38"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-010.png",
+          "sha256": "603d72a21ff84b070e2d59c47352779ec68d8775daa91e46c923b63e6c578ab7"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9312.jpg",
+          "sha256": "46a88078caf98c7cef87c5e26a5c6fd48180a065e36d9c692b7c4a886a65ce54"
+        }
+      ],
+      "basis": {
+        "geometry": "Длинные заострённые красно-светлые листья расходятся от изогнутой оси; мелкие голубые бутоны.",
+        "context": "Ветви занимают угловые поля кита вокруг центрального текста."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-011",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-011 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-01.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-011.png",
+          "sha256": "efab90b3675946362df8be4fbd8ad00b4e7e8c8e4ca54eba9368a93df2cbf339"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-011.png",
+          "sha256": "2ef11c2c2c73a6f3e8bf78b34c86072414f52ae296ac1683a1648210607f9032"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9342.jpg",
+          "sha256": "06c00a72c9b750b7449ab2d23c86039d6762057a8b8526c4f59042ded79b35ea"
+        }
+      ],
+      "basis": {
+        "geometry": "Узкая вертикальная многосоставная цветочная кайма с голубыми лопастными полями.",
+        "context": "Плотная рамка страницы Корана; концы кропа не являются доказанным периодом."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-012",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-012 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-01.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-012.png",
+          "sha256": "5c5fa61737adc07c65a50a1463e073667e536587406d19bb20710a01359d3cd3"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-012.png",
+          "sha256": "7727894ab76bf0da57c3c73d078b41305e000e90519a360f4d1d8f3247866f65"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9376.jpg",
+          "sha256": "3e3c1488e50c40a747e306f1967d3d5a5e7ab3d2254694830831e104c3cbfec2"
+        }
+      ],
+      "basis": {
+        "geometry": "Три завитковых блока соединены ромбами; тонкий коричневый контур.",
+        "context": "Современный чехол с орнаментальной полосой; материал изогнут по объёму."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-013",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-013 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-02.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-013.png",
+          "sha256": "4d2e5400f419c77d81f7797558fc371b629e003c1bab94f74b0f61148350dc74"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-013.png",
+          "sha256": "bdbaf277a5d53136bd7b6f194a3f6c58100c52b8de2ec73a067deb85363e7a39"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9390.jpg",
+          "sha256": "bc4f182d2fab7258ed5ca9feb367c61cb329e8f4193d4fea64353ac865c5dda5"
+        }
+      ],
+      "basis": {
+        "geometry": "Две разнонаправленные спирали, неравные хвосты и центральная перемычка.",
+        "context": "Узор на обломке керамики; край предмета не доказывает окончание исторического узора."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-014",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-014 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-02.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-014.png",
+          "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-014.png",
+          "sha256": "30c08098a96e0ba478e48dcc30c93d95d77021d79271b8384dd2438844d40964"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9407.jpg",
+          "sha256": "d90734bc496291f69844a7f194a705ce15e661f56e2da95c3cf4cf6a0422223a"
+        }
+      ],
+      "basis": {
+        "geometry": "Восемь синих долей; чередуются точечные и полосатые внутренние поля.",
+        "context": "Круглый декор кольцевого поддона на сохранившемся фрагменте; полный контур flat является производным."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-015",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-015 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-02.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-015.png",
+          "sha256": "2ef69e387e94d1b78624d280aa705a97c01095dff13f3d73af792e5d5d46b40e"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-015.png",
+          "sha256": "272376f4b2e65808b5f536c829513d9c5b8f89508cfee68d48c724a83a388b57"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9410.jpg",
+          "sha256": "79320b073613828be5ff378f74aca12914cb82102ba61286dd85435e7a89de18"
+        }
+      ],
+      "basis": {
+        "geometry": "Парные чёрные спирали с точками, внутренние крючки различаются.",
+        "context": "Ряд на криволинейном венчике сосуда; плоскость поверхности не плоская."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-019",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-019 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-02.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-019.png",
+          "sha256": "7b46236f02f466d64098ae745bd336f7a435eeb71efb0e2fc3b135bc8843d6ed"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-019.png",
+          "sha256": "27859d9705d086acf6b7fd3acacb0473e5d1bd32b0dc5246847c6d7988ac9470"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9451.jpg",
+          "sha256": "df93e341cb9d9c996b45c06f561cc2ee4a414d28ef1228cfea52831e36c6a65b"
+        }
+      ],
+      "basis": {
+        "geometry": "Зелёная ветвь расходится кверху и вправо; раздельные цветные круглые окончания.",
+        "context": "Побег внутри поля намазлыка среди крупных цветов, не самостоятельная симметричная эмблема."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-020",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-020 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-02.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-020.png",
+          "sha256": "433e00e8fee91f8e5ffea42b63f29afae8fb86c5163eb6e3283ca9ff27b499b9"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-020.png",
+          "sha256": "40b26ca0c08daf314d98bca5201461a4fffb62a7264b890df38abeefb8c3ce59"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9451.jpg",
+          "sha256": "df93e341cb9d9c996b45c06f561cc2ee4a414d28ef1228cfea52831e36c6a65b"
+        }
+      ],
+      "basis": {
+        "geometry": "Синий разомкнутый лопастной контур, светлое овальное поле, внутренний розовый цветок; отвод снизу слева.",
+        "context": "Цветок связан со стеблем в складчатом поле намазлыка; изоляция удаляет часть связей."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-021",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-021 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-03.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-021.png",
+          "sha256": "a2b5ab9ff7f1fe2a55f906aec2c1b80baac8ed0beeaad75623991177e5b34f74"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-021.png",
+          "sha256": "637f951581b26b3a00fd512ed9d14b860b2a3b5af971d36c258c5741ed6f032f"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9451.jpg",
+          "sha256": "df93e341cb9d9c996b45c06f561cc2ee4a414d28ef1228cfea52831e36c6a65b"
+        }
+      ],
+      "basis": {
+        "geometry": "Красная разомкнутая лопастная чашечка, наклонное светлое поле, малый внутренний цветок и синий нижний отвод.",
+        "context": "Та же ткань и связанная растительная композиция KS-9451; нижний отвод не равен автоматически основанию стебля."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-022",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-022 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-03.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-022.png",
+          "sha256": "71e0bc7f4bba8b6b2e41d1e50a026e224312ca761e8a197803cf72ceb568c0c9"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-022.png",
+          "sha256": "5c4b8fa357fd9e3b961528ab154d84a4db95359aa5fa16db5e926731e8231a3c"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9451.jpg",
+          "sha256": "df93e341cb9d9c996b45c06f561cc2ee4a414d28ef1228cfea52831e36c6a65b"
+        }
+      ],
+      "basis": {
+        "geometry": "Синяя волнообразная линия с листовыми окончаниями и красно-синим цветком.",
+        "context": "Боковая кайма намазлыка; соседний цикл продолжает побег за кропом."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-030",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-030 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-03.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-030.png",
+          "sha256": "f649a094199ba11f9a65975480cb58b45ae5a6a4a3ad0bdab065cd15ae93b2c2"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-030.png",
+          "sha256": "6fdd851a5f1eb4385e5186d7a04d87bbc7916027bd8aa886c29a199eee78264c"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9542.jpg",
+          "sha256": "6c9ddcb11daac2aeb4cb8a371b558bbc5ba24d74bc7fa3758bc5f61e4e003132"
+        }
+      ],
+      "basis": {
+        "geometry": "Неравномерные золотые и пурпурные лучи сходятся в смещённой точке; сектора разной плотности.",
+        "context": "Лучевая вышивка на выпуклой тюбетейке, часть деформации может быть связана с объёмом."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-031",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-031 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-03.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-031.png",
+          "sha256": "6e00d80b8807ecd2dfe3222c2ce3023896bbed257d95ed1e84eda25cdee7678b"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-031.png",
+          "sha256": "5753471e8e2763ab5ffa6c8b1e56ba313bbef5f11dde6184efd73eb431c173da"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9552.jpg",
+          "sha256": "a61c4ac47ad94077747993b44258f9c93243c95c7b3e05ab51f92343d4fd825f"
+        }
+      ],
+      "basis": {
+        "geometry": "Две светлые контурные лиственные волюты соединены S-образной диагональю.",
+        "context": "Боковое поле бляхи, в центре предмета присутствуют надписи."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-032",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-032 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-03.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-032.png",
+          "sha256": "c73ec8bc45e866c2676fe636ef969c0889e066d89eb4a831b850f9fd38265949"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-032.png",
+          "sha256": "e99fe990669871b128e72ebc26f575178aaa3bd275e32ddeec683a0cedd1c9fd"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9552.jpg",
+          "sha256": "a61c4ac47ad94077747993b44258f9c93243c95c7b3e05ab51f92343d4fd825f"
+        }
+      ],
+      "basis": {
+        "geometry": "Четыре расходящиеся светлые лопасти с круглыми просветами; flat значительно упрощает резной рисунок.",
+        "context": "Нижнее поле бляхи содержит более сложные листья и центральную пальметту."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-034",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-034 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-04.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-034.png",
+          "sha256": "a29fbe7043b922eaf8dcbec5d7d502d4cb0ff8565fe8d9190872e9a6bba4a9b5"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-034.png",
+          "sha256": "1a7f7d1c5c49b67ac5d0ab0741b9a6216271fdb66cf62d18d3f6bf6d3dd5b0ee"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9557.jpg",
+          "sha256": "cbb91601a8f9853038ba5081e2b6ce1074bd961f3bc03e144f43ab487a1ed59e"
+        }
+      ],
+      "basis": {
+        "geometry": "Золотое веерное поле с густой штриховкой и фиолетово-розовыми круглыми окончаниями.",
+        "context": "Веер в рисунке для учкура; по краям парные растительные группы."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-035",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-035 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-04.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-035.png",
+          "sha256": "32354c0bc7421046c4805705084afb00ed1a1829be7df1af2a44ef97d13fad5a"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-035.png",
+          "sha256": "d19b389ca8fdd0fde3fb3c5b3d819e263d7e8f235e77b1d3f7f13a68a9d28d35"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9557.jpg",
+          "sha256": "cbb91601a8f9853038ba5081e2b6ce1074bd961f3bc03e144f43ab487a1ed59e"
+        }
+      ],
+      "basis": {
+        "geometry": "Четыре перистых золотистых листа расходятся от правого узла; один направлен вниз.",
+        "context": "Листовой отвод на рисунке учкура, связан с линиями соседних фигур."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-036",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-036 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-04.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-036.png",
+          "sha256": "2261619462b2dac6c19f15161c3f1ba515735e68cb474fdd55963054bb97e371"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-036.png",
+          "sha256": "3a4ce98119faaa4229887247c5349d76d8687badffb46b4fa8132f98c6f22325"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9557.jpg",
+          "sha256": "cbb91601a8f9853038ba5081e2b6ce1074bd961f3bc03e144f43ab487a1ed59e"
+        }
+      ],
+      "basis": {
+        "geometry": "В flat шесть округлых долей с вертикальными золотыми штрихами; название manifest говорит о семи.",
+        "context": "Крупный цветок повторяется в бумажном рисунке учкура; точный исторический счёт по листу не утверждён."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-037",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-037 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-04.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-037.png",
+          "sha256": "c1117747d27b52094e38c055498bc9dc307ad4878433857b13f89d8e8d1b52e4"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-037.png",
+          "sha256": "42a35fe7cecfe16cf65e5eb12e7c1874c26479597225c0e8f8321840966fe5f2"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9557.jpg",
+          "sha256": "cbb91601a8f9853038ba5081e2b6ce1074bd961f3bc03e144f43ab487a1ed59e"
+        }
+      ],
+      "basis": {
+        "geometry": "Один вертикальный перистый лист с несколькими зубчатыми ярусами и тонкой штриховкой.",
+        "context": "Лист выходит из общей развилки над боковыми петлями учкура."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-038",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-038 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-04.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-038.png",
+          "sha256": "079bd9ac4f9cc276b60c3927b30337f7a9a3040b5301fd07114dd72aa9738af8"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-038.png",
+          "sha256": "39ff3649b5ef1a10632ee65b840487fc31cff8446b43d926d360ef742b03b643"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9557.jpg",
+          "sha256": "cbb91601a8f9853038ba5081e2b6ce1074bd961f3bc03e144f43ab487a1ed59e"
+        }
+      ],
+      "basis": {
+        "geometry": "Два открытых спиральных конца, крупная верхняя и нижняя петли на тонкой линии.",
+        "context": "Тонкие завитки заполняют промежутки на рисунке учкура."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-039",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-039 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-05.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-039.png",
+          "sha256": "edab86cbe6da05eaa02c6c02d1134e72d4206429e65094eb0cbdd0310c630b58"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-039.png",
+          "sha256": "4cac83ace809652429fd552a7fc637992b432626659e513ec33984ec7b8feade"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9557.jpg",
+          "sha256": "cbb91601a8f9853038ba5081e2b6ce1074bd961f3bc03e144f43ab487a1ed59e"
+        }
+      ],
+      "basis": {
+        "geometry": "Две горизонтальные синие петли у верхнего узла; пять золотых каплевидных отводов с тонкими ответвлениями.",
+        "context": "Подвесная растительная фигура на рисунке учкура; это не ювелирная серьга."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-040",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-040 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-05.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-040.png",
+          "sha256": "4cef889b829b7f75af09fb32b873963aa22dd6285a25bd5cde5fde283756b2de"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-040.png",
+          "sha256": "91bc35c63eeeee1e25150eb3d315feb970d3b130f6f320efb7ea38ba03b02cef"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9557.jpg",
+          "sha256": "cbb91601a8f9853038ba5081e2b6ce1074bd961f3bc03e144f43ab487a1ed59e"
+        }
+      ],
+      "basis": {
+        "geometry": "Чередуются золотые лопасти и фиолетовые/красные сетчатые овалы; соединяет чёрный зигзаг.",
+        "context": "Нижняя полоса рисунка учкура с повторяющимися блоками."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-041",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-041 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-05.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-041.png",
+          "sha256": "d7df3f9d22c5edd2011ddd9acd325b117953fb0cf1553c15b585c8198203310a"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-041.png",
+          "sha256": "a7d461973e2e6205f1709917246a23ac160e6450c2cbc5f7d78339ec5387c386"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9559.jpg",
+          "sha256": "db411e28d0d114273c08ac502ebb7865967e19fa7c99d29240566b5d0e6f94eb"
+        }
+      ],
+      "basis": {
+        "geometry": "Золотистая лиственная ветвь с тремя синими группами лепестков; масса уходит вверх влево.",
+        "context": "Две группы вышивки разделены узкой полосой на футляре гребня."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-042",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-042 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-05.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-042.png",
+          "sha256": "736e59f2bb161b0edee27e66ee1f21e9089b2602249596498b645e03504cf019"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-042.png",
+          "sha256": "71ad701c2324c2cff2984f510e5178fadb722d62dbdfad1f7873d0f4c433727d"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9559.jpg",
+          "sha256": "db411e28d0d114273c08ac502ebb7865967e19fa7c99d29240566b5d0e6f94eb"
+        }
+      ],
+      "basis": {
+        "geometry": "Тонкая диагональная золотая ветвь с тремя синими окончаниями; листья имеют внутренние светлые прожилки.",
+        "context": "Меньший отвод в той же вышитой группе NM-9558."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-043",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-043 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-05.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-043.png",
+          "sha256": "fb3a58ce429ea569756f2bc912db926823a04b73e7d5bcc482905cf74093b15f"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-043.png",
+          "sha256": "fa96bf71a9e430b845a8a417117c1a0916431cb4cbc0098bff5711a1c2e08a1a"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9565.jpg",
+          "sha256": "f77e9e746b1cfa52331465092cbc3a304ebeff19ca255bc1324bd96c03ec2e95"
+        }
+      ],
+      "basis": {
+        "geometry": "Переплетающиеся диагональные ленты с боковыми крючками; важны просветы.",
+        "context": "Плетёнка занимает широкую полосу кушака; кроп не содержит доказанного полного периода."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-044",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-044 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-06.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-044.png",
+          "sha256": "ffd7ce925617ec0adac458629b43adcc1bbfd58cfaa429746dad0efd94681b5b"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-044.png",
+          "sha256": "fde81c1fe3d508e4dfac05da9d4c72478439892c272a6cf96022e112a18448b4"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9565.jpg",
+          "sha256": "f77e9e746b1cfa52331465092cbc3a304ebeff19ca255bc1324bd96c03ec2e95"
+        }
+      ],
+      "basis": {
+        "geometry": "Очень узкая коричневая цепь завитков с изгибом общей оси.",
+        "context": "Малая кромка вдоль плетёнки кушака NM-9564."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-045",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-045 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-06.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-045.png",
+          "sha256": "314519f9577237c4ffe40598c49ff5910449be2a05c785276a234984a099d337"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-045.png",
+          "sha256": "7c181422ed512809313be971675b37586e519a9c549a74a905f678147b1561e9"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9569.jpg",
+          "sha256": "f9703d6e3bfd09b1a591f9dae4a615306f7b45282c95c94457f0666cc3a1ac47"
+        }
+      ],
+      "basis": {
+        "geometry": "Вертикальная тёмная ветвь из двух волют и центрального цветка, тонкие прорези.",
+        "context": "Растительный ободок нагрудного украшения вокруг арабской надписи."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-046",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-046 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-06.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-046.png",
+          "sha256": "f5302a48c0ea2e5cf2f90680d7f654ee9dd0bde1c10fbf0616cd607c8663f79f"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-046.png",
+          "sha256": "1ca0b492b79ab9516deb3aacf95ac75f549a703a2e1a646e8c8cd3d2a2f8f189"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9574.jpg",
+          "sha256": "b6631ba3e1fd7b8ff733b4e7e4830b644bb9914a1249409eb513f784af2464d0"
+        }
+      ],
+      "basis": {
+        "geometry": "Восемь белых крупных лепестков и восемь голубых малых долей вокруг охристого центра.",
+        "context": "Центральный цветок на цилиндрическом сосуде; описание manifest «шесть» устарело."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-047",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-047 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-06.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-047.png",
+          "sha256": "a8ccd4e878e946dc7e14e2cc76fda24ce1629f0ba89683df955c28f54fba7dcf"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-047.png",
+          "sha256": "eda48d2eeac41468ea247e3d39384159525419b10f19d5d478a62a70c3828ad0"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9574.jpg",
+          "sha256": "b6631ba3e1fd7b8ff733b4e7e4830b644bb9914a1249409eb513f784af2464d0"
+        }
+      ],
+      "basis": {
+        "geometry": "Две охристые волюты образуют открытую арку, нижние лапки расходятся наружу.",
+        "context": "Верхняя часть обрамления белого цветка на NM-9574."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-048",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-048 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-06.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-048.png",
+          "sha256": "b84eb8a332cadd8d112a16d3a9a8cb38e49485732853a2d82d0d990204b5d409"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-048.png",
+          "sha256": "a6b96fb6658b5e9c5c9abad680cd03742f0a6c74b8910ea7ccd503320071ee69"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9575.jpg",
+          "sha256": "91ebd85f9800d265172285afbb0aceec137ce654d948a50fc68a1cda96c89b8a"
+        }
+      ],
+      "basis": {
+        "geometry": "Два зелёных длинных поля с диагональными жилками сходятся к сердцевидному низу; верх срезан.",
+        "context": "Декор свисает от плечевой полосы высокого сосуда."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-049",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-049 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-07.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-049.png",
+          "sha256": "87e3d36346d9708d049a4b780d53d5d73faa5c0962550ee1b6f0bb79531a3fa5"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-049.png",
+          "sha256": "da3795e5525e98935b65dbbe4eb2d5f122c9023fe1b63824c771ef703ba3ca0c"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9575.jpg",
+          "sha256": "91ebd85f9800d265172285afbb0aceec137ce654d948a50fc68a1cda96c89b8a"
+        }
+      ],
+      "basis": {
+        "geometry": "Голубая трёхлопастная форма со светлым каплевидным центром и двумя нижними завитками.",
+        "context": "Повторяется на плечевой полосе сосуда NM-9575."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-050",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-050 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-07.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-050.png",
+          "sha256": "685c12df334b4861b285cd3c07a17432b9f35e63f38bdf0e780926aaeee7e3f4"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-050.png",
+          "sha256": "1b874b95b81dff08e78822ace8531c684325c4b30190d59991736c5e77880524"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9577.jpg",
+          "sha256": "037a59ad71cb71b87a5797200661a325f62eb008ec019f51573f81c916ebb503"
+        }
+      ],
+      "basis": {
+        "geometry": "Двенадцать вытянутых бледно-зелёных долей вокруг сиреневого круга; контур светлый.",
+        "context": "Розетка в центре большого обрамления на сосуде NM-9577."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-051",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-051 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-07.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-051.png",
+          "sha256": "705114b8686be038ad09b4ff95d9ddb2c09db9190372ec4f4da070d5b592d241"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-051.png",
+          "sha256": "7a1153425d72243708ae5b5b868d5fcd33cf9cb14e837a07eb29ece9ec2fe609"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9577.jpg",
+          "sha256": "037a59ad71cb71b87a5797200661a325f62eb008ec019f51573f81c916ebb503"
+        }
+      ],
+      "basis": {
+        "geometry": "Терракотовая остроконечная пальметта со светлой внутренней кромкой.",
+        "context": "Верхняя осевая вершина рамки вокруг 050."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-052",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-052 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-07.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-052.png",
+          "sha256": "d1a9a2412d59c28d9befb175178419138322d827aa0ba161a7dfd361c6c7020f"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-052.png",
+          "sha256": "a76f5b536341486e987056e98b7546141f06270a8fbe09f2642c5040ec7c9c7f"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9577.jpg",
+          "sha256": "037a59ad71cb71b87a5797200661a325f62eb008ec019f51573f81c916ebb503"
+        }
+      ],
+      "basis": {
+        "geometry": "Зелёная пара листовых спиралей с центральным нижним отводом.",
+        "context": "Нижнее обрамление розетки 050 на NM-9577."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-053",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-053 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-07.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-053.png",
+          "sha256": "b4946c79b9049430a6954171d9cd7244e705321c25f672d5cf4b902b903b6c2b"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-053.png",
+          "sha256": "d99529dc9948553e37d5754b3e34cff26a0260ca083a4ec369d3e7cf0f1f6336"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9578.jpg",
+          "sha256": "e903758b6084ef8b341f694fdb846a48ef3830f5871939f6c3e8151ff887c75d"
+        }
+      ],
+      "basis": {
+        "geometry": "Жёлтый контур большого верхнего цветка и меньшего нижнего, соединённых листовой осью.",
+        "context": "Цельная двухъярусная фигура в обрамлении поля намазлыка."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-054",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-054 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-08.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-054.png",
+          "sha256": "a8f8d5629ace7eb834daa7d76393996377230b18cc34094bb9aba709b157453e"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-054.png",
+          "sha256": "a862a058630d378eaa8afff0fc31f346bf1a5f65a1673264ee9a467141f16b71"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9578.jpg",
+          "sha256": "e903758b6084ef8b341f694fdb846a48ef3830f5871939f6c3e8151ff887c75d"
+        }
+      ],
+      "basis": {
+        "geometry": "Тонкий оливковый побег с пятью каплевидными бутонами и дугами.",
+        "context": "Ветвь соединяет цветочные группы по краю намазлыка NM-9578."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-055",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-055 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-08.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-055.png",
+          "sha256": "b576a514c85c965c8238dc31bc4d45e461e5b5bd63f9121f4ee6ac5c4ee3d9c8"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-055.png",
+          "sha256": "65fa9bef0c2013abbf875d82ecd186e096e2c4b566034de7fe5ff66988390fdb"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9578.jpg",
+          "sha256": "e903758b6084ef8b341f694fdb846a48ef3830f5871939f6c3e8151ff887c75d"
+        }
+      ],
+      "basis": {
+        "geometry": "Большая разомкнутая серповидная фигура с зубчатым внутренним краем и верхней веткой.",
+        "context": "Сложный фрагмент арочного обрамления того же намазлыка."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-056",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-056 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-08.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-056.png",
+          "sha256": "1d4db141f1a09672890737d53a7499d8b84f358f1c351a4e5321666ed1342b7a"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-056.png",
+          "sha256": "d220416cb2c92910a4b75cf0bff3619abd2dff6807742e366d193362d08694e1"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9578.jpg",
+          "sha256": "e903758b6084ef8b341f694fdb846a48ef3830f5871939f6c3e8151ff887c75d"
+        }
+      ],
+      "basis": {
+        "geometry": "Изогнутая вертикальная ветвь с каплями слева и малым раскрытым цветком справа снизу.",
+        "context": "Побег входит сверху из соседней части каймы намазлыка."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-057",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-057 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-08.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-057.png",
+          "sha256": "7324e997c18f1c6e4c65dc0d5ed6805609aa4beb17a69346fa877bedac6362cb"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-057.png",
+          "sha256": "09d30aaac5c2f919a4fb25f90d9855b41ed2ef9bd931a57c95bf5b0e6c460151"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9578.jpg",
+          "sha256": "e903758b6084ef8b341f694fdb846a48ef3830f5871939f6c3e8151ff887c75d"
+        }
+      ],
+      "basis": {
+        "geometry": "Тонкая вертикальная цепь чередующихся спиралей; небольшое искривление оси.",
+        "context": "Внутренняя линия арочной рамки NM-9578."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-058",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-058 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-08.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-058.png",
+          "sha256": "05d6bbcc572b23f3ebd350b47a027b2a2bb3d615bec564b90f2891534521f4a1"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-058.png",
+          "sha256": "f7f973a8f4b1cde3056c150fd10663310735e34348117020a0e2c792b93f2147"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9578.jpg",
+          "sha256": "e903758b6084ef8b341f694fdb846a48ef3830f5871939f6c3e8151ff887c75d"
+        }
+      ],
+      "basis": {
+        "geometry": "Ветвь из верхнего левого угла, цветок справа и цепь листьев вниз; фактурные детали сохраняются.",
+        "context": "Нижний угол растительного обрамления NM-9578."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-059",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-059 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-09.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-059.png",
+          "sha256": "58cf63b165a4f9c31a6ee4af5aff45315726323a6aaf14cc0d1800c51dda226d"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-059.png",
+          "sha256": "58f864ce3036402a35273316b83e12f720d4dac6db1e1b9c0dc270c1d73755dc"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9580.jpg",
+          "sha256": "fbd186eed5684443b1f5949e93c6a22d5584bfd85ef1393646d8e0afc9198a4a"
+        }
+      ],
+      "basis": {
+        "geometry": "Два оранжевых контурных завитка, верхний с зубчатым гребнем; ощутимая фактура линии.",
+        "context": "На предмете завитки идут горизонтальным рядом; кроп и flat показаны вертикально."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-060",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-060 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-09.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-060.png",
+          "sha256": "85d69d115d08aab889e1cb323145776fab3ac92db2f78f535f6f8979bf21aae6"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-060.png",
+          "sha256": "9dcb8eac48d1de0e007f8df08e2b8ea44a066ff83402b59e67f8bfd2cad91a82"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9580.jpg",
+          "sha256": "fbd186eed5684443b1f5949e93c6a22d5584bfd85ef1393646d8e0afc9198a4a"
+        }
+      ],
+      "basis": {
+        "geometry": "Очень тонкая светлая волнистая цепь с петлями; концы достигают края alpha.",
+        "context": "Светлая линия над оранжевой каймой NM-9580; ткань складывается."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-061",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-061 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-09.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-061.png",
+          "sha256": "7a570430e5c3b9bc4af0321bc50cf7b115e22d01e5a41004c80fb6b8dae67290"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-061.png",
+          "sha256": "429e54a12dfe5acc5d277e652f2b0febe4621bb3cd48b3b5fae515b940d0f6c9"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9585.jpg",
+          "sha256": "ffda5ad6d4fd7b93d0581d4b5d7fc5dff5726d35baaaa5e39e7a96f05d85fd65"
+        }
+      ],
+      "basis": {
+        "geometry": "Бордовая волнистая окружность, розовая внутренняя линия и оранжевое смещённое ядро.",
+        "context": "Отдельный цветок в верхнем ряду вышивки на сельском женском костюме."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-062",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-062 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-09.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-062.png",
+          "sha256": "bfea242c90ef98354ac5999d83c12953d28c5d2476a907017ae8e14aa42568e5"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-062.png",
+          "sha256": "a4c23a3cb39311d3707e09f81dbe10c849e65f77444c444a7d968e6103e210c1"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9585.jpg",
+          "sha256": "ffda5ad6d4fd7b93d0581d4b5d7fc5dff5726d35baaaa5e39e7a96f05d85fd65"
+        }
+      ],
+      "basis": {
+        "geometry": "Тёмно-зелёный двойной волнистый контур; три розовых внутренних доли.",
+        "context": "Три доли видны в кропе и общем ряду костюма; старая подпись «пара» неверна для текущей формы."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-063",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-063 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-09.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-063.png",
+          "sha256": "6d065b8b795074b8dbc55bb8b629a4d2a057cfcd098580875d6eaf8b55870831"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-063.png",
+          "sha256": "b2a1f565235a4bae39a9aa430dbd97d23d2106490e744ea174a77f673b117a6b"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9585.jpg",
+          "sha256": "ffda5ad6d4fd7b93d0581d4b5d7fc5dff5726d35baaaa5e39e7a96f05d85fd65"
+        }
+      ],
+      "basis": {
+        "geometry": "Зелёная широкая фигура из верхних спиралей и нижней зубчатой линии.",
+        "context": "Центральный блок второго ряда вышивки костюма NM-9585."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-064",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-064 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-10.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-064.png",
+          "sha256": "09ad11521cc635aec8c1bc367fb0cf379eac73eba70ac82614b7e8ab9e2a32eb"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-064.png",
+          "sha256": "d949ac57dd30d619f2bb2175feef36966b7a309efc93ed5f7aca2a1973680461"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9585.jpg",
+          "sha256": "ffda5ad6d4fd7b93d0581d4b5d7fc5dff5726d35baaaa5e39e7a96f05d85fd65"
+        }
+      ],
+      "basis": {
+        "geometry": "Розовый контур с верхним волнистым гребнем и большой внутренней спиралью.",
+        "context": "Правый блок второго ряда того же костюма; локально ткань изогнута."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-065",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-065 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-10.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-065.png",
+          "sha256": "bca955162d6687e1bedf9a6eadcfc2ccbc7e9968d87d42b4d0ae308b6f958313"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-065.png",
+          "sha256": "e0759019a82ba61a6ced68524d954de7a6512d98bf0dbbd18d9b65c3d4a9b7fc"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9585.jpg",
+          "sha256": "ffda5ad6d4fd7b93d0581d4b5d7fc5dff5726d35baaaa5e39e7a96f05d85fd65"
+        }
+      ],
+      "basis": {
+        "geometry": "Розовая многоярусная связка: верхние петли, горизонтальный отвод, нижняя спираль.",
+        "context": "Левый блок второго ряда вышивки NM-9585."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-066",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-066 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-10.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-066.png",
+          "sha256": "8a0a474a3706cc17bfd2513a06fc19a0a44d0fea527f2a0bed1f98b743f9b800"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-066.png",
+          "sha256": "95a487c3e51ceb8bc89fb1b1e939027016f6b0e9703d23f79de66f62c9e73fa7"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9585.jpg",
+          "sha256": "ffda5ad6d4fd7b93d0581d4b5d7fc5dff5726d35baaaa5e39e7a96f05d85fd65"
+        }
+      ],
+      "basis": {
+        "geometry": "Шесть неравных красных петлевых лепестков с открытым центром.",
+        "context": "Малый цветок нижнего ряда; кроп срезает левую часть, контекст подтверждает шестилепестковую схему."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-067",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-067 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-10.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-067.png",
+          "sha256": "f9c7ce702176756d5ba915c5fea4b1938886b8f9892fc07b343a10f4ae35ba85"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-067.png",
+          "sha256": "5f6ce8755b76051b3bac695c6a71145a241731ded4d4d30c3fe78f628b634c4d"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9590.jpg",
+          "sha256": "b8015fddf8896de4250e801b705976add56e1268454492187e444a17efa8e69d"
+        }
+      ],
+      "basis": {
+        "geometry": "Красный вертикальный ромб с четырьмя отводами и светлыми внутренними просветами.",
+        "context": "Ромб входит в плотную сетку на полотенце NM-9590."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-068",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-068 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-10.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-068.png",
+          "sha256": "70957ca83d356817578ba6839c090ade14395e022b4ea486fb45f4f284148cd1"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-068.png",
+          "sha256": "2d3348cd54ceb12823f016311894830cf4461b64d207e1840edafc83dcf0a96b"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9590.jpg",
+          "sha256": "b8015fddf8896de4250e801b705976add56e1268454492187e444a17efa8e69d"
+        }
+      ],
+      "basis": {
+        "geometry": "Два горизонтальных ряда синих округлых точек, соединённых тонкими красными линиями.",
+        "context": "Разделительная полоса между красными ромбовыми рядами полотенца."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-069",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-069 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-11.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-069.png",
+          "sha256": "65fa9d5539f5e2dcdc5b8c1a88a1b2e3a6451cd73510701c68e6a8f4203f9929"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-069.png",
+          "sha256": "1124103041323ad7b6c66a476b1c900761edda1a90db95a6a712256df78130e4"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9590.jpg",
+          "sha256": "b8015fddf8896de4250e801b705976add56e1268454492187e444a17efa8e69d"
+        }
+      ],
+      "basis": {
+        "geometry": "Шесть красных малых шевронных волн с тремя ступенями на верхушках.",
+        "context": "Кромка красной геометрической полосы NM-9590."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-070",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-070 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-11.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-070.png",
+          "sha256": "91c21c99445857a3ee4d1175064278c35f7125360d06a7f1aab65069c1b39181"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-070.png",
+          "sha256": "552afea00976c4af06d2d6fe95e3fe56376879ff9cd1edda7af702b01aa73519"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9591.jpg",
+          "sha256": "0f244a459dcaf695970a4298343cea543283a5071ea5728de464bf9a26eb221f"
+        }
+      ],
+      "basis": {
+        "geometry": "Красные ромбовые блоки чередуются со встречными шевронами и точечными просветами.",
+        "context": "Красная полоса на полотенце рядом с серой и жёлтой полосами."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-071",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-071 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-11.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-071.png",
+          "sha256": "14e5a6582bc7aa90d7d5bfc946643bb06b3940a3483a8098b9de4af4d21cbe99"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-071.png",
+          "sha256": "3f45acd90c99dba8fc524b9d67d47ad011eb8f8f2166db5583ca8f8f2ea40ff9"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9591.jpg",
+          "sha256": "0f244a459dcaf695970a4298343cea543283a5071ea5728de464bf9a26eb221f"
+        }
+      ],
+      "basis": {
+        "geometry": "Серые ромбы и шевроны образуют горизонтальную полосу; flat упорядочивает переплетённую ткань.",
+        "context": "Серая полоса NM-9591; исходный материал имеет сложную фактуру нитей."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-072",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-072 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-11.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-072.png",
+          "sha256": "91d5f0f34e2df93592a4c9df330ed027fbd34e2d2327e27a845b13292cfbceb7"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-072.png",
+          "sha256": "f5d42c8b7b642496995d9a13d8be79ad04c563d5d7480ee8cf47bd52d31c72b7"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9627.jpg",
+          "sha256": "b49299cd60b9cca663c42d978cbd6f1ce6bb010ba28eed672b2f80d8c28400ec"
+        }
+      ],
+      "basis": {
+        "geometry": "Наклонный многорядный цветок с мелкими чешуйчатыми полями и длинными острыми лепестками.",
+        "context": "Золотошвейная растительная композиция на синем костюме; кадр показывает только часть предмета."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-073",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-073 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-11.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-073.png",
+          "sha256": "22823250ff824891da403d757cc632b013e2b5fe8b6986c28d3e4e38e329dad9"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-073.png",
+          "sha256": "4d4c5b99f70aa5db51b05220f6e65f4ea85b95b13a40454a1a42cf349d0582c0"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9626.jpg",
+          "sha256": "184ecd6bee95727c2be7173b39eaa7f61b0ab00d2d74a0eb825824f4f78a0c48"
+        }
+      ],
+      "basis": {
+        "geometry": "Компактный завитый золотистый цветок с несколькими складчатыми долями и точечной фактурой.",
+        "context": "Малый цветок в той же ветвящейся вышивке NM-9626."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-074",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-074 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-12.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-074.png",
+          "sha256": "349b022a735a5f423b886ef928889a4cc80f335c4fefa9d725b435ff1ae4fb35"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-074.png",
+          "sha256": "aee6574d27935dfa86a3bbfd1c1da8925b00bf19a4965454ba18ac7b57b96978"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9626.jpg",
+          "sha256": "184ecd6bee95727c2be7173b39eaa7f61b0ab00d2d74a0eb825824f4f78a0c48"
+        }
+      ],
+      "basis": {
+        "geometry": "Развёрнутый диагональный цветок с большим числом мелких светлых ячеек и розоватой осью.",
+        "context": "Вышитый раскрытый цветок в ветви NM-9626; исходный кадр является деталью костюма."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-075",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-075 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-12.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-075.png",
+          "sha256": "187aaaf84c989ce97d1c87e0c1e95f0f2d3915a644afb253d904d26a2eb6d4f9"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-075.png",
+          "sha256": "98b02a3ce0593c8d3bec1fe6d14bbaaa1968499d0cf510648785bb41187391a9"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9626.jpg",
+          "sha256": "184ecd6bee95727c2be7173b39eaa7f61b0ab00d2d74a0eb825824f4f78a0c48"
+        }
+      ],
+      "basis": {
+        "geometry": "Золотистая ветвь с двумя листьями сверху и тремя округлыми окончаниями снизу.",
+        "context": "Ветвь связывает цветы на том же синем поле NM-9626."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-076",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-076 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-12.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-076.png",
+          "sha256": "9be6c49363d3da6b5a286f7694c657c81c95ec698a0cd4b596e569a432456882"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-076.png",
+          "sha256": "b03f19f86db0d5ee196b048df2863a8727e0a5ab2a443d31650185380a33a6cc"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9652.jpg",
+          "sha256": "624a5d1134ef2bc9fc8bb340d19f80be665a6b48c6a410b6c4c0d616bfd1fa16"
+        }
+      ],
+      "basis": {
+        "geometry": "Узкий многолинейный зигзаг с малыми цветами в изгибах; верх срезан.",
+        "context": "Декор края мужского костюма, соседствует с отдельными золотыми звёздочками."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-077",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-077 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-12.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-077.png",
+          "sha256": "c087018fa1f5fdc2e8e0e0b9a45b492397a2edc84e5a1f015d575c79fe6e6db0"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-077.png",
+          "sha256": "04b4b979ea72582ed8f74e79ab7e2bedae0b62cfc304da59246d26f955998b00"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9652.jpg",
+          "sha256": "624a5d1134ef2bc9fc8bb340d19f80be665a6b48c6a410b6c4c0d616bfd1fa16"
+        }
+      ],
+      "basis": {
+        "geometry": "Восемь золотых радиальных долей с горизонтальными внутренними полосами.",
+        "context": "На исходнике две раздельные малые звездочки в полосе; flat выделяет один модуль."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-078",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-078 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-12.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-078.png",
+          "sha256": "b0ad4cb76f464db2c348d26948c43623efc0c89fc0ef2bf7d304151ee206587f"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-078.png",
+          "sha256": "a8aa52570d9a004a079fc57b16cf16d7c62ede3fcefa7440cbd5dee997a80472"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9679.jpg",
+          "sha256": "f023677c5d9359c9e7387cc242484e3b7c52c39aa9c27765e47270b5e08830b7"
+        }
+      ],
+      "basis": {
+        "geometry": "Восемь голубых округлых вставок вокруг розового квадрата; небольшие неравенства ободков.",
+        "context": "Декор прямоугольной застёжки; кроп выделяет одну группу из сплошного ажура."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-079",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-079 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-13.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-079.png",
+          "sha256": "f0787f52c34b537ab049dec408ad74223e5f9a1577356a111db659fd599e9da9"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-079.png",
+          "sha256": "cd97b9a40d1e1a72145e715bda257313b130dc068e5e45e57fee9d7d86154cfb"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9684.jpg",
+          "sha256": "7b2e3238f32bc21f0debc28a7de7852231e492c31cb9b0e4ecc738b226fcbbc2"
+        }
+      ],
+      "basis": {
+        "geometry": "Каплевидная решётка с множеством тонких дуг и шестью внешними круглыми вставками.",
+        "context": "Нижний каплевидный щиток серьги; верхний узел и часть деталей за кропом."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-080",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-080 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-13.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-080.png",
+          "sha256": "e1c3f2761574a71ff072778f7f9f603a499c459e79b04006fee6b539faa467ed"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-080.png",
+          "sha256": "9995229907672fe003f3ad70621305587c0de748f03c05e37087a2740384ba8a"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9685.jpg",
+          "sha256": "bfe61b0c847a1711e92e5e40ae3fe2b52ded365e2520c9a8edd9d4a4380c9702"
+        }
+      ],
+      "basis": {
+        "geometry": "Два яруса серебристого ажура, голубые вставки и четыре нижние подвески; очень тонкие связи.",
+        "context": "Целая серьга в контексте; кроп показывает нижнюю часть, flat включает более широкую форму."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-081",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-081 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-13.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-081.png",
+          "sha256": "c0006598d6f26745d2aed8c841a27e1019466756c496499efc3082574f25d9f7"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-081.png",
+          "sha256": "cef542f3563b3153769010b42a85159abaca8051decee4b7a2d2555741b1e5c9"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9686.jpg",
+          "sha256": "d7baa520b319e85e263aafdc7aa9aad73dc2b41216c6d19b446d0f2fec6e7005"
+        }
+      ],
+      "basis": {
+        "geometry": "Круглый золотистый ажурный щиток с бирюзовыми бусинами и четырьмя нижними цепочками.",
+        "context": "Серьга с раздельным верхним ярусом; flat упрощает связь верхней части."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-082",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-082 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-13.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-082.png",
+          "sha256": "9800e33d0663c324fac47834ca99223989db99d7044a06d192888f019be67011"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-082.png",
+          "sha256": "ef33411033830064193faf27529278df30784a77308764dc3be10dfec2b9bbfc"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9687.jpg",
+          "sha256": "d4280ba42ce54e2b2e3b5c0479ba12778ad5383cf91bd511b3b4a4e9a220bbba"
+        }
+      ],
+      "basis": {
+        "geometry": "Треугольный ажур с красным овалом и пятью свисающими цепочками.",
+        "context": "Серьга с верхней петлёй и неравными физическими подвесками в кадре."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-083",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-083 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-13.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-083.png",
+          "sha256": "ae87883d123cd0eea32dd101d404a1d64c4ba0b9ffcc345a637ac20d76380265"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-083.png",
+          "sha256": "bbe4e091fbe03ff0d1af4a78a950409a3d99dd60518827819aa04faafe501e97"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9694.jpg",
+          "sha256": "1b21b591485e2eec15f83c981bc93b551be87fadb0c54b42812aafc81bf9f3d6"
+        }
+      ],
+      "basis": {
+        "geometry": "Серебристый цветочный ажур, голубое кольцо и фиолетовый гранёный центр.",
+        "context": "Один модуль в цепи составного браслета; физические соединения по бокам."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-084",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-084 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-14.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-084.png",
+          "sha256": "66795b755602fcded15b82d60a394113d5a07e2c1603d805757c3a3bd58b2976"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-084.png",
+          "sha256": "64400c01fd6b26e7e61b2c200408bf115a7413c11513c223fdc93c10160acd2b"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9695.jpg",
+          "sha256": "5be456ae5ea3ecabcc2def31ef90baea12b0558549a72053bee8034c381842db"
+        }
+      ],
+      "basis": {
+        "geometry": "Зелёный вертикальный овал с серебристой ребристой рамкой и боковыми голубыми кнопками.",
+        "context": "Модуль браслета с физическими боковыми соединителями."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-085",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-085 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-14.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-085.png",
+          "sha256": "772da7a1af325a213d892987359b4e5d5be014b9b2961da4ffd0e60827675ca9"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-085.png",
+          "sha256": "ec376fd76664ee45c030b2094424d75868c049733d1bb84ad81940020f9c18cb"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9697.jpg",
+          "sha256": "3704cff82f4821b99e45d4f1fe93922d619fb2502e13112c1e01bec18e5240d5"
+        }
+      ],
+      "basis": {
+        "geometry": "Коричневый вертикальный овал в голубом бусинном кольце.",
+        "context": "Одинаковые овальные звенья повторяются в браслете NM-9697."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-086",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-086 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-14.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-086.png",
+          "sha256": "7a4d129ae37d808f1dabefdffee3fe5a5651260205031b706da41bf6aa69be0c"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-086.png",
+          "sha256": "4ff455e1d45219b5523c570a0c1709b219fdf262267319cf7046524d5cb3b5d8"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9698.jpg",
+          "sha256": "4789785c5959d43e2c6dad1971218204036032438f12a536499b5ef9a0d21c4e"
+        }
+      ],
+      "basis": {
+        "geometry": "Прямоугольная золотистая пластина с оранжевым кругом и голубыми точками; боковые вырезы.",
+        "context": "В браслете соединены прямоугольные пластины; ракурс обрезает часть левого модуля."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-087",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-087 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-14.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-087.png",
+          "sha256": "16800c53edc39a3f8ae779a1d22b50e7eca6372d0eb6a7a58c388f104b92f8bd"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-087.png",
+          "sha256": "60449e2126670372e9aba551d3e411bb74b1c341f0d11e3c3c30de69eba242f1"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9699.jpg",
+          "sha256": "8264a9c669b0a4a66885f8e9d93298e62674c0ccd94c3d509cdc9936daf01636"
+        }
+      ],
+      "basis": {
+        "geometry": "Синий прямоугольный камневидный центр, округлая рамка и по три боковых выступа.",
+        "context": "Цепь квадратных вставок чередует синий и розовый цвет на браслете."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-088",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-088 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-14.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-088.png",
+          "sha256": "d21afdae5b1f9fc109407de9b06aa622bc6e3bf4528fc95c11c45eba67ba38fc"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-088.png",
+          "sha256": "cb6cf4a052a2303e5ad1efaf9bde3f6c56a0617627cdb8db5c6f7ed760b703a4"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9701.jpg",
+          "sha256": "10e81a63dd81e6ba545a81bdaecf198e850f75fbea7d26cdc741bba0fb132a7d"
+        }
+      ],
+      "basis": {
+        "geometry": "Два золотистых круглых яруса с фиолетовыми центрами и нижним кольцом.",
+        "context": "Накосник продолжается монетой ниже кропа; PNG не изображает весь предмет."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-089",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-089 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-15.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-089.png",
+          "sha256": "1febd392e3bdf74cb1859894913bb37f35702ab74395d327e0b7861e3a716ece"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-089.png",
+          "sha256": "7427abd3d4aba5bd3826749485a9a7bb52c6958523f0718828e714de1579df07"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9702.jpg",
+          "sha256": "ee385983238674986b6a17effabcdcddb4ea015b408445e3e0a1932573b998e5"
+        }
+      ],
+      "basis": {
+        "geometry": "Широкий ажурный щиток с фиолетовым центром и шестью серебристыми овальными вставками.",
+        "context": "Парные щитки накосника соединены с верхними ярусами и монетами; полный кадр повернут относительно flat."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-090",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-090 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-15.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-090.png",
+          "sha256": "2c06e2246d7ece45aff1e675b6426e42ba89cd757d38a7d3e4a018e4703430c5"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-090.png",
+          "sha256": "3861b17e328ead8606fc39478697d59e42964bbb478403c3a1404ac687685ecc"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9477.jpg",
+          "sha256": "a88a9eaaf0fce23e37d0957a445d7f54e5e577dd2deecb817d31ef87b362fd1e"
+        }
+      ],
+      "basis": {
+        "geometry": "Красные зубчатые ромбовые звёзды чередуются с малыми ступенчатыми фигурами.",
+        "context": "Край полотенца H-9477 окружает более мелкое ромбовое поле."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-091",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-091 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-15.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-091.png",
+          "sha256": "cc929e7acef3f4a4708e6dde4a2fb66c54204e8197155ce48ec040b593613fcd"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-091.png",
+          "sha256": "13a0f64d9b9f72eb0f4fbae450f5f9faa488b1a097b407bb9c15d64ce1812ff7"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9477.jpg",
+          "sha256": "a88a9eaaf0fce23e37d0957a445d7f54e5e577dd2deecb817d31ef87b362fd1e"
+        }
+      ],
+      "basis": {
+        "geometry": "Два красных ступенчатых ромбовых контура и центральный крестовидный блок.",
+        "context": "Мелкие ромбы заполняют продольную полосу того же полотенца."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-092",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-092 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-15.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-092.png",
+          "sha256": "9a621875880768ddd849e715ca6b28e2b99010723d2482e057d546d8a8854bfb"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-092.png",
+          "sha256": "023e86777a6f05f50c44426b88ec1feccb37c400e4767200d521552988cbc5f2"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9477.jpg",
+          "sha256": "a88a9eaaf0fce23e37d0957a445d7f54e5e577dd2deecb817d31ef87b362fd1e"
+        }
+      ],
+      "basis": {
+        "geometry": "Красный ромб с мелкой шахматной сеткой и четырьмя светлыми шевронами в центре.",
+        "context": "Большие ромбы чередуются в центральной полосе H-9477."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-093",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-093 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-15.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-093.png",
+          "sha256": "b9a9cd4a053d048078b436c561b8ab672993823e22a3caeb4ac615af5906f36a"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-093.png",
+          "sha256": "26992f2663e41f59184fef6d2ba6fc56ffbaf442efdb44d13a1a1cb8a1662c21"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9479.jpg",
+          "sha256": "ef09fc032cea51464776d786723f406e9d3d694d8830ba1445a0ee46a59dba67"
+        }
+      ],
+      "basis": {
+        "geometry": "Много фиолетовых петлевых лепестков с малыми завитками; круглый центр с малым лопастным просветом.",
+        "context": "Крупный цветок в среднем поясе полотенца H-9479; по краям есть меньшие цветы."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-094",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-094 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-16.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-094.png",
+          "sha256": "ba8e7edf4f5548170e90e5bf676577d70edf9b79b1050655879a385e4b39dc85"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-094.png",
+          "sha256": "6f8b3eb237241ba3f5e4d4844149ec60bfe220ad993eb34ecc5b3987113ecd76"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9479.jpg",
+          "sha256": "ef09fc032cea51464776d786723f406e9d3d694d8830ba1445a0ee46a59dba67"
+        }
+      ],
+      "basis": {
+        "geometry": "Много светлых петлевых лепестков с тёплой центральной фигурой.",
+        "context": "Светлый цветок справа в том же среднем поясе H-9479."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-095",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-095 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-16.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-095.png",
+          "sha256": "20a02925e7ec9686fed87b41f69845ed7c36ef4ea0ae977c110c81f09d032695"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-095.png",
+          "sha256": "cb7da656e600b2b60065a4378529d0dd5ee8818c3fbe485e909e91e5bf0d2b3c"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9479.jpg",
+          "sha256": "ef09fc032cea51464776d786723f406e9d3d694d8830ba1445a0ee46a59dba67"
+        }
+      ],
+      "basis": {
+        "geometry": "Два жёлтых лопастных овала соединены тремя петлями по вертикали.",
+        "context": "В исходнике несколько вертикальных связок пересекает диагональный побег."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-096",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-096 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-16.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-096.png",
+          "sha256": "59db2b8fbaabe97750e462159442f89fac03ec8797622fbf2932e70df3969ab1"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-096.png",
+          "sha256": "51e8ae0828bf16598e0db11739d7a2a0dad906d2b3bd4da0354de22fddf72448"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9480.jpg",
+          "sha256": "c456847ddbdf831ac2abae57c50a789879bfc945456ce85dc1acc69b8be777b6"
+        }
+      ],
+      "basis": {
+        "geometry": "Красный зубчатый ромб с внутренним ромбом и светлыми точечными просветами.",
+        "context": "Крупный ромб между светлыми крючковыми полосами на H-9480."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-097",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-097 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-16.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-097.png",
+          "sha256": "d98218312218ffbeb3931e8dd3bc3fc677526e929d75abd9bf28b4781d77898c"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-097.png",
+          "sha256": "4715a492cac3bfc3acd9a97921595f46057472dc0f20646497eda797eedd99c4"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9480.jpg",
+          "sha256": "c456847ddbdf831ac2abae57c50a789879bfc945456ce85dc1acc69b8be777b6"
+        }
+      ],
+      "basis": {
+        "geometry": "Светлая ромбовая рамка из угловых меандров с пустым центром.",
+        "context": "Светлая ломаная сеть на H-9480 окружает ромбовые поля; выделенная рамка — производная изоляция."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-099",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-099 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-16.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-099.png",
+          "sha256": "0bdc9d6ef23689d67b07011b3c49147296d275d8b2f86fdfaca3021d528945d2"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-099.png",
+          "sha256": "cb73e780f234dcadc0c2b68b124737c687e9eaf0fe33b955f18076bfc85cd91e"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9482.jpg",
+          "sha256": "e7debf4ec7370f6e0521e20091be46981c838466fb0b51ba9ef6071de82bf11e"
+        }
+      ],
+      "basis": {
+        "geometry": "Золотистый вертикальный ромб с тёмным ядром и четырьмя открытыми загнутыми отводами.",
+        "context": "Цветные ромбовые фигуры идут по полосам полотенца H-9482; цвета исходника местами различаются."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-101",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-101 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-17.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-101.png",
+          "sha256": "03932de025992856d6378860c4e09f5dd2de70e70147bf5e4aacae414905af81"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-101.png",
+          "sha256": "0ce19d2aa42434d959101e1a207c227ea6e4842645d136d186dfad7dd35c2f3b"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9482.jpg",
+          "sha256": "e7debf4ec7370f6e0521e20091be46981c838466fb0b51ba9ef6071de82bf11e"
+        }
+      ],
+      "basis": {
+        "geometry": "Розовая вытянутая ступенчатая фигура с тёмным сетчатым ромбом и четырьмя отводами.",
+        "context": "Похожая роль в другой цветной полосе H-9482."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-102",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-102 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-17.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-102.png",
+          "sha256": "4000cd53efbdf71f19d1a87be2f1209396cbbe0a8923f545e0cfdedd909a0ab3"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-102.png",
+          "sha256": "d2902c3994560bcd4641942bbc4c7360c3becbdf7b7ef793b6c56d0ec8fd2c1b"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9482.jpg",
+          "sha256": "e7debf4ec7370f6e0521e20091be46981c838466fb0b51ba9ef6071de82bf11e"
+        }
+      ],
+      "basis": {
+        "geometry": "Шесть отдельных многоцветных бутонов на горизонтальной линии, у каждого два нижних лепестка.",
+        "context": "Малые разноцветные фигуры на светлом краю полотенца H-9482."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-103",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-103 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-17.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-103.png",
+          "sha256": "49b1cb601a63784708cc3de9c441baa4b2ac1daa1c546c3d50b0e0f9cc626224"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-103.png",
+          "sha256": "cf5f0854c9f3ed4d38e88b06c56e8ee580155f5441f62a6d8974f266c5284d1b"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9483.jpg",
+          "sha256": "c12eb484432dc19e26684a5438857b9a9ab585385334706bdeebbf69d8f6f7b5"
+        }
+      ],
+      "basis": {
+        "geometry": "Разноцветные вложенные шевроны направлены вправо; края ступенчатые.",
+        "context": "Полоса на отдельном кадре DSC9483 ориентирована вдоль полотенца."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-104",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-104 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-17.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-104.png",
+          "sha256": "2e14e69dfb12261be650dc89712945b240c2b0a78610f0b0dbf84010da649ccd"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-104.png",
+          "sha256": "cf574588d7a2baf755d26c92997130232157548288bcc8bc3b5aafd226ca7857"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9484.jpg",
+          "sha256": "389f8f2e32fcfc98915707439c0a72d6ee22d038e4239a5d18b2c05904b194e7"
+        }
+      ],
+      "basis": {
+        "geometry": "Красный ромб с плотной мелкой сеткой и центральной четырёхчастной фигурой.",
+        "context": "Крупные геометрические поля полотенца H-9484 разделены иной сеткой."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-105",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-105 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-17.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-105.png",
+          "sha256": "d98e4aa8704d0a6bd92d392f9d6b47ce01f5a1d6b7fc5001f4ebdac405130e70"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-105.png",
+          "sha256": "5dc3a6ac650d6272072a42798a08cd1e794b9aa9cb14058badd94297c748ab2a"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9484.jpg",
+          "sha256": "389f8f2e32fcfc98915707439c0a72d6ee22d038e4239a5d18b2c05904b194e7"
+        }
+      ],
+      "basis": {
+        "geometry": "Светлая диагональная решётка с красными малыми ромбами, торцы нескольких полос оборваны.",
+        "context": "Сеть заполняет соседнее поле H-9484, продолжается за область кропа."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-106",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-106 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-18.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-106.png",
+          "sha256": "8131ee86c0704cc290b6bc098d0a42e2feb54bd21b9a49d0757dfd23edf2cc7d"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-106.png",
+          "sha256": "d25ca1bd153321b6c1825c71a0b61c00be5db57bc4881c283caa52d9fec39a80"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9492.jpg",
+          "sha256": "140f081648897a2c6e25fc5bd10089653952306dfc493bb1cbd4702640b313b4"
+        }
+      ],
+      "basis": {
+        "geometry": "Пять широких золотых лепестков вокруг светлого центра с разными направлениями штрихов и петлями по кромке.",
+        "context": "Верхний цветок на калфаке; полный предмет в кадре повернут относительно вертикали PNG."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-107",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-107 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-18.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-107.png",
+          "sha256": "b6598b8cf44bdd70162a7beda737f524bda0a3da18477f1d9972f3c3ce71ea16"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-107.png",
+          "sha256": "5ffb53c1f21262af3e3ebfada5e662f2bc8cf586dc30ab0adda7c5d75c81dc72"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9492.jpg",
+          "sha256": "140f081648897a2c6e25fc5bd10089653952306dfc493bb1cbd4702640b313b4"
+        }
+      ],
+      "basis": {
+        "geometry": "Поникшая трёхчастная золотистая фигура с верхним коротким стеблем и плотным овальным ядром.",
+        "context": "Поникший цветок в связанной растительной вышивке калфака H-9492."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-108",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-108 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-18.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-108.png",
+          "sha256": "5eab53f6d05bf974513afe9e135aa3783925e5c9c4b7456b0eeca10290455018"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-108.png",
+          "sha256": "b31d22ca2bf63bddc874bc5991954d521c7bd0820069589cb0de08cabe1c217a"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9492.jpg",
+          "sha256": "140f081648897a2c6e25fc5bd10089653952306dfc493bb1cbd4702640b313b4"
+        }
+      ],
+      "basis": {
+        "geometry": "Один длинный изогнутый перистый лист, золотое поле с тонкими жилками.",
+        "context": "Наклонный одиночный лист в нижней группе калфака, не многолистная ветвь."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-109",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-109 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-18.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-109.png",
+          "sha256": "de39c629d46077b58b23d7aaf79975d0494f4949dd93b619634c626c4cb85b50"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-109.png",
+          "sha256": "c05ee754e3d6d414472a8b318b9ba4ec2505d72ec0db2b92c8f48d47e4ff7df5"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9492.jpg",
+          "sha256": "140f081648897a2c6e25fc5bd10089653952306dfc493bb1cbd4702640b313b4"
+        }
+      ],
+      "basis": {
+        "geometry": "Два повторяющихся золотистых листовых блока с овальными бутонами и обрывающимися концами.",
+        "context": "Узкая полоса по нижнему краю калфака H-9492."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-114",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-114 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-18.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-114.png",
+          "sha256": "d44c669165600ae60cf259345bd8386b8de809ad0fc9ac88b3670e94f42b4e34"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-114.png",
+          "sha256": "621e12b9a49c85f76d217a8700a9129dcb13a5662fec6922a3f32b5f032b76a1"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9517.jpg",
+          "sha256": "d7a5e6ed436fcfec44cfe5a4aeab3642333c5b79edd90a197799ed263a684a6c"
+        }
+      ],
+      "basis": {
+        "geometry": "Пять широких тёмных кожаных долей с охристым овальным центром и жёлтой точечной кромкой.",
+        "context": "Большой цветок на голенище детского чига; форма зависит от изгиба поверхности."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-115",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-115 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-19.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-115.png",
+          "sha256": "e70cdd5e7e3a807b3a8e45c28928e0ae7864ae4578e03ef58939a106a3b8dcc5"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-115.png",
+          "sha256": "94151e2826f4dd73ad43b16fdd0f7adbb0c0ec42550e46f179b4561ada115782"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9517.jpg",
+          "sha256": "d7a5e6ed436fcfec44cfe5a4aeab3642333c5b79edd90a197799ed263a684a6c"
+        }
+      ],
+      "basis": {
+        "geometry": "Двухцветная S-образная лента с жёлтой пунктирной кромкой и завитком внизу.",
+        "context": "Полоса соединяет цветочные поля на объёмной обуви H-9517."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-116",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-116 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-19.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-116.png",
+          "sha256": "0c37ac355944ff5d1cfda7261b3d596fe07b47d1df3b9dc39ec628de4da92d4e"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-116.png",
+          "sha256": "a98309c2f2d5f1cac808a2561a0bf2b8963c0d7d2d0f5ac027936d8137747728"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9552.jpg",
+          "sha256": "a61c4ac47ad94077747993b44258f9c93243c95c7b3e05ab51f92343d4fd825f"
+        }
+      ],
+      "basis": {
+        "geometry": "Три светлых контурных лиственных блока на горизонтальном побеге, крайние различаются.",
+        "context": "Верхнее гравированное поле бляхи NM-9552; свет в кропе частично пересвечен."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-117",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-117 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-19.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-117.png",
+          "sha256": "34bc023e3031da0e49d7de178aa35394865c657d97b87c67c53910007f61f824"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-117.png",
+          "sha256": "8b8aac0eae4233fec172b93e4276e6d7c62fb13a2f106b3500adbe050f4931fc"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9574.jpg",
+          "sha256": "b6631ba3e1fd7b8ff733b4e7e4830b644bb9914a1249409eb513f784af2464d0"
+        }
+      ],
+      "basis": {
+        "geometry": "Нижняя пара охристых волют с зелёными боковыми завитками; верхние ленты срезаны.",
+        "context": "Нижняя часть рамки 046 на керамическом сосуде NM-9574."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-119",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-119 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-19.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-119.png",
+          "sha256": "1ead37c5bfc07bead62067b2da3d8073492e4e70a11c87e3c5e8a3c836601262"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-119.png",
+          "sha256": "0bd41d3da64906ebcf706915cdec6c9e4a97482b88cfdadabcb0308186922636"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9557.jpg",
+          "sha256": "cbb91601a8f9853038ba5081e2b6ce1074bd961f3bc03e144f43ab487a1ed59e"
+        }
+      ],
+      "basis": {
+        "geometry": "Открытая зубчатая спираль с меньшей внутренней звездчатой петлёй.",
+        "context": "Линейный заполнитель на бумажном рисунке учкура, связан с соседней линией."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-120",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-120 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-19.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-120.png",
+          "sha256": "3f9c44254815548c7157338ffde17d2f9cb736b8017f763aab707ea58c60865f"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-120.png",
+          "sha256": "74afecc68309062a0e4bb1bfe15013d3105eab1c07a50153e3e0aab71745cdbc"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9495.jpg",
+          "sha256": "892666b59c615b80ec8f957a926de9b31cd113a7da86382b41b12d6dc427400c"
+        }
+      ],
+      "basis": {
+        "geometry": "Многолучевая фигура чередует белые, золотые и красные заострённые лепестки вокруг синего центра.",
+        "context": "Розетка во внешнем поле коронного шамаиля с арабскими надписями."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-121",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-121 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-20.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-121.png",
+          "sha256": "19c07dd4145fbd7eb073992889922401275337eb5df08cb67b0c808dea0f75cf"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-121.png",
+          "sha256": "8e04c30921107cc537b58faf8d4c93015e8e750d99518b18d720fc37a6d3eb27"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9495.jpg",
+          "sha256": "892666b59c615b80ec8f957a926de9b31cd113a7da86382b41b12d6dc427400c"
+        }
+      ],
+      "basis": {
+        "geometry": "Наклонный вытянутый бутон: светлые центральные доли и две оранжевые наружные.",
+        "context": "Бутон во внешнем обрамлении шамаиля H-9495; нижняя часть привязана к побегу."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-122",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-122 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-20.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-122.png",
+          "sha256": "a27328761dfeeba238139d26e022119278556ff67ad9cb30beed26d908c8a2d0"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-122.png",
+          "sha256": "c7f305620ec203e944360adb0eb8743ebe189ad7f3b6fb6e705bd48a4bc743cb"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9495.jpg",
+          "sha256": "892666b59c615b80ec8f957a926de9b31cd113a7da86382b41b12d6dc427400c"
+        }
+      ],
+      "basis": {
+        "geometry": "Золотистый лопастной лист с двумя главными расходящимися чёрными жилками.",
+        "context": "Лист в цветной рамке H-9495, локальная ориентация зависит от побега."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-123",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-123 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-20.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-123.png",
+          "sha256": "78781fd2e3b42bcce1cac285b65ad28c73f005bb919f583238d34c78a69bc1d3"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-123.png",
+          "sha256": "edf0f39bb3701b66485485577bba21bac2199f6604e5d8f35c7fb8b2d8c274ae"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9495.jpg",
+          "sha256": "892666b59c615b80ec8f957a926de9b31cd113a7da86382b41b12d6dc427400c"
+        }
+      ],
+      "basis": {
+        "geometry": "Белая разветвлённая волюта, большая оранжевая внутренняя спираль и малый светлый завиток.",
+        "context": "Светлый побег на синем поле шамаиля H-9495."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-124",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-124 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-20.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-124.png",
+          "sha256": "154da13043ed883ac64b7fc74834c40567d7ada5c9441c9a29e366a0d90e7839"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-124.png",
+          "sha256": "ad5b74b1614705bbbe39cdb5e0d215c15c1bd16970b0d93bb82a9a0b337f3efc"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9455.jpg",
+          "sha256": "9e772a7d8cc4b06c2454bbed8b52f93b5ba73ebe25a4c758e787bef0e633b992"
+        }
+      ],
+      "basis": {
+        "geometry": "Зелёно-золотистая восьмиконечная рамка, голубой шестичастный цветок и два нижних светлых окончания.",
+        "context": "Современная работа «С праздником Рамадан байрам!» 2013 г.; фигуры повторяются по рамке."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-125",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-125 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-20.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-125.png",
+          "sha256": "189cdcdd87cb6c38fd742f3b42280f5fee21fe1d67d175e2a3d21e8ffb4905ba"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-125.png",
+          "sha256": "8dc7347165754886b125629dde6f1ddb3365d6cd5a7602f8187e8ed52ff78de2"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9455.jpg",
+          "sha256": "9e772a7d8cc4b06c2454bbed8b52f93b5ba73ebe25a4c758e787bef0e633b992"
+        }
+      ],
+      "basis": {
+        "geometry": "Голубая восьмиконечная рамка, пять красных лепестков с золотой кромкой; внутреннее смещение.",
+        "context": "Другой мотив той же современной рамки KS-9455; исходный побег продолжается за кропом."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-126",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-126 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-21.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-126.png",
+          "sha256": "b7e5986c90ed585ff30a76c8ce47a5f78c81fc7e0d3f4c87469e59265a0430a4"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-126.png",
+          "sha256": "a2af190bb229486854352cae4e3facf685b54c6ef5f3c396b8a90db001675d40"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9588.jpg",
+          "sha256": "d1232a5aef8e1a6bebe27b722964bc2383bd5a69d5f28628ed41e114acc0f785"
+        }
+      ],
+      "basis": {
+        "geometry": "Узкий розовый лист с тёмным внешним контуром и несколькими внутренними волнистыми дорожками.",
+        "context": "Лист входит в общую ветвь на другом кадре костюма NM-9585; ткань складчатая."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-127",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-127 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-21.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-127.png",
+          "sha256": "aa3eac3b587f3b495d60aeb3c56eeed86c3e284e8447a215ef0b122733c3069b"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-127.png",
+          "sha256": "5ebca9a07425fe98c46ca7321d899e01af0111e2daf37b787b00f2d61e68981d"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9588.jpg",
+          "sha256": "d1232a5aef8e1a6bebe27b722964bc2383bd5a69d5f28628ed41e114acc0f785"
+        }
+      ],
+      "basis": {
+        "geometry": "Розовая стреловидная разветвлённая фигура, длинное острие справа, три открытых контура слева.",
+        "context": "На костюме форма связана с тонким побегом справа; верхний отвод отличается от нижнего."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-128",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-128 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-21.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-128.png",
+          "sha256": "8adc0c6bfad1f506e7e03bdcdbc8dfae06dd1a02241e65f26490cede5a54ca49"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-128.png",
+          "sha256": "c093c733a7ebf936610b2b572f00d4c0c9ee9691912b83be8a363bb719e5efa6"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9626.jpg",
+          "sha256": "184ecd6bee95727c2be7173b39eaa7f61b0ab00d2d74a0eb825824f4f78a0c48"
+        }
+      ],
+      "basis": {
+        "geometry": "Шесть светлых округлых наружных лепестков и семь охристых внутренних полей; производная сильно проще вышивки.",
+        "context": "Небольшой цветок в ветвящейся группе NM-9626; кроп содержит соседние листья."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-129",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-129 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-21.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-129.png",
+          "sha256": "d696fb4e02f4f6a4aa03e6a871527f9be3ef67bbc41eba54bc15d60a8ab6c540"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-129.png",
+          "sha256": "06cdb8c943fa8f97739ed299b6b695dd1fcebe55181fce4a3ba9ebbff5d74982"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9492.jpg",
+          "sha256": "140f081648897a2c6e25fc5bd10089653952306dfc493bb1cbd4702640b313b4"
+        }
+      ],
+      "basis": {
+        "geometry": "Пять золотых петлевых лепестков и плотный центр без внутренней штриховки.",
+        "context": "Нижний цветок калфака H-9492; источник заполнен золотошвейной фактурой."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-130",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-130 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-21.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-130.png",
+          "sha256": "2dd107823996a507b377b948928ed9078c41e6e2fe851a2693dbb32f34ceff33"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-130.png",
+          "sha256": "144e07553fdf1ee79fb865098e33503ad881aa93e71717691dbc23c7a306bd9e"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9451.jpg",
+          "sha256": "df93e341cb9d9c996b45c06f561cc2ee4a414d28ef1228cfea52831e36c6a65b"
+        }
+      ],
+      "basis": {
+        "geometry": "Оранжевый разветвлённый стебель, зелёный лист справа и серая поникшая капля снизу с завитком.",
+        "context": "Нижний отвод в растительном поле KS-9451; верхняя часть стебля уходит за кроп."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-131",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-131 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-22.jpg row 1",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-131.png",
+          "sha256": "a07ca21245000341885d4c403cb1d7c8376430318cd581179bd6fab1ef10fd46"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-131.png",
+          "sha256": "3e231ca50bda04f2f2a3762145b44d8d818c053c795da387ffe1e9df0af798fa"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9517.jpg",
+          "sha256": "d7a5e6ed436fcfec44cfe5a4aeab3642333c5b79edd90a197799ed263a684a6c"
+        }
+      ],
+      "basis": {
+        "geometry": "Золотистая лопастная форма с длинной нижней ножкой и зелёной диагональной цепочкой.",
+        "context": "Кожаная вставка над волной на детском чиге H-9517; снаружи в источнике точечный шов."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-132",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-132 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-22.jpg row 2",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-132.png",
+          "sha256": "5cace0f11434024bab6416e8fe0cbcc000b7d473e71af98c44b5545def372c9d"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-132.png",
+          "sha256": "ef030d36694a68adfc6943b6fd1f2d7d20a8dd46e95c7245022b95e1f412c9df"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9557.jpg",
+          "sha256": "cbb91601a8f9853038ba5081e2b6ce1074bd961f3bc03e144f43ab487a1ed59e"
+        }
+      ],
+      "basis": {
+        "geometry": "Изогнутая каплевидная фигура, золотистая штрихованная вершина и зелёное раздвоенное основание.",
+        "context": "Листовая форма в рисунке учкура, нижняя часть связана с тонким отводом."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-133",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-133 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-22.jpg row 3",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-133.png",
+          "sha256": "ae957b19c312036171e082c02f32bd00cf390ac8d4e8f4b5aa631231e0328efc"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-133.png",
+          "sha256": "ec74d54a6a8cbce62fec8d6d513c64163a1f09e719b85c924069eb92996eea13"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9557.jpg",
+          "sha256": "cbb91601a8f9853038ba5081e2b6ce1074bd961f3bc03e144f43ab487a1ed59e"
+        }
+      ],
+      "basis": {
+        "geometry": "Три красные штрихованные капли расходятся вправо и вниз от левого верхнего узла.",
+        "context": "Тройной боковой отвод на рисунке NM-9557."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-134",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-134 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-22.jpg row 4",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-134.png",
+          "sha256": "adfa5a73c24d2398050ad79feec2ffa33a57f6f5d425f225e8d4c1f9dbf2f90e"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-134.png",
+          "sha256": "03bfb727020d40727dd31e006b72a4d6ab5e7fedb75f6ac83a54b69e42c6b8e8"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9495.jpg",
+          "sha256": "892666b59c615b80ec8f957a926de9b31cd113a7da86382b41b12d6dc427400c"
+        }
+      ],
+      "basis": {
+        "geometry": "Красная лопастная фигура с золотыми жилками и двумя нижними расходящимися частями.",
+        "context": "На шамаиле H-9495 виден вход верхнего побега, скорее листовой отвод; имя «цветок» не подтверждает ботанический тип."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "OBS-TP-E-135",
+      "type": "single_object_visual_observation",
+      "title": "TP-E-135 flat / crop / context",
+      "author": "Codex visual review",
+      "publication_date": "2026-10-12",
+      "locator": "contact-sheets/review-22.jpg row 5",
+      "assets": [
+        {
+          "path": "Датасет/Элементы/processed_flat/TP-E-135.png",
+          "sha256": "f275b40de94f3067f7f85d597d41eeb6db479fc83edf989de151d0bb11ac488e"
+        },
+        {
+          "path": "Датасет/Элементы/crops/TP-E-135.png",
+          "sha256": "cc8efd08d64499c68af7383768c0ddd7e281888dcc8e23901e867ee71a37b90e"
+        },
+        {
+          "path": "Датасет/Элементы/source_previews/DSC9451.jpg",
+          "sha256": "df93e341cb9d9c996b45c06f561cc2ee4a414d28ef1228cfea52831e36c6a65b"
+        }
+      ],
+      "basis": {
+        "geometry": "Три поникшие золотисто-оранжевые доли с бордово-серым контуром, правая крупнее.",
+        "context": "Небольшой поникший бутон в поле намазлыка KS-9451; стебель выходит сверху."
+      },
+      "limit": "Один кадр/предмет; не культурная закономерность; производная flat не равна неизменённой фотографии."
+    },
+    {
+      "id": "CAT-H-9477",
+      "type": "catalogue_attribution",
+      "title": "ПОЛОТЕНЦЕ",
+      "author": null,
+      "publication_date": null,
+      "object_dating": null,
+      "path": "../manifest.csv",
+      "locator": "artifact_code=H-9477; frames=DSC9477",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-H-9479",
+      "type": "catalogue_attribution",
+      "title": "ПОЛОТЕНЦЕ",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Первая половина XX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=H-9479; frames=DSC9479",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-H-9480",
+      "type": "catalogue_attribution",
+      "title": "ПОЛОТЕНЦЕ",
+      "author": null,
+      "publication_date": null,
+      "object_dating": null,
+      "path": "../manifest.csv",
+      "locator": "artifact_code=H-9480; frames=DSC9480",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-H-9482",
+      "type": "catalogue_attribution",
+      "title": "ПОЛОТЕНЦЕ",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Первая половина XX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=H-9482; frames=DSC9482,DSC9483",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-H-9484",
+      "type": "catalogue_attribution",
+      "title": "ПОЛОТЕНЦЕ",
+      "author": null,
+      "publication_date": null,
+      "object_dating": null,
+      "path": "../manifest.csv",
+      "locator": "artifact_code=H-9484; frames=DSC9484",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-H-9492",
+      "type": "catalogue_attribution",
+      "title": "КАЛФАК МАЛИНОВЫЙ",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "XIX век",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=H-9492; frames=DSC9492",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-H-9495",
+      "type": "catalogue_attribution",
+      "title": "ШАМАИЛЬ КОРОННЫЙ ИЗ МЕЧЕТИ МАРДЖАНИ",
+      "author": "НЕИЗВЕСТНЫЙ МАСТЕР",
+      "publication_date": null,
+      "object_dating": "Начало XX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=H-9495; frames=DSC9495",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-H-9517",
+      "type": "catalogue_attribution",
+      "title": "ДЕТСКИЙ ЧИГ",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Начало XX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=H-9517; frames=DSC9517",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-KS-9295",
+      "type": "catalogue_attribution",
+      "title": "Кита. Сура № 2 «Аль-Бакара», аят № 185",
+      "author": "Дамир-катиб (Д.Г. Ахматгалиев)",
+      "publication_date": null,
+      "object_dating": "Кон. XX в.",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=KS-9295; frames=DSC9295",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-KS-9309",
+      "type": "catalogue_attribution",
+      "title": "Кита с сурой № 114 «Ан-Нас»",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "конец XX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=KS-9309; frames=DSC9309",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-KS-9312",
+      "type": "catalogue_attribution",
+      "title": "Кита. Сура № 113 «Аль-Фаляк»",
+      "author": "Дамир-катиб (Д.Г. Ахматгалиев)",
+      "publication_date": null,
+      "object_dating": "Кон. XX в.",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=KS-9312; frames=DSC9312",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-KS-9342",
+      "type": "catalogue_attribution",
+      "title": "Коран",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "1990 г.",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=KS-9342; frames=DSC9342",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-KS-9376",
+      "type": "catalogue_attribution",
+      "title": "Чехол к шамаилю дорожному",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Первая четверть XXI в.",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=KS-9376; frames=DSC9376",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-KS-9390",
+      "type": "catalogue_attribution",
+      "title": "Фрагмент керамики. Глина. Биляр. X–XIII вв.",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "X–XIII вв.",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=KS-9390; frames=DSC9390",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-KS-9407",
+      "type": "catalogue_attribution",
+      "title": "Кольцевой поддон чаши.",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "XIII–XV вв.",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=KS-9407; frames=DSC9407",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-KS-9410",
+      "type": "catalogue_attribution",
+      "title": "Венчик поливного сосуда (фрагмент).",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "XIII–XIV вв.",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=KS-9410; frames=DSC9410",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-KS-9451",
+      "type": "catalogue_attribution",
+      "title": "Намазлык (коврик молитвенный).",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Кон. XIX - нач. XX в.",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=KS-9451; frames=DSC9451",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-KS-9455",
+      "type": "catalogue_attribution",
+      "title": "«С праздником Рамадан байрам»!»",
+      "author": "Р. Шамсутдинов",
+      "publication_date": null,
+      "object_dating": "2013 г.",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=KS-9455; frames=DSC9455",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9542",
+      "type": "catalogue_attribution",
+      "title": "Татарские мужские головные уборы — образцы продукции артели «Азат хатын»",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "1920–1930-е",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9542; frames=DSC9542",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9552",
+      "type": "catalogue_attribution",
+      "title": "Бляха",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "XIX век",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9552; frames=DSC9552",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9557",
+      "type": "catalogue_attribution",
+      "title": "Рисунок для вышивки на мужском поясе учкур",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "1900 год",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9557; frames=DSC9557",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9558",
+      "type": "catalogue_attribution",
+      "title": "Футляр для гребня",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Конец XVIII века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9558; frames=DSC9559",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9564",
+      "type": "catalogue_attribution",
+      "title": "Пояс мужской, «кушак»",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9564; frames=DSC9565",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9569",
+      "type": "catalogue_attribution",
+      "title": "Нагрудное украшение",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "XIX век",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9569; frames=DSC9569",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9574",
+      "type": "catalogue_attribution",
+      "title": "Образцы Пестречинской художественной керамики",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "1910–1920-е",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9574; frames=DSC9574",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9575",
+      "type": "catalogue_attribution",
+      "title": "Образцы Пестречинской художественной керамики",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "1910–1920-е",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9575; frames=DSC9575",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9577",
+      "type": "catalogue_attribution",
+      "title": "Образцы Пестречинской художественной керамики",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "1910–1920-е",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9577; frames=DSC9577",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9578",
+      "type": "catalogue_attribution",
+      "title": "Молитвенный коврик – «намазлык»",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Середина XX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9578; frames=DSC9578",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9580",
+      "type": "catalogue_attribution",
+      "title": "Молитвенный коврик – «намазлык»",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Середина XX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9580; frames=DSC9580",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9585",
+      "type": "catalogue_attribution",
+      "title": "Сельский женский костюм",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Конец XIX – начало XX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9585; frames=DSC9585,DSC9588",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9590",
+      "type": "catalogue_attribution",
+      "title": "Полотенца",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Начало XX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9590; frames=DSC9590",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9591",
+      "type": "catalogue_attribution",
+      "title": "Полотенца",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Начало XX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9591; frames=DSC9591",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9626",
+      "type": "catalogue_attribution",
+      "title": "Татарский праздничный женский костюм: рубаха, камзол, калфак, воротниковая застежка",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9626; frames=DSC9626,DSC9627",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9652",
+      "type": "catalogue_attribution",
+      "title": "Татарский праздничный мужской костюм: рубаха, халат, тюбетей",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9652; frames=DSC9652",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9679",
+      "type": "catalogue_attribution",
+      "title": "Застежки для браслетов",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9679; frames=DSC9679",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9684",
+      "type": "catalogue_attribution",
+      "title": "Серьги ажурные",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Середина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9684; frames=DSC9684",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9685",
+      "type": "catalogue_attribution",
+      "title": "Серьги ажурные",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Середина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9685; frames=DSC9685",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9686",
+      "type": "catalogue_attribution",
+      "title": "Серьги ажурные",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Середина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9686; frames=DSC9686",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9687",
+      "type": "catalogue_attribution",
+      "title": "Серьги ажурные",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Середина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9687; frames=DSC9687",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9694",
+      "type": "catalogue_attribution",
+      "title": "Браслеты составные",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Конец XVIII — первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9694; frames=DSC9694",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9695",
+      "type": "catalogue_attribution",
+      "title": "Браслеты составные",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Конец XVIII — первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9695; frames=DSC9695",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9697",
+      "type": "catalogue_attribution",
+      "title": "Браслеты составные",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Конец XVIII — первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9697; frames=DSC9697",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9698",
+      "type": "catalogue_attribution",
+      "title": "Браслеты составные",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Конец XVIII — первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9698; frames=DSC9698",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9699",
+      "type": "catalogue_attribution",
+      "title": "Браслеты составные",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Конец XVIII — первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9699; frames=DSC9699",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9701",
+      "type": "catalogue_attribution",
+      "title": "Накосники — украшения для кос",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9701; frames=DSC9701",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    },
+    {
+      "id": "CAT-NM-9702",
+      "type": "catalogue_attribution",
+      "title": "Накосники — украшения для кос",
+      "author": null,
+      "publication_date": null,
+      "object_dating": "Первая половина XIX века",
+      "path": "../manifest.csv",
+      "locator": "artifact_code=NM-9702; frames=DSC9702",
+      "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+      "verifiedBy": null
+    }
+  ]
+}

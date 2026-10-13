@@ -1,0 +1,12 @@
+# Test only. Never combine with compose.public.yml.
+services:
+  backend:
+    environment:
+      COOKIE_SECURE: "false"
+      CORS_ORIGINS: http://localhost
+      ALLOW_FIXTURES: "true"
+  proxy:
+    volumes:
+      - ./Caddyfile.local:/etc/caddy/Caddyfile:ro
+    ports:
+      - "127.0.0.1::80"

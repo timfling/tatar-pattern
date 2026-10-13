@@ -1,0 +1,46 @@
+export function ModelBadge({ model }: { model: string }) {
+  return (
+    <div
+      className="flex h-[38px] items-center gap-[12px] overflow-hidden rounded-[13px] bg-black px-[13px] text-white opacity-70 outline outline-1 -outline-offset-1 outline-hairline [background-image:var(--gradient-model)] max-md:h-auto max-md:gap-[7px] max-md:rounded-[17px] max-md:bg-transparent max-md:px-[9px] max-md:py-[8px] max-md:text-ink-subtle max-md:outline-[0.7px] max-md:-outline-offset-[0.7px] max-md:[background-image:none]"
+    >
+      <span className="font-ui text-[16px] font-medium leading-[16px] [text-shadow:0px_1px_4px_rgba(0,0,0,0.25)] max-md:text-[11px] max-md:leading-[11px] max-md:[text-shadow:none]">
+        Генератор:
+      </span>
+      <span className="flex items-center gap-[6px] [filter:drop-shadow(0px_1px_4px_rgba(0,0,0,0.25))] max-md:gap-[2px] max-md:[filter:none]">
+        <svg
+          width="31"
+          height="17"
+          viewBox="0 0 31 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden
+          className="max-md:h-[12px] max-md:w-[22px]"
+        >
+          <path
+            d="M10.5596 0.762695L19.8408 0.762695C19.8855 0.76276 19.911 0.774279 19.9277 0.786133C19.948 0.800485 19.9681 0.824991 19.9814 0.857422C19.9947 0.889737 19.9975 0.920888 19.9932 0.945312C19.9896 0.965545 19.9799 0.991949 19.9482 1.02344L15.3076 5.62305C15.2482 5.68191 15.1522 5.68177 15.0928 5.62305L10.4521 1.02344C10.4203 0.99184 10.4108 0.965597 10.4072 0.945312C10.4029 0.920918 10.4048 0.889713 10.418 0.857422C10.4313 0.824991 10.4523 0.800485 10.4727 0.786133C10.4895 0.774323 10.515 0.762695 10.5596 0.762695Z"
+            stroke="currentColor"
+            strokeWidth="1.52534"
+          />
+          <path
+            d="M1.18066 8.53271C1.12173 8.47326 1.12174 8.37733 1.18066 8.31787L6.69434 2.75439C6.75399 2.6942 6.85145 2.69424 6.91113 2.75439L12.4258 8.31787C12.4847 8.37731 12.4847 8.47326 12.4258 8.53271L6.91113 14.0972C6.85143 14.1571 6.75391 14.1573 6.69434 14.0972L1.18066 8.53271Z"
+            stroke="currentColor"
+            strokeWidth="1.52534"
+          />
+          <path
+            d="M15.0928 11.1714C15.1522 11.1125 15.2482 11.1125 15.3076 11.1714L19.9482 15.77C19.9799 15.8015 19.9896 15.8279 19.9932 15.8481C19.9975 15.8726 19.9948 15.9046 19.9814 15.937C19.9681 15.9692 19.9479 15.993 19.9277 16.0073C19.911 16.0192 19.8855 16.0307 19.8408 16.0308H10.5596C10.5148 16.0308 10.4895 16.0192 10.4727 16.0073C10.4524 15.993 10.4313 15.9693 10.418 15.937C10.4046 15.9046 10.4029 15.8726 10.4072 15.8481C10.4108 15.8279 10.4204 15.8015 10.4521 15.77L15.0928 11.1714Z"
+            stroke="currentColor"
+            strokeWidth="1.52534"
+          />
+          <path
+            d="M17.9746 8.47559C17.9157 8.41613 17.9157 8.3202 17.9746 8.26074L23.4883 2.69727C23.5479 2.63707 23.6454 2.63711 23.7051 2.69727L29.2197 8.26074C29.2786 8.32018 29.2786 8.41613 29.2197 8.47559L23.7051 14.04C23.6454 14.1 23.5479 14.1001 23.4883 14.04L17.9746 8.47559Z"
+            stroke="currentColor"
+            strokeWidth="1.52534"
+          />
+        </svg>
+        <span className="font-ui text-[16px] font-semibold leading-[16px] max-md:text-[11px] max-md:leading-[11px]">
+          {model}
+        </span>
+      </span>
+    </div>
+  );
+}

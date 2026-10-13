@@ -1,0 +1,11 @@
+[Unit]
+Description=TATAR PATTERN coordinated DB/storage backup and encrypted offsite copy
+Requires=docker.service
+After=docker.service
+[Service]
+Type=oneshot
+UMask=0077
+EnvironmentFile=/etc/tatar-pattern/restic.env
+WorkingDirectory=/srv/tatar-pattern/current/deploy
+ExecStart=/usr/bin/python3 /srv/tatar-pattern/current/deploy/offsite.py --env /etc/tatar-pattern/production.env
+TimeoutStartSec=1h

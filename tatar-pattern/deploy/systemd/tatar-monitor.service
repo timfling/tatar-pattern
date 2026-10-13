@@ -1,0 +1,7 @@
+[Unit]
+Description=TATAR PATTERN container health, disk and backup freshness
+After=docker.service
+[Service]
+Type=oneshot
+WorkingDirectory=/srv/tatar-pattern/current/deploy
+ExecStart=/usr/bin/python3 /srv/tatar-pattern/current/deploy/ops.py --env /etc/tatar-pattern/production.env monitor

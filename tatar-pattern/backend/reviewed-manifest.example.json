@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "humanApproved": false,
+  "reviewedBy": "",
+  "reviewedAt": "",
+  "sources": [
+    {"key": "SOURCE-KEY", "sourceType": "музей", "location": "Место происхождения", "legalBasis": "Подтвержденное основание использования"}
+  ],
+  "artifacts": [
+    {"code": "ARTIFACT-CODE", "sourceKey": "SOURCE-KEY", "titleRu": "Проверенное нейтральное описание предмета", "origin": "татарское", "usageScope": "рид_и_обучение", "rights": "некоммерческое_mvp", "reviewStatus": "авто", "sourcePath": "sources/ARTIFACT-CODE/source.ARW", "sourceFrame": "DSC0000", "sourceFileType": "raw"}
+  ],
+  "elements": [
+    {"code": "TP-E-REPLACE", "nameRu": "Название элемента", "motifClass": "тюльпан", "artifactCode": "ARTIFACT-CODE", "motifIdentity": "самостоятельный-мотив-01", "path": "elements/TP-E-REPLACE.png", "verifiedBy": "", "reviewStatus": "авто", "aiRetouched": false}
+  ]
+}

@@ -1,0 +1,6 @@
+# Apply only after the owner explicitly authorizes public access.
+services:
+  proxy:
+    ports:
+      - "80:80"
+      - "443:443"

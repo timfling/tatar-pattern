@@ -1,0 +1,936 @@
+{
+  "schema_version": "tp-composition-review/1.0.0",
+  "families": [
+    {
+      "id": "F01",
+      "title_ru": "Рамки современных кита/страницы",
+      "members": [
+        "TP-E-008",
+        "TP-E-009",
+        "TP-E-010",
+        "TP-E-011"
+      ],
+      "artifact_codes": [
+        "KS-9295",
+        "KS-9309",
+        "KS-9312",
+        "KS-9342"
+      ],
+      "palette_observed_in_flat": "коричневый/синий/красный",
+      "detail_language": "плотные контуры и многочастные побеги",
+      "suggested_compositions": [
+        "border",
+        "corner"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "multiple_artifacts_not_a_verified_historical_set",
+        "cultural_principle_evidence": [
+          "C07"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F02",
+      "title_ru": "Контур на современном чехле",
+      "members": [
+        "TP-E-012"
+      ],
+      "artifact_codes": [
+        "KS-9376"
+      ],
+      "palette_observed_in_flat": "коричневый",
+      "detail_language": "тонкая линейная полоса",
+      "suggested_compositions": [
+        "border"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F03",
+      "title_ru": "Средневековые керамические фрагменты",
+      "members": [
+        "TP-E-013",
+        "TP-E-014",
+        "TP-E-015"
+      ],
+      "artifact_codes": [
+        "KS-9390",
+        "KS-9407",
+        "KS-9410"
+      ],
+      "palette_observed_in_flat": "коричневый/синий/чёрный",
+      "detail_language": "волюты и точечно-линейный декор; три самостоятельных подгруппы",
+      "suggested_compositions": [
+        "border",
+        "medallion"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "multiple_artifacts_not_a_verified_historical_set",
+        "cultural_principle_evidence": [
+          "C01"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": [],
+      "subgroups_by_artifact": {
+        "KS-9390": [
+          "TP-E-013"
+        ],
+        "KS-9407": [
+          "TP-E-014"
+        ],
+        "KS-9410": [
+          "TP-E-015"
+        ]
+      }
+    },
+    {
+      "id": "F04",
+      "title_ru": "Вышивка KS-9451",
+      "members": [
+        "TP-E-019",
+        "TP-E-020",
+        "TP-E-021",
+        "TP-E-022",
+        "TP-E-130",
+        "TP-E-135"
+      ],
+      "artifact_codes": [
+        "KS-9451"
+      ],
+      "palette_observed_in_flat": "синий/бордовый/зелёный/охристый",
+      "detail_language": "крупные разомкнутые цветы и тонкие ветви",
+      "suggested_compositions": [
+        "border",
+        "directed_bouquet",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [
+          "C06"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F05",
+      "title_ru": "Лучевая тюбетейка",
+      "members": [
+        "TP-E-030"
+      ],
+      "artifact_codes": [
+        "NM-9542"
+      ],
+      "palette_observed_in_flat": "золотистый/пурпурный",
+      "detail_language": "неравные лучи",
+      "suggested_compositions": [
+        "medallion"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F06",
+      "title_ru": "Линейные гравированные поля",
+      "members": [
+        "TP-E-031",
+        "TP-E-032",
+        "TP-E-045",
+        "TP-E-116"
+      ],
+      "artifact_codes": [
+        "NM-9552",
+        "NM-9569"
+      ],
+      "palette_observed_in_flat": "серебристый/тёмный",
+      "detail_language": "лиственные волюты; 032 заметно упрощён",
+      "suggested_compositions": [
+        "border",
+        "medallion"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "multiple_artifacts_not_a_verified_historical_set",
+        "cultural_principle_evidence": [
+          "C02"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": [],
+      "subgroups_by_artifact": {
+        "NM-9552": [
+          "TP-E-031",
+          "TP-E-032",
+          "TP-E-116"
+        ],
+        "NM-9569": [
+          "TP-E-045"
+        ]
+      }
+    },
+    {
+      "id": "F07",
+      "title_ru": "Рисунок учкура NM-9557",
+      "members": [
+        "TP-E-034",
+        "TP-E-035",
+        "TP-E-036",
+        "TP-E-037",
+        "TP-E-038",
+        "TP-E-039",
+        "TP-E-040",
+        "TP-E-119",
+        "TP-E-132",
+        "TP-E-133"
+      ],
+      "artifact_codes": [
+        "NM-9557"
+      ],
+      "palette_observed_in_flat": "золотистый/зелёный/фиолетовый/бордовый",
+      "detail_language": "штриховка, тонкие линейные связки",
+      "suggested_compositions": [
+        "border",
+        "medallion",
+        "directed_bouquet",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F08",
+      "title_ru": "Вышивка футляра гребня",
+      "members": [
+        "TP-E-041",
+        "TP-E-042"
+      ],
+      "artifact_codes": [
+        "NM-9558"
+      ],
+      "palette_observed_in_flat": "золотистый/синий",
+      "detail_language": "диагональные листовые ветви",
+      "suggested_compositions": [
+        "border",
+        "directed_bouquet",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [
+          "C01"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F09",
+      "title_ru": "Плетёнка кушака",
+      "members": [
+        "TP-E-043",
+        "TP-E-044"
+      ],
+      "artifact_codes": [
+        "NM-9564"
+      ],
+      "palette_observed_in_flat": "коричневый",
+      "detail_language": "широкая плетёнка и тонкая кромка",
+      "suggested_compositions": [
+        "border"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F10",
+      "title_ru": "Пестречинская керамика",
+      "members": [
+        "TP-E-046",
+        "TP-E-047",
+        "TP-E-048",
+        "TP-E-049",
+        "TP-E-050",
+        "TP-E-051",
+        "TP-E-052",
+        "TP-E-117"
+      ],
+      "artifact_codes": [
+        "NM-9574",
+        "NM-9575",
+        "NM-9577"
+      ],
+      "palette_observed_in_flat": "белый/голубой/зелёный/охристый/терракотовый",
+      "detail_language": "широкий контур, плоские цветовые поля",
+      "suggested_compositions": [
+        "medallion",
+        "border",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "multiple_artifacts_not_a_verified_historical_set",
+        "cultural_principle_evidence": [
+          "C08"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": [
+        "Не смешивать все три сосуда в одном венке автоматически; начать с 050/051/052 или 046/047/117."
+      ],
+      "subgroups_by_artifact": {
+        "NM-9574": [
+          "TP-E-046",
+          "TP-E-047",
+          "TP-E-117"
+        ],
+        "NM-9575": [
+          "TP-E-048",
+          "TP-E-049"
+        ],
+        "NM-9577": [
+          "TP-E-050",
+          "TP-E-051",
+          "TP-E-052"
+        ]
+      }
+    },
+    {
+      "id": "F11",
+      "title_ru": "Контурная вышивка NM-9578",
+      "members": [
+        "TP-E-053",
+        "TP-E-054",
+        "TP-E-055",
+        "TP-E-056",
+        "TP-E-057",
+        "TP-E-058"
+      ],
+      "artifact_codes": [
+        "NM-9578"
+      ],
+      "palette_observed_in_flat": "жёлтый/оливковый",
+      "detail_language": "очень тонкий светлый контур и крупные группы",
+      "suggested_compositions": [
+        "border",
+        "directed_bouquet"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [
+          "C06"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F12",
+      "title_ru": "Кайма NM-9580",
+      "members": [
+        "TP-E-059",
+        "TP-E-060"
+      ],
+      "artifact_codes": [
+        "NM-9580"
+      ],
+      "palette_observed_in_flat": "оранжевый/светлый",
+      "detail_language": "волютная фактурная линия и тонкая кромка",
+      "suggested_compositions": [
+        "border"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [
+          "C06"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F13",
+      "title_ru": "Тамбурные формы NM-9585",
+      "members": [
+        "TP-E-061",
+        "TP-E-062",
+        "TP-E-063",
+        "TP-E-064",
+        "TP-E-065",
+        "TP-E-066",
+        "TP-E-126",
+        "TP-E-127"
+      ],
+      "artifact_codes": [
+        "NM-9585"
+      ],
+      "palette_observed_in_flat": "бордовый/розовый/зелёный/оранжевый",
+      "detail_language": "волнистый контур, крупное ядро, мелкие петлевые цветы",
+      "suggested_compositions": [
+        "medallion",
+        "border",
+        "rapport",
+        "directed_bouquet"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [
+          "C01"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F14",
+      "title_ru": "Полосы полотенец NM-9590/9591",
+      "members": [
+        "TP-E-067",
+        "TP-E-068",
+        "TP-E-069",
+        "TP-E-070",
+        "TP-E-071"
+      ],
+      "artifact_codes": [
+        "NM-9590",
+        "NM-9591"
+      ],
+      "palette_observed_in_flat": "красный/синий/серый",
+      "detail_language": "ступенчатые геометрические блоки и малые кромки",
+      "suggested_compositions": [
+        "border",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "multiple_artifacts_not_a_verified_historical_set",
+        "cultural_principle_evidence": [
+          "C03",
+          "C04"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": [],
+      "subgroups_by_artifact": {
+        "NM-9590": [
+          "TP-E-067",
+          "TP-E-068",
+          "TP-E-069"
+        ],
+        "NM-9591": [
+          "TP-E-070",
+          "TP-E-071"
+        ]
+      }
+    },
+    {
+      "id": "F15",
+      "title_ru": "Золотошвейная группа NM-9626",
+      "members": [
+        "TP-E-072",
+        "TP-E-073",
+        "TP-E-074",
+        "TP-E-075",
+        "TP-E-128"
+      ],
+      "artifact_codes": [
+        "NM-9626"
+      ],
+      "palette_observed_in_flat": "светлый/золотистый/охристый",
+      "detail_language": "очень плотные ячейки; 128 упрощён",
+      "suggested_compositions": [
+        "directed_bouquet",
+        "border",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": [
+        "128 отличается степенью упрощения; только малый акцент, не равный сосед 072/074."
+      ]
+    },
+    {
+      "id": "F16",
+      "title_ru": "Мужской костюм NM-9652",
+      "members": [
+        "TP-E-076",
+        "TP-E-077"
+      ],
+      "artifact_codes": [
+        "NM-9652"
+      ],
+      "palette_observed_in_flat": "золотистый",
+      "detail_language": "зигзаговая полоса и радиальный акцент",
+      "suggested_compositions": [
+        "border",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F17",
+      "title_ru": "Модули застёжек и браслетов",
+      "members": [
+        "TP-E-078",
+        "TP-E-083",
+        "TP-E-084",
+        "TP-E-085",
+        "TP-E-086",
+        "TP-E-087"
+      ],
+      "artifact_codes": [
+        "NM-9679",
+        "NM-9694",
+        "NM-9695",
+        "NM-9697",
+        "NM-9698",
+        "NM-9699"
+      ],
+      "palette_observed_in_flat": "голубой/серебристый/зелёный/фиолетовый/коричневый",
+      "detail_language": "вставки, контуры, локальные соединения",
+      "suggested_compositions": [
+        "border",
+        "medallion",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "multiple_artifacts_not_a_verified_historical_set",
+        "cultural_principle_evidence": [
+          "C02"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": [],
+      "subgroups_by_artifact": {
+        "NM-9679": [
+          "TP-E-078"
+        ],
+        "NM-9694": [
+          "TP-E-083"
+        ],
+        "NM-9695": [
+          "TP-E-084"
+        ],
+        "NM-9697": [
+          "TP-E-085"
+        ],
+        "NM-9698": [
+          "TP-E-086"
+        ],
+        "NM-9699": [
+          "TP-E-087"
+        ]
+      }
+    },
+    {
+      "id": "F18",
+      "title_ru": "Щитки и подвесные украшения",
+      "members": [
+        "TP-E-079",
+        "TP-E-080",
+        "TP-E-081",
+        "TP-E-082",
+        "TP-E-088",
+        "TP-E-089"
+      ],
+      "artifact_codes": [
+        "NM-9684",
+        "NM-9685",
+        "NM-9686",
+        "NM-9687",
+        "NM-9701",
+        "NM-9702"
+      ],
+      "palette_observed_in_flat": "голубой/серебристый/золотистый/красный/фиолетовый",
+      "detail_language": "ажур, петли, цепочки",
+      "suggested_compositions": [
+        "border",
+        "vertical_panel"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "multiple_artifacts_not_a_verified_historical_set",
+        "cultural_principle_evidence": [
+          "C02"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": [
+        "Положение верх-низ сохранять; ротация подвесок в венке — новая интерпретация."
+      ],
+      "subgroups_by_artifact": {
+        "NM-9684": [
+          "TP-E-079"
+        ],
+        "NM-9685": [
+          "TP-E-080"
+        ],
+        "NM-9686": [
+          "TP-E-081"
+        ],
+        "NM-9687": [
+          "TP-E-082"
+        ],
+        "NM-9701": [
+          "TP-E-088"
+        ],
+        "NM-9702": [
+          "TP-E-089"
+        ]
+      }
+    },
+    {
+      "id": "F19",
+      "title_ru": "Красно-светлая геометрия полотенец",
+      "members": [
+        "TP-E-090",
+        "TP-E-091",
+        "TP-E-092",
+        "TP-E-096",
+        "TP-E-097",
+        "TP-E-104",
+        "TP-E-105"
+      ],
+      "artifact_codes": [
+        "H-9477",
+        "H-9480",
+        "H-9484"
+      ],
+      "palette_observed_in_flat": "красный/светлый",
+      "detail_language": "ступенчатые ромбы, сети и меандры",
+      "suggested_compositions": [
+        "border",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "multiple_artifacts_not_a_verified_historical_set",
+        "cultural_principle_evidence": [
+          "C03",
+          "C04"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": [],
+      "subgroups_by_artifact": {
+        "H-9477": [
+          "TP-E-090",
+          "TP-E-091",
+          "TP-E-092"
+        ],
+        "H-9480": [
+          "TP-E-096",
+          "TP-E-097"
+        ],
+        "H-9484": [
+          "TP-E-104",
+          "TP-E-105"
+        ]
+      }
+    },
+    {
+      "id": "F20",
+      "title_ru": "Цветочная полоса H-9479",
+      "members": [
+        "TP-E-093",
+        "TP-E-094",
+        "TP-E-095"
+      ],
+      "artifact_codes": [
+        "H-9479"
+      ],
+      "palette_observed_in_flat": "фиолетовый/светлый/жёлтый",
+      "detail_language": "петлевые розетки и вертикальные связки",
+      "suggested_compositions": [
+        "medallion",
+        "border",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [
+          "C03"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F21",
+      "title_ru": "Многоцветные полосы H-9482",
+      "members": [
+        "TP-E-099",
+        "TP-E-101",
+        "TP-E-102",
+        "TP-E-103"
+      ],
+      "artifact_codes": [
+        "H-9482"
+      ],
+      "palette_observed_in_flat": "золотистый/розовый/серый/зелёный/белый",
+      "detail_language": "вытянутые ромбы, бутоны и шевроны",
+      "suggested_compositions": [
+        "border",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [
+          "C04"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F22",
+      "title_ru": "Золотые цветы калфака H-9492",
+      "members": [
+        "TP-E-106",
+        "TP-E-107",
+        "TP-E-108",
+        "TP-E-109",
+        "TP-E-129"
+      ],
+      "artifact_codes": [
+        "H-9492"
+      ],
+      "palette_observed_in_flat": "золотистый/светлый",
+      "detail_language": "штрихованные поля; 129 упрощён",
+      "suggested_compositions": [
+        "medallion",
+        "border",
+        "directed_bouquet",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": [
+        "129 сохраняет только петлевую схему; не равнять с детальными 106/107."
+      ]
+    },
+    {
+      "id": "F23",
+      "title_ru": "Кожаные формы детского чига",
+      "members": [
+        "TP-E-114",
+        "TP-E-115",
+        "TP-E-131"
+      ],
+      "artifact_codes": [
+        "H-9517"
+      ],
+      "palette_observed_in_flat": "серый/охристый/коричневый/зелёный",
+      "detail_language": "массивные криволинейные поля, точечная кромка",
+      "suggested_compositions": [
+        "medallion",
+        "border",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [
+          "C05"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F24",
+      "title_ru": "Обрамление коронного шамаиля",
+      "members": [
+        "TP-E-120",
+        "TP-E-121",
+        "TP-E-122",
+        "TP-E-123",
+        "TP-E-134"
+      ],
+      "artifact_codes": [
+        "H-9495"
+      ],
+      "palette_observed_in_flat": "красный/золотой/белый/синий",
+      "detail_language": "крупные плоские цветовые области с жилками",
+      "suggested_compositions": [
+        "medallion",
+        "border",
+        "directed_bouquet",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [
+          "C07"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    },
+    {
+      "id": "F25",
+      "title_ru": "Современная праздничная рамка",
+      "members": [
+        "TP-E-124",
+        "TP-E-125"
+      ],
+      "artifact_codes": [
+        "KS-9455"
+      ],
+      "palette_observed_in_flat": "голубой/красный/зелёный/золотистый",
+      "detail_language": "звездчатые внешние поля и цветы",
+      "suggested_compositions": [
+        "border",
+        "rapport"
+      ],
+      "basis": {
+        "membership": "visual_aesthetic_and_object_context",
+        "object_level": "same_artifact",
+        "cultural_principle_evidence": [
+          "C07"
+        ],
+        "claim_limit": "Новое семейство/схема — предложение дизайнера, не экспертно подтверждённый исторический ансамбль."
+      },
+      "mixing_policy": "prefer same artifact subgroup; cross artifact mixing is an aesthetic suggestion",
+      "exceptions": []
+    }
+  ],
+  "pilot_recipes": [
+    {
+      "id": "P1",
+      "composition": "medallion",
+      "codes": [
+        "TP-E-050",
+        "TP-E-051",
+        "TP-E-052"
+      ],
+      "roles": {
+        "TP-E-050": "center",
+        "TP-E-051": "outer_axial_accent",
+        "TP-E-052": "lower_framing_pair"
+      },
+      "basis": "same object NM-9577; new wreath arrangement is D01",
+      "suggested_long_sides_px": {
+        "TP-E-050": 192,
+        "TP-E-051": 112,
+        "TP-E-052": 144
+      },
+      "transform_note": "Keep 052 as paired support; do not repeat a full pair as every radial ray."
+    },
+    {
+      "id": "P2",
+      "composition": "border",
+      "codes": [
+        "TP-E-061",
+        "TP-E-063",
+        "TP-E-066"
+      ],
+      "roles": {
+        "TP-E-061": "primary_flower",
+        "TP-E-063": "horizontal_connector_accent",
+        "TP-E-066": "small_accent"
+      },
+      "basis": "same object NM-9585; horizontal new repeat is D01",
+      "suggested_long_sides_px": {
+        "TP-E-061": 144,
+        "TP-E-063": 144,
+        "TP-E-066": 64
+      },
+      "transform_note": "Unmirrored directional cadence; custom gaps after rotation."
+    },
+    {
+      "id": "P3",
+      "composition": "rapport",
+      "codes": [
+        "TP-E-090",
+        "TP-E-091",
+        "TP-E-092"
+      ],
+      "roles": {
+        "TP-E-090": "framing_band",
+        "TP-E-091": "small_secondary_module",
+        "TP-E-092": "large_primary_module"
+      },
+      "basis": "same object H-9477 and C03/C04 for hierarchy; new periodic module is D01",
+      "suggested_long_sides_px": {
+        "TP-E-090": 256,
+        "TP-E-091": 80,
+        "TP-E-092": 160
+      },
+      "transform_note": "Discrete motif rapport; no promise that 090 joins continuously."
+    }
+  ]
+}
