@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-16",
+  "python": "3.14.2 (v3.14.2:df793163d58, Dec  5 2025, 12:18:06) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "syntax": "PASS_ALL_PYTHON_FILES_AND_BASH",
+  "original_sha256": "600293069a789ed8d8e1ff0b22b6d1dc301a75543fca4714102829224b622457",
+  "reference_sha256": "537b1799a352dc104d62cbebb19c47337b5f0977dbbe29b52bf8222977de37b5",
+  "efg_prompts": "EXACT_MATCH_LOCAL_METADATA",
+  "real_lora_converted_file_written": false,
+  "gpu": "NOT_RUN",
+  "cloud": "NOT_RUN_NOT_UPLOADED",
+  "http": "NOT_RUN",
+  "tests": "test_cpu.py: 2 passed; mixed rank alpha/conv native file load + result verifier tamper/settings/identical pair checks",
+  "limitations": "CPU packages only, torch dev installed on host. Target pinned CUDA stack must be tested by owner on VM.",
+  "diffusers_call_signatures": "PASS_TEXT2IMG_IMG2IMG",
+  "suite_counts": {
+    "pair": 2,
+    "efg": 3,
+    "matrix": 8
+  }
+}

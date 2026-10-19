@@ -1,0 +1,627 @@
+{
+  "version": "tp-designs/1.0.0",
+  "profiles": {
+    "f01-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.2,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Декоративная обложка или печатная рамка. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "defaultElementCodes": [
+        "TP-E-010",
+        "TP-E-011"
+      ],
+      "railCodes": [
+        "TP-E-011"
+      ]
+    },
+    "f02-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.0,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Декоративная бумага или спокойное повторяемое поле. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "horizontalSegments": true
+    },
+    "f03-repeat": {
+      "mode": "alternating_geometry",
+      "wave": 0.0,
+      "gapRatio": 0.15,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Декоративная бумага или современная керамическая поверхность. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "defaultElementCodes": [
+        "TP-E-014",
+        "TP-E-013",
+        "TP-E-015"
+      ]
+    },
+    "f04-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Главные мотивы чередуются с малыми акцентами; полосовые фрагменты образуют отдельную близкую кайму.",
+      "applicationRu": "Текстильное поле или цветочная отделочная полоса. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "defaultElementCodes": [
+        "TP-E-019",
+        "TP-E-020",
+        "TP-E-021",
+        "TP-E-022"
+      ],
+      "railCodes": [
+        "TP-E-022"
+      ]
+    },
+    "f04-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Текстильное поле или цветочная отделочная полоса. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-022"
+      ]
+    },
+    "f05-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.2,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Текстильное поле с повторяющимися лучевыми акцентами. Это предложение применения; производственный масштаб проверяется отдельно."
+    },
+    "f06-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Главные мотивы чередуются с малыми акцентами; полосовые фрагменты образуют отдельную близкую кайму.",
+      "applicationRu": "Обложка, тиснёная отделка или декоративный фриз. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "defaultElementCodes": [
+        "TP-E-032",
+        "TP-E-031",
+        "TP-E-116"
+      ],
+      "railCodes": [
+        "TP-E-116"
+      ]
+    },
+    "f06-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Обложка, тиснёная отделка или декоративный фриз. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "defaultElementCodes": [
+        "TP-E-032",
+        "TP-E-031",
+        "TP-E-116"
+      ],
+      "railCodes": [
+        "TP-E-116"
+      ]
+    },
+    "f08-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.2,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Ткань или цветочная обложка. Это предложение применения; производственный масштаб проверяется отдельно."
+    },
+    "f09-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.0,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Полосовая отделка ткани, упаковки или обложки. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-043",
+        "TP-E-044"
+      ],
+      "horizontalSegments": true
+    },
+    "f12-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.0,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Главные мотивы чередуются с малыми акцентами; полосовые фрагменты образуют отдельную близкую кайму.",
+      "applicationRu": "Узкая декоративная кайма ткани или упаковки. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-060"
+      ],
+      "horizontalSegments": true
+    },
+    "f13-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Мотивы собраны в один ритм с согласованными размерами и более короткими интервалами.",
+      "applicationRu": "Цветочная отделка или декоративный текстиль. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "defaultElementCodes": [
+        "TP-E-061",
+        "TP-E-063",
+        "TP-E-066"
+      ]
+    },
+    "f14-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Полосовое поле ткани или декоративной бумаги. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-068"
+      ],
+      "longSideRatios": {
+        "TP-E-102": 1.1,
+        "TP-E-103": 1.1,
+        "TP-E-069": 1.1,
+        "TP-E-090": 1.1
+      }
+    },
+    "f16-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.0,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Главные мотивы чередуются с малыми акцентами; полосовые фрагменты образуют отдельную близкую кайму.",
+      "applicationRu": "Цветочная полоса с геометрической каймой. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-076"
+      ],
+      "horizontalSegments": true
+    },
+    "f20-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Цветочное полосовое поле ткани или бумаги. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-095"
+      ]
+    },
+    "f21-directed": {
+      "mode": "alternating_geometry",
+      "wave": 0.0,
+      "gapRatio": 0.15,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Главные мотивы чередуются с малыми акцентами; полосовые фрагменты образуют отдельную близкую кайму.",
+      "applicationRu": "Полосовое поле ткани или декоративной бумаги. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "longSideRatios": {
+        "TP-E-102": 1.1,
+        "TP-E-103": 1.1,
+        "TP-E-069": 1.1,
+        "TP-E-090": 1.1
+      },
+      "railCodes": [
+        "TP-E-102",
+        "TP-E-103"
+      ]
+    },
+    "f21-repeat": {
+      "mode": "alternating_geometry",
+      "wave": 0.0,
+      "gapRatio": 0.15,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Полосовое поле ткани или декоративной бумаги. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "longSideRatios": {
+        "TP-E-102": 1.1,
+        "TP-E-103": 1.1,
+        "TP-E-069": 1.1,
+        "TP-E-090": 1.1
+      },
+      "railCodes": [
+        "TP-E-102",
+        "TP-E-103"
+      ]
+    },
+    "f22-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 192,
+      "supportLongSide": 128,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Главные мотивы чередуются с малыми акцентами; полосовые фрагменты образуют отдельную близкую кайму.",
+      "applicationRu": "Цветочная отделочная полоса или контрастное поле. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "longSideRatios": {
+        "TP-E-128": 0.42,
+        "TP-E-129": 0.42
+      },
+      "railCodes": [
+        "TP-E-109"
+      ]
+    },
+    "f22-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 192,
+      "supportLongSide": 128,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Цветочная отделочная полоса или контрастное поле. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "longSideRatios": {
+        "TP-E-128": 0.42,
+        "TP-E-129": 0.42
+      },
+      "railCodes": [
+        "TP-E-109"
+      ]
+    },
+    "f23-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Декоративная поверхность упаковки или аксессуара. Это предложение применения; производственный масштаб проверяется отдельно."
+    },
+    "f24-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.06,
+      "repeatCycles": 2,
+      "primaryLongSide": 160,
+      "supportLongSide": 112,
+      "status": "revised_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_redesign",
+      "intentRu": "Мотивы собраны в один ритм с согласованными размерами и более короткими интервалами.",
+      "applicationRu": "Растительная рамка печатной обложки или декоративная бумага. Это предложение применения; производственный масштаб проверяется отдельно."
+    },
+    "f01-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Мотивы собраны в один ритм с согласованными размерами и более короткими интервалами.",
+      "applicationRu": "Декоративная обложка или печатная рамка. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "defaultElementCodes": [
+        "TP-E-008",
+        "TP-E-009"
+      ]
+    },
+    "f07-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.06,
+      "repeatCycles": 2,
+      "primaryLongSide": 160,
+      "supportLongSide": 112,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Мотивы собраны в один ритм с согласованными размерами и более короткими интервалами.",
+      "applicationRu": "Текстильная отделочная полоса. Это предложение применения; производственный масштаб проверяется отдельно."
+    },
+    "f09-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.0,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Главные мотивы чередуются с малыми акцентами; полосовые фрагменты образуют отдельную близкую кайму.",
+      "applicationRu": "Полосовая отделка ткани, упаковки или обложки. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-043",
+        "TP-E-044"
+      ],
+      "horizontalSegments": true
+    },
+    "f10-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Декоративная бумага или цветочная поверхность. Это предложение применения; производственный масштаб проверяется отдельно."
+    },
+    "f11-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 240,
+      "supportLongSide": 144,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Главные мотивы чередуются с малыми акцентами; полосовые фрагменты образуют отдельную близкую кайму.",
+      "applicationRu": "Контрастное текстильное поле или отделочная полоса. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-057"
+      ]
+    },
+    "f11-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 240,
+      "supportLongSide": 144,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Контрастное текстильное поле или отделочная полоса. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-057"
+      ]
+    },
+    "f12-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.0,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Узкая декоративная кайма ткани или упаковки. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-060"
+      ],
+      "horizontalSegments": true
+    },
+    "f13-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Цветочная отделка или декоративный текстиль. Это предложение применения; производственный масштаб проверяется отдельно."
+    },
+    "f15-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Мотивы собраны в один ритм с согласованными размерами и более короткими интервалами.",
+      "applicationRu": "Контрастное текстильное поле или отделочная полоса. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "longSideRatios": {
+        "TP-E-128": 0.42,
+        "TP-E-129": 0.42
+      },
+      "defaultPrimaryElementCode": "TP-E-075"
+    },
+    "f15-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 240,
+      "supportLongSide": 144,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Контрастное текстильное поле или отделочная полоса. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "longSideRatios": {
+        "TP-E-128": 0.42,
+        "TP-E-129": 0.42
+      }
+    },
+    "f16-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.0,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Цветочная полоса с геометрической каймой. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "railCodes": [
+        "TP-E-076"
+      ],
+      "horizontalSegments": true
+    },
+    "f17-repeat": {
+      "mode": "alternating_geometry",
+      "wave": 0.0,
+      "gapRatio": 0.2,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Повторяемое поле упаковки или обложки. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "defaultElementCodes": [
+        "TP-E-078",
+        "TP-E-083"
+      ]
+    },
+    "f19-repeat": {
+      "mode": "alternating_geometry",
+      "wave": 0.0,
+      "gapRatio": 0.15,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Полосовое геометрическое поле ткани или бумаги. Это предложение применения; производственный масштаб проверяется отдельно.",
+      "defaultElementCodes": [
+        "TP-E-092",
+        "TP-E-091",
+        "TP-E-090"
+      ],
+      "longSideRatios": {
+        "TP-E-102": 1.1,
+        "TP-E-103": 1.1,
+        "TP-E-069": 1.1,
+        "TP-E-090": 1.1
+      }
+    },
+    "f23-directed": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.1,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Мотивы собраны в один ритм с согласованными размерами и более короткими интервалами.",
+      "applicationRu": "Декоративная поверхность упаковки или аксессуара. Это предложение применения; производственный масштаб проверяется отдельно."
+    },
+    "f24-repeat": {
+      "mode": "offset_cadence",
+      "wave": 0.14,
+      "gapRatio": 0.06,
+      "repeatCycles": 2,
+      "primaryLongSide": 160,
+      "supportLongSide": 112,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Растительная рамка печатной обложки или декоративная бумага. Это предложение применения; производственный масштаб проверяется отдельно."
+    },
+    "f25-repeat": {
+      "mode": "alternating_geometry",
+      "wave": 0.0,
+      "gapRatio": 0.15,
+      "repeatCycles": 2,
+      "primaryLongSide": 208,
+      "supportLongSide": 132,
+      "status": "polished_awaiting_owner_review",
+      "ownerFeedbackGroup": "needs_polish",
+      "intentRu": "Два ряда со смещением на половину ритма; крупные и малые мотивы имеют разные размеры.",
+      "applicationRu": "Геометрическое поле обложки или упаковки. Это предложение применения; производственный масштаб проверяется отдельно."
+    }
+  },
+  "ownerAccepted": [
+    "f02-directed",
+    "f03-directed",
+    "f03-wreath",
+    "f05-wreath",
+    "f07-repeat",
+    "f07-hanging",
+    "f08-directed",
+    "f10-directed",
+    "f10-wreath",
+    "f14-directed",
+    "f14-panel",
+    "f16-wreath",
+    "f17-directed",
+    "f17-wreath",
+    "f17-panel",
+    "f18-hanging",
+    "f19-directed",
+    "f19-panel",
+    "f20-directed",
+    "f20-wreath",
+    "f21-panel",
+    "f24-wreath",
+    "f25-directed",
+    "f25-panel"
+  ]
+}

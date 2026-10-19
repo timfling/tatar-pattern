@@ -1,0 +1,710 @@
+{
+  "schema": "tp-local-composition-base-export/1.0",
+  "purpose": "fixed whole-composition img2img input; no AI inference performed",
+  "source": {
+    "path": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f08-directed-paper.png",
+    "sha256": "a2d12eaf4cf8bd149a0f51ae91bb52f271328ea6399e463e939a3b609eb898f1",
+    "size": [
+      1200,
+      900
+    ],
+    "provenancePath": "tatar-pattern/backend/app/composition-assets/v2/provenance.json",
+    "ownerReviewPath": "tatar-pattern/backend/docs/OWNER-SCHEME-REVIEW-2026-10-13.json",
+    "ownerStatus": "owner_accepted_2026_10_13",
+    "acceptanceScope": "source composition PNG by SHA; square proportional export not separately owner-reviewed; no AI quality acceptance"
+  },
+  "request": {
+    "selections": {
+      "style": "heritage",
+      "composition": "border",
+      "parameters": "default",
+      "motifs": [],
+      "elementCodes": [
+        "TP-E-041",
+        "TP-E-042"
+      ],
+      "scale": 1.0,
+      "transparentBackground": false,
+      "backgroundColor": "#f3ebdb",
+      "renderer": "composition-v2",
+      "schemeId": "f08-directed",
+      "registryVersion": "tp-schemes/2.1.0",
+      "primaryElementCode": null,
+      "borderLayout": "registers",
+      "rapportOutput": "module",
+      "moduleSize": null,
+      "outputSize": [
+        1200,
+        900
+      ],
+      "colorMode": "original",
+      "palette": "emerald",
+      "usage": "textile"
+    },
+    "seed": 42
+  },
+  "recipe": {
+    "designSourceSha256": "755c084587c6f3c72dd93ca728d6c4781c0f92ee6d80c45e0914cd5e1a03199d",
+    "schemaVersion": "tp-composition-recipe/2.0.0",
+    "algorithmVersion": "composition-pillow/2.1.0",
+    "registryVersion": "tp-schemes/2.1.0",
+    "registrySha256": "7d5b3133a2bfad87f3cea41636653f5a205a3fab5786314a2f0ca700d3e618ca",
+    "schemeId": "f08-directed",
+    "schemeDefinition": {
+      "id": "f08-directed",
+      "registryVersion": "tp-schemes/2.1.0",
+      "familyId": "F08",
+      "composition": "border",
+      "layout": "directed_cadence",
+      "useScope": "border",
+      "titleRu": "Вышивка футляра гребня · Направленный ритм",
+      "descriptionRu": "Современная композиционная схема по ролям и метаданным ревизии.",
+      "allowedElementCodes": [
+        "TP-E-041",
+        "TP-E-042"
+      ],
+      "defaultElementCodes": [
+        "TP-E-041",
+        "TP-E-042"
+      ],
+      "minimumSelected": 1,
+      "maximumSelected": 16,
+      "requiredRoles": [],
+      "centerCandidates": [],
+      "roleOptions": {
+        "TP-E-041": [
+          "primary",
+          "branch"
+        ],
+        "TP-E-042": [
+          "primary",
+          "branch"
+        ]
+      },
+      "constraints": {
+        "colorModes": [
+          "original"
+        ],
+        "reflection": false,
+        "continuousJoinedRepeat": false,
+        "minimumSizeBasis": "recommended_not_empirically_verified"
+      },
+      "previewUrl": "/api/composition-schemes/f08-directed/preview",
+      "previewIsExample": true,
+      "reviewStatus": "owner_accepted_2026_10_13",
+      "evidence": [
+        "D01",
+        "C01"
+      ]
+    },
+    "familyId": "F08",
+    "seed": 42,
+    "roles": {
+      "TP-E-041": "primary",
+      "TP-E-042": "branch"
+    },
+    "primaryElementCode": "TP-E-041",
+    "layout": {
+      "variant": "directed_cadence",
+      "schemeId": "f08-directed",
+      "useScope": "border",
+      "gapRatio": 0.26,
+      "historicalReconstruction": false,
+      "continuousJoinedRepeat": false,
+      "rows": 1,
+      "cycleCounts": [
+        2
+      ],
+      "minimumPlannedGapPx": 52,
+      "margin": 54,
+      "bandHeight": 187,
+      "direction": "source_directions_preserved"
+    },
+    "size": [
+      1200,
+      900
+    ],
+    "requestedSize": [
+      1200,
+      900
+    ],
+    "palette": {
+      "bg": "#f3ebdb"
+    },
+    "placements": [
+      {
+        "workingBoundsSprite": [
+          16,
+          19,
+          179,
+          187
+        ],
+        "code": "TP-E-041",
+        "sha256": "d7df3f9d22c5edd2011ddd9acd325b117953fb0cf1553c15b585c8198203310a",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          39,
+          23,
+          1010,
+          930
+        ],
+        "cropSize": [
+          971,
+          907
+        ],
+        "resizedSize": [
+          200,
+          187
+        ],
+        "spriteSize": [
+          200,
+          187
+        ],
+        "longSideBeforeRotation": 200,
+        "recommendedMinLongSide": 144,
+        "baseAxis": -30.0,
+        "targetAxis": -30.0,
+        "clockwiseDegrees": 0.0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.2059732234809475,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.2061742006615215,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": [
+          172.0,
+          149.60000000000002
+        ],
+        "visualCenterSprite": [
+          100.0,
+          89.75999999999999
+        ],
+        "evidence": [
+          "OBS-TP-E-041",
+          "D01"
+        ],
+        "role": "primary",
+        "anchor": "sprite_center",
+        "anchorPosition": [
+          262.0,
+          450.0
+        ],
+        "topLeft": [
+          162,
+          356
+        ],
+        "bounds": [
+          162,
+          356,
+          362,
+          543
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.2059732234809475,
+            -0.0,
+            162.0
+          ],
+          [
+            0.0,
+            0.2061742006615215,
+            356.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": [
+          334.0,
+          505.6
+        ]
+      },
+      {
+        "workingBoundsSprite": [
+          16,
+          6,
+          146,
+          146
+        ],
+        "code": "TP-E-042",
+        "sha256": "736e59f2bb161b0edee27e66ee1f21e9089b2602249596498b645e03504cf019",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          63,
+          67,
+          1000,
+          984
+        ],
+        "cropSize": [
+          937,
+          917
+        ],
+        "resizedSize": [
+          160,
+          157
+        ],
+        "spriteSize": [
+          160,
+          157
+        ],
+        "longSideBeforeRotation": 160,
+        "recommendedMinLongSide": 128,
+        "baseAxis": -35.0,
+        "targetAxis": -35.0,
+        "clockwiseDegrees": 0.0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.17075773745997866,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.17121046892039257,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": [
+          100.80000000000001,
+          150.71999999999997
+        ],
+        "visualCenterSprite": [
+          78.4,
+          80.07
+        ],
+        "evidence": [
+          "OBS-TP-E-042",
+          "D01"
+        ],
+        "role": "branch",
+        "anchor": "sprite_center",
+        "anchorPosition": [
+          494.0,
+          450.0
+        ],
+        "topLeft": [
+          414,
+          372
+        ],
+        "bounds": [
+          414,
+          372,
+          574,
+          529
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.17075773745997866,
+            -0.0,
+            414.0
+          ],
+          [
+            0.0,
+            0.17121046892039257,
+            372.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": [
+          514.8,
+          522.72
+        ]
+      },
+      {
+        "workingBoundsSprite": [
+          16,
+          19,
+          179,
+          187
+        ],
+        "code": "TP-E-041",
+        "sha256": "d7df3f9d22c5edd2011ddd9acd325b117953fb0cf1553c15b585c8198203310a",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          39,
+          23,
+          1010,
+          930
+        ],
+        "cropSize": [
+          971,
+          907
+        ],
+        "resizedSize": [
+          200,
+          187
+        ],
+        "spriteSize": [
+          200,
+          187
+        ],
+        "longSideBeforeRotation": 200,
+        "recommendedMinLongSide": 144,
+        "baseAxis": -30.0,
+        "targetAxis": -30.0,
+        "clockwiseDegrees": 0.0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.2059732234809475,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.2061742006615215,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": [
+          172.0,
+          149.60000000000002
+        ],
+        "visualCenterSprite": [
+          100.0,
+          89.75999999999999
+        ],
+        "evidence": [
+          "OBS-TP-E-041",
+          "D01"
+        ],
+        "role": "primary",
+        "anchor": "sprite_center",
+        "anchorPosition": [
+          726.0,
+          450.0
+        ],
+        "topLeft": [
+          626,
+          356
+        ],
+        "bounds": [
+          626,
+          356,
+          826,
+          543
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.2059732234809475,
+            -0.0,
+            626.0
+          ],
+          [
+            0.0,
+            0.2061742006615215,
+            356.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": [
+          798.0,
+          505.6
+        ]
+      },
+      {
+        "workingBoundsSprite": [
+          16,
+          6,
+          146,
+          146
+        ],
+        "code": "TP-E-042",
+        "sha256": "736e59f2bb161b0edee27e66ee1f21e9089b2602249596498b645e03504cf019",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          63,
+          67,
+          1000,
+          984
+        ],
+        "cropSize": [
+          937,
+          917
+        ],
+        "resizedSize": [
+          160,
+          157
+        ],
+        "spriteSize": [
+          160,
+          157
+        ],
+        "longSideBeforeRotation": 160,
+        "recommendedMinLongSide": 128,
+        "baseAxis": -35.0,
+        "targetAxis": -35.0,
+        "clockwiseDegrees": 0.0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.17075773745997866,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.17121046892039257,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": [
+          100.80000000000001,
+          150.71999999999997
+        ],
+        "visualCenterSprite": [
+          78.4,
+          80.07
+        ],
+        "evidence": [
+          "OBS-TP-E-042",
+          "D01"
+        ],
+        "role": "branch",
+        "anchor": "sprite_center",
+        "anchorPosition": [
+          958.0,
+          450.0
+        ],
+        "topLeft": [
+          878,
+          372
+        ],
+        "bounds": [
+          878,
+          372,
+          1038,
+          529
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.17075773745997866,
+            -0.0,
+            878.0
+          ],
+          [
+            0.0,
+            0.17121046892039257,
+            372.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": [
+          978.8,
+          522.72
+        ]
+      }
+    ],
+    "modernAdditions": [
+      {
+        "kind": "horizontal_border_rules",
+        "xRange": [
+          54,
+          1146
+        ],
+        "yPositions": [
+          330,
+          570
+        ],
+        "rgba": [
+          53,
+          86,
+          70,
+          95
+        ],
+        "width": 1,
+        "claimType": "contemporary_design",
+        "evidence": [
+          "D01"
+        ]
+      }
+    ],
+    "colorMode": "original",
+    "transparentBackground": false,
+    "selectedElementCodes": [
+      "TP-E-041",
+      "TP-E-042"
+    ],
+    "selectedMotifKeys": [],
+    "usedElementCodes": [
+      "TP-E-041",
+      "TP-E-042"
+    ],
+    "elements": [
+      {
+        "code": "TP-E-041",
+        "sha256": "d7df3f9d22c5edd2011ddd9acd325b117953fb0cf1553c15b585c8198203310a",
+        "motif": "class-c6ef73341b9b257e",
+        "artifactCode": "NM-9558",
+        "sourceFrame": "DSC9559"
+      },
+      {
+        "code": "TP-E-042",
+        "sha256": "736e59f2bb161b0edee27e66ee1f21e9089b2602249596498b645e03504cf019",
+        "motif": "class-c6ef73341b9b257e",
+        "artifactCode": "NM-9558",
+        "sourceFrame": "DSC9559"
+      }
+    ],
+    "compatibility": {
+      "status": "supported_scheme",
+      "geometry": "checked_for_saved_layout",
+      "aesthetic": "designer_proposal",
+      "cultural": "unknown",
+      "reasons": [
+        {
+          "code": "CONTEMPORARY_LAYOUT",
+          "severity": "unknown",
+          "scope": "cultural",
+          "evidence": [
+            "D01",
+            "RULE-05"
+          ],
+          "message": "Расстановка современная; культурная валидность новой пары и символика не подтверждены."
+        }
+      ],
+      "metadataVersion": "tp-composition-review/1.0.0",
+      "snapshotSha256": {
+        "evidence.json": "c04912ce41b1dda5f6fbee29c026a386777891c9d0d2fc87b9c45471cf4dc6cc",
+        "families.json": "8bbd0bc2fae523f50d4bb308885b08fb3159f4e70d7b75555e3950811ebf9210",
+        "metadata.json": "809bb8493c6a476bb577f54fb1798d349e39b306483dcc93a5ac9d7a240be2f7",
+        "compatibility-rules.json": "a3cac5d90d861d424f38971d38b401fda333482e95d5d804edd4f79a3f8a339b"
+      }
+    },
+    "descriptionEvidence": [
+      "D01",
+      "OBS-TP-E-041",
+      "OBS-TP-E-042"
+    ],
+    "culturalNote": {
+      "text": "Схема использует мотивы из каталогизированных источников выбранного семейства. Расстановка современная; точная историческая композиция и символика не установлены.",
+      "claimType": "catalogue_context",
+      "appliesTo": "selected_source_objects_only_not_layout_authenticity",
+      "evidence": [
+        {
+          "id": "CAT-NM-9558",
+          "type": "catalogue_attribution",
+          "title": "Футляр для гребня",
+          "author": null,
+          "publication_date": null,
+          "object_dating": "Конец XVIII века",
+          "path": "../manifest.csv",
+          "locator": "artifact_code=NM-9558; frames=DSC9559",
+          "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+          "verifiedBy": null
+        }
+      ]
+    },
+    "diagnostics": {
+      "overlapPixels": 0,
+      "contrast": [
+        {
+          "code": "TP-E-041",
+          "meanRgbDistance": 148.01,
+          "empiricalReadability": "unknown"
+        },
+        {
+          "code": "TP-E-042",
+          "meanRgbDistance": 154.0,
+          "empiricalReadability": "unknown"
+        }
+      ],
+      "empiricalReadability": "unknown"
+    },
+    "outputKind": "composition_image",
+    "seamless": false,
+    "repeat": null,
+    "isFixture": false,
+    "pillowVersion": "12.3.0",
+    "rendererSourceSha256": "3fca435ce5a32d0245d677b18a7aaab95fb9fcc0fb4b32911968a7217ea77764"
+  },
+  "export": {
+    "path": "f08-directed-img2img-base-rgb-1024.png",
+    "sha256": "01a8c335b36b5e81f72dfb407d7f12f29fbc61ad224a79c2a4b33489172fb1d4",
+    "mode": "RGB",
+    "size": [
+      1024,
+      1024
+    ],
+    "background": "#f3ebdb",
+    "operation": "fully opaque RGBA to RGB; proportional LANCZOS resize 1200x900 to 1024x768; paste at (0,128); no crop or motif rearrangement",
+    "sourceToOutputMatrix": [
+      [
+        0.8533333333333334,
+        0,
+        0
+      ],
+      [
+        0,
+        0.8533333333333334,
+        128
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "paddingLTRB": [
+      0,
+      128,
+      0,
+      128
+    ],
+    "resizedSize": [
+      1024,
+      768
+    ],
+    "resampler": "Pillow LANCZOS",
+    "pillowVersion": "12.1.0",
+    "rgbPixelSha256": "7a250f08b97752bae27c9ea74e633b28e85e8448a3feaecf104d38de709efaaf",
+    "pixelDigestConvention": "SHA256 of row-major RGB uint8 bytes, width=1024 height=1024 channels=3"
+  },
+  "aiInferenceStatus": "NOT_RUN"
+}

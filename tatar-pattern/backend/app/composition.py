@@ -9,8 +9,8 @@ from .composition_metadata import metadata, pilot_for, compatibility, review
 from .errors import APIError
 from .generator import SIZES
 
-VERSION = 'composition-pillow/1.1.0-pilot'
-REPLAY_VERSIONS = {VERSION, 'composition-pillow/1.0.0-pilot'}
+VERSION = 'composition-pillow/1.2.0-pilot'
+REPLAY_VERSIONS = {VERSION, 'composition-pillow/1.1.0-pilot', 'composition-pillow/1.0.0-pilot'}
 SCHEMA = 'tp-composition-recipe/1.0.0'
 
 
@@ -141,6 +141,55 @@ def render_composition(rows, selections, palette, png:Path, jpg:Path, seed=0):
         place('TP-E-052',support,(cx,cy+radius),180,'attachment','lower_framing_pair')
         additions=[{'kind':'open_circle_guide','radius':radius,'center':[cx,cy],'claimType':'contemporary_design','evidence':['D01']}]
         layout={'rays':count,'radius':radius,'centerLongSide':round(center),'gapRatio':gap_ratio,'phaseDegrees':phase}
+    elif composition=='border' and selections.get('borderLayout')=='interwoven':
+        w,h=requested
+        factor={'sparse':1.08,'default':1.0,'dense':0.9}[density]*selections.get('scale',1.0)
+        main_len=144*factor;link_len=main_len*0.8;small_len=main_len*0.4
+        main,mi=get('TP-E-061',main_len);link,li=get('TP-E-063',link_len,90);small,si=get('TP-E-066',small_len)
+        def footprint(info):
+            b=info['workingBoundsSprite'];return b[2]-b[0],b[3]-b[1]
+        mw,mh=footprint(mi);lw,lh=footprint(li);sw,sh=footprint(si)
+        margin=max(32,round(min(w,h)*0.07))
+        gap=math.ceil(gap_ratio*max(main.size+link.size))
+        minimum_step=mw+lw+2*gap
+        count=math.floor((w-2*margin)/minimum_step)
+        if count<2:
+            raise APIError(422,'BORDER_TOO_NARROW','Чередование двух ролей не помещается в читаемом размере.',{'minimumWidth':math.ceil(2*minimum_step+2*margin)})
+        step=(w-2*margin)/count
+        amplitude=max(24,round(mh*0.32))
+        orbit=amplitude+max(mh,lh)/2+gap+sh/2
+        cy=h/2
+        # A contemporary guide follows the cadence, not an inferred stem.
+        points=[[round(margin+(w-2*margin)*j/160),round(cy+amplitude*math.sqrt(2)*math.cos(math.pi*((w-2*margin)*j/160)/step))] for j in range(161)]
+        guide_color=[53,86,70,70]
+        guide=Image.new('RGBA',target.size,0);ImageDraw.Draw(guide).line([tuple(q) for q in points],fill=tuple(guide_color),width=1)
+        target=Image.alpha_composite(target,guide)
+        for i in range(count):
+            x=margin+i*step
+            direction=1 if i%2==0 else -1
+            # Heavy and medium forms share a rising/falling rhythm. The two
+            # small flowers balance each cluster instead of forming a third tier.
+            place('TP-E-061',main_len,(x+step/4,cy+direction*amplitude),anchor='working_center',role='primary_flower')
+            place('TP-E-063',link_len,(x+step*3/4,cy-direction*amplitude),90,'working_center',role='horizontal_connector_accent')
+            for fraction,side in ((0.12,-1),(0.46,1),(0.54,-1),(0.88,1)):
+                place('TP-E-066',small_len,(x+step*fraction,cy+direction*(amplitude*math.sqrt(2)*math.cos(math.pi*fraction)+side*orbit)),anchor='working_center',role='small_accent')
+        frame_top=round(cy-orbit-sh/2-gap*0.55-amplitude*0.18)
+        frame_bottom=round(cy+orbit+sh/2+gap*0.55+amplitude*0.18)
+        if frame_top<margin or frame_bottom>h-margin:
+            raise APIError(422,'BORDER_TOO_TALL','Чередование не помещается по высоте с полями.',{'minimumHeight':math.ceil(2*(orbit+sh/2+gap*0.55+margin))})
+        frame_color=ImageColor.getrgb('#355646')+(100,)
+        frame=Image.new('RGBA',target.size,0);draw=ImageDraw.Draw(frame)
+        for y in (frame_top,frame_bottom):draw.line((margin,y,w-margin,y),fill=frame_color,width=1)
+        target=Image.alpha_composite(target,frame)
+        additions=[{'kind':'wave_guide','points':points,'rgba':guide_color,'width':1,'purpose':'rhythm_guide_not_attachment','claimType':'contemporary_design','evidence':['D01']},
+                   {'kind':'horizontal_border_rules','xRange':[margin,w-margin],'yPositions':[frame_top,frame_bottom],
+                    'rgba':list(frame_color),'width':1,'claimType':'contemporary_design','evidence':['D01']}]
+        layout={'variant':'interwoven','repeatCount':count,'rows':None,'registers':None,'step':step,
+                'gapRatio':gap_ratio,'minimumPlannedGapPx':gap,'margin':margin,'amplitude':amplitude,'orbit':orbit,
+                'bandHeight':frame_bottom-frame_top,'direction':'left_to_right_unmirrored',
+                'visualWeights':{'primary_flower':'heavy','horizontal_connector_accent':'medium','small_accent':'light'},
+                'weightBasis':'relative_size_ink_area_and_detail_designer_estimate_not_cultural_classification',
+                'designBasis':'contemporary_interleaved_weight_cadence','historicalReconstruction':False,'continuousJoinedRepeat':False}
     elif composition=='border':
         w,h=requested
         # Three registers reflect the observed object hierarchy, without
@@ -184,7 +233,7 @@ def render_composition(rows, selections, palette, png:Path, jpg:Path, seed=0):
         target=Image.alpha_composite(target,frame)
         additions=[{'kind':'horizontal_border_rules','xRange':[margin,w-margin],'yPositions':[frame_top,frame_bottom],
                     'rgba':list(frame_color),'width':1,'claimType':'contemporary_design','evidence':['D01']}]
-        layout={'repeatCount':count,'rows':3,'registers':[
+        layout={'variant':'registers','repeatCount':count,'rows':3,'registers':[
                     {'role':'primary_flower','y':primary_y,'count':count},
                     {'role':'horizontal_connector_accent','y':connector_y,'count':count},
                     {'role':'small_accent','y':small_y,'count':2*count-1}],
@@ -255,6 +304,9 @@ def render_composition(rows, selections, palette, png:Path, jpg:Path, seed=0):
         recipe['culturalNote']={'text':'На исходном кадре DSC9585 видны отдельные ярусы крупных цветов, завитковых блоков и малых цветов. Здесь их иерархия использована в современной полосовой композиции; точное расположение костюма не реконструируется.',
                                 'claimType':'single_object_visual_observation','evidence':[entries[i] for i in ids],
                                 'appliesTo':'source_object_hierarchy_only_not_general_cultural_rule'}
+        if layout.get('variant')=='interwoven':
+            recipe['culturalNote']['text']='Мотивы взяты с одного костюма NM-9585: на фото видны отдельные ярусы крупных цветов, завитковых блоков и малых цветов. Здесь они объединены в новый чередующийся ритм; такая расстановка является современным дизайнерским решением.'
+            recipe['culturalNote']['appliesTo']='motif_object_context_only_not_interwoven_layout'
         compat['contextEvidence']=ids
         compat['historicalLayout']='not_verified'
         compat['symbolicMeaning']='unknown'
@@ -281,6 +333,10 @@ def replay(rows, recipe, png:Path, jpg:Path):
             cx,cy=addition['center'];radius=addition['radius']
             guide=Image.new('RGBA',canvas.size,0)
             ImageDraw.Draw(guide).arc((cx-radius,cy-radius,cx+radius,cy+radius),-230,50,fill=ImageColor.getrgb(palette.get('gold',palette['ink']))+(90,),width=1)
+            canvas=Image.alpha_composite(canvas,guide)
+        elif addition['kind']=='wave_guide':
+            guide=Image.new('RGBA',canvas.size,0)
+            ImageDraw.Draw(guide).line([tuple(q) for q in addition['points']],fill=tuple(addition['rgba']),width=addition['width'])
             canvas=Image.alpha_composite(canvas,guide)
     for placement in recipe['placements']:
         row=by_code[placement['code']]

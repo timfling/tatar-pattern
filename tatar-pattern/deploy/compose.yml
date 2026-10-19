@@ -57,6 +57,82 @@ services:
       timeout: 8s
       retries: 3
       start_period: 30s
+  ai-worker:
+    <<: *app
+    profiles: [ai]
+    image: tatar-pattern-backend:${RELEASE}
+    # Opt-in process; no automatic restart after an uncertain failure.
+    restart: "no"
+    env_file:
+      - path: ${AI_PROVIDER_ENV_FILE:-/etc/tatar-pattern/ai-provider.env}
+        required: false
+    environment:
+      DATABASE_URL: postgresql://tp:${POSTGRES_PASSWORD}@db:5432/tatar_pattern
+      STORAGE_ROOT: /data/storage
+      TP_ENVIRONMENT: production
+      ALLOW_FIXTURES: "false"
+      AI_MVP_ENABLED: "false"
+      # Names accepted in the backend handoff; file-only Bearer source.
+      AI_GPU_BASE_URL: http://gpu-tunnel:18765
+      AI_GPU_TOKEN_FILE: /run/secrets/gpu_bearer
+      AI_GPU_TOKEN: ""
+      AI_GPU_HTTP_PROOF_FILE: /data/storage/ai-gpu-worker-proof.json
+      GPU_EXPECTED_WORKFLOW_VERSION: ${GPU_EXPECTED_WORKFLOW_VERSION:-tp-sdxl-composition-img2img/1.0.0}
+      GPU_EXPECTED_MODEL_VERSION: ${GPU_EXPECTED_MODEL_VERSION:-378c08ff157660a3399573e1cd5918ad8f3aec344646c5336b027d63fe50ca42}
+    command: [python, -m, scripts.ai_worker]
+    volumes:
+      - ${DATA_ROOT}/storage:/data/storage
+      - ./ai-readiness.py:/opt/deploy/ai-readiness.py:ro
+      - type: bind
+        source: ${GPU_BEARER_FILE:-/etc/tatar-pattern/gpu/bearer}
+        target: /run/secrets/gpu_bearer
+        read_only: true
+        bind: {create_host_path: false}
+    networks: [data, gpu-link]
+    depends_on:
+      db: {condition: service_healthy}
+      gpu-tunnel: {condition: service_healthy}
+    mem_limit: 512m
+    read_only: true
+    tmpfs: ["/tmp:size=64m,mode=1777"]
+    stop_signal: SIGTERM
+    stop_grace_period: 960s
+  gpu-tunnel:
+    <<: *app
+    profiles: [ai]
+    image: tatar-pattern-tunnel:${RELEASE}
+    build:
+      context: .
+      dockerfile: Dockerfile.tunnel
+    user: "10001:10001"
+    environment:
+      GPU_SSH_HOST: ${GPU_SSH_HOST:-NOT_CONFIGURED.invalid}
+      GPU_SSH_PORT: ${GPU_SSH_PORT:-22}
+      GPU_SSH_USER: ${GPU_SSH_USER:-tunnel}
+      # Agreed target GPU host endpoint; runtime remains unverified.
+      GPU_API_PORT: ${GPU_API_PORT:-8765}
+    volumes:
+      - type: bind
+        source: ${GPU_SSH_KEY_FILE:-/etc/tatar-pattern/gpu/id_ed25519}
+        target: /run/ssh/id_ed25519
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: ${GPU_KNOWN_HOSTS_FILE:-/etc/tatar-pattern/gpu/known_hosts}
+        target: /run/ssh/known_hosts
+        read_only: true
+        bind: {create_host_path: false}
+    networks: [gpu-link, gpu-egress]
+    # No published ports. Binding 0.0.0.0 is confined to this container.
+    mem_limit: 96m
+    read_only: true
+    tmpfs: ["/tmp:size=8m,mode=1777"]
+    healthcheck:
+      # Listener only; not a claim of GPU HTTP readiness.
+      test: [CMD, python, -c, "import socket; socket.create_connection(('127.0.0.1',18765),3).close()"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
   frontend:
     <<: *app
     image: tatar-pattern-frontend:${RELEASE}
@@ -106,5 +182,8 @@ networks:
     ipam:
       config:
         - subnet: ${EDGE_SUBNET:-172.29.86.0/24}
+  gpu-link:
+    internal: true
+  gpu-egress: {}
   data:
     internal: true

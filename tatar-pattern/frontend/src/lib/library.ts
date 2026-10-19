@@ -1,6 +1,6 @@
 import { api, apiUrl, type Generation, type Rating } from "@/lib/api";
 import { formatPatternStamp } from "@/components/constructor/data";
-import type { ConstructorSelections } from "@/components/constructor/parameters";
+import { emptySelections, type ConstructorSelections } from "@/components/constructor/parameters";
 export type PatternRating = Rating;
 export type SavedPattern = {
   mode: "flat" | "ai";
@@ -9,7 +9,7 @@ export type SavedPattern = {
   selections: ConstructorSelections; projectId: string | null; status: Generation["status"];
 };
 export function savedPattern(g: Generation): SavedPattern {
-  return { mode: g.mode ?? "flat", id: g.id, name: g.title, stamp: formatPatternStamp(new Date(g.createdAt)), createdAt: Date.parse(g.createdAt), imageUrl: g.imageUrl ? apiUrl(g.imageUrl) : null, rating: g.rating, prompt: g.prompt, selections: g.selections, projectId: g.projectId, status: g.status === "done" && !g.imageUrl ? "error" : g.status };
+  return { mode: g.mode ?? "flat", id: g.id, name: g.title, stamp: formatPatternStamp(new Date(g.createdAt)), createdAt: Date.parse(g.createdAt), imageUrl: g.imageUrl ? apiUrl(g.imageUrl) : null, rating: g.rating, prompt: g.prompt, selections: g.selections ?? emptySelections(), projectId: g.projectId, status: g.status === "done" && !g.imageUrl ? "error" : g.status };
 }
 export async function loadLibrary(): Promise<SavedPattern[]> {
   const items: SavedPattern[] = [];

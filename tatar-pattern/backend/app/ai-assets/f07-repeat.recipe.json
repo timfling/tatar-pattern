@@ -1,0 +1,752 @@
+{
+  "schema": "tp-local-composition-base-export/1.0",
+  "source": {
+    "path": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f07-repeat-paper.png",
+    "sha256": "8369bccb026021278084c6081a3845c591f345f41be5995b7834de5cbaada89f",
+    "ownerStatus": "owner_accepted_2026_10_13",
+    "acceptanceScope": "original composition; export not separately reviewed"
+  },
+  "request": {
+    "selections": {
+      "style": "heritage",
+      "composition": "rapport",
+      "parameters": "default",
+      "motifs": [],
+      "elementCodes": [
+        "TP-E-034",
+        "TP-E-035",
+        "TP-E-036",
+        "TP-E-037"
+      ],
+      "scale": 1.0,
+      "transparentBackground": false,
+      "backgroundColor": "#f3ebdb",
+      "renderer": "composition-v2",
+      "schemeId": "f07-repeat",
+      "registryVersion": "tp-schemes/2.1.0",
+      "primaryElementCode": null,
+      "borderLayout": "registers",
+      "rapportOutput": "module",
+      "moduleSize": null,
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "colorMode": "original",
+      "palette": "emerald",
+      "usage": "textile"
+    },
+    "seed": 42
+  },
+  "recipe": {
+    "designSourceSha256": "755c084587c6f3c72dd93ca728d6c4781c0f92ee6d80c45e0914cd5e1a03199d",
+    "schemaVersion": "tp-composition-recipe/2.0.0",
+    "algorithmVersion": "composition-pillow/2.1.0",
+    "registryVersion": "tp-schemes/2.1.0",
+    "registrySha256": "7d5b3133a2bfad87f3cea41636653f5a205a3fab5786314a2f0ca700d3e618ca",
+    "schemeId": "f07-repeat",
+    "schemeDefinition": {
+      "id": "f07-repeat",
+      "registryVersion": "tp-schemes/2.1.0",
+      "familyId": "F07",
+      "composition": "rapport",
+      "layout": "hierarchical_repeat",
+      "useScope": "rapport",
+      "titleRu": "Рисунок учкура NM-9557 · Иерархический повтор",
+      "descriptionRu": "Современная композиционная схема по ролям и метаданным ревизии.",
+      "allowedElementCodes": [
+        "TP-E-034",
+        "TP-E-035",
+        "TP-E-036",
+        "TP-E-037",
+        "TP-E-038",
+        "TP-E-040",
+        "TP-E-119",
+        "TP-E-132",
+        "TP-E-133"
+      ],
+      "defaultElementCodes": [
+        "TP-E-034",
+        "TP-E-035",
+        "TP-E-036",
+        "TP-E-037"
+      ],
+      "minimumSelected": 1,
+      "maximumSelected": 16,
+      "requiredRoles": [],
+      "centerCandidates": [],
+      "roleOptions": {
+        "TP-E-034": [
+          "primary",
+          "support"
+        ],
+        "TP-E-035": [
+          "primary",
+          "branch"
+        ],
+        "TP-E-036": [
+          "primary",
+          "support"
+        ],
+        "TP-E-037": [
+          "primary",
+          "leaf"
+        ],
+        "TP-E-038": [
+          "primary",
+          "support"
+        ],
+        "TP-E-040": [
+          "primary",
+          "frame"
+        ],
+        "TP-E-119": [
+          "primary",
+          "support"
+        ],
+        "TP-E-132": [
+          "primary",
+          "leaf"
+        ],
+        "TP-E-133": [
+          "primary",
+          "branch"
+        ]
+      },
+      "constraints": {
+        "colorModes": [
+          "original"
+        ],
+        "reflection": false,
+        "continuousJoinedRepeat": false,
+        "minimumSizeBasis": "recommended_not_empirically_verified"
+      },
+      "previewUrl": "/api/composition-schemes/f07-repeat/preview",
+      "previewIsExample": true,
+      "reviewStatus": "owner_accepted_2026_10_13",
+      "evidence": [
+        "D01"
+      ]
+    },
+    "familyId": "F07",
+    "seed": 42,
+    "roles": {
+      "TP-E-034": "primary",
+      "TP-E-035": "branch",
+      "TP-E-036": "support",
+      "TP-E-037": "leaf"
+    },
+    "primaryElementCode": "TP-E-034",
+    "layout": {
+      "variant": "hierarchical_repeat",
+      "schemeId": "f07-repeat",
+      "useScope": "rapport",
+      "gapRatio": 0.26,
+      "historicalReconstruction": false,
+      "continuousJoinedRepeat": false,
+      "moduleSize": [
+        553,
+        567
+      ],
+      "grid": [
+        2,
+        2
+      ],
+      "minimumPlannedGapPx": 52
+    },
+    "size": [
+      553,
+      567
+    ],
+    "requestedSize": [
+      1024,
+      1024
+    ],
+    "palette": {
+      "bg": "#f3ebdb"
+    },
+    "placements": [
+      {
+        "workingBoundsSprite": [
+          0,
+          26,
+          200,
+          175
+        ],
+        "code": "TP-E-034",
+        "sha256": "a29fbe7043b922eaf8dcbec5d7d502d4cb0ff8565fe8d9190872e9a6bba4a9b5",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          24,
+          23,
+          998,
+          990
+        ],
+        "cropSize": [
+          974,
+          967
+        ],
+        "resizedSize": [
+          200,
+          199
+        ],
+        "spriteSize": [
+          200,
+          199
+        ],
+        "longSideBeforeRotation": 200,
+        "recommendedMinLongSide": 144,
+        "baseAxis": 0.0,
+        "targetAxis": 0.0,
+        "clockwiseDegrees": 0.0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.2053388090349076,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.20579110651499483,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": [
+          100.0,
+          195.01999999999998
+        ],
+        "visualCenterSprite": [
+          100.0,
+          87.56
+        ],
+        "evidence": [
+          "OBS-TP-E-034",
+          "D01"
+        ],
+        "role": "primary",
+        "anchor": "working_center",
+        "anchorPosition": [
+          152.0,
+          151.5
+        ],
+        "topLeft": [
+          52,
+          51
+        ],
+        "bounds": [
+          52,
+          51,
+          252,
+          250
+        ],
+        "wrap": true,
+        "cropToOutputMatrix": [
+          [
+            0.2053388090349076,
+            -0.0,
+            52.0
+          ],
+          [
+            0.0,
+            0.20579110651499483,
+            51.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": [
+          152.0,
+          246.01999999999998
+        ]
+      },
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          107,
+          159
+        ],
+        "code": "TP-E-035",
+        "sha256": "32354c0bc7421046c4805705084afb00ed1a1829be7df1af2a44ef97d13fad5a",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          140,
+          8,
+          1010,
+          1024
+        ],
+        "cropSize": [
+          870,
+          1016
+        ],
+        "resizedSize": [
+          137,
+          160
+        ],
+        "spriteSize": [
+          137,
+          160
+        ],
+        "longSideBeforeRotation": 160,
+        "recommendedMinLongSide": 128,
+        "baseAxis": -40.0,
+        "targetAxis": -40.0,
+        "clockwiseDegrees": 0.0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.15747126436781608,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.15748031496062992,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": [
+          87.68,
+          81.6
+        ],
+        "visualCenterSprite": [
+          67.13,
+          78.39999999999999
+        ],
+        "evidence": [
+          "OBS-TP-E-035",
+          "D01"
+        ],
+        "role": "branch",
+        "anchor": "working_center",
+        "anchorPosition": [
+          428.5,
+          151.5
+        ],
+        "topLeft": [
+          375,
+          72
+        ],
+        "bounds": [
+          375,
+          72,
+          512,
+          232
+        ],
+        "wrap": true,
+        "cropToOutputMatrix": [
+          [
+            0.15747126436781608,
+            -0.0,
+            375.0
+          ],
+          [
+            0.0,
+            0.15748031496062992,
+            72.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": [
+          462.68,
+          153.6
+        ]
+      },
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          150,
+          160
+        ],
+        "code": "TP-E-036",
+        "sha256": "2261619462b2dac6c19f15161c3f1ba515735e68cb474fdd55963054bb97e371",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          52,
+          12,
+          973,
+          992
+        ],
+        "cropSize": [
+          921,
+          980
+        ],
+        "resizedSize": [
+          150,
+          160
+        ],
+        "spriteSize": [
+          150,
+          160
+        ],
+        "longSideBeforeRotation": 160,
+        "recommendedMinLongSide": 96,
+        "baseAxis": 0.0,
+        "targetAxis": 0.0,
+        "clockwiseDegrees": 0.0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.16286644951140064,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.16326530612244897,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": null,
+        "visualCenterSprite": [
+          75.0,
+          80.0
+        ],
+        "evidence": [
+          "OBS-TP-E-036",
+          "D01"
+        ],
+        "role": "support",
+        "anchor": "working_center",
+        "anchorPosition": [
+          152.0,
+          435.0
+        ],
+        "topLeft": [
+          77,
+          355
+        ],
+        "bounds": [
+          77,
+          355,
+          227,
+          515
+        ],
+        "wrap": true,
+        "cropToOutputMatrix": [
+          [
+            0.16286644951140064,
+            -0.0,
+            77.0
+          ],
+          [
+            0.0,
+            0.16326530612244897,
+            355.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": null
+      },
+      {
+        "workingBoundsSprite": [
+          32,
+          0,
+          130,
+          156
+        ],
+        "code": "TP-E-037",
+        "sha256": "c1117747d27b52094e38c055498bc9dc307ad4878433857b13f89d8e8d1b52e4",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          0,
+          15,
+          916,
+          1024
+        ],
+        "cropSize": [
+          916,
+          1009
+        ],
+        "resizedSize": [
+          145,
+          160
+        ],
+        "spriteSize": [
+          145,
+          160
+        ],
+        "longSideBeforeRotation": 160,
+        "recommendedMinLongSide": 112,
+        "baseAxis": 0.0,
+        "targetAxis": 0.0,
+        "clockwiseDegrees": 0.0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.15829694323144106,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.15857284440039643,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": [
+          72.5,
+          156.79999999999998
+        ],
+        "visualCenterSprite": [
+          72.5,
+          88.0
+        ],
+        "evidence": [
+          "OBS-TP-E-037",
+          "D01"
+        ],
+        "role": "leaf",
+        "anchor": "working_center",
+        "anchorPosition": [
+          428.5,
+          435.0
+        ],
+        "topLeft": [
+          348,
+          357
+        ],
+        "bounds": [
+          348,
+          357,
+          493,
+          517
+        ],
+        "wrap": true,
+        "cropToOutputMatrix": [
+          [
+            0.15829694323144106,
+            -0.0,
+            348.0
+          ],
+          [
+            0.0,
+            0.15857284440039643,
+            357.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": [
+          420.5,
+          513.8
+        ]
+      }
+    ],
+    "modernAdditions": [],
+    "colorMode": "original",
+    "transparentBackground": false,
+    "selectedElementCodes": [
+      "TP-E-034",
+      "TP-E-035",
+      "TP-E-036",
+      "TP-E-037"
+    ],
+    "selectedMotifKeys": [],
+    "usedElementCodes": [
+      "TP-E-034",
+      "TP-E-035",
+      "TP-E-036",
+      "TP-E-037"
+    ],
+    "elements": [
+      {
+        "code": "TP-E-034",
+        "sha256": "a29fbe7043b922eaf8dcbec5d7d502d4cb0ff8565fe8d9190872e9a6bba4a9b5",
+        "motif": "class-70b2dc77522370ce",
+        "artifactCode": "NM-9557",
+        "sourceFrame": "DSC9557"
+      },
+      {
+        "code": "TP-E-035",
+        "sha256": "32354c0bc7421046c4805705084afb00ed1a1829be7df1af2a44ef97d13fad5a",
+        "motif": "class-f5694af260f2a426",
+        "artifactCode": "NM-9557",
+        "sourceFrame": "DSC9557"
+      },
+      {
+        "code": "TP-E-036",
+        "sha256": "2261619462b2dac6c19f15161c3f1ba515735e68cb474fdd55963054bb97e371",
+        "motif": "class-3171afd0741b768f",
+        "artifactCode": "NM-9557",
+        "sourceFrame": "DSC9557"
+      },
+      {
+        "code": "TP-E-037",
+        "sha256": "c1117747d27b52094e38c055498bc9dc307ad4878433857b13f89d8e8d1b52e4",
+        "motif": "class-5719a8dd095f4f7c",
+        "artifactCode": "NM-9557",
+        "sourceFrame": "DSC9557"
+      }
+    ],
+    "compatibility": {
+      "status": "supported_scheme",
+      "geometry": "checked_for_saved_layout",
+      "aesthetic": "designer_proposal",
+      "cultural": "unknown",
+      "reasons": [
+        {
+          "code": "CONTEMPORARY_LAYOUT",
+          "severity": "unknown",
+          "scope": "cultural",
+          "evidence": [
+            "D01",
+            "RULE-05"
+          ],
+          "message": "Расстановка современная; культурная валидность новой пары и символика не подтверждены."
+        }
+      ],
+      "metadataVersion": "tp-composition-review/1.0.0",
+      "snapshotSha256": {
+        "evidence.json": "c04912ce41b1dda5f6fbee29c026a386777891c9d0d2fc87b9c45471cf4dc6cc",
+        "families.json": "8bbd0bc2fae523f50d4bb308885b08fb3159f4e70d7b75555e3950811ebf9210",
+        "metadata.json": "809bb8493c6a476bb577f54fb1798d349e39b306483dcc93a5ac9d7a240be2f7",
+        "compatibility-rules.json": "a3cac5d90d861d424f38971d38b401fda333482e95d5d804edd4f79a3f8a339b"
+      }
+    },
+    "descriptionEvidence": [
+      "D01",
+      "OBS-TP-E-034",
+      "OBS-TP-E-035",
+      "OBS-TP-E-036",
+      "OBS-TP-E-037"
+    ],
+    "culturalNote": {
+      "text": "Схема использует мотивы из каталогизированных источников выбранного семейства. Расстановка современная; точная историческая композиция и символика не установлены.",
+      "claimType": "catalogue_context",
+      "appliesTo": "selected_source_objects_only_not_layout_authenticity",
+      "evidence": [
+        {
+          "id": "CAT-NM-9557",
+          "type": "catalogue_attribution",
+          "title": "Рисунок для вышивки на мужском поясе учкур",
+          "author": null,
+          "publication_date": null,
+          "object_dating": "1900 год",
+          "path": "../manifest.csv",
+          "locator": "artifact_code=NM-9557; frames=DSC9557",
+          "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+          "verifiedBy": null
+        }
+      ]
+    },
+    "diagnostics": {
+      "overlapPixels": 0,
+      "contrast": [
+        {
+          "code": "TP-E-034",
+          "meanRgbDistance": 119.25,
+          "empiricalReadability": "unknown"
+        },
+        {
+          "code": "TP-E-035",
+          "meanRgbDistance": 139.4,
+          "empiricalReadability": "unknown"
+        },
+        {
+          "code": "TP-E-036",
+          "meanRgbDistance": 126.45,
+          "empiricalReadability": "unknown"
+        },
+        {
+          "code": "TP-E-037",
+          "meanRgbDistance": 190.74,
+          "empiricalReadability": "unknown"
+        }
+      ],
+      "empiricalReadability": "unknown"
+    },
+    "outputKind": "repeat_module",
+    "seamless": true,
+    "repeat": {
+      "periodPx": [
+        553,
+        567
+      ],
+      "moduleSha256": "8369bccb026021278084c6081a3845c591f345f41be5995b7834de5cbaada89f",
+      "moduleFileSuffix": ".module.png"
+    },
+    "isFixture": false,
+    "pillowVersion": "12.3.0",
+    "rendererSourceSha256": "3fca435ce5a32d0245d677b18a7aaab95fb9fcc0fb4b32911968a7217ea77764"
+  },
+  "export": {
+    "size": [
+      1024,
+      1024
+    ],
+    "mode": "RGB",
+    "background": "#f3ebdb",
+    "resizedSize": [
+      999,
+      1024
+    ],
+    "offset": [
+      12,
+      0
+    ],
+    "paddingLTRB": [
+      12,
+      0,
+      13,
+      0
+    ],
+    "sourceToOutputMatrix": [
+      [
+        1.806509945750452,
+        0,
+        12
+      ],
+      [
+        0,
+        1.8059964726631392,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "resampler": "LANCZOS",
+    "pillowVersion": "12.3.0",
+    "sha256": "91213803d6da70a30f57cf72dda187651018109eaa2a85b7ab281c08ffedb5eb",
+    "operation": "proportional fit and background padding; no crop/recolor/rearrangement"
+  }
+}

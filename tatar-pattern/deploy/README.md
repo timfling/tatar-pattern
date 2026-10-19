@@ -176,3 +176,171 @@ recovery_dc up -d --wait backend frontend
 Restore только в чистую tatar_pattern нового проекта. Повторный restore поверх частичного/существующего — остановиться и создать другой новый DATA_ROOT, без --clean/reset. Затем повторный аудит/checksum, проверка login/history/export, удаления по политике и согласованное переключение. Recovery proxy/ports пока не запущены; `publish` требует явный public gate и исправленный Next. Новая база восстанавливает TP пользователя/таблицы под credentials recovery.env, dump не переносит суперпользовательские роли.
 
 Для смены code symlink при update/rollback администратор использует `ln -sfn /srv/tatar-pattern/releases/APPROVED_RELEASE /srv/tatar-pattern/current` и редактирует RELEASE в защищенном env; DATA_ROOT сохраняется. Указать настоящий APPROVED_RELEASE. Перед откатом подтвердить совместимость схемы и существование точных image tags; не выполнять повторный build старого tag.
+
+
+## AI MVP — совместимость с новым GPU HTTP, 18.10.2026
+
+**LOCAL_CONFIG_READY / GPU_HTTP_NOT_RUN / SHUTDOWN_RUNTIME_NOT_TESTED.**
+Актуальные контракт/согласования: верх ../../ИИ/GPU-HANDOFF.md и GPU-INTEGRATION.md.
+Художественный отбор идёт параллельно разработке; старый motif/D/D1 не контракт.
+Сайт/backend/storage остаются на Beget. GPU выполняет SDXL+LoRA img2img в immers.cloud.
+
+### Подключение и имена env
+
+Профиль ai в compose.yml выключен по умолчанию. Один ai-worker: тот же backend release,
+команда `python -m scripts.ai_worker`, UID10001, общие DATABASE_URL и STORAGE_ROOT=/data/storage.
+Сети worker: data и internal gpu-link. Tunnel: gpu-link и gpu-egress для исходящего SSH.
+Worker → http://gpu-tunnel:18765 → SSH → GPU-host127.0.0.1:8765. Tunnel слушает
+контейнерный интерфейс0.0.0.0:18765, host ports отсутствуют. Localhost worker,
+Beget-хоста и GPU-хоста различаются. Сайт использует прежние edge/Caddy/HTTPS.
+
+В верхнем backend-согласовании GPU-INTEGRATION.md уже приняты и в коде прочитаны:
+
+```dotenv
+AI_GPU_BASE_URL=http://gpu-tunnel:18765
+AI_GPU_TOKEN_FILE=/run/secrets/gpu_bearer
+AI_GPU_HTTP_PROOF_FILE=/data/storage/ai-gpu-worker-proof.json
+GPU_EXPECTED_WORKFLOW_VERSION=tp-sdxl-composition-img2img/1.0.0
+GPU_EXPECTED_MODEL_VERSION=378c08ff157660a3399573e1cd5918ad8f3aec344646c5336b027d63fe50ca42
+AI_MVP_ENABLED=false
+```
+
+Имена env и последовательность остановки окончательно подтверждены backend и чатом5
+через владельца. Самостоятельных сообщений агентам в этом ходе нет. AI_GPU_TOKEN пуст в Compose:
+используется ровно один Bearer source, TOKEN_FILE. GPU-серверная настройка
+TP_INFERENCE_TOKEN(_FILE) — другая сторона, не имя клиентской настройки.
+AI_PROVIDER_ENV_FILE — optional внешний0600 env для дополнительных настроек;
+явные environment в Compose имеют приоритет. URL/TOKEN_FILE/proof path закреплены
+в Compose; версиям заданы согласованные defaults и значения .env.example.
+Никакие реальные env/secret files этим ходом не создавались/менялись.
+
+GPU_BEARER_FILE → readonly /run/secrets/gpu_bearer, create_host_path=false; Bearer
+минимум32ASCII, файл0600 читается UID10001. GPU_SSH_KEY_FILE0600 и проверенный
+GPU_KNOWN_HOSTS_FILE также readonly, без создания отсутствующих source paths;
+каталог секретов вне checkout0700. SSH StrictHostKeyChecking/BatchMode/IdentitiesOnly,
+ExitOnForwardFailure и keepalive включены, ключ без shell/agent forwarding.
+IP195.209.221.75 и loginобразаubuntu получены от владельца из кабинета:
+ВМtp-sdxl-smoke-20261016, статусSHELVED_OFFLOADED; живой endpoint не проверен.
+Фактические SSH-порт, tunnel-user и проверенный host key/fingerprint ещё нужны. GPU SSH restrictions
+устанавливаются отдельно в будущем; firewall/SSH config GPU сейчас не менялись.
+
+Для будущей конфигурации API подготовлен **неприменённый** compose.ai-api.yml:
+те же URL/versions/proof и readonly Bearer, backend получает gpu-link, остаётся AI=false.
+Обычные ops-команды этот override не применяют. Его применение требует защищённого
+файла и отдельного release-плана; сейчас обычный API не получает GPU secret/network.
+Proof хранится в общем persistent storage, API читает его; записывает только явный
+owner-run probe из worker namespace. Дублирующий bind proof не нужен: используется storage.
+
+### Контракт и readiness
+
+Transport совместим с tp-gpu-img2img/1.0: Bearer на всех routes, девять JSON-полей
+submit, UUID idempotency, status/image. Изображения/recipe/profiles заранее на GPU;
+произвольные prompt/URL/path/base64/strength/steps не передаются. Перевод внутренней
+задачи, pins и PNG/metadata проверку выполняет backend adapter, не deploy.
+Backend локально реализовал HTTP adapter и scripts.ai_gpu_probe; реального proof нет.
+Нужно подтвердить одинаковый release API/worker с актуальными app/assets/profiles/scripts.
+
+Tunnel health — только TCP listener. /api/health сайта — не GPU readiness.
+ai-readiness.py — ручная проверка только health: auth, exact contract/catalog/workflow/
+model, normal mode, draining=false, deploymentDigest/bootId. Не пишет proof и не разрешает
+AI. Финальная readiness у backend проверяет также qualified пары/профили и свежий
+worker proof≤24ч с теми же origin/deploymentDigest/bootId. После GPU restart нужен новый proof.
+AI_MVP_ENABLED=false и gates releaseApproved/externalTransferApproved не включены.
+GPU off/draining → AI недоступен явно; сайт/сохранённые PNG/история независимы.
+Никакого flat fallback, запуска ВМ или платного resubmit при uncertain submit.
+
+### Порядок и время остановки
+
+Backend подтвердил: drain930с от первого SIGTERM/SIGINT, включая текущие HTTP,
+запись результата и commit; повторный сигнал срок не продлевает. Аварийный watchdog
+на950-й секунде делает exit75 без успешного drain, оставаясь активным и при закрытии БД.
+Compose **SIGTERM, stop_grace_period960s** принят: предел приложения950с + запас10с. GPU drain≤915с, отдельный GPU supervisor TimeoutStopSec960 —
+это не worker timer. Timeout туннеля после успешного worker drain —15с.
+
+Безопасная локальная операция подготовлена: `python3 ops.py --env <protected.env> stop-ai`.
+Она сейчас НЕ запускалась. Последовательность:
+
+1. Остановить backend с timeout120с: закрывается admission новых API задач.
+   Это maintenance API целиком; статический frontend не останавливается. Для AI-only
+   admission потребуется отдельный согласованный backend механизм.
+2. Пока DB/storage и tunnel доступны, послать SIGTERM worker и ждать до960с.
+   Worker не берёт новые queued, завершает poll/download либо сохраняет явное
+   resumable/uncertain состояние. Ожидается exit0 и новый `AI_WORKER_DRAINED:` после сигнала.
+3. Только после двух подтверждений остановить tunnel с timeout15с. DB сохраняется.
+   Локальный верх таймаутов последовательности120+960+15=1095с (18мин15с),
+   плюс служебное время Docker. Это предел остановочных ожиданий, не обещание drain latency.
+4. При exit75(watchdog)/exit137/другом nonzero/crash/неподтверждённом marker/ошибке DB операция прерывается:
+   tunnel и DB остаются, admission не возобновляется автоматически. Сверить ai_jobs/
+   generations и сохранить явное состояние через backend-процедуру. Не повторять submit.
+
+Не использовать общий `stop -t120`, `down --timeout120` или принудительный kill всего
+стека. Даже dependency order не проверяет DB commit/marker. Внешний supervisor,
+если появится, должен дать всей последовательности больше1095с + запас, не обрывая
+ops.py на60с. Compose stop по истечении960с может послать SIGKILL: это авария,
+а не успешный drain; helper не разрешит затем автоматическую остановку tunnel.
+
+Прежний зазор начала drain закрыт backend и подтверждён владельцем. Это не гарантия
+сохранения при зависшем storage/БД: watchdog75 требует сверки ai_jobs/generations,
+как и любое неподтверждённое завершение. Реальный контейнерный SIGTERM→exit и задержки
+записи/commit ещё не проверены; backend-код здесь не менялся.
+
+Чат5 исправил собственный, пока не установленный GPU systemd template:
+TimeoutStopSec960, KillMode=mixed, KillSignal=SIGTERM, SendSIGKILL=yes. Первым сигнал
+получает main server, renderer может завершить работу в пределах GPU drain≤915с.
+Реальная работа systemd/HTTP при drain не проверена.
+
+Backup теперь отдельно останавливает admission writers(proxy/frontend/backend,120с),
+затем worker960с с той же проверкой exit+marker, и только потом делает DB dump+storage.
+Tunnel/DB всё время доступны. При неподтверждённом drain backup не делает dump/manifest
+и не перезапускает writers автоматически. После успешного quiesce они возобновляются
+даже при ошибке dump; это не отменяет удалённую GPU-задачу.
+
+### Будущее разрешённое окно проверки
+
+1. Env/worker shutdown согласованы. IP195.209.221.75 известен из кабинета, перед подключением сверить заново.
+   Нужны подтверждённые SSH-порт, tunnel-user и проверенный fingerprint/public host key
+   для known_hosts через согласованный файл; ubuntu пока только loginобраза.
+   Реально qualified-пар пока0: шесть локальных кандидатов для f10-wreath/f14-directed/
+   f08-directed × graphic/textured; textured f08 слабый. Новые12основ без GPU-профилей.
+   Владелец выбирает пары и разрешённое окно; ни один кандидат не включается автоматически.
+2. Подготовить внешние секреты, одинаковые release images и assets; собрать tunnel image.
+   Проверить Compose с выбранным env без печати секретов (`config --quiet`).
+3. Запустить только tunnel. Из worker namespace выполнить health-only check:
+
+   ```bash
+   dc_ai() { docker compose --env-file /etc/tatar-pattern/production.env -f compose.yml --profile ai "$@"; }
+   dc_ai run --rm --no-deps ai-worker python /opt/deploy/ai-readiness.py
+   ```
+
+4. После GPU qualification/visual accept и normal GPU service проверить готовые GPU jobs
+   из worker (команда backend не создаёт inference):
+
+   ```bash
+   dc_ai run --rm --no-deps ai-worker python -m scripts.ai_gpu_probe --owner-run --worker-namespace --job-id <approved-ready-GPU-UUID>
+   ```
+
+   Повторить --job-id для каждой допускаемой пары. Создаётся только настоящий runtime
+   proof в shared storage, не repo. Health200/CPU tests не заменяют этот шаг.
+5. После остальных разрешений отдельным reviewed release согласовать API override и
+   включение gates. Один явный сайт→job→GPU→PNG1024²≤20MiB/SHA/metadata→Beget storage+DB;
+   открыть историю/скачивание при GPU off без нового submit. Нужен backend-specific путь
+   qualification при AI=false: не обходить gates для теста.
+6. В этом же окне проверить реальный SIGTERM worker/GPU, доступность poll/download
+   при GPU drain, marker/exit/DB state, время и backup. GPUstop/оплата отдельно владельцем.
+
+### Проверки нового изменения
+
+Только новые настройки: compose config worker и optional API override, env/versions/
+readonly secret,960s grace, без published AI ports — PASS. Пять целевых unit tests
+backup/stop-ai: порядок, отдельные timeouts, crash/missing marker блокируют tunnel stop,
+backup не создаёт complete snapshot при неподтверждённом drain — PASS. Новые health fixtures:
+normal→health-onlyOK, draining/qualification/old contract→unavailable, без HTTP/proof. Python syntax PASS.
+Образы/контейнеры/SSH/GPU/HTTP/proof/реальный process shutdown не запускались.
+Production/DNS/firewall/реальные секреты/облако/платные ресурсы не менялись.
+
+
+Подтверждение завершения согласования18.10: backend отдельно проверил сигналы/deadline
+в дочерних процессах и worker на изолированной PostgreSQL (сведения backend, Beget эти
+проверки не повторял). В deploy добавлена только целевая regression-проверка exit75:
+при watchdog не останавливать tunnel/DB, не делать backup dump/manifest и не возобновлять
+admission автоматически. GPU qualification/jobId/record/worker-proof по-прежнему отсутствуют.

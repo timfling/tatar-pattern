@@ -1,3 +1,107 @@
+# Дополнение backend к релизу — 19.10.2026
+
+## Flat: принятый публичный поднабор существующего контракта
+
+Новые shape/генератор не вводятся: GET `/api/composition-schemes`, POST
+`/api/composition-preflight`, POST `/api/generations` с `mode=flat`,
+`selections.renderer=composition-v2`, `schemeId`, `registryVersion`,
+`elementCodes`, `colorMode=original`; PNG/JPG/recipe/history прежние.
+
+Production отдаёт **24** схемы с reviewStatus=owner_accepted_2026_10_13;
+попытка новой генерации/preflight по другим37 →422 SCHEME_NOT_RELEASED.
+Локальный TP_ENVIRONMENT=local_project/isolated_test сохраняет все61 для оценки;
+frontend в локальном QA фильтрует reviewStatus явно. Preview не является новым результатом.
+История/reopen старых работ не ограничиваются новым поднабором.
+
+Дополнительные поля в прежнем catalog response: registeredSchemeCount=61,
+acceptedSchemeCount=24, acceptedCoveredElementCount=62,
+acceptedCoveredElementCodes (62 кода), elementsWithoutAcceptedScheme (48 кодов).
+`coverage` соответствует выданным schemes; totalSchemes — их число.
+Capabilities.compositionCatalog дополнен acceptedSchemes и acceptedCoveredElements.
+Состав БД **110** мотивов и покрытие **62** мотивов принятыми схемами различаются.
+37 revised/polished схем не приняты; приёмка примера не гарантирует любую ручную
+комбинацию или культурную экспертизу. `availableElementCodes` и requiredRoles,
+centerCandidates, ограничения/диагностику preflight необходимо учитывать в UI.
+
+ID24: f02-directed, f03-directed, f03-wreath, f05-wreath, f07-repeat,
+f07-hanging, f08-directed, f10-directed, f10-wreath, f14-directed, f14-panel,
+f16-wreath, f17-directed, f17-wreath, f17-panel, f18-hanging, f19-directed,
+f19-panel, f20-directed, f20-wreath, f21-panel, f24-wreath, f25-directed, f25-panel.
+
+## Каталог production
+
+Migration011 и scripts.production_catalog отделяют public_flat_catalog от local rights.
+Пакет110 готов с269файлами+manifest (flat110/texture110/source49); sources3/artifacts46.
+Декларация владельца11.10 учтена, повтор не нужен. Осталось утвердить конкретную
+release-decision.pending.json (точные codes/manifestSHA/public scope/кто/когда/evidence).
+verifiedBy=NULL/отрисовано/documented_unverified и фактические source rights не повышаются.
+Transfer/training этим решением не включаются. Обязательны storage+DB backup до
+migrations/import. Apply повторяем, verify read-only; оба проверяют счётчик110 по
+реальным файлам/источникам. Команды Beget и rollback — backend/README.md, раздел19.10.
+Публичный импорт на сервере ещё не выполнялся; рабочая5432 не затронута.
+
+## AI registry и proof
+
+В backend/app/ai-profiles.json импортированы22строки LoRA: всего28, из них25
+с owner-accepted cloud evidence19.10. Исключены f07-repeat:textured,
+f25-directed:textured и не участвовавший f08-directed:textured. Статус исключения
+дополнительно блокирует admission (`AI_PAIR_NOT_ACCEPTED`), даже при ошибочном release flag.
+GPU digests/prompts/settings сравнены с canonical profiles и SHA реальных evidence.
+AI_MVP_ENABLED/releaseApproved/externalTransferApproved остаются false.
+Это не worker proof и не E2E сайта. Existing HTTPProvider/env/drain договорённости действуют.
+
+Из deployed worker выполняется прежний ai_gpu_probe --owner-run --worker-namespace
+с25готовыми jobId из ИИ/gpu-runtime/img2img-http-2026-10-19/worker-probe-command.txt:
+GET health→poll→download→health, submit=0. Для ежедневного обновления использовать
+те же настоящие retained qualification PNG/UUID при том же boot/deployment и normal200.
+До24ч обновить proof; рекомендован операционный запас (например повтор через20ч),
+это не созданное расписание и не юридический срок. `python -m scripts.gpu_proof_status`
+показывает UTC checkedAt/expiresAt и оставшиеся секунды, не подтверждает live health.
+Истечение admission GPU может отключить AI раньше24ч: record/deadline владельца
+не равны proof TTL. Нужен выбранный владельцем рабочий admission window.
+
+Same Linux boot+неизменный deployment/state: systemd restart + normalhealth + GET-probe,
+генераций0. Новый bootId/unshelve, deploymentDigest или утрата всех настоящих контрольных
+PNG: старый proof непригоден; восстановить неизменный state в подходящем boot, иначе
+владелец назначает новую qualification допускаемых пар и бюджет. Не переписывать bootId,
+checkedAt/record, не продлевать proof health-only, не делать скрытый paid retry.
+Если GET-probe не проходит, сохранить evidence, закрыть новые AI submits, оставить
+flat/history; knownID poll продолжает восстановление. Timeout не означает cancel GPU.
+Обновлённый proof заменяет список пар: всегда передавать все допускаемые UUID,
+иначе проверен только переданный поднабор. Назначенного Beget probe/E2E окна ещё нет.
+
+## Правовые механизмы: подготовка и зависимость
+
+Registration имена теперь действительно необязательны, пустые строки допустимы.
+Хостинг/profile/AI основания, termsAcceptance и активные версии документов ещё ожидают
+согласования через владельца. В доступном handoff07 — v0.2 от11.10, иных утверждений нет.
+Юридический acceptance journal/immutable document API/consent withdrawal пока не включены;
+существующий register **не готов к публичной публикации** без этой части.
+Не считать технический profile PATCH доказательством согласия.
+
+Migration012: durable storage_deletions (pending/done/attempts), provider_deletions
+(manual_required/confirmed), erasure_tombstones, access_blocked, privacy_operations.
+Trash purge сначала фиксирует очередь+provider reference, удаляет ai_jobs перед generations,
+после commit unlink; OSError остаётся в очереди для повторов. Expired sessions очищаются
+в hourly/library cleanup. Blocked account не проходит me/login; внутренние block_account/
+erase_account_local отзывают sessions и удаляют локальные SQL данные, не обещают удаления
+backups/provider/logs. Публичного self-service/утверждённого ручного канала ещё нет.
+
+Worker не начинает submit для удалённой строки; проверяет row lock перед записью
+результата, поздний output после hard-delete не скачивает. JobId из позднего submit ack
+сохраняет для operator reconciliation. Provider delete/cancel не реализованы GPU контрактом,
+manual_required нельзя считать подтверждением уничтожения. KnownID/uncertain/no-retry
+поведение и полный SIGTERM930/950/960 остаются прежними.
+
+Tombstone скрывает restored generation из history/file/restore; актуальный erasure ledger
+экспортируется отдельно от откатываемого backup. Offline restore обязан применить latest
+ledger перед public start; scripts.privacy_maintenance export-ledger/replay-ledger/retry/status
+дают исполнимую техническую часть (см. README). Реальный offsite restore на Beget не проверен.
+Сроки обращений/legal events/tombstone/backup/logs/provider ещё не утверждены; рекомендации
+7/14/30д не внедрены. Существующая корзина7д не срок account deletion.
+
+---
+
 # Контракт API для параллельной работы
 
 Версия 0 от 30.09.2026. Агент backend+БД и агент frontend используют эти названия. Дополнительные поля допустимы; изменение названий согласовать через этот файл.
@@ -350,3 +454,358 @@ historicalLayout=not_verified, symbolicMeaning=unknown, contextEvidence
 Заполнение P1 уже настраивается существующими parameters и scale:
 проверенный пример dense/scale1.2 имеет11 акцентов и центр244px вместо192px
 у исходного default/scale1. Новые поля запроса для этого не нужны.
+
+### Дополнение 13.10.2026 — смешение визуальных весов
+
+Владелец оценил исправленный трёхъярусный P2 как удовлетворительный и запросил
+более сложное смешение лёгких/средних/тяжёлых элементов. Это отзыв о галерее,
+не индивидуальная экспертная проверка всех карточек.
+
+Новый необязательный `selections.borderLayout`:
+
+- `registers` — default, сохранённая трёхъярусная схема;
+- `interwoven` — крупные цветы/средние завитковые блоки чередуются по высоте,
+  малые цветы образуют локальные группы. Только composition-v1/border;
+  другой renderer/composition с interwoven даёт422 BORDER_LAYOUT_REQUIRES_COMPOSITION.
+
+Capabilities сообщает borderLayouts и borderVisualReview по варианту;
+visualReview.border остаётся строкой для совместимости.
+Renderer **composition-pillow/1.2.0-pilot**, новые description templates
+**tp-description/1.2.0**; предыдущие версии recipe поддерживает replay,
+сохранённые описания и удовлетворительный registers не переписаны.
+
+layout.variant=interwoven, rows/registers=null, visualWeights задаёт относительные
+роли heavy/medium/light. Это дизайнерская оценка размера/заполненности/деталей,
+а не новая культурная классификация PNG. Исходная тройка061/063/066 сохранена;
+невидимых дополнительных мотивов, отражений или реконструкций нет.
+ModernAddition wave_guide фиксирует точки/цвет/толщину и purpose=
+rhythm_guide_not_attachment. Направляющая современная, физический стебель
+или неизвестный узел крепления не восстановлены. Справка источника явно
+ограничена мотивами одного предмета и не подтверждает interwoven расстановку.
+
+scale/parameters действуют вместе с px-floor. Число повторов зависит от доступной
+ширины и габаритов; dense не обязан увеличивать count в каждом формате.
+Описание говорит о просветах и сохранённом волнообразном размещении по recipe.
+Новый interwoven пока awaiting_owner_visual_review; registers сохранён отдельным
+вариантом, рабочий default не переключён.
+
+### Закрытие пилота 13.10.2026
+
+Владелец принял interwoven и завершил текущий этап при оговорённом основании:
+современная декоративная композиция из мотивов каталогизированного татарского
+костюма, с сохранением форм/направлений/внутренних полей и явной маркировкой
+дизайнерского расположения/направляющей. Это не экспертная верификация пары,
+исторической реконструкции или символики. compatibility.cultural=unknown и
+evidence/claimType не повышаются из-за визуальной приёмки.
+
+Capabilities composition-v1.status=owner_accepted_pilot,
+visualReview.border=accepted_contemporary_design,
+borderVisualReview.interwoven=owner_accepted. Схема принята; явно показанный
+плотный пример связан с PNG+recipe SHA в owner-review JSON. Остальным карточкам
+не приписывается отдельная индивидуальная проверка владельцем.
+
+Этап1 закрыт как принятый пилот трёх схем на9 TP-E. Этап2 закрыт в backend:
+описания/версии/facts/evidence/fallback/requested-only AI и контракт готовы.
+Frontend подключение, расширение на новые наборы и переключение рабочего default
+являются последующими задачами. Default всё ещё legacy, рабочие данные не изменены.
+
+## Расширенный генератор — 13.10.2026
+
+`composition-v2` — отдельный явный renderer, `composition-pillow/2.0.0`, recipe
+`tp-composition-recipe/2.0.0`. Legacy default и принятый `composition-v1`
+сохранены. Новые схемы — современные дизайнерские предложения, без повышения
+культурной атрибуции или прав каталога.
+
+### Каталог схем
+
+`GET /api/composition-schemes` возвращает `schemaVersion`, `registryVersion`,
+`sha256`, `metadataVersion`, `totalElements`, `totalFamilies`, `totalSchemes`,
+`roleLabelsRu`, `families`, `schemes`, `coverage`, `availableElementCodes`.
+
+Семейство: `id`, `titleRu`, `elementCodes`, `subgroups[{artifactCode,elementCodes}]`,
+`basis`, `mixingPolicy`, `evidence`. Схема: `id`, `familyId`, `composition`,
+`layout`, `useScope`, `titleRu`, `descriptionRu`, `allowedElementCodes`,
+`defaultElementCodes`, `minimumSelected`, `maximumSelected`, `requiredRoles`,
+`centerCandidates`, `roleOptions`, `constraints`, `previewUrl`, `previewIsExample`,
+`reviewStatus`, `availableElementCodes`, `available`.
+
+`available` означает доступность всех предложенных элементов в текущем каталоге.
+`allowedElementCodes` — граница поддержки схемы; наличие элемента в списке
+не гарантирует размещение любого сочетания при любом масштабе/формате.
+Предложенный набор применяется только по явному действию пользователя.
+`coverage` сопоставляет каждому TP-E список схем. Тип `hanging_panel` использует
+существующий `composition=border`; `framed_panel` — `composition=medallion`.
+
+`GET /api/composition-schemes/{id}/preview` возвращает настоящий уменьшенный PNG
+генератора с предложенным набором. Это пример схемы, не результат текущего выбора.
+Пример доступен только когда соответствующий набор доступен в текущем каталоге.
+Запрос к неизвестной/недоступной схеме →404; отсутствие подготовленного файла →503.
+
+### Выбор и preflight
+
+В `selections` добавлены:
+
+- `renderer: "composition-v2"`;
+- `schemeId`: устойчивый ID из каталога, обязательный для v2;
+- `registryVersion`: опциональная защита от устаревшего каталога;
+- `primaryElementCode`: опциональный главный мотив из явно выбранного набора.
+
+`POST /api/composition-preflight` принимает ту же структуру `Generate`, что
+`POST /api/generations`: `mode=flat`, `seed`, `selections`; требует сессию.
+Он строит ту же геометрию без записи generation и файлов, возвращая
+`schemaVersion=tp-preflight/2.0.0`, `supported=true`, `engineVersion`,
+`registryVersion`, `registrySha256`, `schemeId`, `selectedElementCodes`,
+`usedElementCodes`, `assignments[{code,role,recommendedMinLongSidePx}]`,
+`primaryElementCode`, `layout`, `size`, `reasons`, `factsBasis`.
+Preflight не является художественной или культурной экспертизой; генерация
+повторно проверяет план. Долгий запрос занимает обычный слот renderer; занятость →503.
+
+Неподдерживаемый выбор →422 `SCHEME_ELEMENTS_UNSUPPORTED`: `selectedElementCodes`,
+`diagnostics`, `alternatives` (код→ID схем), `requiresExplicitSelection=true`.
+Набор не заменяется и не урезается. Другие ошибки: `SCHEME_REQUIRED`,
+`SCHEME_COMPOSITION_MISMATCH`, `CENTER_ROLE_REQUIRED`, `PRIMARY_NOT_SELECTED`,
+`SCHEME_REQUIRES_ORIGINAL`, `MODULE_TOO_SMALL` (`minimumSize`), `MODULE_LIMIT`,
+`BORDER_TOO_NARROW`, `BORDER_TOO_TALL`, `COMPOSITION_TOO_LARGE`,
+`LAYOUT_CLEARANCE_FAILED`. Несовпадение версии →409 `SCHEME_REGISTRY_CHANGED`.
+Поля scheme/registry/primary у других renderer →422 `SCHEME_FIELDS_REQUIRE_V2`.
+`borderLayout=interwoven` относится только к пилоту v1; v2 выбирает layout через
+schemeId. `moduleSize`/`rapportOutput` относятся только к rapport.
+
+### Сохранённый результат
+
+Результат сохраняет `schemeId`, `familyId`, `schemeDefinition`, `registryVersion`,
+`registrySha256`, назначенные роли/главный код, все placements и матрицы, исходные
+SHA и диагностику. Description `tp-description/2.0.0` описывает фактический layout;
+старые сохранённые тексты не переписываются. Reopen/история/PNG/JPG/moduleUrl
+используют прежние маршруты и правила владения. Replay v2 использует placements,
+не актуальный реестр. Раппорт — дискретный периодический модуль, без заявления
+об историческом соединении краевых узлов. Некратный sample не бесшовный.
+
+### Визуальная доработка по оценке владельца —13.10.2026
+
+Renderer v2 теперь `composition-pillow/2.1.0`, registry `tp-schemes/2.1.0`,
+description `tp-description/2.1.0`. Recipe schema и API shape остаются2.0.0.
+Replay поддерживает сохранённые2.0.0 и2.1.0 без пересчёта схемы.
+
+У24 схем `reviewStatus=owner_accepted_2026_10_13`; их исходные PNG и runtime
+preview PNG сохранены по SHA. У21 переработанной схемы
+`reviewStatus=revised_awaiting_owner_review`, у16 доработанных —
+`polished_awaiting_owner_review`. Это художественная оценка предложенных примеров,
+не культурная экспертиза и не автоматическое принятие любой ручной комбинации.
+
+У отмеченных37 схем дополнительно есть `design` (профиль размещения),
+`applicationRu` (предложение применения, без гарантии производства),
+`previewKind`, `previewDescriptionRu`. `previewKind=repeat_field` означает
+уменьшенное окно1200×900, собранное повторением настоящего модуля; края этого
+обзора могут быть некратны модулю. `visible_band` — рабочая область полосы без
+больших пустых полей; полные поля/слабая alpha-окантовка сохраняются в экспорте.
+Это пример, не текущий результат/модуль для скачивания. В `provenance.json`
+сохранён `previewTransform` с размером окна, периодом или crop и SHA.
+
+Профиль явно задаёт предложенный набор, относительные размеры/главный мотив и
+разведение полос/акцентов. В request по-прежнему передаются elementCodes,
+schemeId, registryVersion и optional primaryElementCode. Ручной выбор не
+заменяется предложенным набором. Геометрия опирается на alpha>=16 рабочие
+границы, сохраняет полные исходные sprite/alpha и проверяет заметные маски;
+слабые ореолы могут пересекаться. `layout.designProfile/bands/offsetRepeat`
+описывают фактический новый ритм; `designSourceSha256` закрепляет код планировщика.
+
+## AI MVP: фиксированные основы и оформление — 18.10.2026
+
+**Этот раздел заменяет прежний AI-ввод через selections/prompt для НОВЫХ задач.**
+Старые сохранённые flat/AI записи, их prompt/selections/recipe и файлы читаются как
+раньше. Flat Generate shape и selections.style остаются прежними. D/D1 отменены.
+Ни каталог, ни preview, ни локальный synthetic provider не подтверждают GPU readiness.
+
+### Каталог
+
+`GET /api/ai-bases` без сессии:
+
+```json
+{
+  "schemaVersion": "tp-ai-bases/1.0.0",
+  "catalogVersion": "2026-10-18.1",
+  "palettePolicy": "source",
+  "freePrompt": false,
+  "outputSize": [1024, 1024],
+  "available": false,
+  "bases": [{
+    "id": "f10-wreath",
+    "schemeId": "f10-wreath",
+    "titleRu": "Пестречинский медальон",
+    "sha256": "5032b6b6ad6365873c147b72b2642326b261db2888c50be2f08014814699d25b",
+    "previewUrl": "/api/ai-bases/f10-wreath/preview",
+    "palette": {"policy":"source", "background":"#f3ebdb", "swatches":[]},
+    "styles": [{
+      "id":"graphic", "labelRu":"Графический стиль",
+      "profileVersion":"2026-10-18.local-v1",
+      "qualityStatus":"local_candidate", "available":false,
+      "unavailableReasons":["AI_DISABLED","AI_PROVIDER_UNVERIFIED","AI_PROFILE_NOT_RELEASED","MATERIAL_TRANSFER_NOT_AUTHORIZED"]
+    }]
+  }]
+}
+```
+
+Пример сокращён: каждый base также содержит familyId/familyTitleRu, elementCodes,
+sources (предмет/кадр/SHA), roles, modernAdditions, recipeSha256, ownerStatus,
+acceptanceScope, originalSha256, aiQualityStatus, aiSeamless=false, size/mode.
+Каждый base имеет обе записи styles: graphic и textured; для ещё не проверенной
+связки profileVersion=null и qualityStatus=pending_artistic_tests. UI может показать
+каталог, но генерировать можно только при styles[].available=true. При недоступности
+показать причину, а не flat fallback. Фактурный f08 помечен local_candidate_weak_texture.
+
+`GET /api/ai-bases/{baseId}/preview` отдаёт зарегистрированный RGB PNG, проверяет SHA.
+Неизвестный ID →422 AI_BASE_UNKNOWN; повреждённый/отсутствующий файл →503.
+Preview — исходная композиционная основа, не образец успешной AI-генерации.
+
+Источники каталога — app/ai-assets/index.json (15 основ: прежние3 + новые12),
+PNG и `.recipe.json` рядом. Разрешённый квадратный экспорт: пропорциональное
+вписывание и padding исходным фоном, без crop/recolor/перестановки. Реальный фон
+может быть тёмным. Swatches — описательные образцы, не параметры перекраски.
+Раппорт проверяется как декоративный PNG, AI-бесшовность не обещается.
+
+### Создание AI-задачи
+
+`POST /api/generations`, JSON, сессия/ownership/Origin как прежде:
+
+```json
+{
+  "mode": "ai",
+  "ai": {
+    "baseId": "f10-wreath",
+    "ornamentStyle": "graphic",
+    "profileVersion": "2026-10-18.local-v1"
+  },
+  "seed": 20261008,
+  "requestId": "6dcfe0b1-005f-46c5-99da-df745eb1817a"
+}
+```
+
+projectId опционален, принадлежит пользователю; seed integer0–2147483647.
+requestId UUID обязателен: один ID на одну попытку пользователя. Повтор того же
+requestId с тем же ai/seed/projectId возвращает ту же запись (201), без второго
+submit. Изменённый запрос с тем же ID →409 AI_IDEMPOTENCY_CONFLICT. Новый вариант
+или явный повтор после ошибки требует нового requestId; seed передаётся явно UI,
+сервер не увеличивает его автоматически. Идемпотентность сохраняется в PostgreSQL
+через params.clientRequestId + requestFingerprint и transaction advisory lock.
+Новая миграция для этого этапа не требуется.
+
+ai.ornamentStyle: **graphic / textured**, подписи «Графический стиль» /
+«Фактурный стиль». Это не selections.style, не технические mode или renderer.
+Для AI selections целиком запрещён →422 AI_SELECTIONS_UNSUPPORTED: палитра,
+масштаб, плотность, ручные мотивы, произвольный фон/формат не применяются к фиксированной
+основе. Для flat ai/requestId запрещены; selections обязателен.
+
+prompt можно опустить или передать пустую/пробельную строку для совместимости.
+Непустой prompt →422 **AI_PROMPT_UNSUPPORTED** до постановки задачи, не игнорируется.
+Неизвестные поля (включая strength/steps, arbitrary recipe, prompt внутри ai,
+URL/пути/модель) →422 VALIDATION_ERROR. Свободный prompt из старой истории остаётся
+читаемым, но не может повторно отправляться в новый AI endpoint.
+
+Ошибки до GPU: неизвестная основа422 AI_BASE_UNKNOWN; отсутствующая проверенная
+связка422 AI_COMBINATION_UNAVAILABLE; устаревшая profileVersion409 AI_PROFILE_CHANGED
+с details.expected; отсутствующая/изменённая PNG/recipe503 AI_ASSET_UNAVAILABLE /
+AI_ASSET_CHANGED; профиль с другим SHA503 AI_PROFILE_ASSET_MISMATCH; недоступность
+релиза503 AI_UNAVAILABLE с details.reasons; переполненная очередь503 AI_QUEUE_FULL.
+Сочетание должно иметь releaseApproved, разрешение передачи материала, включённый
+AI_MVP_ENABLED и verified provider. В текущем checkout все связки unavailable.
+
+### Серверные профили и сохранение
+
+app/ai-profiles.json — серверные версии пары baseId×ornamentStyle, связанные с точным
+baseSha256. Клиент присылает только версию из каталога, не параметры рецепта.
+Локальные кандидаты из плана чата5:
+
+| Основа | graphic | textured |
+|---|---|---|
+|f10-wreath|0.55 /30steps|0.76 /30steps|
+|f14-directed|0.55 /30steps|0.70 /100steps|
+|f08-directed|0.55 /30steps|0.70 /100steps, слабая фактура|
+
+Для12новых основ профиль намеренно отсутствует до художественных тестов/решения чата5.
+Не назначать всем автоматически0.76/30 и не считать локальный Draw Things рецепт
+проверенным облачным рецептом. base/profile JSON не редактируются браузером.
+
+Generation/history/reopen возвращают прежний объект generation, дополнительно
+`ai:{baseId,ornamentStyle,profileVersion}` и `requestId` (nullable у старых работ).
+У новых AI selections=null, prompt="", mode=ai, seed сохранён; recipe содержит
+schemaVersion=tp-ai-composition-recipe/1.0, immutable base snapshot с source/output SHA,
+profile snapshot, provider/modelVersion, input, description и после успеха outputSha256.
+Повторное открытие использует сохранённые PNG/recipe, не текущий профиль и не inference.
+Изменение каталога не переписывает историю. imageUrl появляется только для done и
+существующего файла; moduleUrl=null, seamless=false. Гарантия исходной палитры означает
+неизменный input и отсутствие свободной перекраски; diffusion может сдвинуть оттенки.
+Описание сохраняет basis=requested_only, observed/verified=null: технически валидный
+PNG не доказывает сохранение числа мотивов, культурную корректность или качество.
+
+### Provider/worker — HTTP adapter, 18.10.2026
+
+Внутренний payload **tp-ai-task/1.0** сохраняется: baseId, inputArtifact.sha256/size/mode,
+ornamentStyle, profileVersion, server profile snapshot, seed, palette, output PNG1024².
+HTTPProvider переводит его в **tp-gpu-img2img/1.0**: ровно9полей contractVersion,
+workflowVersion, modelVersion, catalogVersion, baseId, baseSha256, ornamentStyle,
+profileVersion, seed. Prompt/settings/paths/URL/profile JSON не передаются.
+Точный транспорт, версии, error mapping, proof и handoff Beget: актуальный верх
+[GPU-INTEGRATION.md](../ИИ/GPU-INTEGRATION.md). GPU-код не менялся; реальный HTTP ещё не проверен.
+
+Env: AI_GPU_BASE_URL=http://gpu-tunnel:18765; ровно один AI_GPU_TOKEN либо
+AI_GPU_TOKEN_FILE=/run/secrets/gpu_bearer; GPU_EXPECTED_WORKFLOW_VERSION=
+tp-sdxl-composition-img2img/1.0.0; GPU_EXPECTED_MODEL_VERSION=
+378c08ff157660a3399573e1cd5918ad8f3aec344646c5336b027d63fe50ca42;
+AI_GPU_HTTP_PROOF_FILE=/data/storage/ai-gpu-worker-proof.json. DATABASE_URL/STORAGE_ROOT
+общие API/worker; одинаковый app/assets/profiles. AI_MVP_ENABLED=false по умолчанию.
+Без URL configured_provider()=None; неполная/противоречивая конфигурация отвергается.
+Без real worker proof ready=false. Local_project/isolated_test всегдаready=false.
+
+Readiness требует health200 normal/non-draining, точных contract/workflow/model/catalog,
+qualified пары с exact SHA/profileDigest/promptVersion и owner-run proof текущих origin/
+deploymentDigest/bootId (≤24ч). Команда python -m scripts.ai_gpu_probe --owner-run
+--worker-namespace --job-id <готовый UUID> выполняется только позже в разрешённом окне
+из worker namespace, без submit/inference; проверяет poll/download/SHA/PNG. Для нескольких
+пар --job-id повторяется. API читает общий proof, сам не создаёт. Capability дополнительно
+требует releaseApproved, externalTransferApproved и AI_MVP_ENABLED. В этом checkout
+эти разрешения не включены, реального proof нет; все пары остаются unavailable.
+
+Worker: python -m scripts.ai_worker. Один процесс через advisory lock, очередь≤20,
+deadline900с от enqueue. Сохраняет submitting до HTTP и известный provider_job_id до poll.
+GPU Idempotency-Key = generation.id UUID (стабилен, уникален между владельцами);
+frontend requestId остаётся owner-scoped PostgreSQL ключом. Неизвестный submit/restart
+без ID → AI_SUBMISSION_UNCERTAIN без retry; сохранённый ID продолжает poll независимо
+от readiness. Даже jobId из acknowledgement с неверными версиями сохраняется для проверки.
+Явный GPU отказ до принятия получает согласованный AI_* код. Старые queued schema не
+конвертируются молча; история сохранённых результатов читается как прежде.
+
+HTTP: без redirects/ambient proxy; health5с, submit30с, poll15с/interval5с,
+download30с, JSON≤256KiB, PNG≤20MiB, ошибки poll/download≤3. DNS/TCP/TLS/headers/body
+ограничены абсолютным сетевым бюджетом; watchdog закрывает зависшее I/O.
+Только фиксированный route с проверенным UUID; никакого произвольного result URL.
+Poll сверяет pinned workflow metadata и task seed/пару; download требует descriptor
+bytes/MIME/SHA и PNG RGB1024²/один кадр/verify+decode. PNG сохраняется побайтно через
+temporary→replace, JPG отдельно. recipe: gpuMetadata (allowlist), providerOutputSha256,
+outputSha256 PNG/JPG, outputSize. requested_only не повышается до verified.
+Истёкший result → ошибка, без нового submit. Нет flat fallback/автозапуска облака.
+
+SIGTERM/SIGINT закрывают admission, queued остаются в БД. Deadline930с считается
+от первого сигнала, timestamp фиксируется в signal handler; повторные сигналы не
+сбрасывают его. Текущий вызов/запись/commit входят в общий срок. Следующие HTTP-фазы
+получают динамический остаток deadline даже при сигнале внутри текущего poll.
+После930с сохраняются workerShutdown.state=poll_resume_required/gpuCancelled=false
+и known jobId с commit перед acknowledgement. На firstSignal+950с действует аварийный
+ITIMER_REAL/SIGALRM → os._exit(75), включая container PID1; без cleanup/commit/success
+acknowledgement, активен до выхода процесса/закрытия DB. Grace960с оставляет10с.
+Это полный приложенческий предел SIGTERM→exit, а не гарантия успешной записи при
+зависшем storage/DB. Код75/crash/nonzero exit требует сверить persistent состояние
+и оставить tunnel/DB доступными. Known ID не приводит к новому submit; uncertain
+submit не повторяется. DB connect/statement/lock timeout5с дополнительно сохранены.
+
+Backend подтвердил Beget env (включая AI_GPU_HTTP_PROOF_FILE) и последовательность
+ops.py stop-ai/backup: admission/backend stop≤120с → worker SIGTERM/grace960с →
+exit0 + свежий AI_WORKER_DRAINED после сигнала → tunnel stop≤15с. Итого1095с плюс
+служебное время Docker. При nonzero exit даже существующий marker не подтверждает
+drain; backup/tunnel stop запрещены до сверки. GPU drain915с/supervisor960с отдельно.
+4новых signal/deadline теста (в том числе реальные POSIX signals в дочерних процессах
+с имитацией I/O) и4затронутых SQL worker теста прошли. Реальные контейнеры/GPU/tunnel,
+latency файлов/commit и runtime stop order ещё не проверены. Production не менялся.
+
+AI_MVP_ENABLED=true само по себе не открывает доступ без остальных проверок.
+Production в этом этапе не менялся.

@@ -132,7 +132,7 @@ def test_pilot_real_catalog_history_replay_exports_gallery(prepared,tmp_path):
         tim=Image.open(io.BytesIO(client.get(tg['imageUrl']).content));assert tim.getchannel('A').getextrema()[0]==0
         assert 'TRANSPARENT_CONTRAST_UNKNOWN' in [w['code'] for w in tg['warnings']]
         # Current unavailable AI stays unavailable; no provider/GPU launch.
-        assert client.post('/api/generations',json={'mode':'ai','selections':selections}).json()['error']['code']=='AI_PROVIDER_UNCONFIGURED'
+        assert client.post('/api/generations',json={'mode':'ai','selections':selections}).json()['error']['code']=='AI_SELECTIONS_UNSUPPORTED'
         # Legacy rapport rectangular periods: exact divisibility, large modules instead of gcd collapse.
         for wh in ([900,1200],[720,1280]):
             legacy=client.post('/api/generations',json={'selections':{**selections,'renderer':'legacy','parameters':'default','rapportOutput':'module','outputSize':wh}}).json()['generation']

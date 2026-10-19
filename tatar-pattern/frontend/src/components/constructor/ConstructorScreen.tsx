@@ -1,385 +1,218 @@
 "use client";
-
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
-import { CatalogPicker } from "@/components/constructor/CatalogPicker";
-import { OutputSettings, DEFAULT_OUTPUT, type OutputOptions } from "@/components/constructor/OutputSettings";
-import { PromptBar } from "@/components/constructor/PromptBar";
-import { ParameterCard } from "@/components/constructor/ParameterCard";
-import { GeneratingView } from "@/components/constructor/GeneratingView";
-import { ResultView } from "@/components/constructor/ResultView";
-import { FullscreenView } from "@/components/constructor/FullscreenView";
-import {
-  DEFAULT_PATTERN_NAME,
-  formatPatternStamp,
-} from "@/components/constructor/data";
-import {
-  PARAMETER_TILES,
-  cardFromSelection,
-  emptySelections,
-  selectionsReady,
-  type ConstructorSelections,
-  type ParameterKey,
-  type ParameterSelection,
-} from "@/components/constructor/parameters";
-import { api, apiUrl, apiMessage, toApiSelections, type Generation, type Element, type Capabilities, type GenerationMode } from "@/lib/api";
-import { ExportMenu } from "@/components/constructor/ExportMenu";
-import { ProjectPicker } from "@/components/constructor/ProjectPicker";
-import { ParameterPanel } from "@/components/constructor/ParameterPanel";
+import { ParameterCard } from "./ParameterCard";
+import { AiModal, AiOptionDialog, type AiOption } from "./AiOptionDialog";
+import { ModelBadge } from "./ModelBadge";
+import { GeneratingView } from "./GeneratingView";
+import { ResultView } from "./ResultView";
+import { FullscreenView } from "./FullscreenView";
+import { ExportMenu } from "./ExportMenu";
+import { ProjectPicker } from "./ProjectPicker";
+import { DEFAULT_PATTERN_NAME, formatPatternStamp } from "./data";
+import { emptySelections, PARAMETER_TILES } from "./parameters";
+import { api, apiUrl, apiMessage, ApiError, type AiBaseCatalog, type AiGenerateRequest, type Generation, type Element, type OrnamentStyle } from "@/lib/api";
+import { aiRequest, ORNAMENT_STYLES, randomSeed, unavailableText } from "@/lib/ai-mvp";
+import { useSession } from "@/components/auth/RequireAuth";
 import { useShell } from "@/components/layout/shell-context";
-import {
-  updatePattern,
-  type PatternRating,
-} from "@/lib/library";
 
+type TileKey = "base" | "motifs" | "variant" | "palette" | "style" | "format";
 type Stage = "form" | "generating" | "result";
+const corners = ["top-left", "none", "top-right", "bottom-left", "none", "bottom-right"] as const;
+const mobileCorners = ["top-left", "top-right", "none", "none", "bottom-left", "bottom-right"] as const;
 
-export function ConstructorScreen({
-  initialPatternId, returnToLibrary = false,
-}: {
-  initialPatternId?: string; returnToLibrary?: boolean;
-}) {
+export function ConstructorScreen({ initialPatternId, returnToLibrary = false }: { initialPatternId?: string; returnToLibrary?: boolean }) {
   const router = useRouter();
-  const [stage, setStage] = useState<Stage>("form");
-  const [prompt, setPrompt] = useState("");
-  const [selections, setSelections] = useState<ConstructorSelections>(
-    emptySelections(),
-  );
-  const [catalog, setCatalog] = useState<Element[] | null>(null);
-  const [capabilities, setCapabilities] = useState<Capabilities | null>(null);
-  const [mode, setMode] = useState<GenerationMode>("flat");
-  const [elementCodes, setElementCodes] = useState<string[]>([]);
-  const [output, setOutput] = useState<OutputOptions>(DEFAULT_OUTPUT);
-  const [jobStatus, setJobStatus] = useState<Generation["status"] | null>(null);
-  const [repeatPreview, setRepeatPreview] = useState(false);
-  const [imageError, setImageError] = useState(false);
-  const [resultFormats, setResultFormats] = useState<("png" | "jpg")[]>([]);
-  const [resultSize, setResultSize] = useState<number[] | null>(null);
+  const user = useSession();
+  const attemptKey = `tp-ai-attempt:${user?.id ?? "session"}`;
+  const { screenEl, setConstructorClick, setBackHandler, setShowBack } = useShell();
+  const [catalog, setCatalog] = useState<AiBaseCatalog | null>(null);
   const [catalogError, setCatalogError] = useState("");
-  const [openKey, setOpenKey] = useState<ParameterKey | null>(null);
-  const [progress, setProgress] = useState<number | undefined>(undefined);
-  const {
-    screenEl,
-    setConstructorClick,
-    setBackHandler,
-    setShowBack,
-  } = useShell();
-  const [confirmStop, setConfirmStop] = useState(false);
-  const [stamp, setStamp] = useState("");
-  // Protected URL from the server.
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [fullscreen, setFullscreen] = useState(false);
-  const [patternId, setPatternId] = useState<string | null>(null);
-  const [patternName, setPatternName] = useState(DEFAULT_PATTERN_NAME);
-  const [rating, setRating] = useState<PatternRating>(null);
-  const [editOpen, setEditOpen] = useState(false);
-  const [hintOn, setHintOn] = useState(false);
-  const [hintFlash, setHintFlash] = useState(0);
-  const [patternReady, setPatternReady] = useState(!initialPatternId);
-  const hintHide = useRef<number | null>(null);
-  const requestRef = useRef<AbortController | null>(null);
+  const [baseId, setBaseId] = useState<string | null>(null);
+  const [style, setStyle] = useState<OrnamentStyle | null>(null);
+  const [seed, setSeed] = useState(20261008);
+  const [open, setOpen] = useState<TileKey | null>(null);
+  const [stage, setStage] = useState<Stage>("form");
+  const [generation, setGeneration] = useState<Generation | null>(null);
+  const [legacyElements,setLegacyElements] = useState<Element[]>([]);
+  const [ready, setReady] = useState(!initialPatternId);
   const [error, setError] = useState("");
-  const [warnings, setWarnings] = useState<string[]>([]);
+  const [confirmStop, setConfirmStop] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const [projectId, setProjectId] = useState<string | null>(null);
-
+  const request = useRef<AbortController | null>(null);
+  const submitting = useRef(false);
+  // Preserve request ID after transport uncertainty; explicit new variant clears it.
+  const attempt = useRef<{ key: string; body: AiGenerateRequest } | null>(null);
+  function clearAttempt() { attempt.current=null; sessionStorage.removeItem(attemptKey); }
   useEffect(() => {
-    let active = true;
-    Promise.all([api.elements(), api.capabilities()]).then(([{ items }, caps]) => {
-      if (active) { setCatalog(items); setCapabilities(caps); }
-    }).catch((e) => { if (active) setCatalogError(apiMessage(e)); });
-    return () => { active = false; };
+    if(initialPatternId) return;
+    try {
+      const stored = JSON.parse(sessionStorage.getItem(attemptKey) ?? "null");
+      if(stored?.body?.mode === "ai" && typeof stored.body.requestId === "string" && stored.body.ai) {
+        attempt.current=stored;
+        queueMicrotask(() => {setBaseId(stored.body.ai.baseId);setStyle(stored.body.ai.ornamentStyle);setSeed(stored.body.seed);setProjectId(stored.body.projectId ?? null);setError("Сохранена незавершённая попытка. Повтор отправки использует тот же идентификатор; проверьте библиотеку перед выбором нового варианта.");});
+      }
+    } catch {sessionStorage.removeItem(attemptKey);}
+  },[attemptKey,initialPatternId]);
+  const base = catalog?.bases.find(item => item.id === baseId);
+  const profile = base?.styles.find(item => item.id === style);
+  const canSubmit = Boolean(base && profile?.available && profile.profileVersion && !catalogError);
+  const availability = !catalog ? catalogError || "Загружаем каталог основ…" : !catalog.bases.length ? "Каталог основ пока пуст" : !base ? "Выберите композиционную основу" : !style ? "Выберите стиль орнамента" : !profile?.available ? unavailableText(profile?.unavailableReasons) : !profile.profileVersion ? "Профиль оформления ещё не готов" : "";
+
+  async function loadCatalog() {
+    try { const next = await api.aiBases(); setCatalog(next); setCatalogError(""); return next; }
+    catch(e) { setCatalogError(apiMessage(e)); return null; }
+  }
+  useEffect(() => {
+    const controller = new AbortController();
+    api.aiBases(controller.signal).then(setCatalog).catch(e => { if(!controller.signal.aborted) setCatalogError(apiMessage(e)); });
+    return () => controller.abort();
   }, []);
-  const directElements = capabilities?.elementSelection === "elementCodes";
-  const availableMotifs = new Set((catalog ?? []).map((item) => item.motifKey).filter((key): key is string => Boolean(key)));
-  const tiles = PARAMETER_TILES.map((tile) => {
-    if (tile.key === "style" && output.colorMode === "original" && capabilities?.colorModes?.includes("original")) return { ...tile, options: [{ value: "heritage", label: "Исходный PNG", description: "Сохраняются цвета и мягкие края исходного элемента. Для стилизации выберите «Силуэт» в настройках цвета ниже." }] };
-    if (tile.key === "motifs") return { ...tile, options: [...availableMotifs].map((key) => ({ value: key, label: catalog?.find((item) => item.motifKey === key)?.motifClass ?? key, description: "Категория из каталога API. Генератор выбирает элементы этой категории." })), multiTotal: availableMotifs.size };
-    const allowed = tile.key === "style" ? capabilities?.styles ? Object.keys(capabilities.styles) : undefined : tile.key === "composition" ? capabilities?.compositions : tile.key === "parameters" ? capabilities?.parameters : tile.key === "palette" ? capabilities?.palettes : tile.key === "usage" ? capabilities?.usageSizes ? Object.keys(capabilities.usageSizes) : undefined : undefined;
-    return { ...tile, options: tile.options.filter((option) => !allowed || allowed.includes(option.value)).map((option) => ({ ...option, description: option.description })) };
-  });
 
   function applyGeneration(g: Generation) {
-    setMode(g.mode ?? "flat"); setJobStatus(g.status);
-    setElementCodes(g.selections.elementCodes ?? []);
-    setOutput({ scale: g.selections.scale ?? 1, transparentBackground: g.selections.transparentBackground ?? false, backgroundColor: g.selections.backgroundColor ?? null, outputSize: g.selections.outputSize ?? null, colorMode: g.selections.colorMode ?? "original" });
-    setResultFormats(g.formats ?? capabilities?.formats ?? (g.mode === "ai" ? ["png"] : ["png", "jpg"]));
-    setResultSize(Array.isArray(g.recipe?.size) ? g.recipe.size as number[] : null);
-    setPatternId(g.id); setPatternName(g.title || DEFAULT_PATTERN_NAME); setStamp(formatPatternStamp(new Date(g.createdAt)));
-    setImageUrl(g.imageUrl ? apiUrl(g.imageUrl) : null); setRating(g.rating);
-    setPrompt(g.prompt ?? ""); setSelections(g.selections); setProjectId(g.projectId);
-    setWarnings((g.warnings ?? []).filter(w => w.code !== "PROMPT_UNSUPPORTED").map((w) => w.message));
-    if (g.recipe?.isFixture && !(g.warnings ?? []).some((w) => w.code === "TEST_FIXTURE")) setWarnings((w) => ["Тестовый результат: синтетические мотивы.", ...w]);
-    setProgress(typeof g.progress === "number" && Number.isFinite(g.progress) ? Math.max(0, Math.min(100, g.progress)) : undefined);
+    setGeneration(g); setProjectId(g.projectId); setImageError(false);
+    if(g.ai) { setBaseId(g.ai.baseId); setStyle(g.ai.ornamentStyle); }
+    if(typeof g.seed === "number") setSeed(g.seed);
+    else if(typeof g.recipe?.seed === "number") setSeed(g.recipe.seed);
   }
   async function waitForResult(first: Generation, controller: AbortController) {
-    let g = first;
-    while (!controller.signal.aborted) {
-      if (controller.signal.aborted) return;
-      applyGeneration(g);
-      if (g.status === "done") {
-        if (!g.imageUrl) throw new Error("Сервис завершил генерацию без изображения. Повторите запрос позже.");
-        setStage("result");
-        if (initialPatternId !== g.id) router.replace(`/constructor?pattern=${encodeURIComponent(g.id)}${returnToLibrary ? "&from=library" : ""}`);
+    let current = first;
+    while(!controller.signal.aborted) {
+      applyGeneration(current);
+      if(current.status === "done") {
+        if(!current.imageUrl) throw new Error("Сервис завершил задание без изображения. Результат недоступен.");
+        clearAttempt();setStage("result");
+        if(initialPatternId !== current.id) router.replace(`/constructor?pattern=${encodeURIComponent(current.id)}${returnToLibrary ? "&from=library" : ""}`);
         return;
       }
-      if (g.status !== "queued" && g.status !== "processing") throw new Error(typeof g.error === "string" ? g.error : g.error?.message ?? "Генерация не завершилась. Попробуйте снова.");
-      setPatternReady(true);
+      if(!["queued","processing"].includes(current.status)) { clearAttempt(); throw new Error(typeof current.error === "string" ? current.error : current.error?.message ?? "Задание не завершилось. Подробности доступны в библиотеке."); }
       setStage("generating");
-      await new Promise<void>((resolve, reject) => {
+      await new Promise<void>((resolve,reject) => {
         const stop = () => { clearTimeout(timer); reject(new DOMException("Aborted", "AbortError")); };
-        const timer = setTimeout(() => { controller.signal.removeEventListener("abort", stop); resolve(); }, 1500);
-        controller.signal.addEventListener("abort", stop, { once: true });
+        const timer = setTimeout(() => { controller.signal.removeEventListener("abort",stop); resolve(); },1500);
+        controller.signal.addEventListener("abort",stop,{once:true});
       });
-      g = (await api.generation(g.id, controller.signal)).generation;
+      current = (await api.generation(current.id,controller.signal)).generation;
     }
   }
   useEffect(() => {
-    if (!initialPatternId) return;
-    const controller = new AbortController(); requestRef.current = controller;
-    api.generation(initialPatternId, controller.signal).then(({ generation }) => waitForResult(generation, controller))
-      .catch((e) => { if (!controller.signal.aborted) { setError(apiMessage(e)); setStage("form"); } })
-      .finally(() => { if (!controller.signal.aborted) setPatternReady(true); });
+    if(!initialPatternId) return;
+    const controller = new AbortController(); request.current = controller;
+    api.generation(initialPatternId,controller.signal).then(({generation}) => {setReady(true);return waitForResult(generation,controller);})
+      .catch(e => {if(!controller.signal.aborted) {setError(apiMessage(e));setStage("form");}})
+      .finally(() => {if(!controller.signal.aborted) setReady(true);});
     return () => controller.abort();
-    // A new pattern id remounts this screen.
+    // The page remounts for a different saved ID; catalog never controls reopening.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialPatternId]);
-  useEffect(() => () => requestRef.current?.abort(), []);
+  useEffect(() => {
+    if(!generation?.selections?.elementCodes?.length) return;
+    const controller = new AbortController();
+    api.elements(controller.signal).then(({items}) => setLegacyElements(items)).catch(() => {});
+    return () => controller.abort();
+  },[generation?.id, generation?.selections?.elementCodes?.length]);
+  useEffect(() => () => request.current?.abort(), []);
+
+  const backToForm = useCallback(() => { request.current?.abort(); submitting.current=false; setConfirmStop(false); setFullscreen(false); setOpen(null); setStage("form"); }, []);
+  const backFromResult = useCallback(() => { if(returnToLibrary) router.back(); else backToForm(); },[returnToLibrary,router,backToForm]);
+  useEffect(() => { setConstructorClick(backToForm);setBackHandler(stage === "result" ? backFromResult : backToForm);return () => {setConstructorClick(null);setBackHandler(null);}; },[setConstructorClick,setBackHandler,stage,backFromResult,backToForm]);
+  useEffect(() => {setShowBack(stage !== "form");return () => setShowBack(false);},[setShowBack,stage]);
 
   async function startGeneration() {
-    if (!canSubmit || (requestRef.current && !requestRef.current.signal.aborted && stage === "generating")) return;
-    const controller = new AbortController(); requestRef.current = controller;
-    setError(""); setWarnings([]); setProgress(undefined); setConfirmStop(false);
-    setOpenKey(null); setEditOpen(false); setHintOn(false); setImageUrl(null); setJobStatus(null); setPatternId(null); setImageError(false); setRepeatPreview(false); setPatternReady(true); setStage("generating");
+    if(!canSubmit || submitting.current) return;
+    submitting.current=true;
+    const controller = new AbortController(); request.current=controller;
+    const key=JSON.stringify([baseId,style,profile?.profileVersion,seed,projectId]);
     try {
-      const input = toApiSelections(directElements ? { ...selections, motifs: elementCodes } : selections);
-      if (directElements) { input.motifs = []; input.elementCodes = elementCodes; input.scale = output.scale; input.transparentBackground = output.transparentBackground; input.backgroundColor = output.backgroundColor; input.colorMode = output.colorMode; input.outputSize = output.outputSize; }
-      const { generation } = await api.generate(input, prompt, projectId ?? undefined, controller.signal, capabilities?.modes ? mode : undefined);
-      if (!controller.signal.aborted) await waitForResult(generation, controller);
-    } catch (e) {
-      if (!controller.signal.aborted) { setError(apiMessage(e)); setStage("form"); }
-    }
+      if(attempt.current?.key !== key) attempt.current={key,body:aiRequest(catalog,baseId,style,seed,crypto.randomUUID(),projectId ?? undefined)};
+      sessionStorage.setItem(attemptKey,JSON.stringify(attempt.current));
+      setError("");setGeneration(null);setImageError(false);setConfirmStop(false);setStage("generating");
+      const {generation}=await api.generateAi(attempt.current.body,controller.signal);
+      if(!controller.signal.aborted) await waitForResult(generation,controller);
+    } catch(e) {
+      if(!controller.signal.aborted) {
+        setError(apiMessage(e));setStage("form");
+        if(e instanceof ApiError && e.code === "AI_PROFILE_CHANGED") { await loadCatalog(); setError("Профиль оформления изменился. Проверьте стиль и выберите его заново."); setStyle(null);clearAttempt(); }
+        // A definitive server error permits a new explicit attempt. Transport errors keep ID.
+        else if(e instanceof ApiError && e.status >= 400 && e.status < 500) clearAttempt();
+      }
+    } finally { submitting.current=false; }
   }
-
-  const backToForm = useCallback(() => {
-    setConfirmStop(false);
-    setWarnings([]);
-    setImageError(false);
-    requestRef.current?.abort();
-    setFullscreen(false);
-    setEditOpen(false);
-    setHintOn(false);
-    setOpenKey(null);
-    setStage("form");
-  }, []);
-
-  const backFromResult = useCallback(() => { if(returnToLibrary) router.back(); else backToForm(); }, [returnToLibrary, router, backToForm]);
-
-  function showBlockedHint() {
-    setHintOn(true);
-    setHintFlash((n) => n + 1);
-    if (hintHide.current) window.clearTimeout(hintHide.current);
-    hintHide.current = window.setTimeout(() => setHintOn(false), 4500);
+  async function reopenJob() {
+    if(!generation) return;
+    request.current?.abort();const controller=new AbortController();request.current=controller;setError("");setStage("generating");
+    try {await waitForResult((await api.generation(generation.id,controller.signal)).generation,controller);}catch(e){if(!controller.signal.aborted){setError(apiMessage(e));setStage("form");}}
   }
-
-  useEffect(() => {
-    return () => {
-      if (hintHide.current) window.clearTimeout(hintHide.current);
-    };
-  }, []);
-
-  useEffect(() => {
-    setConstructorClick(backToForm);
-    setBackHandler(stage === "result" ? backFromResult : backToForm);
-    return () => {
-      setConstructorClick(null);
-      setBackHandler(null);
-    };
-  }, [setConstructorClick, setBackHandler, backToForm, backFromResult, stage]);
-
-  useEffect(() => {
-    setShowBack(stage !== "form");
-    return () => setShowBack(false);
-  }, [setShowBack, stage]);
-
-  function handleStop() {
-    if (!confirmStop) {
-      setConfirmStop(true);
-      return;
-    }
-    backToForm();
-    setError("Ожидание прекращено. Работа на сервере могла продолжиться; проверьте библиотеку перед повторным запросом.");
-  }
-
-  function applySelection(key: ParameterKey, next: ParameterSelection) {
-    setSelections((current) => ({ ...current, [key]: next }));
-    const tile = PARAMETER_TILES.find((item) => item.key === key);
-    if (!tile?.multi && key !== "style") setOpenKey(null);
-  }
-
-  async function handleRename(next: string) {
-    if (!patternId) return;
-    try { const g = await updatePattern(patternId, { name: next }); setPatternName(g.name); setError(""); }
-    catch (e) { setError(apiMessage(e)); }
-  }
-
-  async function handleRate(next: PatternRating) {
-    if (!patternId) return;
-    try { const g = await updatePattern(patternId, { rating: next }); setRating(g.rating); setError(""); }
-    catch (e) { setError(apiMessage(e)); }
-  }
-
-  const openTile = tiles.find((item) => item.key === openKey) ?? null;
-  const aiReady = capabilities?.modes?.ai?.available === true && capabilities.modes.ai.verified === true;
-  const canSubmit = selectionsReady(directElements ? { ...selections, motifs: elementCodes } : selections) && (directElements ? elementCodes.every((code) => catalog?.some((item) => item.code === code)) : (Array.isArray(selections.motifs) && selections.motifs.every((key) => availableMotifs.has(key)))) && Boolean(catalog?.length) && !catalogError && (mode === "flat" ? capabilities?.modes?.flat?.available !== false : aiReady);
-  const infoTiles = tiles.map((tile) => tile.key === "motifs" && elementCodes.length ? { ...tile, options: elementCodes.map((code) => ({ value: code, label: catalog?.find((item) => item.code === code)?.nameRu ?? code, description: code })) } : tile);
-  const infoSelections = elementCodes.length ? { ...selections, motifs: elementCodes } : selections;
-  const repeatable = mode === "flat" && selections.composition === "rapport" && !imageError;
-
-  const overlay =
-    fullscreen && screenEl
-      ? createPortal(
-          <FullscreenView
-            imageUrl={imageUrl}
-            onClose={() => setFullscreen(false)}
-            onEdit={() => {
-              setFullscreen(false);
-              backToForm();
-            }}
-          />,
-          screenEl,
-        )
-      : null;
-
-  return (
-    <>
-      <section className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-tl-[24px] rounded-bl-[3px] bg-surface max-md:rounded-none max-md:bg-transparent">
-          {catalogError ? <p role="alert" className="api-error">Каталог: {catalogError} <button className="underline" onClick={() => window.location.reload()}>Повторить</button></p> : null}
-          {directElements && elementCodes.some((code) => catalog && !catalog.some((item) => item.code === code)) && stage === "form" ? <p role="alert" className="api-error">Некоторые элементы сохранённого рецепта отсутствуют в текущем каталоге. Выберите доступные мотивы.</p> : null}
-          {catalog?.length === 0 ? <p role="status" className="api-notice">Каталог элементов пока пуст. Генерация станет доступна после его наполнения.</p> : null}
-          {error ? <p role="alert" className="api-error">{error}</p> : null}
-          {!patternReady ? <p className="api-notice" role="status">Открываем сохранённый результат…</p> : stage === "form" ? (
-            <div className="constructor-stage flex min-h-[720px] flex-1 flex-col max-md:min-h-[760px]">
-              <div className="flex shrink-0 flex-col items-center gap-2 px-4 pt-4 text-sm">
-                <div role="group" aria-label="Режим генерации" className="flex gap-2 rounded-full bg-white/50 p-1">
-                  <button aria-pressed={mode === "flat"} onClick={() => setMode("flat")} className={`rounded-full px-5 py-2 ${mode === "flat" ? "bg-[#356052] text-white" : ""}`}>Плоский</button>
-                  <button disabled={!aiReady} aria-pressed={mode === "ai"} onClick={() => setMode("ai")} className={`rounded-full px-5 py-2 disabled:opacity-40 ${mode === "ai" ? "bg-[#356052] text-white" : ""}`}>ИИ{!aiReady ? " · пока недоступен" : ""}</button>
-                </div>
-
-              </div>
-
-              <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center gap-[clamp(16px,3.5vh,43px)] px-[24px] py-[16px] max-md:justify-between max-md:gap-[16px] max-md:px-[16px] max-md:py-[12px]">
-                <h1 className="shrink-0 text-center font-display text-[clamp(28px,3.2vw,40px)] italic leading-none text-ink-heading max-md:max-w-[322px] max-md:text-[28px] max-md:leading-[28px]">
-                  Соберите орнаментальный узор
-                </h1>
-
-                <div className="relative min-h-0 w-full max-w-[936px] max-h-[401px] flex-[1_1_auto] max-md:max-h-[372px] max-md:max-w-[327px]">
-                  <div className="grid h-full grid-cols-3 grid-rows-2 gap-[15px] [grid-auto-rows:minmax(0,193px)] max-md:grid-cols-2 max-md:grid-rows-3 max-md:gap-x-[9px] max-md:gap-y-[6px] max-md:[grid-auto-rows:minmax(0,120px)]">
-                    {tiles.map((tile) => (
-                      <ParameterCard
-                        key={tile.key}
-                        {...cardFromSelection(tile, tile.key === "motifs" && directElements ? elementCodes : selections[tile.key])}
-                        {...(tile.key === "motifs" ? { value: catalog === null ? "Загрузка каталога…" : directElements ? `${elementCodes.length} выбрано` : `${Array.isArray(selections.motifs) ? selections.motifs.length : 0} из ${availableMotifs.size}` } : {})}
-                        ghost={openKey === tile.key}
-                        onClick={() =>
-                          setOpenKey((current) =>
-                            current === tile.key ? null : tile.key,
-                          )
-                        }
-                      />
-                    ))}
-                  </div>
-
-                  {openKey === "motifs" && directElements ? <CatalogPicker items={catalog ?? []} value={elementCodes.filter((code) => catalog?.some((item) => item.code === code))} max={capabilities?.maxSelectedElements ?? 16} onChange={setElementCodes} onClose={() => setOpenKey(null)} /> : openTile ? (
-                    <ParameterPanel
-                      key={openTile.key}
-                      tile={openTile}
-                      value={selections[openTile.key]}
-                      onConfirm={(next) => applySelection(openTile.key, next)}
-                      onClose={() => setOpenKey(null)}
-                    >{openKey === "style" ? <OutputSettings capabilities={capabilities} value={output} usage={typeof selections.usage === "string" ? selections.usage : null} onChange={next => { setOutput(next); if(next.colorMode === "original") setSelections(current => ({ ...current, style: "heritage" })); }} /> : null}</ParameterPanel>
-                  ) : null}
-                </div>
-
-                <div className="flex w-full max-w-[703px] shrink-0 flex-col items-center gap-[10px] max-md:max-w-[369px]">
-                  <div className="flex w-full flex-col items-center">
-                    <PromptBar
-                      noteOnly={mode === "flat"}
-                      value={prompt}
-                      onChange={setPrompt}
-                      onSubmit={startGeneration}
-                      canSubmit={canSubmit}
-                      onBlockedSubmit={showBlockedHint}
-                    />
-                    <p
-                      role="status"
-                      className={[
-                        "hint-msg max-w-[687px] text-center text-[13px] font-medium leading-[16px] max-md:max-w-[369px] max-md:text-[12px] max-md:leading-[15px]",
-                        hintOn ? "hint-msg-on" : "",
-                      ].join(" ")}
-                    >
-                      <span key={hintFlash} className={hintOn ? "hint-flash" : ""}>
-                        {catalogError || catalog?.length === 0 ? "Генерация недоступна: каталог элементов не готов" : "Настройте все параметры генерации, чтобы продолжить"}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : null}
-
-          {patternReady && stage === "generating" ? (
-            <GeneratingView
-              imageUrl={imageUrl}
-              progress={progress}
-              status={jobStatus}
-              confirmStop={confirmStop}
-              onBack={backToForm}
-              onStop={handleStop}
-            />
-          ) : null}
-
-          {patternReady && stage === "result" ? (
-            <ResultView
-              imageUrl={imageUrl}
-              repeatPreview={repeatPreview && repeatable}
-              onImageError={() => setImageError(true)}
-              stamp={stamp}
-              name={patternName}
-              rating={rating}
-              selections={infoSelections}
-              prompt={prompt}
-              editOpen={editOpen}
-              onBack={backFromResult}
-              onDelete={async () => { if(patternId) { await api.trashGeneration(patternId); router.push("/library"); } }}
-              imageSize={resultSize}
-              infoDetails={[{title:"Тип генерации",value:mode === "flat" ? "Плоский" : "ИИ"},{title:"Размер",value:resultSize ? `${resultSize.join(" × ")} px` : "По применению"},{title:"Цвет мотивов",value:output.colorMode === "original" ? "Исходные цвета" : "Силуэт"},{title:"Прозрачный фон PNG",value:output.transparentBackground ? "Да" : "Нет"}]}
-              onEdit={backToForm}
-              onExport={() => { if (!imageError && resultFormats.length) setExportOpen(true); }}
-              exportDisabled={imageError || !resultFormats.length}
-              tiles={infoTiles}
-              onCloseEdit={() => setEditOpen(false)}
-              onSubmitEdit={() => {}}
-              onExpand={() => setFullscreen(true)}
-              onRename={handleRename}
-              onRate={handleRate}
-            />
-          ) : null}
-
-          {stage === "result" ? <div className="flex shrink-0 flex-wrap items-center justify-center gap-3 text-xs">
-            <span>{mode === "ai" ? "Новый ИИ-вариант · историческая достоверность не подтверждена" : "Плоская композиция из элементов каталога"}{resultSize ? ` · ${resultSize.join(" × ")} px` : ""}</span>
-            {repeatable ? <button aria-pressed={repeatPreview} onClick={() => setRepeatPreview((value) => !value)} className="rounded-full bg-white px-4 py-2">{repeatPreview ? "Один раппорт" : "Повтор 3×3"}</button> : null}
-          </div> : null}
-          {imageError ? <p role="alert" className="api-error">Не удалось загрузить файл результата. <button className="underline" onClick={() => window.location.reload()}>Повторить загрузку</button></p> : null}
-          {error && patternId && stage === "form" ? <button className="mx-auto shrink-0 rounded-full bg-white px-4 py-2 text-sm" onClick={() => { const controller = new AbortController(); requestRef.current = controller; setError(""); setPatternReady(true); setStage("generating"); api.generation(patternId, controller.signal).then(({ generation }) => waitForResult(generation, controller)).catch((e) => { if (!controller.signal.aborted) { setError(apiMessage(e)); setStage("form"); } }); }}>Открыть задание снова</button> : null}
-          {stage === "result" && patternId ? <ProjectPicker patternId={patternId} value={projectId} onChange={setProjectId} onError={setError} /> : null}
-          {warnings.map((w, i) => <p key={i} role="status" className="api-notice">{w}</p>)}
-
-          {exportOpen && patternId ? <ExportMenu formats={resultFormats} transparent={output.transparentBackground} patternId={patternId} onClose={() => setExportOpen(false)} /> : null}
-
-      </section>
-      {overlay}
-    </>
-  );
+  function newVariant() { setSeed(randomSeed());clearAttempt();setError(""); }
+  const savedBase = generation?.recipe?.base as { titleRu?: string; elementCodes?: string[]; palette?: { background?: string } } | undefined;
+  const resultAi = generation?.mode === "ai";
+  const selections = generation?.selections ?? emptySelections();
+  const savedCodes = generation?.selections?.elementCodes;
+  const infoSelections = savedCodes?.length ? {...selections,motifs:savedCodes} : selections;
+  const infoTiles = PARAMETER_TILES.map(tile => tile.key === "motifs" && savedCodes?.length ? {...tile,options:savedCodes.map(code => ({value:code,label:`${code} · ${legacyElements.find(item => item.code === code)?.nameRu ?? "Элемент сохранённого рецепта"}`,description:code}))} : tile);
+  const repeatable = !resultAi && Boolean(generation?.moduleUrl || generation?.outputKind === "repeat_module" && generation.seamless) && !imageError;
+  const [repeat, setRepeat] = useState(false);
+  const resultUrl = repeat && repeatable && generation?.moduleUrl ? generation.moduleUrl : generation?.imageUrl;
+  const formats = resultAi ? generation?.formats?.includes("png") ? ["png" as const] : [] : generation?.formats ?? ["png","jpg"] as ("png"|"jpg")[];
+  const details = generation?.ai ? [
+    {title:"Композиционная основа",value:savedBase?.titleRu ?? generation.ai.baseId},
+    {title:"Стиль орнамента",value:ORNAMENT_STYLES[generation.ai.ornamentStyle]?.label ?? generation.ai.ornamentStyle},
+    {title:"Палитра",value:"Исходная палитра основы; оттенки результата могут изменяться"},
+    {title:"Профиль",value:generation.ai.profileVersion},
+    {title:"Вариант",value:String(generation.seed ?? generation.recipe?.seed ?? "не указан")},
+    {title:"Экспорт",value:"PNG с фоном · бесшовность не гарантируется"},
+  ] : [
+    {title:"Тип генерации",value:resultAi ? "Сохранённая ИИ-работа прежней версии" : "Сохранённая графическая композиция"},
+    ...(!resultAi && generation?.selections ? [
+      {title:"Масштаб мотивов",value:`${generation.selections.scale ?? 1}×`},
+      {title:"Фон PNG",value:generation.selections.transparentBackground ? "Прозрачный" : "Цветная подложка"},
+      {title:"Размер результата",value:Array.isArray(generation.recipe?.size) ? `${generation.recipe.size.join(" × ")} px` : "См. исходный файл"},
+      {title:"Стыки краёв",value:generation.seamless === true ? "Бесшовный повтор" : generation.seamless === false ? "Без бесшовного стыка" : "Не подтверждены"},
+    ] : []),
+  ];
+  const baseOptions: AiOption[] = (catalog?.bases ?? []).map(item => ({id:item.id,title:item.titleRu,previewUrl:item.previewUrl,description:`${item.familyTitleRu}. Мотивы: ${item.elementCodes.join(" / ")}.`,note:"Исходная композиционная основа. Это не результат AI-генерации."}));
+  const styleOptions: AiOption[] = Object.entries(ORNAMENT_STYLES).map(([id,item]) => { const p=base?.styles.find(s => s.id === id);return {id,title:item.label,description:item.description,note:!base ? "Сначала выберите композиционную основу" : !p?.available ? unavailableText(p?.unavailableReasons) : "Доступно для выбранной основы"}; });
+  const tileData: {key:TileKey;label:string;value:string;isSet:boolean}[] = [
+    {key:"base",label:"Композиция",value:base?.titleRu ?? (baseId ? "Основа недоступна" : "Выберите"),isSet:Boolean(baseId)},
+    {key:"motifs",label:"Мотивы",value:base ? `${base.elementCodes.length} в основе` : "От основы",isSet:Boolean(base)},
+    {key:"variant",label:"Вариант",value:"Новый вариант",isSet:true},
+    {key:"palette",label:"Палитра",value:base ? "Исходная палитра" : "От основы",isSet:Boolean(base)},
+    {key:"style",label:"Стиль орнамента",value:style ? ORNAMENT_STYLES[style].label : "Выберите",isSet:Boolean(style)},
+    {key:"format",label:"Формат",value:"PNG · 1024²",isSet:true},
+  ];
+  return <>
+    <section className="ai-constructor-section flex min-h-0 flex-1 flex-col overflow-y-auto rounded-tl-[24px] rounded-bl-[3px] bg-surface max-md:rounded-none max-md:bg-transparent">
+      {!ready ? <p role="status" className="api-notice">Открываем сохранённую работу…</p> : stage === "form" ? <div className="ai-constructor-form">
+        <div className="ai-model-desktop"><ModelBadge /></div>
+        <div className="ai-constructor-body">
+          <h1>Соберите орнаментальный узор</h1>
+          <div className="ai-parameter-grid">{tileData.map((tile,i) => <ParameterCard key={tile.key} label={tile.label} value={tile.value} isSet={tile.isSet} corner={corners[i]} mobileCorner={mobileCorners[i]} compactValue={tile.key === "base" || tile.key === "style"} ghost={open === tile.key} onClick={() => setOpen(tile.key)} />)}</div>
+          <div className="ai-generate-area">
+            <div className="ai-model-mobile"><ModelBadge /></div>
+            <button className="ai-generate" aria-disabled={!canSubmit} disabled={!canSubmit} onClick={startGeneration}><span><span aria-hidden>✣</span> Сгенерировать узор</span><span className="ai-generate-arrow" aria-hidden>→</span></button>
+            <div className="ai-readiness" role="status">{catalog && !catalog.available ? "GPU-сервис пока недоступен. Можно выбрать основу и стиль." : availability}{catalogError || catalog && !profile?.available ? <button onClick={loadCatalog}>{catalogError ? "Повторить загрузку каталога" : "Обновить доступность"}</button> : null}{baseId && !base && catalog ? <span>Сохранённая основа отсутствует в текущем каталоге. Выберите другую для нового задания.</span> : null}</div>
+          </div>
+        </div>
+        <p className="ai-result-reminder">Всегда перепроверяйте результаты от ИИ · <Link className="underline" href="/flat">Создать параметрический flat-рисунок</Link></p>
+      </div> : stage === "generating" ? <GeneratingView imageUrl={null} progress={typeof generation?.progress === "number" ? generation.progress : undefined} status={generation?.status} confirmStop={confirmStop} onBack={backToForm} onStop={() => {if(!confirmStop)setConfirmStop(true);else{backToForm();setError("Ожидание прекращено. Сервер может продолжить работу. Проверьте библиотеку перед повторным запуском.");}}} /> : generation ? <div className="ai-result-stage flex min-h-0 flex-1 flex-col">
+        <ResultView generation={generation} imageUrl={resultUrl ? apiUrl(resultUrl) : null} imageSize={repeat && repeatable && generation.repeat?.periodPx ? generation.repeat.periodPx : (Array.isArray(generation.recipe?.size) ? generation.recipe.size as number[] : generation.ai ? [1024,1024] : null)} stamp={formatPatternStamp(new Date(generation.createdAt))} name={generation.title || DEFAULT_PATTERN_NAME} rating={generation.rating} selections={infoSelections} prompt={generation.prompt ?? ""} tiles={infoTiles} infoDetails={details} editOpen={false} editLabel="К настройкам" onBack={backFromResult} onEdit={() => {if(resultAi){backToForm();newVariant();}else router.push("/flat");}} onCloseEdit={() => {}} onSubmitEdit={() => {}} onExpand={() => setFullscreen(true)} onExport={() => setExportOpen(true)} exportDisabled={imageError || !formats.length} repeatPreview={repeat && repeatable} onImageError={() => setImageError(true)} onDelete={async () => {await api.trashGeneration(generation.id);router.push("/library");}} onRename={async title => {try{setGeneration((await api.patchGeneration(generation.id,{title})).generation);}catch(e){setError(apiMessage(e));}}} onRate={async rating => {try{setGeneration((await api.patchGeneration(generation.id,{rating})).generation);}catch(e){setError(apiMessage(e));}}} />
+        <p className="api-notice">{resultAi ? "Декоративный AI-вариант · детали и оттенки могут изменяться · бесшовность не гарантируется" : "Параметрическая композиция из исходных мотивов · современная раскладка"}</p>
+        {repeatable ? <button className="studio-button mx-auto" aria-pressed={repeat} onClick={() => {setRepeat(v => !v);}}>{repeat ? "Текущий результат" : "Модуль · повтор 3×3"}</button> : null}
+        <ProjectPicker patternId={generation.id} value={projectId} onChange={setProjectId} onError={setError} />
+      </div> : null}
+      {error ? <div role="alert" className="api-error">{error}{generation && stage === "form" ? <button className="studio-button ml-3" onClick={reopenJob}>Открыть задание снова</button> : null}</div> : null}
+      {imageError ? <p role="alert" className="api-error">Файл результата не загрузился. Скачивание недоступно. <button className="underline" onClick={() => window.location.reload()}>Повторить загрузку</button></p> : null}
+      {stage !== "form" ? generation?.warnings?.map((w,i) => <p key={i} role="status" className="api-notice">{w.message}</p>) : null}
+    </section>
+    {open === "base" ? <AiOptionDialog label="Выберите композиционную основу" options={baseOptions} selected={baseId} confirmLabel="Выбрать эту основу" onClose={() => setOpen(null)} onSelect={id => {setBaseId(id);clearAttempt();setError("");}} /> : open === "style" ? <AiOptionDialog label="Стиль орнамента" options={styleOptions} selected={style} confirmLabel="Выбрать этот стиль" onClose={() => setOpen(null)} onSelect={id => {setStyle(id as OrnamentStyle);clearAttempt();setError("");}} /> : open ? <AiModal label={tileData.find(t => t.key === open)?.label ?? "Параметры"} onClose={() => setOpen(null)} className="ai-details-modal"><div className="ai-picker-surface ai-details-surface"><h2>{tileData.find(t => t.key === open)?.label}</h2>
+      {open === "palette" ? <><p>Исходная палитра выбранной основы</p>{base ? <><div className="ai-swatches">{(base.palette.swatches.length ? base.palette.swatches : [base.palette.background]).filter(color => /^#[0-9a-f]{6}$/i.test(color)).map((color,i) => <span key={i} style={{backgroundColor:color}} title={i === 0 ? `Фон основы ${color}` : color} />)}</div><p>{base.titleRu}. Цвета заданы основой. Оттенки AI-результата могут изменяться.</p></> : <p>Сначала выберите композиционную основу.</p>}</> : open === "motifs" ? <><p>Мотивы закреплены в выбранной композиции.</p><p>{base?.elementCodes.join(" · ") ?? "Сначала выберите основу"}</p></> : open === "variant" ? <><p>Новый вариант сохраняет основу и стиль. Расположение деталей может измениться.</p><button className="ai-confirm" onClick={newVariant}>Подготовить новый вариант</button><p role="status">Вариант {seed}</p></> : <><p>PNG с непрозрачным фоном, 1024 × 1024 px.</p><p>Исходный фон сохраняется во входной основе. Бесшовность AI-изображения не гарантируется.</p></>}
+    </div></AiModal> : null}
+    {exportOpen && generation ? <ExportMenu generation={generation} formats={formats} transparent={!resultAi && generation.selections?.transparentBackground} patternId={generation.id} onClose={() => setExportOpen(false)} /> : null}
+    {fullscreen && screenEl ? createPortal(<FullscreenView imageUrl={generation?.imageUrl ? apiUrl(generation.imageUrl) : null} onClose={() => setFullscreen(false)} onEdit={() => {if(resultAi){backToForm();newVariant();}else router.push("/flat");}} />,screenEl) : null}
+  </>;
 }

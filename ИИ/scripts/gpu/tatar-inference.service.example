@@ -1,0 +1,32 @@
+# Local template only. Owner installs after current img2img HTTP qualification.
+# SIGTERM goes to main service; renderer drains before the final group kill.
+[Unit]
+Description=Tatar Pattern SDXL inference on immers.cloud
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=REPLACE_WITH_GPU_VM_USER
+WorkingDirectory=/srv/tatar-lora-kit
+EnvironmentFile=/etc/tatar-inference.env
+Environment=HF_HOME=/srv/tatar-lora-kit/gpu-runtime/model-cache
+Environment=HF_HUB_OFFLINE=1
+Environment=HF_HUB_DISABLE_TELEMETRY=1
+ExecStart=/srv/tatar-lora-kit/.venv/bin/python /srv/tatar-lora-kit/service/server.py --config /srv/tatar-lora-kit/service/config.json --state /srv/tatar-lora-kit/service/state --port 8765
+Restart=on-failure
+RestartSec=10
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=960
+SendSIGKILL=yes
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+# Existing offline SDXL snapshot may live in /home/ubuntu/tp-smoke/kit/runtime.
+# Read-only home permits loading that cache; state/config stay under /srv.
+ProtectHome=read-only
+
+[Install]
+WantedBy=multi-user.target

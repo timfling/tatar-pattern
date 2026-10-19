@@ -1,99 +1,46 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Icon } from "@/components/ui/Icon";
 import { recipeLines } from "@/components/constructor/parameters";
 import type { ParameterTile, ConstructorSelections } from "@/components/constructor/parameters";
-
-type GenerationInfoProps = {
-  selections: ConstructorSelections;
-  prompt: string;
-  details?: { title: string; value: string }[];
-  compact?: boolean; tiles?: ParameterTile[];
-};
-
-/**
- * Кнопка «i» и окно «О генерации».
- * Кадр: 313×514, стекло 70%, Raleway 500/600, «Нет» — Instrument Sans italic.
- */
-export function GenerationInfo({
-  selections,
-  prompt,
-  compact = false, tiles, details = [],
-}: GenerationInfoProps) {
+import type { Evidence, Generation } from "@/lib/api";
+function Sources({ evidence }: { evidence?: Evidence[] }) {
+  return evidence?.length ? <ul className="mt-3 space-y-3 text-xs leading-relaxed">{evidence.map((source,index) => {
+    const label = source.title_ru ?? source.title ?? source.id ?? "Основание";
+    const url = source.url && /^https?:\/\//i.test(source.url) ? source.url : null;
+    return <li key={index}>{source.author ? `${source.author}. ` : ""}{url ? <a className="underline" href={url} target="_blank" rel="noopener noreferrer">{label}</a> : label}{source.locator ? ` · ${source.locator}` : ""}{source.basis ? <p>{typeof source.basis === "string" ? source.basis : source.basis.context ?? source.basis.geometry}</p> : null}</li>;
+  })}</ul> : null;
+}
+export function GenerationInfo({ selections, prompt, compact = false, tiles, details = [], generation }: {
+  selections: ConstructorSelections; prompt: string; compact?: boolean; tiles?: ParameterTile[];
+  details?: { title: string; value: string }[]; generation?: Generation | null;
+}) {
   const [open, setOpen] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
-  const lines = [...recipeLines(selections, prompt, tiles), ...details];
-
-  useEffect(() => {
-    if (!open) return;
-    const onPointer = (event: MouseEvent) => {
-      if (!root.current?.contains(event.target as Node)) setOpen(false);
-    };
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-    document.addEventListener("mousedown", onPointer);
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onPointer);
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
-
-  return (
-    <div ref={root} className="relative">
-      <button
-        type="button"
-        aria-label="О генерации"
-        aria-expanded={open}
-        onClick={() => setOpen((current) => !current)}
-        className="pressable-icon"
-      >
-        {compact ? (
-          <Icon name="info-sm" width={32} height={32} />
-        ) : (
-          <Icon name="info" width={52} height={52} />
-        )}
-      </button>
-
-      {open ? (
-        <div
-          role="dialog"
-          aria-label="О генерации"
-          className={[
-            "popover-enter absolute z-30 overflow-y-auto rounded-[24px] bg-white/70 px-[25px] pb-[28px] pt-[26px] shadow-[0px_8px_32px_rgba(0,0,0,0.10)] outline outline-[0.5px] -outline-offset-[0.5px] outline-[rgba(102,102,102,0.5)] backdrop-blur-[20px]",
-            compact
-              ? "bottom-[calc(100%+8px)] left-0 max-h-[min(514px,55dvh)] w-[min(313px,calc(100vw-32px))]"
-              : "right-0 top-[60px] max-h-[min(514px,80vh)] w-[313px]",
-          ].join(" ")}
-        >
-          <p className="text-[24px] font-semibold leading-[24px] text-[#292929]">
-            О генерации
-          </p>
-          <dl className="mt-[24px] flex flex-col gap-[24px]">
-            {lines.map((line) => {
-              const empty = line.value === "Нет";
-              return (
-                <div key={line.title} className="flex flex-col gap-[6px]">
-                  <dt className="text-[16px] font-medium leading-[16px] text-black">
-                    {line.title}
-                  </dt>
-                  <dd
-                    className={
-                      empty
-                        ? "font-ui text-[16px] font-normal italic leading-[16px] text-black opacity-95"
-                        : "text-[18px] font-semibold leading-[18px] text-black opacity-90"
-                    }
-                  >
-                    {line.title === "Мотивы" && line.value !== "не выбраны" ? <ol className="list-decimal space-y-2 pl-5">{line.value.split("\n").map((name,index) => <li key={index}>{name}</li>)}</ol> : line.value}
-                  </dd>
-                </div>
-              );
-            })}
-          </dl>
-        </div>
-      ) : null}
-    </div>
-  );
+  const dialog = useRef<HTMLDialogElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  useEffect(() => { if(open) dialog.current?.showModal(); }, [open]);
+  function close() { dialog.current?.close(); setOpen(false); const visibleTrigger = trigger.current?.getClientRects().length ? trigger.current : Array.from(document.querySelectorAll<HTMLButtonElement>('button[aria-label="О генерации"]')).find(button => button.getClientRects().length);
+    visibleTrigger?.focus({preventScroll:true}); }
+  const savedScheme = generation?.recipe?.schemeDefinition as { titleRu?: string; roleLabelsRu?: Record<string,string> } | undefined;
+  const savedRoles = generation?.recipe?.roles as Record<string,string> | undefined;
+  const lines = [...(generation?.ai ? [] : recipeLines(selections,prompt,tiles)),...details];
+  const requested = generation?.mode === "ai" || generation?.descriptionDetails?.basis === "requested_only";
+  const note = requested ? null : generation?.culturalNote;
+  const text = generation?.description ?? generation?.descriptionDetails?.text;
+  return <div className="relative">
+    <button ref={trigger} type="button" aria-label="О генерации" aria-haspopup="dialog" aria-expanded={open} onClick={() => setOpen(true)} className="pressable-icon"><Icon name={compact ? "info-sm" : "info"} width={compact ? 32 : 52} height={compact ? 32 : 52} /></button>
+    {open ? createPortal(<dialog ref={dialog} aria-labelledby="generation-info-heading" className="studio-dialog generation-info" onCancel={e => {e.preventDefault();close();}} onClick={e => {if(e.target === e.currentTarget) close();}}>
+      <header className="mb-5 flex items-start justify-between gap-4"><h2 id="generation-info-heading" className="text-2xl font-semibold">{requested ? "О задании для ИИ" : "О рисунке"}</h2><button autoFocus onClick={close} className="studio-button">Закрыть</button></header>
+      <p className="text-base leading-relaxed">{text || (requested ? "Сохранено задание для ИИ. Содержание итогового изображения не проверено; параметры доступны в рецепте ниже." : "Для этой работы серверное описание недоступно. Ниже показан сохранённый рецепт.")}</p>
+      {requested ? <p className="mt-3 text-sm leading-relaxed text-ink-muted">Выбор мотивов и параметров не подтверждает их наличие, цвета или бесшовность итогового изображения.</p> : generation?.descriptionDetails?.basis === "legacy_recipe" ? <p className="mt-3 text-xs leading-relaxed text-ink-muted">Описание восстановлено сервером по старому рецепту; культурная справка отсутствует.</p> : null}
+      {note?.text ? <section className="mt-5 border-t border-hairline/40 pt-4"><h3 className="font-semibold">{note.claimType === "single_object_visual_observation" ? "Контекст источника" : "Культурный контекст"}</h3><p className="mt-2 text-sm leading-relaxed">{note.text}</p><details className="mt-3 text-xs"><summary className="cursor-pointer">Основания и источники</summary><Sources evidence={note.evidence} /></details></section> : null}
+      <p className="mt-4 text-xs leading-relaxed text-ink-muted">Совет по применению — ориентир для макета. Он не подтверждает права на материалы или пригодность для производства.</p>
+      {generation?.compatibility?.reasons?.length ? <details className="mt-5 text-sm"><summary className="cursor-pointer font-semibold">Рекомендации и ограничения</summary><div className="mt-3 space-y-3">{generation.compatibility.reasons.map((reason,index) => <p key={index} className={`rounded-xl p-3 leading-relaxed ${reason.severity === "prohibition" ? "bg-red-50" : reason.severity === "recommendation" ? "bg-amber-50" : "bg-white/60"}`}><strong>{reason.severity === "prohibition" ? "Ограничение" : reason.severity === "recommendation" ? "Рекомендация" : "Нет подтверждённой рекомендации"}: </strong>{reason.message}</p>)}</div></details> : null}
+      <h3 className="mb-4 mt-6 border-t border-hairline/40 pt-4 font-semibold">{requested ? "Параметры задания и выбранные мотивы" : "Рецепт и мотивы"}</h3>
+      {savedScheme && !requested ? <section className="mb-4 text-sm leading-relaxed"><h4 className="font-semibold">Сохранённая схема: {savedScheme.titleRu ?? String(generation?.recipe?.schemeId ?? "")}</h4>{savedRoles ? Object.entries(savedRoles).map(([code,role]) => <p key={code}>{code}: {savedScheme.roleLabelsRu?.[role] ?? ({center:"Центр",primary:"Главный мотив",support:"Вспомогательный мотив",branch:"Направленная ветвь",leaf:"Листовой акцент",frame:"Рамочный фрагмент",pendant:"Подвесная форма"} as Record<string,string>)[role] ?? role}</p>) : null}<p>Главный мотив: {String(generation?.recipe?.primaryElementCode ?? "не указан")}</p></section> : null}
+      <dl className="flex flex-col gap-4">{lines.map(line => <div key={line.title}><dt className="text-sm text-ink-muted">{line.title}</dt><dd className="mt-1 whitespace-pre-line text-base leading-relaxed">{line.title === "Мотивы" && line.value !== "не выбраны" ? <ol className="list-decimal space-y-2 pl-5">{line.value.split("\n").map((name,index) => <li key={index}>{name}</li>)}</ol> : line.value}</dd></div>)}</dl>
+      {generation ? <details className="mt-5 text-xs leading-relaxed"><summary className="cursor-pointer font-semibold">Основания и подробности</summary><p className="mt-3">Описание: {generation.descriptionDetails?.basis === "saved_recipe" ? "факты сохранённого рецепта" : requested ? "задание для ИИ" : "старый рецепт"} · {generation.descriptionDetails?.templateVersion ?? "версия не указана"}</p><Sources evidence={generation.descriptionDetails?.evidence} /><p className="mt-3">Выбрано: {generation.selections?.elementCodes?.join(", ") || generation.selections?.motifs?.join(", ") || (generation.ai ? "Мотивы закреплённой основы" : "не указано")}</p><p>Использовано: {requested ? "не подтверждено" : Array.isArray(generation.recipe?.usedElementCodes) ? generation.recipe.usedElementCodes.join(", ") : "см. сохранённые элементы рецепта"}</p>{Array.isArray(generation.recipe?.modernAdditions) && generation.recipe.modernAdditions.length ? <p className="mt-3">Современные композиционные добавления:</p> : null}{Array.isArray(generation.recipe?.modernAdditions) ? <ul className="mt-2 space-y-2">{generation.recipe.modernAdditions.map((addition: {kind?:string;purpose?:string},index:number) => <li key={index}>{addition.kind === "wave_guide" ? "Волнообразная направляющая ритма, не восстановленный стебель" : addition.kind === "horizontal_border_rules" ? "Тонкие линии обрамления" : "Направляющая композиции"}. Современное дизайнерское добавление.</li>)}</ul> : null}</details> : null}
+    </dialog>, document.body) : null}
+  </div>;
 }

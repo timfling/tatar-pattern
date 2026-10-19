@@ -38,7 +38,7 @@ def catalog(conn, settings):
     rows = conn.execute('SELECT * FROM approved_element_files WHERE (%s OR NOT is_fixture) ORDER BY code,file_id', (settings.allow_fixtures,)).fetchall()
     items = {}
     for row in rows:
-        if row.get('local_use_approved') and not settings.local_catalog:
+        if row.get('local_use_approved') and not settings.local_catalog and not row.get('public_use_approved'):
             continue
         if row['code'] in items:
             continue

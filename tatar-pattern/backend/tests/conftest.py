@@ -34,7 +34,7 @@ def prepared(tmp_path_factory):
     root=tmp_path_factory.mktemp('catalog')
     with psycopg.connect(scoped,row_factory=psycopg.rows.dict_row) as conn:
         fixtures=load_fixture(conn,root)
-    settings=Settings(scoped,root,allow_fixtures=True)
+    settings=Settings(scoped,root,allow_fixtures=True,local_catalog=True)
     return settings,fixtures
 
 @pytest.fixture

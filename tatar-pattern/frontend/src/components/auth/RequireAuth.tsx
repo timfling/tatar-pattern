@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
+import { authDestination } from "@/lib/auth-destination";
 import { loadUser } from "@/lib/auth";
 import { type User } from "@/lib/api";
 const SessionContext = createContext<User | null>(null);
@@ -17,15 +18,15 @@ function AuthGate({ children, protectedRoute }: { children: ReactNode; protected
     loadUser().then((user) => {
       if (!active) return;
       setUser(user);
-      if (protectedRoute && !user) router.replace("/login");
-      else if (!protectedRoute && user) router.replace("/constructor");
+      if (protectedRoute && !user) router.replace(`/login?next=${encodeURIComponent(window.location.pathname+window.location.search)}`);
+      else if (!protectedRoute && user) router.replace(authDestination());
       else setReady(true);
     }).catch((e) => {
       if (!active) return;
       // Public auth forms remain usable while the API is unavailable.
       if (!protectedRoute) setReady(true); else setError(apiMessage(e));
     });
-    const expired = () => { if (protectedRoute) { setReady(false); router.replace("/login"); } };
+    const expired = () => { if (protectedRoute) { setReady(false); router.replace(`/login?next=${encodeURIComponent(window.location.pathname+window.location.search)}`); } };
     const profileUpdated = () => { loadUser().then(next => { if(active) setUser(next); }).catch(e => { if(active) setError(apiMessage(e)); }); };
     window.addEventListener("tp-profile-updated", profileUpdated);
     window.addEventListener("tp-session-expired", expired);

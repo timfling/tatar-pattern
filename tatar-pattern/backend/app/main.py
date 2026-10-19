@@ -26,8 +26,12 @@ from .config import Settings
 from .errors import APIError
 from .generator import VERSION, render
 from .jobs import enqueue_ai
+from .ai_provider import configured_provider
+from .ai_catalog import catalog_response, find_base, asset_file
 from .composition import render_composition, VERSION as COMPOSITION_VERSION
 from .composition_metadata import metadata, review
+from . import generator_v2
+from .scheme_catalog import registry, ASSETS, release_catalog
 from .descriptions import describe, saved_or_fallback
 from .trash import purge
 from .models import Credentials, Registration, Profile, Generate, PatchGeneration, Project
@@ -121,7 +125,7 @@ def create_app(settings=None):
         token=request.cookies.get(COOKIE,'')
         if not token or len(token)>200:
             raise APIError(401,'UNAUTHENTICATED','Войдите в аккаунт.')
-        row=conn.execute('SELECT u.id,u.email,u.profile FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=%s AND s.expires_at>now()', (hashlib.sha256(token.encode()).hexdigest(),)).fetchone()
+        row=conn.execute('SELECT u.id,u.email,u.profile FROM sessions s JOIN users u ON u.id=s.user_id WHERE NOT u.access_blocked AND s.token_hash=%s AND s.expires_at>now() FOR SHARE OF u', (hashlib.sha256(token.encode()).hexdigest(),)).fetchone()
         if row is None:
             raise APIError(401,'UNAUTHENTICATED','Сессия истекла. Войдите снова.')
         return row
@@ -131,10 +135,9 @@ def create_app(settings=None):
         now=time.monotonic()
         with attempts_lock:
             # Bound process memory even with many client addresses.
-            if len(attempts)>10000:
-                for ip in list(attempts):
-                    if not attempts[ip] or attempts[ip][-1]<now-60:
-                        del attempts[ip]
+            for ip in list(attempts):
+                if not attempts[ip] or attempts[ip][-1]<now-60:
+                    del attempts[ip]
             queue=attempts[key]
             while queue and queue[0]<now-60:
                 queue.popleft()
@@ -143,6 +146,9 @@ def create_app(settings=None):
             queue.append(now)
 
     def issue_session(conn,row,response,request):
+        # Serialize session creation against operator blocking/revocation.
+        if not conn.execute('SELECT id FROM users WHERE id=%s AND NOT access_blocked FOR SHARE',(row['id'],)).fetchone():
+            raise APIError(401,'UNAUTHENTICATED','Аккаунт недоступен.')
         old=request.cookies.get(COOKIE)
         if old:
             conn.execute('DELETE FROM sessions WHERE token_hash=%s',(hashlib.sha256(old.encode()).hexdigest(),))
@@ -166,7 +172,7 @@ def create_app(settings=None):
         return row
 
     def owned_generation(conn,gid,uid):
-        row=conn.execute('SELECT * FROM generations WHERE id=%s AND user_id=%s AND (deleted_at IS NULL OR deleted_at >= now()-interval \'7 days\')',(gid,uid)).fetchone()
+        row=conn.execute('SELECT * FROM generations WHERE NOT EXISTS (SELECT 1 FROM erasure_tombstones t WHERE t.generation_id=generations.id) AND id=%s AND user_id=%s AND (deleted_at IS NULL OR deleted_at >= now()-interval \'7 days\')',(gid,uid)).fetchone()
         if row is None:
             raise APIError(404,'NOT_FOUND','Результат не найден.')
         return row
@@ -192,7 +198,7 @@ def create_app(settings=None):
                 'id':str(row['id']),'title':row['title'],'status':row['status'],'progress':row['progress'],
                 'imageUrl':f"/api/generations/{row['id']}/file?format=png" if row['status']=='done' and present else None,
                 'deletedAt':row.get('deleted_at').isoformat() if row.get('deleted_at') else None,'createdAt':row['created_at'].isoformat(),'finishedAt':row['finished_at'].isoformat() if row['finished_at'] else None,
-                'mode':params.get('mode','flat'),'seed':params.get('seed'), 'modelVersion':row['model_version'],'selections':params.get('selections'),'prompt':row['user_prompt'] or '', 'rating':row['rating'],
+                'ai':params.get('ai'),'requestId':params.get('clientRequestId'),'mode':params.get('mode','flat'),'seed':params.get('seed'), 'modelVersion':row['model_version'],'selections':params.get('selections'),'prompt':row['user_prompt'] or '', 'rating':row['rating'],
                 'projectId':str(row['project_id']) if row['project_id'] else None,'algorithmVersion':row['model_version'],
                 'warnings':params.get('warnings',[]),'recipe':params.get('recipe'),'error':row['error']}
 
@@ -205,12 +211,21 @@ def create_app(settings=None):
     @app.get('/api/capabilities')
     def capabilities(conn=Depends(db)):
         rows=catalog(conn,settings)
-        return {'generationMode':'synchronous','formats':['png','jpg'],'motifs':{**MOTIFS,**{r['motif_key']:r['motif_class'] for r in rows}},'realUniqueElements':len({r['content_sha256'] for r in rows if not r['is_fixture']}),'modes':{'flat':{'available':True,'generationMode':'synchronous'},'ai':{'available':False,'generationMode':'persistent_jobs','reason':'DSLab specification and authorized access required'}},'elementSelection':'elementCodes','scaleRange':[0.3,2.0],'transparentPng':True,'colorModes':['original','silhouette'],
-                'renderers':{'default':'legacy','legacy':VERSION,'composition-v1':{'version':COMPOSITION_VERSION,'status':'owner_reviewed_partial','visualReview':{'medallion':'accepted_with_density_controls_condition','rapport':'accepted','border':'revised_awaiting_owner_visual_review'},'pilotRecipes':review()[0]['families.json']['pilot_recipes'],'rapportOutputs':['module','sample'],'moduleSizeRange':[256,2048],'colorModes':['original']}},
+        return {'generationMode':'synchronous','formats':['png','jpg'],'motifs':{**MOTIFS,**{r['motif_key']:r['motif_class'] for r in rows}},'realUniqueElements':len({r['content_sha256'] for r in rows if not r['is_fixture']}),'modes':{'flat':{'available':True,'generationMode':'synchronous'},'ai':{'available':catalog_response(settings,configured_provider())['available'],'generationMode':'persistent_jobs','catalogUrl':'/api/ai-bases','reason':'Requires released base/style profile, material authorization and verified GPU provider'}},'elementSelection':'elementCodes','scaleRange':[0.3,2.0],'transparentPng':True,'colorModes':['original','silhouette'],
+                'renderers':{'default':'legacy','legacy':VERSION,'composition-v2':{'version':generator_v2.VERSION,'status':'owner_accepted_subset' if not settings.local_catalog else 'catalog_expanded','registryVersion':registry()['registryVersion'],'catalogUrl':'/api/composition-schemes','preflightUrl':'/api/composition-preflight','colorModes':['original'],'rapportOutputs':['module','sample'],'moduleSizeRange':[256,2048]},'composition-v1':{'version':COMPOSITION_VERSION,'status':'owner_accepted_pilot','visualReview':{'medallion':'accepted_with_density_controls_condition','rapport':'accepted','border':'accepted_contemporary_design'},'borderLayouts':['registers','interwoven'],'borderVisualReview':{'registers':'satisfactory_owner_reviewed','interwoven':'owner_accepted'},'pilotRecipes':review()[0]['families.json']['pilot_recipes'],'rapportOutputs':['module','sample'],'moduleSizeRange':[256,2048],'colorModes':['original']}},
+                'compositionCatalog':{'acceptedSchemes':release_catalog(settings)['acceptedSchemeCount'],'acceptedCoveredElements':release_catalog(settings)['acceptedCoveredElementCount'],'url':'/api/composition-schemes','preflightUrl':'/api/composition-preflight','registryVersion':registry()['registryVersion']},
                 'outputSizes':[[1024,1024],[900,1200],[800,1200],[720,1280]],'profile':True,'trash':True,'compositions':['medallion','border','rapport'],'palettes':['emerald','porcelain','leather'],
                 'styles':{'heritage':'Исходные цвета PNG; силуэт по отдельному выбору','modern':'Крупный одноцветный силуэт','porcelain-sign':'Синий контур','leather-mosaic':'Заливка и пунктирный шов','festive':'Чередующиеся цвета'},
                 'parameters':['default','sparse','dense'],'usageSizes':{'architecture':[1024,1024],'textile':[1024,1024],'packaging':[1200,900],'interior':[1200,900],'web':[800,600]},
                 'unsupported':['prompt-driven-generation','ai-editing','cancellation'], 'allowFixtures':settings.allow_fixtures}
+
+    @app.get('/api/ai-bases')
+    def ai_bases():
+        return catalog_response(settings,configured_provider())
+
+    @app.get('/api/ai-bases/{base_id}/preview')
+    def ai_base_preview(base_id:str):
+        return FileResponse(asset_file(find_base(base_id)),media_type='image/png')
 
     @app.post('/api/auth/register',status_code=201)
     def register(body:Registration,request:Request,response:Response,conn=Depends(db)):
@@ -229,7 +244,7 @@ def create_app(settings=None):
     @app.post('/api/auth/login')
     def login(body:Credentials,request:Request,response:Response,conn=Depends(db)):
         auth_limit(request)
-        row=conn.execute('SELECT id,email,password_hash,profile FROM users WHERE lower(email)=%s ORDER BY id LIMIT 1',(body.email,)).fetchone()
+        row=conn.execute('SELECT id,email,password_hash,profile FROM users WHERE NOT access_blocked AND lower(email)=%s ORDER BY id LIMIT 1',(body.email,)).fetchone()
         try:
             valid=hasher.verify(row['password_hash'] if row else dummy_hash,body.password)
         except (VerificationError,InvalidHashError):
@@ -294,22 +309,68 @@ def create_app(settings=None):
         conn.commit()
         return {'ok':True}
 
+    @app.get('/api/composition-schemes')
+    def composition_schemes(conn=Depends(db)):
+        available={r['code'] for r in catalog(conn,settings)}
+        reg=release_catalog(settings)
+        return {**reg,'availableElementCodes':sorted(available),'schemes':[
+            {**scheme,'availableElementCodes':[c for c in scheme['allowedElementCodes'] if c in available],
+             'available':set(scheme['defaultElementCodes']).issubset(available)} for scheme in reg['schemes']]}
+
+    @app.get('/api/composition-schemes/{sid}/preview')
+    def composition_preview(sid:str,conn=Depends(db)):
+        scheme=next((s for s in release_catalog(settings)['schemes'] if s['id']==sid),None)
+        if not scheme or not set(scheme['defaultElementCodes']).issubset({r['code'] for r in catalog(conn,settings)}):
+            raise APIError(404,'NOT_FOUND','Пример схемы недоступен для текущего каталога.')
+        path=ASSETS/(sid+'.png')
+        if not path.is_file():
+            raise APIError(503,'SCHEME_PREVIEW_UNAVAILABLE','Пример схемы ещё не подготовлен.')
+        return FileResponse(path,media_type='image/png')
+
+    def validate_renderer(selections):
+        renderer=selections['renderer']
+        if renderer=='composition-v2' and not settings.local_catalog and selections.get('schemeId') not in {s['id'] for s in release_catalog(settings)['schemes']}:
+            raise APIError(422,'SCHEME_NOT_RELEASED','Схема пока не принята для публичной версии.')
+        composed=renderer in ('composition-v1','composition-v2')
+        if renderer!='composition-v2' and any(selections.get(k) is not None for k in ('schemeId','registryVersion','primaryElementCode')):
+            raise APIError(422,'SCHEME_FIELDS_REQUIRE_V2','Выбор схемы требует renderer=composition-v2.')
+        if not composed and (selections['moduleSize'] is not None or selections['rapportOutput']!='module'):
+            raise APIError(422,'OUTPUT_REQUIRES_COMPOSITION_RENDERER','Поля модуля требуют композиционного renderer.')
+        if composed and selections['composition']!='rapport' and (selections['moduleSize'] is not None or selections['rapportOutput']!='module'):
+            raise APIError(422,'RAPPORT_FIELDS_ONLY','Поля модуля применимы только к rapport.')
+        if selections['borderLayout']!='registers' and (renderer!='composition-v1' or selections['composition']!='border'):
+            raise APIError(422,'BORDER_LAYOUT_REQUIRES_COMPOSITION','Чередование визуальных весов доступно только для composition-v1/border.')
+
+    @app.post('/api/composition-preflight')
+    def composition_preflight(body:Generate,user=Depends(current_user),conn=Depends(db)):
+        if body.mode!='flat':
+            raise APIError(422,'PREFLIGHT_REQUIRES_V2','Проверка схемы доступна для flat/composition-v2.')
+        selections=body.selections.model_dump()
+        validate_renderer(selections)
+        if body.mode!='flat' or selections['renderer']!='composition-v2':
+            raise APIError(422,'PREFLIGHT_REQUIRES_V2','Проверка схемы доступна для flat/composition-v2.')
+        rows=selected_elements(conn,settings,selections['motifs'],selections['elementCodes'])
+        if not render_slots.acquire(blocking=False):
+            raise APIError(503,'GENERATOR_BUSY','Генератор занят. Повторите запрос позже.')
+        try:
+            return generator_v2.preflight(rows,selections,body.seed)
+        finally:
+            render_slots.release()
+
     @app.post('/api/generations',status_code=201)
     def generate(body:Generate,user=Depends(current_user),conn=Depends(db)):
         if body.projectId:
             owned_project(conn,body.projectId,user['id'])
         if body.mode=='ai':
-            return enqueue_ai(conn,settings,user,body)
+            return {'generation':generation_json(enqueue_ai(conn,settings,user,body))}
         if not body.selections.elementCodes and not body.selections.motifs:
             raise APIError(422,'ELEMENTS_REQUIRED','Выберите элементы или классы мотивов.')
         rows=selected_elements(conn,settings,body.selections.motifs,body.selections.elementCodes)
         selections=body.selections.model_dump()
+        validate_renderer(selections)
         use_pilot=selections['renderer']=='composition-v1'
-        if not use_pilot and (selections['moduleSize'] is not None or selections['rapportOutput']!='module'):
-            raise APIError(422,'OUTPUT_REQUIRES_COMPOSITION_RENDERER','Поля модуля требуют renderer=composition-v1; legacy сохраняет прежний бесшовный экспорт.')
-        if use_pilot and selections['composition']!='rapport' and (selections['moduleSize'] is not None or selections['rapportOutput']!='module'):
-            raise APIError(422,'RAPPORT_FIELDS_ONLY','Поля модуля применимы только к rapport.')
-        version=COMPOSITION_VERSION if use_pilot else VERSION
+        use_v2=selections['renderer']=='composition-v2'
+        version=generator_v2.VERSION if use_v2 else COMPOSITION_VERSION if use_pilot else VERSION
         palette=conn.execute('SELECT colors FROM palettes WHERE code=%s',(body.selections.palette,)).fetchone()
         scheme=conn.execute('SELECT rules FROM composition_schemes WHERE code=%s',(body.selections.composition,)).fetchone()
         if not palette or not scheme:
@@ -322,7 +383,9 @@ def create_app(settings=None):
         row=None
         try:
             row=conn.execute("INSERT INTO generations(user_id,project_id,status,params,user_prompt,model_version) VALUES(%s,%s,'processing',%s,%s,%s) RETURNING *",(user['id'],body.projectId,Jsonb({'selections':body.selections.model_dump()}),body.prompt,version)).fetchone()
-            if use_pilot:
+            if use_v2:
+                recipe,warnings=generator_v2.render(rows,selections,palette['colors'],png,jpg,body.seed)
+            elif use_pilot:
                 recipe,warnings=render_composition(rows,selections,palette['colors'],png,jpg,body.seed)
             else:
                 recipe,warnings=render(rows,selections,palette['colors'],scheme['rules'],png,jpg)
@@ -360,7 +423,7 @@ def create_app(settings=None):
         if projectId:
             owned_project(conn,projectId,user['id'])
         purge_trash(conn,user['id'])
-        where='user_id=%s AND deleted_at IS ' + ('NOT NULL' if trash else 'NULL')
+        where='NOT EXISTS (SELECT 1 FROM erasure_tombstones t WHERE t.generation_id=generations.id) AND user_id=%s AND deleted_at IS ' + ('NOT NULL' if trash else 'NULL')
         args=[user['id']]
         if projectId:
             where+=' AND project_id=%s'

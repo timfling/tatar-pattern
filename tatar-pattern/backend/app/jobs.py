@@ -1,30 +1,38 @@
-"""Persist AI requests before returning; a separate worker owns GPU polling."""
+"""Persist requests, deduplicate user retries, never silently fall back to flat."""
+import hashlib
+import json
 from datetime import datetime, timedelta, timezone
 from psycopg.types.json import Jsonb
 from .ai_provider import configured_provider
-from .catalog import selected_elements
+from .ai_catalog import select_profile, unavailable_reasons, task_payload
 from .errors import APIError
-from .descriptions import describe
 
 
 def enqueue_ai(conn,settings,user,body):
-    provider=configured_provider()
-    if provider is None:
-        raise APIError(503,'AI_PROVIDER_UNCONFIGURED','Нужны подтвержденная спецификация DSLab, модель и серверный доступ.')
-    rows=selected_elements(conn,settings,body.selections.motifs,body.selections.elementCodes)
-    blocked=[r['code'] for r in rows if not r['provenance'].get('externalTransferAllowed')]
-    if blocked:
-        raise APIError(422,'MATERIAL_TRANSFER_NOT_AUTHORIZED','Не подтверждена передача выбранных материалов во внешний ИИ.',{'elementCodes':blocked})
-    # Model compatibility and specific allowed asset serialization belong to the
-    # factual provider adapter. These are references, never emails/session data.
-    payload={'prompt':body.prompt,'seed':body.seed,'selections':body.selections.model_dump(),'elements':[{'code':r['code'],'sha256':r['content_sha256']} for r in rows]}
-    params={'mode':'ai','seed':body.seed,'selections':body.selections.model_dump(),'recipe':{'provider':provider.name,'modelVersion':provider.model_version,'seed':body.seed,'input':payload},'warnings':[]}
-    params['recipe'].update(outputKind='ai_image',seamless=None,selectedElementCodes=body.selections.elementCodes,selectedMotifKeys=body.selections.motifs,requestedElementCodes=[r['code'] for r in rows],usedElementCodes=None)
-    params['recipe']['description']=describe(params['recipe'],params['selections'],mode='ai')
+    intent={'ai':body.ai.model_dump(),'seed':body.seed,'projectId':body.projectId}
+    fingerprint=hashlib.sha256(json.dumps(intent,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    request_id=str(body.requestId)
+    # Same durable lock as queue capacity: concurrent identical retries cannot submit twice.
     conn.execute('SELECT pg_advisory_xact_lock(107198010)')
+    prior=conn.execute("SELECT * FROM generations WHERE user_id=%s AND params->>'clientRequestId'=%s ORDER BY id LIMIT 1",(user['id'],request_id)).fetchone()
+    if prior:
+        if prior['params'].get('requestFingerprint')!=fingerprint:
+            raise APIError(409,'AI_IDEMPOTENCY_CONFLICT','requestId уже использован для другого запроса.')
+        conn.commit()
+        return prior
+    base,profile=select_profile(body.ai.baseId,body.ai.ornamentStyle,body.ai.profileVersion)
+    provider=configured_provider()
+    reasons=unavailable_reasons(base,profile,provider,settings)
+    if reasons:
+        raise APIError(503,'AI_UNAVAILABLE','AI-сочетание пока недоступно.',{'reasons':reasons})
     if conn.execute("SELECT count(*) AS n FROM ai_jobs WHERE state IN ('queued','submitting','polling')").fetchone()['n']>=20:
         raise APIError(503,'AI_QUEUE_FULL','Очередь ИИ заполнена. Повторите позже.')
-    row=conn.execute("INSERT INTO generations(user_id,project_id,status,params,user_prompt,model_version,progress) VALUES(%s,%s,'queued',%s,%s,%s,NULL) RETURNING *",(user['id'],body.projectId,Jsonb(params),body.prompt,provider.model_version)).fetchone()
+    payload=task_payload(base,profile,body.seed)
+    # Snapshot is independent of future catalogue/profile edits and provider readiness.
+    recipe={'schemaVersion':'tp-ai-composition-recipe/1.0','provider':provider.name,'modelVersion':provider.model_version,'seed':body.seed,'input':payload,'base':base,'profile':profile,'outputKind':'ai_image','seamless':False,'requestedElementCodes':base['elementCodes'],'usedElementCodes':None,
+            'description':{'text':f"Декоративный вариант основы «{base['titleRu']}». Оформление: {'Графический стиль' if body.ai.ornamentStyle=='graphic' else 'Фактурный стиль'}. Состав и геометрия AI-результата отдельно не проверены.",'basis':'requested_only','claimType':'request','schemaVersion':'tp-description-schema/1.0.0','templateVersion':'tp-ai-description/1.0','facts':{'requested':{'baseId':base['id'],'elementCodes':base['elementCodes'],'ornamentStyle':body.ai.ornamentStyle,'profileVersion':profile['version']},'observed':None,'verified':None},'evidence':[],'culturalNote':None}}
+    params={'mode':'ai','seed':body.seed,'ai':body.ai.model_dump(),'clientRequestId':request_id,'requestFingerprint':fingerprint,'recipe':recipe,'warnings':[]}
+    row=conn.execute("INSERT INTO generations(user_id,project_id,status,params,user_prompt,model_version,progress) VALUES(%s,%s,'queued',%s,'',%s,NULL) RETURNING *",(user['id'],body.projectId,Jsonb(params),provider.model_version)).fetchone()
     conn.execute("INSERT INTO ai_jobs(generation_id,state,provider,model_version,payload,deadline) VALUES(%s,'queued',%s,%s,%s,%s)",(row['id'],provider.name,provider.model_version,Jsonb(payload),datetime.now(timezone.utc)+timedelta(minutes=15)))
     conn.commit()
-    return {'generation':{'id':str(row['id']),'status':'queued','mode':'ai','progress':None,'imageUrl':None,'modelVersion':provider.model_version,'seed':body.seed,'recipe':params['recipe'],'createdAt':row['created_at'].isoformat(),'selections':params['selections'],'prompt':body.prompt,'projectId':body.projectId,'description':params['recipe']['description']['text'],'descriptionDetails':params['recipe']['description'],'culturalNote':None,'outputKind':'ai_image','seamless':None,'compatibility':{'status':'not_evaluated','cultural':'unknown'},'repeat':None,'moduleUrl':None,'warnings':[],'error':None}}
+    return row

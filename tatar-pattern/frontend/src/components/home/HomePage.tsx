@@ -1,45 +1,70 @@
 "use client";
-import { useRef, useState } from "react";
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element -- Original local Figma artwork, including SVG filter bounds. */
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion, MotionConfig, useReducedMotion } from "motion/react";
 import { HOME } from "@/content/home";
-import { useStudioHref } from "@/lib/studio-href";
-import { Artwork } from "@/components/home/Artwork";
+import { loadUser, type AuthUser } from "@/lib/auth";
+import { HomeHeader } from "./HomeHeader";
+import { GenerationStory } from "./GenerationStory";
 
-export default function HomePage() {
-  const {href, authed} = useStudioHref();
-  const [variant, setVariant] = useState<"medallion" | "border" | "rapport">("medallion");
-  const menu = useRef<HTMLDetailsElement>(null);
-  const closeMenu = () => { if (menu.current) menu.current.open = false; };
-  return <div className="lp">
-    <a className="lp-skip" href="#main">К содержанию</a>
-    <header className="lp-header">
-      <Link href="/" className="lp-brand" aria-label="TATAR PATTERN — главная"><BrandMark /><span className="lp-wordmark">ТАТАР<br />ПАТТЕРН<br /><strong>ЛАБ</strong></span></Link>
-      <nav className="lp-nav" aria-label="Основная навигация"><Link href="/about-pattern">Про татарский узор</Link><Link href="/help">Помощь</Link></nav>
-      <Link className="lp-entry" href={href}>{authed ? "В конструктор" : "Войти"}<span aria-hidden>↗</span></Link>
-      <details ref={menu} className="lp-mobile-menu"><summary aria-label="Меню"><span /><span /></summary><nav aria-label="Мобильная навигация"><Link onClick={closeMenu} href="/about-pattern">Про татарский узор</Link><Link onClick={closeMenu} href="/help">Помощь</Link><Link onClick={closeMenu} href={href}>Открыть конструктор ↗</Link></nav></details>
-    </header>
-    <main id="main">
-      <section className="lp-hero">
-        <div className="lp-hero-copy"><p className="lp-eyebrow">Цифровая мастерская орнамента · Казань</p>
-          <h1>Ваш узор.<br /><em>Татарский характер.</em></h1>
-          <p className="lp-lead">{HOME.lead}</p>
-          <Link href={href} className="lp-button">Создать свой узор<span aria-hidden>↗</span></Link>
-          <div className="lp-hero-foot"><span>От мотива — к композиции</span><span>Форма, которую выбираете вы</span></div>
-        </div>
-        <figure className="lp-hero-art"><Artwork variant={variant} /><div className="lp-art-top"><span>TATAR PATTERN</span><span>Этюд / 0{variant === "medallion" ? 1 : variant === "border" ? 2 : 3}</span></div><figcaption><span>Ритм. Форма. Цвет.</span><span>Графический эскиз</span></figcaption></figure>
-      </section>
-      <section className="lp-about lp-section" id="about"><div><h2>Наследие, с которым<br />можно <em>работать.</em></h2><div className="lp-about-text"><p>Орнамент живёт в деталях: в линии лепестка, в симметрии, в чередовании форм. TATAR PATTERN помогает перенести этот язык в современный дизайн.</p><p>Вы выбираете параметры. Конструктор собирает рисунок, а вы решаете, как он продолжится в ткани, предмете или визуальном образе.</p></div></div></section>
-      <section className="lp-collection lp-section" id="collection"><div className="lp-section-heading"><div><h2>Один мотив.<br /><em>Разные ритмы.</em></h2></div><p>Центр, линия или бесконечный повтор.<br />Выберите композицию для эскиза.</p></div>
-        <div className="lp-studies">{([{id:"medallion", name:"Медальон", text:"Рисунок вокруг одного центра."},{id:"border", name:"Бордюр", text:"Направленный ритм вдоль линии."},{id:"rapport", name:"Раппорт", text:"Повтор, заполняющий плоскость."}] as const).map((item) => <button key={item.id} className={`lp-study ${variant === item.id ? "is-selected" : ""}`} onClick={() => setVariant(item.id)} aria-pressed={variant === item.id}><div className={`lp-study-art lp-study-art-${item.id}`}><Artwork variant={item.id} /></div><div className="lp-study-heading"><h3>{item.name}</h3><span aria-hidden>{variant === item.id ? "●" : "↗"}</span></div><p>{item.text}</p></button>)}</div>
-        <p className="lp-caption">Эскизы показывают принцип композиции. Результат конструктора создаётся из доступных элементов каталога.</p>
-      </section>
-      <section className="lp-method lp-section" id="method"><div className="lp-section-heading"><div><h2>Ваш рисунок.<br /><em>Ваше решение.</em></h2></div><Link href={href} className="lp-button lp-button-light">Открыть конструктор<span aria-hidden>↗</span></Link></div><div className="lp-steps">{HOME.steps.map((step) => <article key={step.title}><h3>{step.title}</h3><p>{step.body}</p></article>)}</div><p className="lp-method-note">Первая версия использует алгоритмическую генерацию. Текст запроса сохраняется как заметка; свободная генерация и редактирование с ИИ — следующий этап.</p></section>
-      <section className="lp-uses lp-section" id="uses"><h2>Из рисунка —<br /><em>в вашу работу.</em></h2><div>{HOME.uses.map((use) => <article key={use.title}><h3>{use.title}</h3><p>{use.body}</p></article>)}</div></section>
-      <section className="lp-support lp-section" id="support"><p className="lp-eyebrow">Поддержка проекта</p><div className="lp-support-content"><p className="lp-grant">{HOME.grant}</p><div className="lp-support-logos"><a href="https://fasie.ru" target="_blank" rel="noreferrer"><Image unoptimized width={185} height={110} src="/logos/fasie.svg" alt="Фонд содействия инновациям" /></a><a href="https://univertechpred.ru" target="_blank" rel="noreferrer"><Image unoptimized width={180} height={110} src="/logos/platform.svg" alt="Платформа университетского технологического предпринимательства" /></a></div></div></section>
-      <section className="lp-final"><BrandMark /><p className="lp-eyebrow">TATAR PATTERN</p><h2>Начните<br /><em>с одного мотива.</em></h2><Link href={href} className="lp-button">Перейти в мастерскую<span aria-hidden>↗</span></Link></section>
-    </main>
-    <footer className="lp-footer"><Link href="/" className="lp-footer-brand">TATAR PATTERN</Link><span>ООО «ПАТТЕРН ЛАБ» · Казань</span><Link href="/help">Помощь</Link><span>© {new Date().getFullYear()}</span></footer>
-  </div>;
+export function WorkshopLink({ href, className = "" }: { href: string; className?: string }) {
+  return <Link href={href} className={`home-workshop-link ${className}`}><span aria-hidden="true">✣</span> Перейти в мастерскую</Link>;
 }
-function BrandMark() { return <Image className="lp-logo" src="/logos/tatar-pattern.svg" width={65} height={37} alt="Логотип Татар Паттерн" unoptimized />; }
+function Hero() {
+  const reduce = useReducedMotion();
+  return <section className="home-hero" aria-label="Татар Паттерн Лаб">
+    <motion.div className="home-hero-art" aria-hidden="true" initial={reduce ? false : { opacity: 0, scale: 1.045 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.8, ease: [.28, .11, .32, 1] }}>
+      <svg className="home-art-desktop" viewBox="0 0 1728 1229" preserveAspectRatio="xMidYMid slice">
+        <image href="/home-v2/hero-left.png" x="0" y="22" width="794" height="1181" />
+        <image href="/home-v2/hero-high.png" x="320" y="0" width="1083" height="558.75" />
+        <image href="/home-v2/hero-right.png" x="926" y="40" width="802" height="1101" />
+        <image href="/home-v2/hero-low.png" x="323.25" y="672" width="1082" height="557" />
+        <image href="/home-v2/hero-mask.svg" width="1728" height="1229" />
+      </svg>
+      <svg className="home-art-mobile" viewBox="0 0 402 874" preserveAspectRatio="xMidYMid slice">
+        <image href="/home-v2/hero-mobile-0.png" x="0" y="0" width="402" height="429" />
+        <image href="/home-v2/hero-mobile-1.png" x="0" y="473" width="402" height="401" />
+        <image href="/home-v2/hero-mobile-2.png" x="219" y="178.624" width="183" height="516.676" />
+        <image href="/home-v2/hero-mobile-3.png" x="0" y="158.551" width="188" height="541.483" />
+        <image href="/home-v2/hero-mobile-mask.svg" width="402" height="874" />
+      </svg>
+    </motion.div>
+    <motion.h1 className="home-wordmark" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: .3, ease: [.28, .11, .32, 1] }}>ТАТАР<br />ПАТТЕРН<br /><strong>ЛАБ</strong></motion.h1>
+  </section>;
+}
+function About({ href }: { href: string }) {
+  return <section className="home-about" id="about" aria-labelledby="home-about-title">
+    <div className="home-app-window">
+      <div className="home-placeholder-canvas" aria-hidden="true">{Array.from({ length: 9 }, (_, i) => <span className={`home-placeholder home-placeholder-${i}`} key={i} />)}</div>
+      <div className="home-canvas-wash" aria-hidden="true" />
+      <div className="home-window-bar" aria-hidden="true"><span /><span /><span /><small>TATAR PATTERN LAB</small></div>
+      <div className="home-about-copy"><h2 id="home-about-title">Ваш узор<br />с персональным<br /><em>характером</em></h2><div><p>Орнамент живет в деталях. В линиях лепестка,<br className="home-desktop-break" /> в симметрии и чередовании форм.</p><p>Татар Паттерн помогает перенести этот язык<br className="home-desktop-break" /> в современный и воспроизводимый дизайн.</p></div></div>
+      <Link href={href} className="home-paint-button" aria-label="Перейти в конструктор"><span>Перейти в конструктор</span><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="m12 21 12-15c2-2 5 1 3 3L15 23M12 21c-7-2-3 7-9 6 5 5 12 0 12-4l-3-2ZM20 11l5 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg></Link>
+    </div>
+  </section>;
+}
+export default function HomePage() {
+  const [user, setUser] = useState<AuthUser | null>(null);
+  useEffect(() => {
+    let active = true;
+    let request = 0;
+    const refresh = () => { const version = ++request; loadUser().then(value => { if (active && version === request) setUser(value); }).catch(() => {}); };
+    refresh();
+    window.addEventListener("focus", refresh);
+    window.addEventListener("pageshow", refresh);
+    window.addEventListener("tp-profile-updated", refresh);
+    return () => { active = false; window.removeEventListener("focus", refresh); window.removeEventListener("pageshow", refresh); window.removeEventListener("tp-profile-updated", refresh); };
+  }, []);
+  const href = user ? "/constructor" : "/login";
+  return <MotionConfig reducedMotion="user"><div className="home-v2">
+    <a className="home-skip" href="#main">К содержанию</a>
+    <HomeHeader user={user} studioHref={href} />
+    <main id="main"><Hero /><About href={href} /><GenerationStory href={href} />
+      <section className="home-scenarios" aria-label="Два способа создать рисунок"><h2>Два способа создать рисунок</h2><p>В параметрическом flat-конструкторе схема, совместимые мотивы, ритм и размер управляют новой раскладкой исходных элементов. Параметрическая AI-форма варьирует выбранную основу по стилю и варианту.</p><p>Историческая атрибуция относится к мотивам, новая раскладка — современная. AI может изменить детали и оттенки; точные мотивы, бесшовность и прозрачность не гарантируются. Свободная перекраска AI-основы недоступна.</p><div><Link href="/flat">Параметрический рисунок ↗</Link><Link href="/constructor">AI-вариант основы ↗</Link></div></section>
+      <section className="home-support" id="support" aria-label="Поддержка проекта"><p>{HOME.grant}</p><div className="home-support-logos"><a href="https://fasie.ru" target="_blank" rel="noreferrer"><img src="/logos/fasie.svg" width="244" height="118" alt="Фонд содействия инновациям" loading="lazy" /></a><a href="https://univertechpred.ru" target="_blank" rel="noreferrer"><img src="/logos/platform.svg" width="190" height="148" alt="Платформа университетского технологического предпринимательства" loading="lazy" /></a></div></section>
+      <section className="home-final" aria-labelledby="home-final-title"><div className="home-final-brand"><img src="/home-v2/logo.svg" width="62" height="36" alt="" /><span>ТАТАР ПАТТЕРН</span></div><h2 id="home-final-title">Начните<br />с одного мотива</h2><WorkshopLink href={href} /></section>
+    </main>
+    <footer className="home-footer"><span>ООО «ПАТТЕРН ЛАБ»</span><span className="home-footer-city">Казань</span><span>2026</span><a href={`mailto:${HOME.contactEmail}`}>Нужна помощь?</a></footer>
+  </div></MotionConfig>;
+}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AuthShell } from "@/components/auth/AuthShell";
 import { AuthField, NextButton } from "@/components/auth/AuthField";
+import { useAuthDestination } from "@/lib/auth-destination";
 import { emailLooksValid } from "@/lib/auth";
 
 import { api, apiMessage } from "@/lib/api";
@@ -13,6 +14,7 @@ type Step = "email" | "password" | "loading";
 
 export function LoginScreen() {
   const router = useRouter();
+  const {destination,authQuery} = useAuthDestination();
   const [step, setStep] = useState<Step>("email");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +30,7 @@ export function LoginScreen() {
   async function submitPassword() {
     if (!passwordReady || step === "loading") return;
     setError(""); setStep("loading");
-    try { await api.login(email.trim(), password); router.replace("/constructor"); }
+    try { await api.login(email.trim(), password); router.replace(destination); }
     catch (e) { setError(apiMessage(e)); setStep("password"); }
   }
 
@@ -61,7 +63,7 @@ export function LoginScreen() {
           <p className="mt-[25px] flex items-center justify-center gap-[9px] text-[20px] leading-[20px] text-black opacity-80 max-md:hidden">
             <span className="font-normal">Нет аккаунта?</span>
             <Link
-              href="/register"
+              href={`/register${authQuery}`}
               className="pressable-quiet rounded-full px-[12px] py-[8px]"
             >
               <span className="font-semibold">[</span>
@@ -132,7 +134,7 @@ export function LoginScreen() {
             Нет аккаунта?
           </p>
           <Link
-            href="/register"
+            href={`/register${authQuery}`}
             className="pressable-quiet rounded-full px-[12px] py-[6px] text-[16px] font-semibold leading-[16px] text-black"
           >
             [ Создать новый аккаунт ]

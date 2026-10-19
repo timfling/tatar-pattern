@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-14",
+  "scope": "local preparation only; immers GPU not accessed",
+  "archive_sha256": "c851a99ef4dc70eea8129fe1ea7ff9c9a6f3931e9ff1a1b4796b0b09805887ca",
+  "payload_count": 138,
+  "python_ast_files": 20,
+  "json_syntax_passed": true,
+  "bash_syntax_passed": true,
+  "unpacked_kit_verified": true,
+  "unpacked_training_dry_run": true,
+  "corrupt_caption_rejected": true,
+  "smoke_owner_guard_verified": true,
+  "all110_texture_and_rgb_sha_verified": true,
+  "all220_accepted_master_sha_verified": true,
+  "train_validation_split_no_overlap": true,
+  "source_csv_sha_unchanged": true,
+  "local_http_checks": [
+    {
+      "test": "health_without_gpu",
+      "http": 503
+    },
+    {
+      "test": "authentication_required",
+      "http": 401
+    },
+    {
+      "test": "no_fake_submit_without_gpu",
+      "http": 503
+    },
+    {
+      "test": "unsupported_scenario",
+      "http": 422
+    },
+    {
+      "test": "unknown_job",
+      "http": 404
+    }
+  ],
+  "protected_snapshot": {
+    "count": 11454,
+    "changed": [
+      "tatar-pattern/frontend/tsconfig.tsbuildinfo",
+      "tatar-pattern/frontend/qa/home-2026-10-14/step4-mobile-final.jpg"
+    ]
+  },
+  "protected_changes_note": "Two frontend runtime/QA files changed concurrently; this task did not write them. All source/dataset/API/other summaries in snapshot unchanged.",
+  "gpu_preflight": "NOT_RUN",
+  "bootstrap": "NOT_RUN",
+  "model_download": "NOT_RUN",
+  "training": "NOT_RUN",
+  "gpu_render_smoke": "NOT_RUN",
+  "cloud_http_smoke": "NOT_RUN",
+  "cost_rub": 0,
+  "external_uploads": 0
+}

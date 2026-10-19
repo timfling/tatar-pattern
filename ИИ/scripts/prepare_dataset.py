@@ -100,7 +100,7 @@ def main():
         manifest_sha256=sha(OUT/'training_manifest.csv'),
         artifact_and_similarity_split_leakage=False, background_check='white corner all 110',
         rights_status='owner_declares_all_materials_allowed_2026-10-11_no_written_document',
-        external_operator='owner_only; agent has no permission to create/upload/pay/run on Selectel',
+        external_operator='owner_only; agent has no permission to create/upload/pay/run on cloud providers',
         training_executed=False))
     # Structural reference from an actual validation motif; output is a template, not AI.
     ref='TP-E-020'

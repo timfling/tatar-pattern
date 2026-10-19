@@ -1,25 +1,21 @@
-"""Expire deleted works every hour and on library access; files follow committed rows."""
-import logging
+"""Existing seven-day trash policy; durable erasure and retry on library access/hourly.
+
+This existing product interval is not a deadline for account/privacy requests.
+"""
 import psycopg
 from psycopg.rows import dict_row
-from .catalog import safe_path
-logger = logging.getLogger(__name__)
+from .erasure import erase_generation, drain_files
 
 def purge(settings, user_id=None):
     with psycopg.connect(settings.database_url, row_factory=dict_row, connect_timeout=3) as conn:
         conn.execute('SET statement_timeout=10000')
-        where = "deleted_at < now()-interval '7 days'"
-        args = []
+        # Expired sessions need no continuing authentication purpose.
+        conn.execute('DELETE FROM sessions WHERE expires_at<=now()')
+        where="deleted_at < now()-interval '7 days'"
+        args=[]
         if user_id is not None:
-            where += ' AND user_id=%s'
-            args.append(user_id)
-        rows = conn.execute(f'DELETE FROM generations WHERE {where} RETURNING result_path',args).fetchall()
-    for row in rows:
-        if row['result_path']:
-            try:
-                path = safe_path(settings.storage_root,row['result_path'])
-                path.unlink(missing_ok=True)
-                path.with_suffix('.jpg').unlink(missing_ok=True)
-                path.with_name(path.stem+'.module.png').unlink(missing_ok=True)
-            except (ValueError,OSError):
-                logger.warning('Expired trash file cleanup failed')
+            where+=' AND user_id=%s';args.append(user_id)
+        rows=conn.execute(f'SELECT * FROM generations WHERE {where} ORDER BY id FOR UPDATE',args).fetchall()
+        for row in rows:erase_generation(conn,row,'trash_expired')
+        conn.commit()  # Durable deletion queue survives unlink failure/process exit.
+        drain_files(conn,settings.storage_root)

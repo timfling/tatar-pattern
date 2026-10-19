@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/refs -- useShell exposes context data and event callbacks, not a ref read during render. */
 
 import { useSession } from "@/components/auth/RequireAuth";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { loadPreferences } from "@/lib/preferences";
 import { Sidebar, NAV_ITEMS } from "@/components/layout/Sidebar";
@@ -23,6 +23,7 @@ function AppFrameInner({ children }: { children: React.ReactNode }) {
   useEffect(() => { document.documentElement.dataset.reducedMotion = String(loadPreferences().reducedMotion); }, []);
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
   const shell = useShell();
   useEffect(() => {
     const aside = document.querySelector('.app-screen > aside');
@@ -56,7 +57,7 @@ function AppFrameInner({ children }: { children: React.ReactNode }) {
       {menuOpen ? (
         <MobileMenu
           active={active}
-          onClose={() => setMenuOpen(false)}
+          onClose={closeMenu}
           onConstructorClick={shell.runConstructorClick}
         />
       ) : null}

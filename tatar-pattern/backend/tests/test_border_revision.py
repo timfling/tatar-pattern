@@ -15,7 +15,7 @@ from app.main import create_app
 from app.composition import replay
 
 BASE=Path(__file__).resolve().parents[1]
-OUTPUT=BASE/'local-test/composition-2026-10-12/border-revision'
+OUTPUT=BASE/'local-test/composition-2026-10-12/border-revision-regression'
 ORIGINAL=BASE/'local-test/composition-2026-10-12/gallery'
 
 

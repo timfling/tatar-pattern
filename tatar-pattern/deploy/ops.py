@@ -102,6 +102,36 @@ def digest(path):
     with path.open('rb') as f:
         return hashlib.file_digest(f, 'sha256').hexdigest()
 
+def stop_ai_worker(dc):
+    """Tunnel and PostgreSQL must stay up. Refuse further shutdown on uncertain exit."""
+    since = datetime.now(timezone.utc).isoformat()
+    dc('stop', '-t', '960', 'ai-worker')
+    raw = dc('ps', '--all', '--format', 'json', 'ai-worker', capture=True).decode().strip()
+    try:
+        try:
+            rows = json.loads(raw)
+            rows = rows if isinstance(rows, list) else [rows]
+        except json.JSONDecodeError:
+            rows = [json.loads(line) for line in raw.splitlines() if line.strip()]
+        if len(rows) != 1 or rows[0]['State'] != 'exited' or rows[0]['ExitCode'] != 0:
+            raise ValueError('Unclean worker exit')
+        logs = dc('logs', '--no-color', '--since', since, 'ai-worker', capture=True)
+        if b'AI_WORKER_DRAINED:' not in logs:
+            raise ValueError('No current drain acknowledgement')
+    except (ValueError, KeyError, TypeError):
+        raise RuntimeError('Worker drain unconfirmed; keep tunnel/DB up, reconcile ai_jobs before proceeding') from None
+
+
+def stop_ai(dc):
+    """Maintenance stop: close API admission, worker drain, then tunnel."""
+    dc('stop', '-t', '120', 'backend')
+    running = dc('ps', '--services', '--status', 'running', capture=True).decode().split()
+    if 'ai-worker' not in running:
+        raise RuntimeError('Worker not running: inspect persisted state before stopping tunnel')
+    stop_ai_worker(dc)
+    dc('stop', '-t', '15', 'gpu-tunnel')
+
+
 def backup(dc, values):
     root = Path(values['DATA_ROOT'])
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + '-' + secrets.token_hex(3)
@@ -109,10 +139,15 @@ def backup(dc, values):
     target.mkdir(parents=True, mode=0o700)
     # Save only services that were actually running, including optional proxy.
     running = dc('ps', '--services', '--status', 'running', capture=True).decode().split()
-    writers = [x for x in ('proxy', 'frontend', 'backend') if x in running]
+    writers = [x for x in ('proxy', 'frontend', 'backend', 'ai-worker') if x in running]
+    quiesced = False
     try:
-        if writers:
-            dc('stop', '-t', '120', *writers)
+        admission = [x for x in writers if x != 'ai-worker']
+        if admission:
+            dc('stop', '-t', '120', *admission)
+        if 'ai-worker' in writers:
+            stop_ai_worker(dc)
+        quiesced = True
         dump = pg(dc, 'pg_dump', '--format=custom', '--no-owner', '--no-acl')
         (target/'database.dump').write_bytes(dump)
         if len(dump) < 100:
@@ -129,8 +164,9 @@ def backup(dc, values):
         print(target)
         return target
     finally:
-        if writers:
+        if quiesced and writers:
             dc('start', *writers)
+        # No automatic restart after an unconfirmed stop/drain. Tunnel and DB remain up.
         # An incomplete set has no manifest and is never eligible for restore/offsite.
 
 def restore_check(envfile, values, source):
@@ -209,7 +245,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--env', type=Path, default=HERE/'.env')
     parser.add_argument('--local', action='store_true')
-    parser.add_argument('action', choices=['init','config','build','check-frontend','up-internal','migrate','publish','status','backup','restore-check','health','monitor','fixtures','up-local','down-local'])
+    parser.add_argument('action', choices=['init','config','build','check-frontend','up-internal','migrate','publish','status','backup','restore-check','health','monitor','fixtures','up-local','down-local','stop-ai'])
     parser.add_argument('--platform', choices=['linux/amd64', 'linux/arm64'], default='linux/amd64', help='Build/check platform; publication always requires linux/amd64')
     parser.add_argument('--source', type=Path)
     parser.add_argument('--confirm-public', action='store_true')
@@ -258,6 +294,8 @@ def main():
         dc('up', '-d', '--wait', '--no-build')
     elif action == 'status':
         dc('ps')
+    elif action == 'stop-ai':
+        stop_ai(dc)
     elif action == 'backup':
         backup(dc, values)
     elif action == 'restore-check':

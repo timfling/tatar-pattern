@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-14",
+  "selected_provider": "immers.cloud",
+  "decision_status": "PREPARED_CONDITIONAL_ON_QUOTE_AND_AVAILABILITY",
+  "owner_report": {
+    "path": "docs/Выбор сервисов для ИИ.txt",
+    "sha256": "e8345bb91a03995f3f0c055b0efd6abea8c95f37828720397cc004fa79817c8e",
+    "status": "SECONDARY_NOT_OFFICIAL_VERIFICATION"
+  },
+  "official_sources": [
+    {
+      "url": "https://cloudcompute.ru/docs/billing-pricing",
+      "status": "READ_OFFICIAL_PUBLIC_HTML",
+      "extracted_text_path": "research/providers-2026-10-14/billing-pricing.txt",
+      "sha256": "703b31628bb257eabf88f30f8ba5ccb4d19efdb0d34d327735602ed2984b7e92"
+    },
+    {
+      "url": "https://cloudcompute.ru/docs/instances-destroying-instance",
+      "status": "READ_OFFICIAL_PUBLIC_HTML",
+      "extracted_text_path": "research/providers-2026-10-14/instances-destroying-instance.txt",
+      "sha256": "813270edfd7e08b2b11b1cab224e5ff441b759558366837787d9f3a85286495b"
+    },
+    {
+      "url": "https://cloudcompute.ru/prices/gpu/rtx-3090",
+      "status": "READ_OFFICIAL_PUBLIC_HTML",
+      "extracted_text_path": "research/providers-2026-10-14/rtx-3090.txt",
+      "sha256": "f088c5bf41259c73444ef840bb8c333a46571f87b15ccfa9c680bfa0a8090e36"
+    },
+    {
+      "url": "https://cloudcompute.ru/prices/gpu/rtx-4090",
+      "status": "READ_OFFICIAL_PUBLIC_HTML",
+      "extracted_text_path": "research/providers-2026-10-14/rtx-4090.txt",
+      "sha256": "18eb48e3ece0ba0c46f6681ca66ace78e9451f00087649040dcebdc71982b651"
+    },
+    {
+      "url": "https://cloudcompute.ru/faq",
+      "status": "READ_OFFICIAL_PUBLIC_HTML",
+      "extracted_text_path": "research/providers-2026-10-14/faq.txt",
+      "sha256": "d73dbf0660674baa267313ced5a56dc69a91b96645e8ec9403a1d0d1ea881496"
+    },
+    {
+      "url": "https://cloudcompute.ru/docs/instances-creating-instance",
+      "status": "READ_OFFICIAL_PUBLIC_HTML",
+      "extracted_text_path": "research/providers-2026-10-14/instances-creating-instance.txt",
+      "sha256": "3af9e4eb052ccb9a0b03d07f8565bb331e4e46c6a889d7f941866446fb78c2d4"
+    }
+  ],
+  "unavailable_sources": [
+    {
+      "url": "https://immers.cloud/gpu/3090/",
+      "status": "NOT_READ_TLS_CONNECTION_CLOSED"
+    },
+    {
+      "url": "https://immers.cloud/gpu/4090/",
+      "status": "NOT_READ_TLS_CONNECTION_CLOSED"
+    },
+    {
+      "url": "https://immers.cloud/faq/",
+      "status": "NOT_READ_TLS_CONNECTION_CLOSED"
+    }
+  ],
+  "immers_prices_status": "OWNER_REPORT_ONLY_NOT_INDEPENDENTLY_VERIFIED",
+  "cloudcompute_legacy_prices_status": "NOT_CONFIRMED_PRICE_ON_REQUEST_IN_FETCHED_HTML",
+  "cloud_resources_created": false,
+  "dataset_uploaded": false,
+  "cost_rub": 0
+}

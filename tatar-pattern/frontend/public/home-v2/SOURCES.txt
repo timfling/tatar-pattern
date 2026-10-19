@@ -1,0 +1,19 @@
+hero-left.png ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1.Главная (d) : Hero/assets/icons/n-zone-left-290-116.png
+hero-high.png ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1.Главная (d) : Hero/assets/icons/n-zone-high-290-98.png
+hero-right.png ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1.Главная (d) : Hero/assets/icons/n-zone-right-290-104.png
+hero-low.png ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1.Главная (d) : Hero/assets/icons/n-zone-low-290-110.png
+hero-mask.svg ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1.Главная (d) : Hero/assets/icons/n-mask-290-82.svg
+menu.svg ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1.Главная (d) : Hero/assets/icons/n-menu-button-322-1731.svg
+logo.svg ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1.Главная (d) : Hero/assets/icons/n-logo-322-1732.svg
+hero-mobile-0.png ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1. Главная (m) : Hero/assets/icons/n-intersect-313-1006.png
+hero-mobile-1.png ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1. Главная (m) : Hero/assets/icons/n-intersect-313-1010.png
+hero-mobile-2.png ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1. Главная (m) : Hero/assets/icons/n-intersect-313-1014.png
+hero-mobile-3.png ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1. Главная (m) : Hero/assets/icons/n-intersect-313-1018.png
+hero-mobile-mask.svg ← html дизайнов/2. Главная/2.1. Главная (Hero)/2.1. Главная (m) : Hero/assets/icons/n-subtract-313-1005.svg
+cursor.svg ← html дизайнов/2. Главная/2.3. Главная (О генерации)/2.3.Главная (d) : О генерации — шаг 1/assets/icons/n-cursor-297-574.svg
+gradient.png ← html дизайнов/2. Главная/2.3. Главная (О генерации)/2.3.Главная (d) : О генерации — шаг 2/assets/surfaces/n-rectangle-39-297-575.png
+circle.png ← html дизайнов/2. Главная/2.3. Главная (О генерации)/2.3.Главная (d) : О генерации — шаг 4/assets/surfaces/n-rectangle-69-298-740.png
+Assets copied unchanged from the owner’s Figma export. Decorative examples only.
+
+gradient-mobile.png ← original mobile step 2/assets/surfaces/n-rectangle-39-316-1454.png
+circle-pattern-d.svg / circle-pattern-m.svg ← original step 4, circle groups; reconstructed by qa/home-2026-10-14/extract-pattern.py, with embedded unchanged PNGs and exported domTransform matrices.

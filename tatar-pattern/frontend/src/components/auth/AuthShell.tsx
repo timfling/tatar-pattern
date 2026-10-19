@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
+import { useAuthDestination } from "@/lib/auth-destination";
 import { AuthMark, AuthWordmark } from "@/components/auth/AuthMark";
 
 const FOOTER = [
@@ -21,6 +22,7 @@ export function AuthShell({
   mobileHelp = false,
 }: AuthShellProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const {authQuery} = useAuthDestination();
 
   return (
     <div className="relative flex h-full min-h-0 flex-col bg-auth max-md:bg-surface">
@@ -45,7 +47,7 @@ export function AuthShell({
           </Link>
           <Link href="/help" className="pressable-quiet text-[24px] font-normal leading-[24px] text-black">Как это работает</Link>
           <Link
-            href="/register"
+            href={`/register${authQuery}`}
             className="pressable-quiet text-[24px] font-medium leading-[24px] text-black"
           >
             [ Попробовать ]
@@ -95,6 +97,7 @@ function FooterItems() {
 }
 
 function AuthMobileMenu({ onClose }: { onClose: () => void }) {
+  const {authQuery} = useAuthDestination();
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -128,7 +131,7 @@ function AuthMobileMenu({ onClose }: { onClose: () => void }) {
         </Link>
         <Link href="/help" onClick={onClose} className="pressable-quiet text-[24px] font-normal leading-[24px] text-black">Как это работает</Link>
         <Link
-          href="/register"
+          href={`/register${authQuery}`}
           onClick={onClose}
           className="pressable-quiet text-[32px] font-medium leading-[32px] text-black"
         >

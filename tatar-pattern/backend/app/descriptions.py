@@ -1,5 +1,5 @@
 """Deterministic Russian prose from saved facts. No inference of symbolism."""
-VERSION = 'tp-description/1.1.0'
+VERSION = 'tp-description/2.1.0'
 SCHEMA = 'tp-description-schema/1.0.0'
 
 USE = {'architecture':'Проверьте масштаб деталей на пробном фрагменте поверхности.',
@@ -21,10 +21,29 @@ def describe(recipe, selections, mode='flat', legacy=False):
                 'evidence':[], 'culturalNote':None}
     composition = selections.get('composition')
     pilot = recipe.get('pilotId')
-    if pilot == 'P1':
+    variant=recipe.get('layout',{}).get('variant')
+    if recipe.get('schemeId'):
+        multiple=len(recipe.get('usedElementCodes',[]))>1
+        framed=any(p.get('role')=='frame' for p in recipe.get('placements',[]))
+        first={'center_wreath':('Главный мотив окружён акцентами и отдельными обрамляющими фрагментами.' if framed else 'Главный мотив окружён повторяющимися акцентами.' if multiple else 'Мотив размещён в центре и повторяется вокруг него.'),
+               'framed_panel':('Главный геометрический мотив и вспомогательные элементы образуют декоративное поле.' if multiple else 'Геометрический мотив размещён в центре и повторяется по краю декоративного поля.'),
+               'directed_cadence':'Дискретные мотивы образуют направленный ритм в рядах бордюра.',
+               'hanging_panel':'Подвесные формы образуют горизонтальный ритм с сохранённым направлением вниз.',
+               'hierarchical_repeat':('Главный и вспомогательные мотивы размещены в периодическом модуле с просветами.' if multiple else 'Мотив повторяется в периодическом модуле с просветами.')}[variant]
+        if recipe.get('layout',{}).get('designProfile'):
+            bands=recipe['layout'].get('bands',[])
+            strips=any(b['kind']=='discrete_strip' for b in bands)
+            motifs=any(b['kind']=='motif_cadence' for b in bands)
+            if recipe['layout'].get('offsetRepeat'):
+                first=('Мотивы чередуются с полосовыми рядами; соседние ряды смещены на половину ритма.' if strips and motifs else 'Полосовые фрагменты образуют повторяемые горизонтальные ряды с просветами.' if strips else 'Крупные и малые мотивы образуют повторяемые ряды со смещением через ряд.' if multiple else 'Один мотив повторяется в двух смещённых рядах.')
+            else:
+                first=('Главные мотивы и малые акценты дополнены отдельной полосовой каймой.' if strips and motifs else 'Полосовые фрагменты повторяются вдоль бордюра с сохранёнными просветами.' if strips else 'Крупные и малые мотивы чередуются в общей декоративной полосе.' if multiple else 'Мотив повторяется вдоль одной декоративной полосы.')
+    elif pilot == 'P1':
         first = 'Небольшую розетку окружает венок из направленных пальметт, а парные листовые спирали образуют нижнюю опору.'
     elif pilot == 'P2':
-        if recipe.get('layout',{}).get('rows')==3:
+        if recipe.get('layout',{}).get('variant')=='interwoven':
+            first = 'Крупные цветы и зелёные завитковые блоки чередуются по волнообразному ритму; малые петлевые цветы уравновешивают их сверху и снизу.'
+        elif recipe.get('layout',{}).get('rows')==3:
             first = 'Бордюр построен в три яруса: крупные округлые цветы, зелёные завитковые блоки и более частый ряд малых петлевых цветов.'
         else:
             first = 'Крупные округлые цветы задают направленный ритм бордюра; между ними размещены зелёные связки и малые петлевые цветы.'
@@ -35,7 +54,7 @@ def describe(recipe, selections, mode='flat', legacy=False):
     original = recipe.get('colorMode', selections.get('colorMode','original')) == 'original'
     color = 'Сохранены внутренние цветовые области исходных PNG' if original else 'Использовано силуэтное цветовое исполнение'
     bg = 'на прозрачном фоне' if recipe.get('transparentBackground') else 'на сплошном фоне'
-    density = {'sparse':'с широкими интервалами', 'default':'с умеренными интервалами', 'dense':'с более частым повтором'}.get(selections.get('parameters'),'')
+    density = {'sparse':'с широкими интервалами', 'default':'с умеренными интервалами', 'dense':'с небольшими просветами'}.get(selections.get('parameters'),'')
     # Legacy layout supports only its saved arrangement, not a new aesthetic diagnosis.
     if legacy: density = ''
     second = f'{color} {bg}{(" " + density) if density else ""}.'
@@ -45,7 +64,7 @@ def describe(recipe, selections, mode='flat', legacy=False):
     note = recipe.get('culturalNote') if not legacy else None
     return {'text':' '.join((first,second,application)), 'basis':'legacy_recipe' if legacy else 'saved_recipe',
             'claimType':'render_recipe_fact', 'schemaVersion':SCHEMA, 'templateVersion':VERSION,
-            'facts':{'composition':composition, 'pilotId':pilot, 'roles':recipe.get('roles'), 'elements':recipe.get('elements',[]),
+            'facts':{'composition':composition, 'pilotId':pilot, 'schemeId':recipe.get('schemeId'), 'familyId':recipe.get('familyId'), 'roles':recipe.get('roles'), 'elements':recipe.get('elements',[]),
                      'layout':recipe.get('layout'), 'colorMode':recipe.get('colorMode'), 'background':recipe.get('palette',{}).get('bg'),
                      'outputKind':recipe.get('outputKind'), 'seamless':recipe.get('seamless')},
             'evidence':recipe.get('descriptionEvidence',[]), 'culturalNote':note}

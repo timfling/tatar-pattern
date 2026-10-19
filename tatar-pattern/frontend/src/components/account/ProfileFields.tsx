@@ -22,8 +22,8 @@ export function ProfileFields({ value, onChange }: { value: Profile; onChange: (
     } catch { setError("Не удалось прочитать изображение."); }
   }
   return <div className="flex w-full flex-col gap-4">
-    <AuthField value={value.firstName} onChange={firstName => onChange({ ...value, firstName })} placeholder="Имя" autoComplete="given-name" />
-    <AuthField value={value.lastName} onChange={lastName => onChange({ ...value, lastName })} placeholder="Фамилия" autoComplete="family-name" />
+    <AuthField value={value.firstName} onChange={firstName => onChange({ ...value, firstName })} placeholder="Имя · необязательно" autoComplete="given-name" />
+    <AuthField value={value.lastName} onChange={lastName => onChange({ ...value, lastName })} placeholder="Фамилия · необязательно" autoComplete="family-name" />
     <label className="flex flex-col gap-2 text-sm">Род деятельности · необязательно<select className="rounded-2xl border border-hairline bg-transparent p-3" value={value.occupation} onChange={e => onChange({ ...value, occupation: e.target.value })}><option value="">Не указан</option><option value="designer">Дизайнер</option><option value="artist">Художник</option><option value="student">Студент</option><option value="researcher">Исследователь</option><option value="other">Другое</option></select></label>
     <label className="flex flex-wrap items-center gap-3 text-sm">{value.avatar ?  <img alt="Ваш аватар" src={value.avatar} className="size-12 rounded-full object-cover" /> : null}Аватар · необязательно<input type="file" accept="image/png,image/jpeg,image/webp" onChange={e => void avatar(e.target.files?.[0])} className="max-w-full text-xs" /></label>
     {value.avatar ? <button type="button" className="self-start text-sm underline" onClick={() => onChange({ ...value, avatar: null })}>Убрать аватар</button> : null}

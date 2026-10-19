@@ -157,7 +157,7 @@ export function LibraryScreen() {
 
         {!loading && !projects.length ? <p className="api-notice">Создайте проект, чтобы объединить результаты в коллекцию.</p> : null}
         {projectFilter ? <button className="mt-6 underline" onClick={() => setProjectFilter(null)}>Вся история</button> : null}
-        <label className="mt-8 flex flex-wrap items-center gap-3 text-sm">Тип генерации<select aria-label="Тип генерации" className="rounded-xl bg-white px-3 py-2" value={modeFilter} onChange={(e) => setModeFilter(e.target.value as "all" | "flat" | "ai")}><option value="all">Все режимы</option><option value="flat">Плоский</option><option value="ai">ИИ-варианты</option></select></label>
+        <label className="mt-8 flex flex-wrap items-center gap-3 text-sm">Тип генерации<select aria-label="Тип генерации" className="rounded-xl bg-white px-3 py-2" value={modeFilter} onChange={(e) => setModeFilter(e.target.value as "all" | "flat" | "ai")}><option value="all">Все режимы</option><option value="flat">Flat-рисунки</option><option value="ai">ИИ-варианты</option></select></label>
         <div className="mt-[64px] flex items-center justify-between max-md:mt-[51px]">
           <h2 className="font-display text-[36px] italic leading-none text-black max-md:text-[28px]">
             История генераций
@@ -361,7 +361,7 @@ function HistoryTile({
             {item.name}
           </p>
           <p className="mt-[4px] text-[13px] font-medium leading-[16px] text-white/85">
-            {item.mode === "ai" ? "ИИ-вариант" : "Плоский"} · {item.stamp}
+            {item.mode === "ai" ? "ИИ-вариант" : "Flat-рисунок"} · {item.stamp}
           </p>
           {projectName ? (
             <p className="mt-[2px] truncate text-[13px] font-medium leading-[16px] text-white/75">
@@ -416,7 +416,7 @@ function HistoryRow({
       {item ? (
         <div className="min-w-0 flex-1 text-left">
           <p className="truncate text-[18px] font-medium text-black">{item.name}</p>
-          <p className="mt-[4px] text-[14px] font-semibold text-[#4E4E4E]">{item.mode === "ai" ? "ИИ-вариант" : "Плоский"} · {item.stamp}</p>
+          <p className="mt-[4px] text-[14px] font-semibold text-[#4E4E4E]">{item.mode === "ai" ? "ИИ-вариант" : "Flat-рисунок"} · {item.stamp}</p>
           {projectName ? (
             <p className="mt-[2px] truncate text-[13px] font-medium text-[#8B8B8B]">
               {projectName}

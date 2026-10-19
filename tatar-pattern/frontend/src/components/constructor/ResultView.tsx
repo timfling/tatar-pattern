@@ -7,6 +7,7 @@ import { PatternCanvas } from "@/components/constructor/PatternCanvas";
 import { LikeButton, DislikeButton } from "@/components/constructor/LikeButton";
 import { GenerationInfo } from "@/components/constructor/GenerationInfo";
 import type { ParameterTile, ConstructorSelections } from "@/components/constructor/parameters";
+import type { Generation } from "@/lib/api";
 import type { PatternRating } from "@/lib/library";
 
 import {
@@ -14,6 +15,8 @@ import {
 } from "@/components/constructor/data";
 
 type ResultViewProps = {
+  editLabel?: string;
+  generation?: Generation | null;
   infoDetails?: { title: string; value: string }[];
   imageUrl: string | null; imageSize?: number[] | null; onDelete: () => Promise<void>;
   repeatPreview?: boolean; onImageError?: () => void; exportDisabled?: boolean; tiles?: ParameterTile[];
@@ -34,7 +37,7 @@ type ResultViewProps = {
 };
 
 export function ResultView({
-  imageUrl, infoDetails, imageSize, onDelete, repeatPreview, onImageError, exportDisabled, tiles,
+  editLabel = "Редактировать", imageUrl, generation, infoDetails, imageSize, onDelete, repeatPreview, onImageError, exportDisabled, tiles,
   stamp,
   name,
   rating,
@@ -53,12 +56,12 @@ export function ResultView({
   const [naturalRatio, setNaturalRatio] = useState(1);
   const aspect = imageSize?.[0] && imageSize?.[1] ? imageSize[0] / imageSize[1] : naturalRatio;
   return (
-    <div className="constructor-stage flex min-h-0 flex-1 flex-col">
+    <div className="constructor-stage flex min-h-0 flex-1 flex-col max-md:flex-none">
       <div className="relative hidden shrink-0 px-[25px] pt-[25px] md:block">
         <BackButton onClick={onBack} />
         <PatternMeta name={name} stamp={stamp} onRename={onRename} />
         <div className="absolute right-[25px] top-[25px] flex items-center gap-3">
-          <DeleteButton onDelete={onDelete} /><GenerationInfo details={infoDetails} tiles={tiles} selections={selections} prompt={prompt} />
+          <DeleteButton onDelete={onDelete} /><GenerationInfo generation={generation} details={infoDetails} tiles={tiles} selections={selections} prompt={prompt} />
         </div>
       </div>
 
@@ -96,7 +99,7 @@ export function ResultView({
                     >
                       <Icon name="edit-sparkle" width={20} height={20} />
                       <span className="text-[20px] font-semibold leading-[20px] text-black opacity-90">
-                        Редактировать
+                        {editLabel}
                       </span>
                     </button>
                     <button
@@ -119,7 +122,7 @@ export function ResultView({
         </div>
       </div>
 
-      <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-[16px] py-[12px] md:hidden">
+      <div className="flex shrink-0 flex-col items-center px-[16px] py-[12px] md:hidden">
         <PatternMeta name={name} stamp={stamp} onRename={onRename} compact />
 
         <div className="mt-[14px] flex w-full max-w-[323px] flex-col items-center">
@@ -134,7 +137,7 @@ export function ResultView({
           </button>
 
           <div className="mt-[14px] flex w-full items-center justify-between px-[10px]">
-            <div className="flex gap-3"><GenerationInfo details={infoDetails} tiles={tiles} selections={selections} prompt={prompt} compact /><DeleteButton onDelete={onDelete} compact /></div>
+            <div className="flex gap-3"><GenerationInfo generation={generation} details={infoDetails} tiles={tiles} selections={selections} prompt={prompt} compact /><DeleteButton onDelete={onDelete} compact /></div>
             <RatingButtons rating={rating} onRate={onRate} size={32} />
           </div>
 
@@ -144,7 +147,7 @@ export function ResultView({
             ) : (
               <>
                 <ActionButton onClick={onEdit} icon="edit-sparkle" iconW={16} iconH={16}>
-                  Редактировать
+                  {editLabel}
                 </ActionButton>
                 <ActionButton disabled={exportDisabled} onClick={onExport} icon="export" iconW={14} iconH={16}>
                   Экспортировать

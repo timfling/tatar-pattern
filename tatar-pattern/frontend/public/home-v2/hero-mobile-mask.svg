@@ -1,0 +1,28 @@
+<svg width="402" height="874" viewBox="0 0 402 874" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Subtract" filter="url(#filter0_dd_313_1005)">
+<path d="M77.4043 874H0V797.3L77.4043 874ZM402 874H326.721L402 799.405V874ZM402 293.109L291.533 404.541C273.988 422.24 273.988 450.768 291.533 468.467L402 579.897V693.447L234.033 527.01C216.331 509.469 187.795 509.469 170.093 527.01L0 695.554V579.895L110.467 468.463C128.012 450.764 128.012 422.236 110.467 404.537L0 293.105V179.541L167.979 345.99C185.681 363.531 214.216 363.531 231.919 345.99L402 177.457V293.109ZM402 75.6875L325.616 0H402V75.6875ZM0 73.6045V0H74.2812L0 73.6045Z" fill="url(#paint0_radial_313_1005)"/>
+<path d="M77.4043 874H0V797.3L77.4043 874ZM402 874H326.721L402 799.405V874ZM402 293.109L291.533 404.541C273.988 422.24 273.988 450.768 291.533 468.467L402 579.897V693.447L234.033 527.01C216.331 509.469 187.795 509.469 170.093 527.01L0 695.554V579.895L110.467 468.463C128.012 450.764 128.012 422.236 110.467 404.537L0 293.105V179.541L167.979 345.99C185.681 363.531 214.216 363.531 231.919 345.99L402 177.457V293.109ZM402 75.6875L325.616 0H402V75.6875ZM0 73.6045V0H74.2812L0 73.6045Z" fill="white" fill-opacity="0.5"/>
+</g>
+<defs>
+<filter id="filter0_dd_313_1005" x="-64" y="-64" width="530" height="1002" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="32"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_313_1005"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="9"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+<feBlend mode="normal" in2="effect1_dropShadow_313_1005" result="effect2_dropShadow_313_1005"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_313_1005" result="shape"/>
+</filter>
+<radialGradient id="paint0_radial_313_1005" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(201 437) rotate(90) scale(437 437)">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#F1F1F1"/>
+</radialGradient>
+</defs>
+</svg>

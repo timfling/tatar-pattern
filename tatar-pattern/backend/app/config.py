@@ -11,6 +11,7 @@ class Settings:
     allow_fixtures: bool = False
     session_days: int = 7
     local_catalog: bool = False
+    ai_mvp_enabled: bool = False
 
     @classmethod
     def from_env(cls):
@@ -21,5 +22,6 @@ class Settings:
             cookie_secure=os.getenv('COOKIE_SECURE', 'false').lower() == 'true',
             allow_fixtures=os.getenv('ALLOW_FIXTURES', 'false').lower() == 'true',
             session_days=int(os.getenv('SESSION_DAYS', '7')),
+            ai_mvp_enabled=os.getenv('AI_MVP_ENABLED','false').lower() == 'true',
             local_catalog=os.getenv('TP_ENVIRONMENT') in ('local_project','isolated_test'),
         )

@@ -2,3 +2,8 @@
 *.env
 local-check/
 __pycache__/
+gpu-secrets/
+id_ed25519*
+known_hosts
+*.pem
+*.key

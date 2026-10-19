@@ -1,0 +1,1147 @@
+{
+  "schema": "tp-local-composition-base-export/1.0",
+  "source": {
+    "path": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f03-wreath-paper.png",
+    "sha256": "8e36617467b846a510f43efa13a874c5ea702158710e6f7e4522b078df981e08",
+    "ownerStatus": "owner_accepted_2026_10_13",
+    "acceptanceScope": "original composition; export not separately reviewed"
+  },
+  "request": {
+    "selections": {
+      "style": "heritage",
+      "composition": "medallion",
+      "parameters": "default",
+      "motifs": [],
+      "elementCodes": [
+        "TP-E-014"
+      ],
+      "scale": 1.0,
+      "transparentBackground": false,
+      "backgroundColor": "#f3ebdb",
+      "renderer": "composition-v2",
+      "schemeId": "f03-wreath",
+      "registryVersion": "tp-schemes/2.1.0",
+      "primaryElementCode": null,
+      "borderLayout": "registers",
+      "rapportOutput": "module",
+      "moduleSize": null,
+      "outputSize": [
+        1024,
+        1024
+      ],
+      "colorMode": "original",
+      "palette": "emerald",
+      "usage": "textile"
+    },
+    "seed": 42
+  },
+  "recipe": {
+    "designSourceSha256": "755c084587c6f3c72dd93ca728d6c4781c0f92ee6d80c45e0914cd5e1a03199d",
+    "schemaVersion": "tp-composition-recipe/2.0.0",
+    "algorithmVersion": "composition-pillow/2.1.0",
+    "registryVersion": "tp-schemes/2.1.0",
+    "registrySha256": "7d5b3133a2bfad87f3cea41636653f5a205a3fab5786314a2f0ca700d3e618ca",
+    "schemeId": "f03-wreath",
+    "schemeDefinition": {
+      "id": "f03-wreath",
+      "registryVersion": "tp-schemes/2.1.0",
+      "familyId": "F03",
+      "composition": "medallion",
+      "layout": "center_wreath",
+      "useScope": "medallion",
+      "titleRu": "Средневековые керамические фрагменты · Центр и обрамление",
+      "descriptionRu": "Современная композиционная схема по ролям и метаданным ревизии.",
+      "allowedElementCodes": [
+        "TP-E-013",
+        "TP-E-014",
+        "TP-E-015"
+      ],
+      "defaultElementCodes": [
+        "TP-E-014"
+      ],
+      "minimumSelected": 1,
+      "maximumSelected": 16,
+      "requiredRoles": [
+        "center"
+      ],
+      "centerCandidates": [
+        "TP-E-014"
+      ],
+      "roleOptions": {
+        "TP-E-013": [
+          "frame"
+        ],
+        "TP-E-014": [
+          "center",
+          "support"
+        ],
+        "TP-E-015": [
+          "frame"
+        ]
+      },
+      "constraints": {
+        "colorModes": [
+          "original"
+        ],
+        "reflection": false,
+        "continuousJoinedRepeat": false,
+        "minimumSizeBasis": "recommended_not_empirically_verified"
+      },
+      "previewUrl": "/api/composition-schemes/f03-wreath/preview",
+      "previewIsExample": true,
+      "reviewStatus": "owner_accepted_2026_10_13",
+      "evidence": [
+        "D01",
+        "C01"
+      ]
+    },
+    "familyId": "F03",
+    "seed": 42,
+    "roles": {
+      "TP-E-014": "center"
+    },
+    "primaryElementCode": "TP-E-014",
+    "layout": {
+      "variant": "center_wreath",
+      "schemeId": "f03-wreath",
+      "useScope": "medallion",
+      "gapRatio": 0.26,
+      "historicalReconstruction": false,
+      "continuousJoinedRepeat": false,
+      "rays": 8,
+      "radius": 307.2,
+      "centerLongSide": 225,
+      "candidatesBound": 9
+    },
+    "size": [
+      1024,
+      1024
+    ],
+    "requestedSize": [
+      1024,
+      1024
+    ],
+    "palette": {
+      "bg": "#f3ebdb"
+    },
+    "placements": [
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          225,
+          218
+        ],
+        "code": "TP-E-014",
+        "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          33,
+          59,
+          992,
+          992
+        ],
+        "cropSize": [
+          959,
+          933
+        ],
+        "resizedSize": [
+          225,
+          219
+        ],
+        "spriteSize": [
+          225,
+          219
+        ],
+        "longSideBeforeRotation": 225,
+        "recommendedMinLongSide": 144,
+        "baseAxis": null,
+        "targetAxis": null,
+        "clockwiseDegrees": 0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.2346193952033368,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.2347266881028939,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": null,
+        "visualCenterSprite": [
+          112.5,
+          109.5
+        ],
+        "evidence": [
+          "OBS-TP-E-014",
+          "D01"
+        ],
+        "role": "center",
+        "anchor": "working_center",
+        "anchorPosition": [
+          512.0,
+          512.0
+        ],
+        "topLeft": [
+          400,
+          403
+        ],
+        "bounds": [
+          400,
+          403,
+          625,
+          622
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.2346193952033368,
+            -0.0,
+            400.0
+          ],
+          [
+            0.0,
+            0.2347266881028939,
+            403.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": null
+      },
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          144,
+          140
+        ],
+        "code": "TP-E-014",
+        "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          33,
+          59,
+          992,
+          992
+        ],
+        "cropSize": [
+          959,
+          933
+        ],
+        "resizedSize": [
+          144,
+          140
+        ],
+        "spriteSize": [
+          144,
+          140
+        ],
+        "longSideBeforeRotation": 144,
+        "recommendedMinLongSide": 144,
+        "baseAxis": null,
+        "targetAxis": null,
+        "clockwiseDegrees": 0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": null,
+        "visualCenterSprite": [
+          72.0,
+          70.0
+        ],
+        "evidence": [
+          "OBS-TP-E-014",
+          "D01"
+        ],
+        "role": "center",
+        "anchor": "working_center",
+        "anchorPosition": [
+          522.7211253870083,
+          204.98713793973377
+        ],
+        "topLeft": [
+          451,
+          135
+        ],
+        "bounds": [
+          451,
+          135,
+          595,
+          275
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            451.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            135.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": null
+      },
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          144,
+          140
+        ],
+        "code": "TP-E-014",
+        "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          33,
+          59,
+          992,
+          992
+        ],
+        "cropSize": [
+          959,
+          933
+        ],
+        "resizedSize": [
+          144,
+          140
+        ],
+        "spriteSize": [
+          144,
+          140
+        ],
+        "longSideBeforeRotation": 144,
+        "recommendedMinLongSide": 144,
+        "baseAxis": null,
+        "targetAxis": null,
+        "clockwiseDegrees": 0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": null,
+        "visualCenterSprite": [
+          72.0,
+          70.0
+        ],
+        "evidence": [
+          "OBS-TP-E-014",
+          "D01"
+        ],
+        "role": "center",
+        "anchor": "working_center",
+        "anchorPosition": [
+          736.6718571374091,
+          302.49010378880047
+        ],
+        "topLeft": [
+          665,
+          232
+        ],
+        "bounds": [
+          665,
+          232,
+          809,
+          372
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            665.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            232.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": null
+      },
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          144,
+          140
+        ],
+        "code": "TP-E-014",
+        "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          33,
+          59,
+          992,
+          992
+        ],
+        "cropSize": [
+          959,
+          933
+        ],
+        "resizedSize": [
+          144,
+          140
+        ],
+        "spriteSize": [
+          144,
+          140
+        ],
+        "longSideBeforeRotation": 144,
+        "recommendedMinLongSide": 144,
+        "baseAxis": null,
+        "targetAxis": null,
+        "clockwiseDegrees": 0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": null,
+        "visualCenterSprite": [
+          72.0,
+          70.0
+        ],
+        "evidence": [
+          "OBS-TP-E-014",
+          "D01"
+        ],
+        "role": "center",
+        "anchor": "working_center",
+        "anchorPosition": [
+          819.0128620602662,
+          522.7211253870083
+        ],
+        "topLeft": [
+          747,
+          453
+        ],
+        "bounds": [
+          747,
+          453,
+          891,
+          593
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            747.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            453.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": null
+      },
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          144,
+          140
+        ],
+        "code": "TP-E-014",
+        "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          33,
+          59,
+          992,
+          992
+        ],
+        "cropSize": [
+          959,
+          933
+        ],
+        "resizedSize": [
+          144,
+          140
+        ],
+        "spriteSize": [
+          144,
+          140
+        ],
+        "longSideBeforeRotation": 144,
+        "recommendedMinLongSide": 144,
+        "baseAxis": null,
+        "targetAxis": null,
+        "clockwiseDegrees": 0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": null,
+        "visualCenterSprite": [
+          72.0,
+          70.0
+        ],
+        "evidence": [
+          "OBS-TP-E-014",
+          "D01"
+        ],
+        "role": "center",
+        "anchor": "working_center",
+        "anchorPosition": [
+          721.5098962111996,
+          736.6718571374091
+        ],
+        "topLeft": [
+          650,
+          667
+        ],
+        "bounds": [
+          650,
+          667,
+          794,
+          807
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            650.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            667.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": null
+      },
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          144,
+          140
+        ],
+        "code": "TP-E-014",
+        "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          33,
+          59,
+          992,
+          992
+        ],
+        "cropSize": [
+          959,
+          933
+        ],
+        "resizedSize": [
+          144,
+          140
+        ],
+        "spriteSize": [
+          144,
+          140
+        ],
+        "longSideBeforeRotation": 144,
+        "recommendedMinLongSide": 144,
+        "baseAxis": null,
+        "targetAxis": null,
+        "clockwiseDegrees": 0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": null,
+        "visualCenterSprite": [
+          72.0,
+          70.0
+        ],
+        "evidence": [
+          "OBS-TP-E-014",
+          "D01"
+        ],
+        "role": "center",
+        "anchor": "working_center",
+        "anchorPosition": [
+          501.27887461299173,
+          819.0128620602662
+        ],
+        "topLeft": [
+          429,
+          749
+        ],
+        "bounds": [
+          429,
+          749,
+          573,
+          889
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            429.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            749.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": null
+      },
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          144,
+          140
+        ],
+        "code": "TP-E-014",
+        "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          33,
+          59,
+          992,
+          992
+        ],
+        "cropSize": [
+          959,
+          933
+        ],
+        "resizedSize": [
+          144,
+          140
+        ],
+        "spriteSize": [
+          144,
+          140
+        ],
+        "longSideBeforeRotation": 144,
+        "recommendedMinLongSide": 144,
+        "baseAxis": null,
+        "targetAxis": null,
+        "clockwiseDegrees": 0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": null,
+        "visualCenterSprite": [
+          72.0,
+          70.0
+        ],
+        "evidence": [
+          "OBS-TP-E-014",
+          "D01"
+        ],
+        "role": "center",
+        "anchor": "working_center",
+        "anchorPosition": [
+          287.3281428625909,
+          721.5098962111996
+        ],
+        "topLeft": [
+          215,
+          652
+        ],
+        "bounds": [
+          215,
+          652,
+          359,
+          792
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            215.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            652.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": null
+      },
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          144,
+          140
+        ],
+        "code": "TP-E-014",
+        "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          33,
+          59,
+          992,
+          992
+        ],
+        "cropSize": [
+          959,
+          933
+        ],
+        "resizedSize": [
+          144,
+          140
+        ],
+        "spriteSize": [
+          144,
+          140
+        ],
+        "longSideBeforeRotation": 144,
+        "recommendedMinLongSide": 144,
+        "baseAxis": null,
+        "targetAxis": null,
+        "clockwiseDegrees": 0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": null,
+        "visualCenterSprite": [
+          72.0,
+          70.0
+        ],
+        "evidence": [
+          "OBS-TP-E-014",
+          "D01"
+        ],
+        "role": "center",
+        "anchor": "working_center",
+        "anchorPosition": [
+          204.98713793973377,
+          501.2788746129916
+        ],
+        "topLeft": [
+          133,
+          431
+        ],
+        "bounds": [
+          133,
+          431,
+          277,
+          571
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            133.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            431.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": null
+      },
+      {
+        "workingBoundsSprite": [
+          0,
+          0,
+          144,
+          140
+        ],
+        "code": "TP-E-014",
+        "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+        "metadataVersion": "tp-composition-review/1.0.0",
+        "alphaCrop": [
+          33,
+          59,
+          992,
+          992
+        ],
+        "cropSize": [
+          959,
+          933
+        ],
+        "resizedSize": [
+          144,
+          140
+        ],
+        "spriteSize": [
+          144,
+          140
+        ],
+        "longSideBeforeRotation": 144,
+        "recommendedMinLongSide": 144,
+        "baseAxis": null,
+        "targetAxis": null,
+        "clockwiseDegrees": 0,
+        "reflected": false,
+        "cropToSpriteMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            0.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentSprite": null,
+        "visualCenterSprite": [
+          72.0,
+          70.0
+        ],
+        "evidence": [
+          "OBS-TP-E-014",
+          "D01"
+        ],
+        "role": "center",
+        "anchor": "working_center",
+        "anchorPosition": [
+          302.4901037888005,
+          287.32814286259077
+        ],
+        "topLeft": [
+          230,
+          217
+        ],
+        "bounds": [
+          230,
+          217,
+          374,
+          357
+        ],
+        "wrap": false,
+        "cropToOutputMatrix": [
+          [
+            0.15015641293013557,
+            -0.0,
+            230.0
+          ],
+          [
+            0.0,
+            0.15005359056806003,
+            217.0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "attachmentOutput": null
+      }
+    ],
+    "modernAdditions": [
+      {
+        "kind": "circle_guide",
+        "bounds": [
+          204.8,
+          204.8,
+          819.2,
+          819.2
+        ],
+        "rgba": [
+          53,
+          86,
+          70,
+          65
+        ],
+        "width": 1,
+        "claimType": "contemporary_design",
+        "evidence": [
+          "D01"
+        ]
+      }
+    ],
+    "colorMode": "original",
+    "transparentBackground": false,
+    "selectedElementCodes": [
+      "TP-E-014"
+    ],
+    "selectedMotifKeys": [],
+    "usedElementCodes": [
+      "TP-E-014"
+    ],
+    "elements": [
+      {
+        "code": "TP-E-014",
+        "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+        "motif": "class-a18bb267928c4919",
+        "artifactCode": "KS-9407",
+        "sourceFrame": "DSC9407"
+      }
+    ],
+    "compatibility": {
+      "status": "supported_scheme",
+      "geometry": "checked_for_saved_layout",
+      "aesthetic": "designer_proposal",
+      "cultural": "unknown",
+      "reasons": [
+        {
+          "code": "CONTEMPORARY_LAYOUT",
+          "severity": "unknown",
+          "scope": "cultural",
+          "evidence": [
+            "D01",
+            "RULE-05"
+          ],
+          "message": "Расстановка современная; культурная валидность новой пары и символика не подтверждены."
+        }
+      ],
+      "metadataVersion": "tp-composition-review/1.0.0",
+      "snapshotSha256": {
+        "evidence.json": "c04912ce41b1dda5f6fbee29c026a386777891c9d0d2fc87b9c45471cf4dc6cc",
+        "families.json": "8bbd0bc2fae523f50d4bb308885b08fb3159f4e70d7b75555e3950811ebf9210",
+        "metadata.json": "809bb8493c6a476bb577f54fb1798d349e39b306483dcc93a5ac9d7a240be2f7",
+        "compatibility-rules.json": "a3cac5d90d861d424f38971d38b401fda333482e95d5d804edd4f79a3f8a339b"
+      }
+    },
+    "descriptionEvidence": [
+      "D01",
+      "OBS-TP-E-014"
+    ],
+    "culturalNote": {
+      "text": "Схема использует мотивы из каталогизированных источников выбранного семейства. Расстановка современная; точная историческая композиция и символика не установлены.",
+      "claimType": "catalogue_context",
+      "appliesTo": "selected_source_objects_only_not_layout_authenticity",
+      "evidence": [
+        {
+          "id": "CAT-KS-9407",
+          "type": "catalogue_attribution",
+          "title": "Кольцевой поддон чаши.",
+          "author": null,
+          "publication_date": null,
+          "object_dating": "XIII–XV вв.",
+          "path": "../manifest.csv",
+          "locator": "artifact_code=KS-9407; frames=DSC9407",
+          "basis": "Название, датировка, техника и происхождение перенесены из manifest без новой экспертной проверки.",
+          "verifiedBy": null
+        }
+      ]
+    },
+    "diagnostics": {
+      "overlapPixels": 0,
+      "contrast": [
+        {
+          "code": "TP-E-014",
+          "meanRgbDistance": 118.09,
+          "empiricalReadability": "unknown"
+        },
+        {
+          "code": "TP-E-014",
+          "meanRgbDistance": 117.86,
+          "empiricalReadability": "unknown"
+        }
+      ],
+      "empiricalReadability": "unknown"
+    },
+    "outputKind": "composition_image",
+    "seamless": false,
+    "repeat": null,
+    "isFixture": false,
+    "pillowVersion": "12.3.0",
+    "rendererSourceSha256": "3fca435ce5a32d0245d677b18a7aaab95fb9fcc0fb4b32911968a7217ea77764"
+  },
+  "export": {
+    "size": [
+      1024,
+      1024
+    ],
+    "mode": "RGB",
+    "background": "#f3ebdb",
+    "resizedSize": [
+      1024,
+      1024
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "paddingLTRB": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "sourceToOutputMatrix": [
+      [
+        1.0,
+        0,
+        0
+      ],
+      [
+        0,
+        1.0,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "resampler": "LANCZOS",
+    "pillowVersion": "12.3.0",
+    "sha256": "819bec8c84bbf7316694ad1cb60feafa18a87bf2219115e2709cdaf6facfbf60",
+    "operation": "proportional fit and background padding; no crop/recolor/rearrangement"
+  }
+}

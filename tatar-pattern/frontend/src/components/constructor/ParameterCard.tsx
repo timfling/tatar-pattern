@@ -40,6 +40,7 @@ export type ParameterCardProps = {
   mobileCorner?: keyof typeof MOBILE_CORNER;
   /** Открытая карточка в макете — пустой контур, поверх неё лежит окно. */
   ghost?: boolean;
+  compactValue?: boolean;
   onClick?: () => void;
 };
 
@@ -51,6 +52,7 @@ export function ParameterCard({
   corner = "none",
   mobileCorner = "none",
   ghost = false,
+  compactValue = false,
   onClick,
 }: ParameterCardProps) {
   return (
@@ -91,7 +93,8 @@ export function ParameterCard({
 
           <span
             className={[
-              "min-w-0 self-stretch overflow-visible text-[32px] leading-[1.22] max-md:text-[20px] max-md:leading-[1.22]",
+              "min-w-0 self-stretch overflow-visible leading-[1.22] max-md:leading-[1.22]",
+              compactValue ? "text-[24px] max-md:text-[16px]" : "text-[32px] max-md:text-[20px]",
               isSet ? "font-display italic" : "font-extralight",
               tone === "strong" ? "text-black" : "text-ink-subtle",
             ].join(" ")}

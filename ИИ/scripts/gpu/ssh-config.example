@@ -1,0 +1,15 @@
+# On Beget, for a dedicated tunnel account with a verified host key.
+# This is a template, not an installed tunnel. Replace all REPLACE_* values.
+Host tatar-immers-gpu
+    HostName REPLACE_WITH_IMMERS_GPU_IP
+    Port REPLACE_WITH_VERIFIED_SSH_PORT
+    User REPLACE_WITH_TUNNEL_USER
+    IdentityFile REPLACE_WITH_SERVER_ONLY_SSH_KEY_PATH
+    IdentitiesOnly yes
+    BatchMode yes
+    StrictHostKeyChecking yes
+    UserKnownHostsFile REPLACE_WITH_VERIFIED_KNOWN_HOSTS_PATH
+    ExitOnForwardFailure yes
+    ServerAliveInterval 30
+    ServerAliveCountMax 3
+    LocalForward 127.0.0.1:18765 127.0.0.1:8765

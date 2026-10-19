@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { splitNav, type NavItem } from "@/components/layout/Sidebar";
@@ -11,44 +11,54 @@ type MobileMenuProps = {
   onConstructorClick?: () => void;
 };
 
-/**
- * Полноэкранное меню поверх конструктора.
- * В экспорте Figma нет backdrop-filter — полупрозрачный белый слой
- * без размытия не читается поверх карточек, поэтому blur восстановлен.
- */
 export function MobileMenu({
   active,
   onClose,
   onConstructorClick,
 }: MobileMenuProps) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [activeMenu, setActiveMenu] = useState(false);
+  const closing = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const close = useCallback(() => {
+    if (closing.current) return;
+    setActiveMenu(false);
+    closing.current = setTimeout(onClose, 280);
+  }, [onClose]);
   useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    const el = dialog.current;
+    const previous = document.activeElement as HTMLElement | null;
+    el?.showModal();
+    const desktop = matchMedia("(min-width:768px)");
+    const resized = () => { if(desktop.matches) onClose(); };
+    desktop.addEventListener("change",resized);
+    let second = 0;
+    const first = requestAnimationFrame(() => { second = requestAnimationFrame(() => setActiveMenu(true)); });
+    return () => { desktop.removeEventListener("change",resized); cancelAnimationFrame(first); cancelAnimationFrame(second); if(closing.current) clearTimeout(closing.current); el?.close(); requestAnimationFrame(() => previous?.focus({preventScroll:true})); };
   }, [onClose]);
 
   const { before, current, after } = splitNav(active);
 
   function go(href: string) {
     if (href === "/constructor") onConstructorClick?.();
-    onClose();
+    close();
   }
 
   return (
-    <div
+    <dialog
+      ref={dialog}
+      data-active={activeMenu}
+      onCancel={e => {e.preventDefault();close();}}
       role="dialog"
       aria-label="Меню"
-      className="mobile-menu-enter fixed inset-0 z-50 flex flex-col items-center bg-white/15 px-[19px] pb-[max(24px,env(safe-area-inset-bottom))] pt-[max(13px,env(safe-area-inset-top))] shadow-[0px_0px_28px_rgba(0,0,0,0.15)] outline outline-[0.6px] -outline-offset-[0.6px] outline-[#E6E6E6]/60 backdrop-blur-[24px] md:hidden"
+      className="mobile-menu-v2 fixed inset-0 z-50 flex flex-col items-center px-[19px] pb-[max(24px,env(safe-area-inset-bottom))] pt-[max(13px,env(safe-area-inset-top))] md:hidden"
     >
       <div className="flex h-[50px] w-full max-w-[365px] items-center justify-between">
-        <button type="button" aria-label="Закрыть меню" onClick={onClose}>
+        <button type="button" aria-label="Закрыть меню" onClick={close}>
           <Icon name="menu-close" width={42} height={42} />
         </button>
         <Link
           href="/profile"
-          onClick={onClose}
+          onClick={close}
           className="flex items-center gap-[10px] rounded-[48px] bg-white/20 py-[4px] pl-[12px] pr-[4px] outline outline-[0.5px] -outline-offset-[0.5px] outline-white/50"
         >
           <span className="text-[15px] font-bold leading-[15px] text-[#585858]">
@@ -61,7 +71,7 @@ export function MobileMenu({
       <div className="mt-[65px] flex w-full max-w-[349px] flex-col items-center gap-[47px]">
         <Link
           href="/"
-          onClick={onClose}
+          onClick={close}
           className="w-[178px] text-center font-display text-[32px] leading-[32px] tracking-[1.92px] text-ink-title"
         >
           ТАТАР
@@ -103,7 +113,7 @@ export function MobileMenu({
 
         <Link
           href="/"
-          onClick={onClose}
+          onClick={close}
           className="flex items-center justify-center gap-[12px] overflow-hidden rounded-[22px] px-[44px] py-[16px]"
         >
           <Icon name="home" width={16} height={18} />
@@ -112,13 +122,13 @@ export function MobileMenu({
           </span>
         </Link>
       </div>
-    </div>
+    </dialog>
   );
 }
 
 function iconSize(item: NavItem) {
   return {
-    iconW: item.w === 23 ? 20 : item.href === "/constructor" ? 25 : 22,
+    iconW: item.href === "/library" ? 20 : item.w === 23 ? 20 : item.href === "/constructor" ? 25 : 22,
     iconH: item.h === 23 ? (item.icon === "help" ? 19 : 20) : item.href === "/constructor" ? 24 : 20,
   };
 }

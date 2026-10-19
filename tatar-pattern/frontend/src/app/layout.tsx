@@ -15,6 +15,7 @@ const raleway = Raleway({
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin", "cyrillic"],
+  style: ["normal", "italic"],
 });
 
 // В макетах — подписи кнопок конструктора. Кириллицы у шрифта нет,

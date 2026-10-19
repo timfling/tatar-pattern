@@ -47,5 +47,101 @@ class ReleaseGateTests(unittest.TestCase):
                 ops.main()
             compose.return_value.assert_not_called()
 
+
+class AIBackupTests(unittest.TestCase):
+    def test_worker_stops_before_snapshot_and_only_running_writers_restart(self):
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        events = []
+        def dc(*args, **kwargs):
+            events.append(args)
+            if args[:2] == ('ps', '--services'):
+                return b'db\nbackend\nai-worker\ngpu-tunnel\n'
+            if args[0] == 'ps': return b'[{"State":"exited","ExitCode":0}]'
+            if args[0] == 'logs': return b'AI_WORKER_DRAINED: local states saved'
+        with TemporaryDirectory() as tmp, patch.object(ops, 'pg', side_effect=lambda *a: events.append(('dump',)) or b'x'*101), patch.object(ops, 'counts', return_value={}):
+            (Path(tmp)/'storage').mkdir()
+            ops.backup(dc, {'DATA_ROOT': tmp, 'RELEASE': 'test'})
+        self.assertLess(events.index(('stop','-t','960','ai-worker')), events.index(('dump',)))
+        self.assertEqual(events[-1], ('start','backend','ai-worker'))
+
+    def test_dump_failure_restarts_worker_without_complete_manifest(self):
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        events = []
+        def dc(*args, **kwargs):
+            events.append(args)
+            if args[:2] == ('ps', '--services'): return b'db\nai-worker\n'
+            if args[0] == 'ps': return b'[{"State":"exited","ExitCode":0}]'
+            if args[0] == 'logs': return b'AI_WORKER_DRAINED: local states saved'
+        with TemporaryDirectory() as tmp, patch.object(ops, 'pg', side_effect=RuntimeError('dump failed')):
+            with self.assertRaises(RuntimeError):
+                ops.backup(dc, {'DATA_ROOT': tmp, 'RELEASE': 'test'})
+            self.assertFalse(list(Path(tmp).rglob('manifest.json')))
+        self.assertEqual(events[-1], ('start','ai-worker'))
+
+class AIShutdownTests(unittest.TestCase):
+    def test_order_and_distinct_timeouts(self):
+        events = []
+        def dc(*args, **kwargs):
+            events.append(args)
+            if args[:2] == ('ps', '--services'): return b'backend\nai-worker\ngpu-tunnel\ndb\n'
+            if args[0] == 'ps': return b'[{"State":"exited","ExitCode":0}]'
+            if args[0] == 'logs': return b'AI_WORKER_DRAINED: local states saved'
+        ops.stop_ai(dc)
+        stops = [a for a in events if a[0] == 'stop']
+        self.assertEqual(stops, [('stop','-t','120','backend'), ('stop','-t','960','ai-worker'), ('stop','-t','15','gpu-tunnel')])
+        self.assertTrue(any(a[0] == 'logs' and '--since' in a for a in events))
+
+    def test_unclean_or_unacknowledged_exit_keeps_tunnel(self):
+        for code, logs in ((137,b'AI_WORKER_DRAINED: old'), (0,b'')):
+            events=[]
+            def dc(*args, **kwargs):
+                events.append(args)
+                if args[:2] == ('ps', '--services'): return b'ai-worker\ngpu-tunnel\n'
+                if args[0] == 'ps': return json.dumps([dict(State='exited',ExitCode=code)]).encode()
+                if args[0] == 'logs': return logs
+            with self.subTest(code=code,logs=logs), self.assertRaises(RuntimeError):
+                ops.stop_ai(dc)
+            self.assertNotIn(('stop','-t','15','gpu-tunnel'), events)
+
+    def test_watchdog75_keeps_tunnel_and_aborts_backup(self):
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        events=[]
+        def dc(*args, **kwargs):
+            events.append(args)
+            if args[:2] == ('ps', '--services'): return b'backend\nai-worker\ngpu-tunnel\ndb\n'
+            if args[0] == 'ps': return b'[{"State":"exited","ExitCode":75}]'
+            if args[0] == 'logs': return b'AI_WORKER_DRAINED: stale marker must not override exit75'
+        with self.assertRaises(RuntimeError):
+            ops.stop_ai(dc)
+        self.assertFalse(any(a[0]=='stop' and ('gpu-tunnel' in a or 'db' in a) for a in events))
+        events.clear()
+        with TemporaryDirectory() as tmp, patch.object(ops, 'pg') as pg:
+            with self.assertRaises(RuntimeError):
+                ops.backup(dc, {'DATA_ROOT':tmp,'RELEASE':'test'})
+            pg.assert_not_called()
+            self.assertFalse(list(Path(tmp).rglob('manifest.json')))
+        self.assertFalse(any(a[0]=='start' for a in events))
+        self.assertFalse(any(a[0]=='stop' and ('gpu-tunnel' in a or 'db' in a) for a in events))
+
+    def test_backup_aborts_before_dump_if_drain_unconfirmed(self):
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        events=[]
+        def dc(*args, **kwargs):
+            events.append(args)
+            if args[:2] == ('ps', '--services'): return b'backend\nai-worker\ngpu-tunnel\n'
+            if args[0] == 'ps': return b'[{"State":"exited","ExitCode":137}]'
+        with TemporaryDirectory() as tmp, patch.object(ops, 'pg') as pg:
+            with self.assertRaises(RuntimeError):
+                ops.backup(dc, {'DATA_ROOT':tmp,'RELEASE':'test'})
+            pg.assert_not_called()
+            self.assertFalse(list(Path(tmp).rglob('manifest.json')))
+        self.assertFalse(any(a[0] == 'start' for a in events))
+        self.assertFalse(any(a[0] == 'stop' and 'gpu-tunnel' in a for a in events))
+
+
 if __name__ == '__main__':
     unittest.main()

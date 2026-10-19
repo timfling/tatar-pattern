@@ -1,0 +1,28 @@
+{
+  "unet_config": {
+    "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/462165984030d82259a11f4367a4eed129e94a7b/unet/config.json",
+    "sha256": "30ebc70750223e59006f7f2b4e1e6c102570aa19a9c4ae3e1fbe7591332dbae6"
+  },
+  "inspected_wheels": [
+    {
+      "name": "diffusers-0.35.1-py3-none-any.whl",
+      "sha256": "fe29ff10200970c7c5934c6488c213e2a77a03dad5e6fa00bbd8e1d04234cb0e"
+    },
+    {
+      "name": "peft-0.17.1-py3-none-any.whl",
+      "sha256": "3d129d64def3d74779c32a080d2567e5f7b674e77d546e3585138216d903f99e"
+    },
+    {
+      "name": "safetensors-0.6.2-cp38-abi3-macosx_11_0_arm64.whl",
+      "sha256": "d6675cf4b39c98dbd7d940598028f3742e0375a6b4d4277e76beb0c35f4b843b"
+    }
+  ],
+  "inspected_code": [
+    "diffusers/loaders/lora_pipeline.py",
+    "diffusers/loaders/lora_conversion_utils.py",
+    "diffusers/loaders/lora_base.py",
+    "diffusers/utils/peft_utils.py",
+    "peft/tuners/lora/layer.py"
+  ],
+  "notes": "Public packages/config downloaded read-only for audit. No model weights or user files uploaded. Upstream source code not copied into project except small UNet config."
+}

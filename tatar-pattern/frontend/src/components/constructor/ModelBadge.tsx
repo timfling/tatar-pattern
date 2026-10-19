@@ -1,20 +1,14 @@
-export function ModelBadge({ model }: { model: string }) {
-  return (
-    <div
-      className="flex h-[38px] items-center gap-[12px] overflow-hidden rounded-[13px] bg-black px-[13px] text-white opacity-70 outline outline-1 -outline-offset-1 outline-hairline [background-image:var(--gradient-model)] max-md:h-auto max-md:gap-[7px] max-md:rounded-[17px] max-md:bg-transparent max-md:px-[9px] max-md:py-[8px] max-md:text-ink-subtle max-md:outline-[0.7px] max-md:-outline-offset-[0.7px] max-md:[background-image:none]"
-    >
-      <span className="font-ui text-[16px] font-medium leading-[16px] [text-shadow:0px_1px_4px_rgba(0,0,0,0.25)] max-md:text-[11px] max-md:leading-[11px] max-md:[text-shadow:none]">
-        Генератор:
-      </span>
-      <span className="flex items-center gap-[6px] [filter:drop-shadow(0px_1px_4px_rgba(0,0,0,0.25))] max-md:gap-[2px] max-md:[filter:none]">
-        <svg
+"use client";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+function ModelLogo() { return (        <svg
           width="31"
           height="17"
           viewBox="0 0 31 17"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden
-          className="max-md:h-[12px] max-md:w-[22px]"
+          className="ai-model-logo"
         >
           <path
             d="M10.5596 0.762695L19.8408 0.762695C19.8855 0.76276 19.911 0.774279 19.9277 0.786133C19.948 0.800485 19.9681 0.824991 19.9814 0.857422C19.9947 0.889737 19.9975 0.920888 19.9932 0.945312C19.9896 0.965545 19.9799 0.991949 19.9482 1.02344L15.3076 5.62305C15.2482 5.68191 15.1522 5.68177 15.0928 5.62305L10.4521 1.02344C10.4203 0.99184 10.4108 0.965597 10.4072 0.945312C10.4029 0.920918 10.4048 0.889713 10.418 0.857422C10.4313 0.824991 10.4523 0.800485 10.4727 0.786133C10.4895 0.774323 10.515 0.762695 10.5596 0.762695Z"
@@ -36,11 +30,34 @@ export function ModelBadge({ model }: { model: string }) {
             stroke="currentColor"
             strokeWidth="1.52534"
           />
-        </svg>
-        <span className="font-ui text-[16px] font-semibold leading-[16px] max-md:text-[11px] max-md:leading-[11px]">
-          {model}
-        </span>
-      </span>
-    </div>
-  );
+        </svg>); }
+export function ModelBadge({ model = "Pattern Lab 01" }: { model?: string }) {
+  const trigger = useRef<HTMLButtonElement>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [origin, setOrigin] = useState<{left:number;top:number;width:number;height:number} | null>(null);
+  const [active, setActive] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => {
+    if(!origin) return;
+    const el = dialog.current; el?.showModal();
+    let second = 0;
+    const first = requestAnimationFrame(() => { second = requestAnimationFrame(() => setActive(true)); });
+    const resized = () => { setActive(false); setOrigin(null); };
+    window.addEventListener("resize",resized);
+    return () => { cancelAnimationFrame(first); cancelAnimationFrame(second); window.removeEventListener("resize",resized); el?.close(); };
+  }, [origin]);
+  useEffect(() => () => { if(timer.current) clearTimeout(timer.current); }, []);
+  function close() {
+    if(timer.current) return;
+    setActive(false);
+    timer.current = setTimeout(() => { setOrigin(null); timer.current = null; requestAnimationFrame(() => trigger.current?.focus({preventScroll:true})); }, 420);
+  }
+  return <>
+    <button ref={trigger} className="ai-model-badge" style={{visibility:origin ? "hidden" : "visible"}} aria-label="О модели Pattern Lab 01" aria-haspopup="dialog" aria-expanded={Boolean(origin)} onClick={() => { const rect = trigger.current?.getBoundingClientRect(); if(rect) setOrigin({left:rect.left,top:rect.top,width:rect.width,height:rect.height}); }}><span>Модель:</span><ModelLogo /><strong>{model}</strong></button>
+    {origin ? createPortal(<dialog ref={dialog} className="ai-modal ai-model-modal" data-active={active} aria-label="О модели Pattern Lab 01" onCancel={e => {e.preventDefault();close();}} onClick={e => {if(e.target === e.currentTarget) close();}}>
+      <div className="ai-model-morph" data-active={active} style={{"--origin-left":`${origin.left}px`, "--origin-top":`${origin.top}px`, "--origin-width":`${origin.width}px`, "--origin-height":`${origin.height}px`} as React.CSSProperties}>
+        <button className="ai-model-expanded" onClick={close} aria-label="Свернуть информацию о модели"><span><ModelLogo /><strong>{model}</strong></span><p>SDXL Base 1.0 + LoRA: AI варьирует выбранную основу. Детали и оттенки могут измениться; точные мотивы, бесшовность и прозрачность не гарантируются.</p></button><div className="ai-model-collapsed" aria-hidden="true"><span>Модель:</span><ModelLogo /><strong>{model}</strong></div>
+      </div>
+    </dialog>,document.body) : null}
+  </>;
 }
