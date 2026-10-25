@@ -7,6 +7,7 @@ from pathlib import Path
 import shutil
 import subprocess
 from ops import HERE, read_env, compose, backup
+from maintenance import TAG, lock, local_retention, remote_retention
 
 def main():
     os.umask(0o077)
@@ -17,9 +18,12 @@ def main():
         if not os.getenv(name):
             raise RuntimeError(name + ' must be in protected systemd environment')
     values = read_env(args.env)
-    target = backup(compose(args.env, values, public=True), values)
+    operation_lock = lock(values['DATA_ROOT'])
+    local_retention(Path(values['DATA_ROOT']))
+    remote_retention()
+    target = backup(compose(args.env, values, public=values.get('STAGING_MODE') != 'true'), values)
     # No credentials in command arguments. Credentials live in env/protected files.
-    subprocess.run(['restic','backup',str(target),'--tag','tatar-pattern'], check=True)
+    subprocess.run(['restic','backup',str(target),'--tag',TAG], check=True)
     (target.parent/'.offsite-ok').write_text(datetime.now(timezone.utc).isoformat())
     # Keep two complete local sets only after successful independent copy.
     complete = sorted(x.parent for x in target.parent.glob('*/manifest.json'))

@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import type { Generation } from "@/lib/api";
 import { Icon } from "@/components/ui/Icon";
 import { BackButton } from "@/components/constructor/BackButton";
@@ -15,13 +14,11 @@ type GeneratingViewProps = {
 
 export function GeneratingView({
   imageUrl,
-  progress, status,
+  progress,
   confirmStop,
   onBack,
   onStop,
 }: GeneratingViewProps) {
-  const [elapsed, setElapsed] = useState(0);
-  useEffect(() => { const started = Date.now(); const timer = setInterval(() => setElapsed(Math.floor((Date.now() - started) / 1000)), 1000); return () => clearInterval(timer); }, []);
   return (
     <div className="constructor-stage flex min-h-0 flex-1 flex-col">
       <div className="hidden shrink-0 px-[25px] pt-[25px] md:block">
@@ -46,7 +43,6 @@ export function GeneratingView({
           </div>
         </div>
 
-        <p role="status" className="api-notice">{status === "queued" ? "В очереди" : status === "processing" ? "Обрабатываем" : "Отправляем запрос"} · ожидание {elapsed} с. Время завершения пока неизвестно.</p>
         <div className="flex shrink-0 flex-col items-center pt-[20px] max-md:pt-[16px]">
           {confirmStop ? (
             <div className="flex w-[326px] flex-col items-center gap-[12px] max-md:w-[214px]">
@@ -61,9 +57,7 @@ export function GeneratingView({
                   Прекратить ожидание?
                 </span>
               </button>
-              <p className="font-ui text-[14px] font-semibold leading-[14px] text-danger opacity-70 max-md:text-[12px] max-md:leading-[12px]">
-                Сервер может продолжить работу.
-              </p>
+
             </div>
           ) : (
             <button

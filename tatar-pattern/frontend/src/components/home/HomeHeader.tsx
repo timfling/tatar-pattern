@@ -3,10 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
-import type { AuthUser } from "@/lib/auth";
 import { HOME } from "@/content/home";
 
-export function HomeHeader({ user, studioHref }: { user: AuthUser | null; studioHref: string }) {
+export function HomeHeader({ studioHref }: { studioHref: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
@@ -27,7 +26,6 @@ export function HomeHeader({ user, studioHref }: { user: AuthUser | null; studio
   }, [open]);
   function show() { dialog.current?.showModal(); setOpen(true); }
   function close() { dialog.current?.close(); }
-  const name = [user?.lastName, user?.firstName].filter(Boolean).join(" ") || user?.email;
   return <>
     <motion.header className={`home-topbar ${hidden && !open ? "is-scrolling-down" : ""}`}
       initial={reduce ? false : { opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}
@@ -40,11 +38,10 @@ export function HomeHeader({ user, studioHref }: { user: AuthUser | null; studio
       <button className="home-menu-close" aria-label="Закрыть меню" onClick={close} autoFocus><span /><span /></button>
       <nav className="home-menu-links" aria-label="Навигация">
         <Link href="/" aria-current="page" onClick={close}>[ Главная ]</Link>
-        <Link href={studioHref} onClick={close}>Войти в конструктор</Link>
+        <Link href={studioHref} onClick={close}>Открыть конструктор</Link>
         <a href={`mailto:${HOME.contactEmail}`} onClick={close}>Связаться с нами</a>
       </nav>
-      {user ? <Link href="/profile" onClick={close} className="home-account"><span className="home-account-copy"><span>{name}</span><small>Настройки аккаунта</small></span><span className="home-avatar">{user.avatar ? <img src={user.avatar} alt="" width="56" height="56" /> : <span className="home-avatar-initial">{(user.firstName || user.email).slice(0, 1).toUpperCase()}</span>}<span className="home-avatar-arrow" aria-hidden="true">→</span></span></Link>
-        : <Link className="home-account home-account-guest" href="/login" onClick={close}>Войти в аккаунт <span aria-hidden="true">⟶</span></Link>}
+
     </dialog>
   </>;
 }

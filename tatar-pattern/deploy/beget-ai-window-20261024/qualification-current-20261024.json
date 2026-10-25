@@ -1,0 +1,209 @@
+{
+  "ownerAccepted": true,
+  "ownerAcceptedDateMoscow": "2026-10-24",
+  "bootId": "99fa5828-85de-4c5c-9084-5bb087dbabdc",
+  "deploymentDigest": "51615fddf6fa09d8ad2155f432a3c79bccef9f810e996f4167000e5abe617771",
+  "evidenceSha256": "0ec4ff1856ca8ff18fcc577b76860fd20de4e3b0b05fb368aaa2fef3f6f5ea65",
+  "profiles": [
+    {
+      "baseId": "f10-wreath",
+      "ornamentStyle": "graphic",
+      "jobId": "c9f5dac2-a39b-48a3-85a0-ea914877dca5",
+      "outputSha256": "78c9da3251f82413e361fdff14103920a98dc10dffaf6bfafed5cbb2eebec983",
+      "profileDigest": "a34ee005b8bd27cd3a6505a8f32130bd137a38ab75a7c0b7c1fdf0162950412a",
+      "profileVersion": "2026-10-18.local-v1"
+    },
+    {
+      "baseId": "f10-wreath",
+      "ornamentStyle": "textured",
+      "jobId": "564551f7-dcae-462b-b2e7-25d871a579b9",
+      "outputSha256": "97ca545092112f11d59bd889c9cb7933da14a2bd3b26f4c664275a3732aa0000",
+      "profileDigest": "acfc6b76527da3d77f360a36c7b573b8960d1efe12a4f4414892e0d2021b3c89",
+      "profileVersion": "2026-10-18.local-v1"
+    },
+    {
+      "baseId": "f14-directed",
+      "ornamentStyle": "graphic",
+      "jobId": "62082656-d19f-4f5c-acf5-4529b40c6274",
+      "outputSha256": "d4a215173195b2bec6595811abf38e17fa6d7f3dbc0b535afb684a3ecca65aff",
+      "profileDigest": "1b51a947c4710ea6bb18e81ed877412361a6c6baf67ce8274d0fbbaa696fe4ed",
+      "profileVersion": "2026-10-18.local-v1"
+    },
+    {
+      "baseId": "f14-directed",
+      "ornamentStyle": "textured",
+      "jobId": "ae8c59a3-1fb1-4827-baca-ed3dbd9009f8",
+      "outputSha256": "07da9484ac545027663fdc974520727514700f5bbf0db187a001d6a27cf5b6a7",
+      "profileDigest": "568f25628a26c3837bc4c6c331fa13d3faa516c9e62340cd47c278cde4ff60cf",
+      "profileVersion": "2026-10-18.local-v1"
+    },
+    {
+      "baseId": "f08-directed",
+      "ornamentStyle": "graphic",
+      "jobId": "d3c358d2-3c99-4ea9-9fcf-9e8a075cbc14",
+      "outputSha256": "1fdaf01ace147badff37deca555a2d96a4f710e203d0c28d51390e8bfcdb1955",
+      "profileDigest": "098b4172aac82a788dd7323807fe575286bf2d4fa97591137bd89456c5ed7e4a",
+      "profileVersion": "2026-10-18.local-v1"
+    },
+    {
+      "baseId": "f03-wreath",
+      "ornamentStyle": "graphic",
+      "jobId": "37dfbc24-fd98-47f6-a61d-638b9d9289b7",
+      "outputSha256": "e1aba19e13d43210599e3466a9d49d14dbd1d7ba5ed248fd4d4b9c58e259a01a",
+      "profileDigest": "d68edfbb4dab8ae98038b6e97fe04206373bb95ce210369275bdffa83c9d391c",
+      "profileVersion": "2026-10-19.batch1-v1"
+    },
+    {
+      "baseId": "f03-wreath",
+      "ornamentStyle": "textured",
+      "jobId": "452f6477-c7c6-4245-983b-2e8d87317c70",
+      "outputSha256": "b42d6e03cb76c6ab278e5a44392f1c4805ed69da23ee7d9152280de251dc6d52",
+      "profileDigest": "e72193c301bd2a7b66ce43bdc2dfbbe4e93e1986aa9263dcad5ebb1889ebea75",
+      "profileVersion": "2026-10-19.batch1-v1"
+    },
+    {
+      "baseId": "f17-wreath",
+      "ornamentStyle": "graphic",
+      "jobId": "9eac5eed-67cc-4d56-b14b-0736b5bfb51f",
+      "outputSha256": "c7a66427055143e91fe8ec69644340578956aed635db6ead022576f67bf4db73",
+      "profileDigest": "e0e9138cd50b15941fa772be710f86315ce03fdbf31e2ce66b7a26434e517f12",
+      "profileVersion": "2026-10-19.batch1-v1"
+    },
+    {
+      "baseId": "f14-panel",
+      "ornamentStyle": "graphic",
+      "jobId": "48cc8e68-5b85-4d8b-a8b3-1ecc86bfbedc",
+      "outputSha256": "c40a0d803c1ee4d62232b420f5eca5424f1ba67334d0ee1cb286da2d91f865f8",
+      "profileDigest": "f27e8fe3f40af9f5d729b95915e095d2527b66e33e904a5b9b982a6a7b16d29a",
+      "profileVersion": "2026-10-19.batch1-v1"
+    },
+    {
+      "baseId": "f14-panel",
+      "ornamentStyle": "textured",
+      "jobId": "2c4b7067-dba2-41af-9c2c-74198a311fd6",
+      "outputSha256": "547697627e5516d6a4fcb3463478dce39087aeff253a640eefdb11569c5663fb",
+      "profileDigest": "7c87b465d79ed4aefc314708749dd4a002be40a7a9b4fbf6f458405d9385b2cd",
+      "profileVersion": "2026-10-19.batch1-v1"
+    },
+    {
+      "baseId": "f25-panel",
+      "ornamentStyle": "graphic",
+      "jobId": "5c1e17ad-e986-40b7-b5c6-1bead0e545ca",
+      "outputSha256": "8d41312e228100c6036ed03ca08bc6ad72599a038eb1d484d96dd588e16e12fc",
+      "profileDigest": "f9c545b53989b5fbd55c64a1911c1e286f84abcf5e84f7dfe45057beb5152fec",
+      "profileVersion": "2026-10-19.batch1-v1"
+    },
+    {
+      "baseId": "f16-wreath",
+      "ornamentStyle": "graphic",
+      "jobId": "c87c928c-0c58-4489-808c-4adaf8d24555",
+      "outputSha256": "bfc520e33296f6fdd93efb23ae0ac1dd9f3537abb0bf823e00b4009bb163f729",
+      "profileDigest": "eda8ff1c3c6a166b8118f3d5c555fc11936eff820cf6ea557a7dd515d22c0a03",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f16-wreath",
+      "ornamentStyle": "textured",
+      "jobId": "138632b4-f1ae-4707-a8a1-d78e6646818f",
+      "outputSha256": "5438e75bb71b7f51056116d4710c7bc772d7f38ed926a0d2e947579a130fb094",
+      "profileDigest": "c8e52f47f867fa777d9cea3aa9c528b95fd2d055165732556bf02a0d4bc1a8ec",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f24-wreath",
+      "ornamentStyle": "graphic",
+      "jobId": "3b4f0894-327f-46e5-9293-cfe475220f78",
+      "outputSha256": "cbf67d86f88658d804f7f33657542ba32689e22fe366064ca855c4a29d56e55c",
+      "profileDigest": "bb1b6b9d08f735bd967c584343e68caffd8b738e050aec65918e2f5d748ef9e2",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f24-wreath",
+      "ornamentStyle": "textured",
+      "jobId": "490434a2-a542-48f8-bf8c-d9fd23001a95",
+      "outputSha256": "1a91dc1858466210ea6f03259e1bd793fc295a39e258aee3f3e9d42cf9d23a45",
+      "profileDigest": "e6372724427f1747e4d2178be70bee895b484b04b94789d2d6fdca625055facf",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f21-panel",
+      "ornamentStyle": "graphic",
+      "jobId": "86dbfd80-c8e8-4fcd-8bf2-10ff77f8fd0a",
+      "outputSha256": "a69267e7b8f68b21a1d8efb3c7d81be5bb1b4f90c5436a363da4b1adf3e5e740",
+      "profileDigest": "a798c6ff09ba764e17ab34c52828b431953ca40b49c641fdfe3d092e4bff2b3d",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f07-hanging",
+      "ornamentStyle": "graphic",
+      "jobId": "df6a7a27-6c02-4a8c-af98-0653e118a4b0",
+      "outputSha256": "9d5e95b4f5d685ba85b2acfda5b10b0c268cda0119ba6a1437466326e43047e8",
+      "profileDigest": "226b2d82749d3b367289952314c8ca7966e0809cda8a4c450b44bcb9c370d294",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f18-hanging",
+      "ornamentStyle": "graphic",
+      "jobId": "f8b68ac1-34b0-4b5c-9178-1617e21f8b68",
+      "outputSha256": "3755031813c8f7592fdb3e852297c752e5f115215c9ea8b4f5e02f79e930b24e",
+      "profileDigest": "5568b80acf5d4e2a8bd0361c1da290f9238703bac0374385e1c0d58cbf83618b",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f18-hanging",
+      "ornamentStyle": "textured",
+      "jobId": "aafff018-e362-4b02-853e-2699f96f4577",
+      "outputSha256": "3874bed5afc16e4cf32b64212b9e088a90f7d88aad8126fa41fd40a43351e909",
+      "profileDigest": "0496b7072848ff33642ee2623551219e5ceb52268debfe689f22725ee4270633",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f07-repeat",
+      "ornamentStyle": "graphic",
+      "jobId": "a4d4bb05-308b-4272-a9db-c37d501bdd6b",
+      "outputSha256": "9c347b5d59c7b5d1bb906d8b1c58a72a7bc962a1b3d610127fa63fd0c2529e92",
+      "profileDigest": "3755f71478f30669ebc046803d4222431def797924ab7ab18f4fd8c267c0e42f",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f10-directed",
+      "ornamentStyle": "graphic",
+      "jobId": "649a4ae9-1b46-44c3-961b-4dffbdf39bcb",
+      "outputSha256": "0a4c42cbd21c3544a6ea56d5de121015f7e05d37977ce87fb2c56f408082dca7",
+      "profileDigest": "c5cfef3e6967fa302111acadbfdbbf738babcfe66ef3502f1aa28ace8361735a",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f25-directed",
+      "ornamentStyle": "graphic",
+      "jobId": "5b2912e7-2fc5-4b6c-b735-53030c4dc253",
+      "outputSha256": "f4089dec90caeafdf8d7efdf628e9391ebac1ece37021159eb1fc8a598ded146",
+      "profileDigest": "055de682c52f6cb2f2f9c7e153515854d6d7eeb68886d6b2ad8d90b493b98d0a",
+      "profileVersion": "2026-10-19.batch23-v1"
+    },
+    {
+      "baseId": "f21-panel",
+      "ornamentStyle": "textured",
+      "jobId": "57c7777c-2f56-4373-8fed-2c908f1c6a96",
+      "outputSha256": "328c93eff08f763ea18fc252f044c7eb12c3e2fc74830bff04504052577e9d36",
+      "profileDigest": "e7d1d6e53276ef3affbb1e12a30ce04d12688ff3b3c9f059f920ca70477a73cc",
+      "profileVersion": "2026-10-19.correction1-v1"
+    },
+    {
+      "baseId": "f07-hanging",
+      "ornamentStyle": "textured",
+      "jobId": "8c772018-46e2-445c-95d9-55011923c334",
+      "outputSha256": "7b42f0d94f71b5108e1435e794866b04eee82e0dc590cfd99c7dd1342dacfee5",
+      "profileDigest": "94cd84614407ce08a1afee294bb0652da71efa55cf37fa10213f75d44e298b53",
+      "profileVersion": "2026-10-19.correction1-v1"
+    },
+    {
+      "baseId": "f10-directed",
+      "ornamentStyle": "textured",
+      "jobId": "953eb294-5e9d-49b2-bc9f-b44dd46213c3",
+      "outputSha256": "4872a9e8ef71064af8d0bf330f00b580e8c670fe5a3aac2d7292ed443e525df4",
+      "profileDigest": "3e92f8e69538834e0a3c8b1cc3535fd8d1931dfb29d2e01ad3aca0aafbf80698",
+      "profileVersion": "2026-10-19.correction1-v1"
+    }
+  ]
+}

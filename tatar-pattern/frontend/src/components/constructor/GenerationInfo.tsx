@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { Icon } from "@/components/ui/Icon";
 import { recipeLines } from "@/components/constructor/parameters";
 import type { ParameterTile, ConstructorSelections } from "@/components/constructor/parameters";
-import type { Evidence, Generation } from "@/lib/api";
+import type { Evidence, GuestGeneration as Generation } from "@/lib/api";
 function Sources({ evidence }: { evidence?: Evidence[] }) {
   return evidence?.length ? <ul className="mt-3 space-y-3 text-xs leading-relaxed">{evidence.map((source,index) => {
     const label = source.title_ru ?? source.title ?? source.id ?? "Основание";

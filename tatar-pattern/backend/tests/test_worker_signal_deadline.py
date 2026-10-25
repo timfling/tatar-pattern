@@ -71,7 +71,7 @@ def test_signal_during_poll_updates_download_budget(monkeypatch):
     now=[0.];stop=ai_worker.Shutdown();timeouts=[]
     job=dict(generation_id='test',state='polling',provider='test',model_version='test',
              provider_job_id='known',deadline=datetime.now(timezone.utc)+timedelta(seconds=2000),
-             next_poll_at=datetime.now(timezone.utc)-timedelta(seconds=1),poll_errors=0,payload={},deleted_at=None)
+             next_poll_at=datetime.now(timezone.utc)-timedelta(seconds=1),poll_errors=0,payload={},deleted_at=None,guest_expires_at=None,guest_process_id=None,provider_request_id='00000000-0000-4000-8000-000000000001')
     class Connection:
         def execute(self,*a):return self
         def fetchone(self):return job

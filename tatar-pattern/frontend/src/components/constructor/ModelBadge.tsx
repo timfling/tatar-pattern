@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { ModeIcon } from "@/components/ui/ModeIcon";
 import { createPortal } from "react-dom";
 function ModelLogo() { return (        <svg
           width="31"
@@ -31,7 +32,7 @@ function ModelLogo() { return (        <svg
             strokeWidth="1.52534"
           />
         </svg>); }
-export function ModelBadge({ model = "Pattern Lab 01" }: { model?: string }) {
+export function ModelBadge({ model = "Pattern Lab 01", modeTrigger = false, modeSelected = true, onActivate }: { model?: string; modeTrigger?: boolean; modeSelected?: boolean; onActivate?: () => void }) {
   const trigger = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const [origin, setOrigin] = useState<{left:number;top:number;width:number;height:number} | null>(null);
@@ -53,7 +54,7 @@ export function ModelBadge({ model = "Pattern Lab 01" }: { model?: string }) {
     timer.current = setTimeout(() => { setOrigin(null); timer.current = null; requestAnimationFrame(() => trigger.current?.focus({preventScroll:true})); }, 420);
   }
   return <>
-    <button ref={trigger} className="ai-model-badge" style={{visibility:origin ? "hidden" : "visible"}} aria-label="О модели Pattern Lab 01" aria-haspopup="dialog" aria-expanded={Boolean(origin)} onClick={() => { const rect = trigger.current?.getBoundingClientRect(); if(rect) setOrigin({left:rect.left,top:rect.top,width:rect.width,height:rect.height}); }}><span>Модель:</span><ModelLogo /><strong>{model}</strong></button>
+    <button ref={trigger} className={`ai-model-badge ${modeTrigger ? "constructor-mode-ai-info" : ""}`} style={{visibility:origin ? "hidden" : "visible"}} aria-label={modeTrigger ? modeSelected ? "О режиме ИИ-генерация" : "ИИ-генерация" : "О модели Pattern Lab 01"} aria-pressed={modeTrigger ? modeSelected : undefined} aria-haspopup={modeSelected ? "dialog" : undefined} aria-expanded={Boolean(origin)} onClick={() => { if (modeTrigger && !modeSelected) { onActivate?.(); return; } const rect = trigger.current?.getBoundingClientRect(); if(rect) setOrigin({left:rect.left,top:rect.top,width:rect.width,height:rect.height}); }}>{modeTrigger ? <><ModeIcon mode="ai" /><strong><span className="mode-label-short">ИИ</span><span className="mode-label-long">ИИ-генерация</span></strong><ModeIcon mode="info" /></> : <><span>Модель:</span><ModelLogo /><strong>{model}</strong></>}</button>
     {origin ? createPortal(<dialog ref={dialog} className="ai-modal ai-model-modal" data-active={active} aria-label="О модели Pattern Lab 01" onCancel={e => {e.preventDefault();close();}} onClick={e => {if(e.target === e.currentTarget) close();}}>
       <div className="ai-model-morph" data-active={active} style={{"--origin-left":`${origin.left}px`, "--origin-top":`${origin.top}px`, "--origin-width":`${origin.width}px`, "--origin-height":`${origin.height}px`} as React.CSSProperties}>
         <button className="ai-model-expanded" onClick={close} aria-label="Свернуть информацию о модели"><span><ModelLogo /><strong>{model}</strong></span><p>SDXL Base 1.0 + LoRA: AI варьирует выбранную основу. Детали и оттенки могут измениться; точные мотивы, бесшовность и прозрачность не гарантируются.</p></button><div className="ai-model-collapsed" aria-hidden="true"><span>Модель:</span><ModelLogo /><strong>{model}</strong></div>

@@ -46,9 +46,11 @@ def select_profile(base_id,style,version):
 def unavailable_reasons(base,profile,provider,settings):
     reasons=[]
     if not settings.ai_mvp_enabled:reasons.append('AI_DISABLED')
-    if provider is None or not getattr(provider,'ready',False) or getattr(provider,'contract_version',None)!=TASK_SCHEMA:
+    # A statically closed feature must never make a readiness network request.
+    enabled=settings.ai_mvp_enabled
+    if not enabled or provider is None or not getattr(provider,'ready',False) or getattr(provider,'contract_version',None)!=TASK_SCHEMA:
         reasons.append('AI_PROVIDER_UNVERIFIED')
-    if provider is not None and hasattr(provider,'ready_for') and not provider.ready_for(base,profile):
+    if provider is not None and hasattr(provider,'ready_for') and (not enabled or not provider.ready_for(base,profile)):
         reasons.append('AI_GPU_PAIR_UNVERIFIED')
     if profile is None or not profile.get('releaseApproved'):reasons.append('AI_PROFILE_NOT_RELEASED')
     if profile and profile.get('qualityStatus') in ('owner_rejected_cloud_2026_10_19','excluded_from_cloud_qualification'):reasons.append('AI_PAIR_NOT_ACCEPTED')
@@ -58,6 +60,10 @@ def unavailable_reasons(base,profile,provider,settings):
 
 def catalog_response(settings,provider):
     doc=document();configured=profiles();bases=[]
+    # One bounded health/proof snapshot shared by every catalog pair, including
+    # the failure case. Never retry health while walking the registry.
+    if settings.ai_mvp_enabled and provider is not None and hasattr(provider,'readiness_snapshot'):
+        provider=provider.readiness_snapshot()
     for base in doc['bases']:
         styles=[]
         try:asset_file(base);asset_file(base,'recipe');integrity=True

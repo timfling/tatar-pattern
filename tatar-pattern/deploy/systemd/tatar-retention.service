@@ -1,0 +1,10 @@
+[Unit]
+Description=TATAR PATTERN calendar logs and backup retention
+After=docker.service
+[Service]
+Type=oneshot
+UMask=0077
+EnvironmentFile=/etc/tatar-pattern/restic.env
+WorkingDirectory=/srv/tatar-pattern/current/deploy
+ExecStart=/usr/bin/python3 /srv/tatar-pattern/current/deploy/maintenance.py --env /etc/tatar-pattern/production.env retention
+TimeoutStartSec=1h

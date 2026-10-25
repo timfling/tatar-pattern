@@ -55,9 +55,9 @@ export function PatternCanvas({
             Генерируем узор…
           </p>
           <div className="pointer-events-none absolute inset-x-0 bottom-[clamp(24px,6%,48px)] flex flex-col items-center gap-[21px] px-[24px] py-[16px] max-md:bottom-[16px] max-md:gap-[12px] max-md:py-[9px]">
-            <span className="text-[24px] font-medium italic leading-[24px] text-white opacity-90 max-md:text-[13px] max-md:leading-[13px]">
-              {progress === undefined ? "Ожидаем ответ сервиса" : `${progress}%`}
-            </span>
+            {progress !== undefined ? <span className="text-[24px] font-medium italic leading-[24px] text-white opacity-90 max-md:text-[13px] max-md:leading-[13px]">
+              {`${Math.round(progress ?? 0)}%`}
+            </span> : null}
             <div className="relative h-[6px] w-[200px] overflow-hidden rounded-full bg-white/60 max-md:h-[3px] max-md:w-[112px]">
               <div
                 className={`absolute inset-y-0 left-0 rounded-full bg-white ${progress === undefined ? "api-wait" : ""}`}

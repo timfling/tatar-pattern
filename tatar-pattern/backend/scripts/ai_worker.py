@@ -15,6 +15,7 @@ import os
 from datetime import datetime, timezone
 from uuid import uuid4
 from PIL import Image
+from psycopg.errors import DeadlockDetected, LockNotAvailable, QueryCanceled
 from psycopg.types.json import Jsonb
 from app.ai_provider import configured_provider, ProviderError
 from app.catalog import safe_path
@@ -22,6 +23,7 @@ from app.ai_catalog import validate_task, TASK_SCHEMA
 from app.errors import APIError
 from app.config import Settings
 from app.erasure import enqueue_files, remember_provider
+from app import guest
 from .db_admin import connect
 
 
@@ -63,24 +65,32 @@ def install_shutdown_handlers(stop):
 
 def fail(conn,job,code):
     error={'code':code,'message':'ИИ-задача не завершена. Удаленная GPU-задача может продолжаться; обратитесь к оператору.'}
-    conn.execute("UPDATE ai_jobs SET state='failed',updated_at=now() WHERE generation_id=%s",(job['generation_id'],))
+    # Same lock order as expiry cleanup, erasure, submit and result commit.
     conn.execute("UPDATE generations SET status='failed',error=%s,finished_at=now(),progress=NULL WHERE id=%s",(Jsonb(error),job['generation_id']))
+    conn.execute("UPDATE ai_jobs SET state='failed',updated_at=now() WHERE generation_id=%s",(job['generation_id'],))
     conn.commit()
 
 
 def save_ack(conn,job,cloud_id):
-    generation=conn.execute('SELECT id,deleted_at FROM generations WHERE id=%s FOR UPDATE',(job['generation_id'],)).fetchone()
-    if generation is None:
+    generation=conn.execute('SELECT id,deleted_at,guest_expires_at FROM generations WHERE id=%s FOR UPDATE',(job['generation_id'],)).fetchone()
+    if generation is None or (generation['guest_expires_at'] and generation['guest_expires_at']<=datetime.now(timezone.utc)):
         remember_provider(conn,job,cloud_id)
+        if generation:
+            conn.execute("UPDATE ai_jobs SET state='failed',provider_job_id=%s,updated_at=now() WHERE generation_id=%s",(cloud_id,job['generation_id']))
     else:
         conn.execute("UPDATE ai_jobs SET state='polling',provider_job_id=%s,updated_at=now() WHERE generation_id=%s",(cloud_id,job['generation_id']))
     conn.commit()
 
 
 def step(conn,provider,settings,*,allow_new=True,stop_requested=lambda:False,stop_deadline=None):
-    job=conn.execute("SELECT * FROM ai_jobs WHERE state IN ('submitting','polling') OR (state='queued' AND %s) ORDER BY CASE WHEN state='queued' THEN 1 ELSE 0 END,generation_id LIMIT 1",(allow_new,)).fetchone()
+    job=conn.execute("SELECT j.*,g.guest_process_id,g.guest_expires_at,g.created_at FROM ai_jobs j JOIN generations g ON g.id=j.generation_id WHERE state IN ('submitting','polling') OR (state='queued' AND %s) ORDER BY CASE WHEN state='queued' THEN 1 ELSE 0 END,generation_id LIMIT 1",(allow_new,)).fetchone()
     conn.commit()
     if not job: return False
+    if job['guest_expires_at'] and job['guest_expires_at']<=datetime.now(timezone.utc):
+        row=conn.execute('SELECT * FROM generations WHERE id=%s FOR UPDATE',(job['generation_id'],)).fetchone()
+        if row:guest.erase(conn,row)
+        conn.commit()
+        return True
     def current_stop_deadline():
         return stop_deadline() if callable(stop_deadline) else stop_deadline
     def budget(seconds):
@@ -103,15 +113,15 @@ def step(conn,provider,settings,*,allow_new=True,stop_requested=lambda:False,sto
         except APIError as exc:
             fail(conn,job,exc.payload['error']['code']); return True
         if stop_requested(): return False
-        generation=conn.execute('SELECT deleted_at FROM generations WHERE id=%s AND NOT EXISTS (SELECT 1 FROM erasure_tombstones t WHERE t.generation_id=generations.id) FOR UPDATE',(job['generation_id'],)).fetchone()
-        if generation is None or generation['deleted_at'] is not None:
+        generation=conn.execute('SELECT deleted_at,guest_expires_at FROM generations WHERE id=%s AND NOT EXISTS (SELECT 1 FROM erasure_tombstones t WHERE t.generation_id=generations.id) FOR UPDATE',(job['generation_id'],)).fetchone()
+        if generation is None or generation['deleted_at'] is not None or (generation['guest_expires_at'] and generation['guest_expires_at']<=datetime.now(timezone.utc)):
             if generation:fail(conn,job,'AI_DELETED')
             else:conn.commit()
             return True
         conn.execute("UPDATE ai_jobs SET state='submitting',updated_at=now() WHERE generation_id=%s",(job['generation_id'],))
         conn.execute("UPDATE generations SET status='processing',progress=NULL WHERE id=%s",(job['generation_id'],)); conn.commit()
         try:
-            cloud_id=provider.submit(job['payload'],request_id=str(job['generation_id']),timeout=budget(30))
+            cloud_id=provider.submit(job['payload'],request_id=str(job['provider_request_id']),timeout=budget(30))
             if not isinstance(cloud_id,str) or not cloud_id or len(cloud_id)>1000: raise ValueError()
         except ProviderError as exc:
             if exc.job_id:
@@ -134,8 +144,8 @@ def step(conn,provider,settings,*,allow_new=True,stop_requested=lambda:False,sto
         if status.state!='done': raise ValueError()
         deadline=current_stop_deadline()
         if deadline is not None and time.monotonic()>=deadline:return False
-        generation=conn.execute('SELECT params,deleted_at FROM generations WHERE id=%s AND NOT EXISTS (SELECT 1 FROM erasure_tombstones t WHERE t.generation_id=generations.id) FOR UPDATE',(job['generation_id'],)).fetchone()
-        if generation is None or generation['deleted_at'] is not None:
+        generation=conn.execute('SELECT params,deleted_at,guest_expires_at FROM generations WHERE id=%s AND NOT EXISTS (SELECT 1 FROM erasure_tombstones t WHERE t.generation_id=generations.id) FOR UPDATE',(job['generation_id'],)).fetchone()
+        if generation is None or generation['deleted_at'] is not None or (generation['guest_expires_at'] and generation['guest_expires_at']<=datetime.now(timezone.utc)):
             remember_provider(conn,job)
             if generation:fail(conn,job,'AI_DELETED')
             else:conn.commit()
@@ -148,7 +158,9 @@ def step(conn,provider,settings,*,allow_new=True,stop_requested=lambda:False,sto
             source.load()
             if source.convert('RGBA').getchannel('A').getextrema()!=(255,255): raise ValueError()
             image=source.convert('RGB')
-        relative=f'results/ai-{uuid4().hex}.png'; png=safe_path(settings.storage_root,relative)
+        if generation['guest_expires_at'] and generation['guest_expires_at']<=datetime.now(timezone.utc):
+            remember_provider(conn,job);fail(conn,job,'AI_EXPIRED');return True
+        relative=f"guest-results/{int(job['guest_expires_at'].timestamp()*1000000)}-ai-{uuid4().hex}.png" if job['guest_process_id'] else f'results/ai-{uuid4().hex}.png'; png=safe_path(settings.storage_root,relative)
         png.parent.mkdir(parents=True,exist_ok=True)
         temporary=png.with_suffix('.tmp'); generated=[temporary,png,png.with_suffix('.jpg')]; temporary.write_bytes(data); temporary.replace(png)
         image.save(png.with_suffix('.jpg'),format='JPEG',quality=95)
@@ -157,6 +169,8 @@ def step(conn,provider,settings,*,allow_new=True,stop_requested=lambda:False,sto
         params['recipe']['providerOutputSha256']=hashlib.sha256(data).hexdigest()
         params['recipe']['outputSha256']={'png':hashlib.sha256(png.read_bytes()).hexdigest(),'jpg':hashlib.sha256(png.with_suffix('.jpg').read_bytes()).hexdigest()}
         params['recipe']['outputSize']=list(image.size)
+        if generation['guest_expires_at'] and generation['guest_expires_at']<=datetime.now(timezone.utc):
+            raise APIError(410,'AI_EXPIRED','Временный результат истёк.')
         conn.execute('UPDATE generations SET params=%s WHERE id=%s',(Jsonb(params),job['generation_id']))
         conn.execute("UPDATE ai_jobs SET state='done',updated_at=now() WHERE generation_id=%s",(job['generation_id'],))
         conn.execute("UPDATE generations SET status='done',progress=100,result_path=%s,finished_at=now() WHERE id=%s",(relative,job['generation_id'])); conn.commit()
@@ -177,7 +191,12 @@ def step(conn,provider,settings,*,allow_new=True,stop_requested=lambda:False,sto
 def run(conn,provider,settings,stop):
     """Drain only already submitted jobs. Durable known IDs survive a bounded drain."""
     announced=False
+    last_cleanup=0
     while True:
+        if not stop.is_set() and time.monotonic()-last_cleanup>=60:
+            try:guest.clean(settings)
+            except Exception as exc:print('GUEST_CLEANUP_DEFERRED: '+type(exc).__name__,flush=True)
+            last_cleanup=time.monotonic()
         drain_deadline=stop.deadline
         if stop.is_set() and not announced:
             announced=True
@@ -188,7 +207,13 @@ def run(conn,provider,settings,stop):
             conn.commit()
             print('AI_WORKER_DRAINED: poll_resume_required persisted; GPU may continue',flush=True)
             return
-        step(conn,provider,settings,allow_new=not stop.is_set(),stop_requested=stop.is_set,stop_deadline=lambda:stop.deadline)
+        try:
+            step(conn,provider,settings,allow_new=not stop.is_set(),stop_requested=stop.is_set,stop_deadline=lambda:stop.deadline)
+        except (DeadlockDetected, LockNotAvailable, QueryCanceled) as exc:
+            # Resume from durable state on the next iteration. In particular a
+            # committed submitting/known-ID job must never become queued again.
+            conn.rollback()
+            print('AI_WORKER_SQL_DEFERRED: '+type(exc).__name__,flush=True)
         if stop.is_set():
             active=conn.execute("SELECT count(*) AS n FROM ai_jobs WHERE state IN ('submitting','polling')").fetchone()['n']
             conn.commit()

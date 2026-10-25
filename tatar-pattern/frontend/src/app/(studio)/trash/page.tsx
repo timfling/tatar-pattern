@@ -1,11 +1,2 @@
-"use client";
-/* eslint-disable @next/next/no-img-element -- Cookie-protected server files and local avatar data URLs use native images. */
-import { useEffect, useState } from "react";
-import { api, apiMessage, apiUrl, type Generation } from "@/lib/api";
-export default function Page() {
-  const [items,setItems] = useState<Generation[]>([]); const [error,setError] = useState(""); const [loading,setLoading] = useState(true); const [pending,setPending] = useState(false);
-  async function load() { const all: Generation[] = []; let total = 1; while(all.length < total) { const page = await api.trash(all.length); all.push(...page.items); total = page.total; if(!page.items.length) break; } setItems(all); }
-  useEffect(() => { let active = true; const all: Generation[] = []; async function initial() { let total = 1; while(all.length < total) { const page = await api.trash(all.length); all.push(...page.items); total = page.total; if(!page.items.length) break; } if(active) setItems(all); } void initial().catch(e => { if(active) setError(apiMessage(e)); }).finally(() => { if(active) setLoading(false); }); return () => { active = false; }; }, []);
-  async function restore(id:string) { if(pending) return; setPending(true); try { await api.restoreGeneration(id); await load(); setError(""); } catch(e) { setError(apiMessage(e)); } finally { setPending(false); } }
-  return <section className="studio-page"><div className="studio-article"><h1>Корзина</h1><p>Работы можно восстановить в течение семи дней после удаления.</p>{loading ? <p role="status">Загружаем…</p> : !items.length ? <p className="mt-8">Корзина пуста.</p> : null}{error ? <p role="alert" className="api-error">{error}</p> : null}<div className="mt-8 grid grid-cols-2 gap-4">{items.map(item => <article key={item.id} className="rounded-2xl bg-white p-4">{}{item.imageUrl ? <img src={apiUrl(item.imageUrl)} alt={item.title} className="aspect-square w-full object-contain" /> : null}<h2 className="text-lg!">{item.title}</h2><p className="text-xs!">Восстановить до {item.deletedAt ? new Date(new Date(item.deletedAt).getTime()+7*86400000).toLocaleDateString("ru-RU") : "—"}</p><button disabled={pending} onClick={() => void restore(item.id)} className="studio-button mt-3">Восстановить</button></article>)}</div></div></section>;
-}
+import { redirect } from "next/navigation";
+export default function Page() { redirect("/constructor"); }

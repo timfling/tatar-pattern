@@ -1,2 +1,2 @@
-import { FlatScreen } from "@/components/constructor/FlatScreen";
-export default function FlatPage() { return <FlatScreen />; }
+import { redirect } from "next/navigation";
+export default function FlatPage() { redirect("/constructor"); }

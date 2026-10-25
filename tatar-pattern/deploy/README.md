@@ -1,4 +1,352 @@
+# 25.10.2026 — актуальный этап: подготовка публичного flat
+
+Beget уже установлен. Действующий срез и инструкция владельцу:
+`STAGE-A-2026-10-25.md` (закрытый доступ, среда, frontend handoff, расходы, копии,
+домен→HTTPS и откат). Первоначальную настройку не повторять.
+Flat-only инструменты подготовлены локально; VPS apply и свежий status НЕ выполнены:
+read-only SSH с BatchMode дошёл до VPS, но ключ не авторизован без ручной passphrase.
+GPU не запускать, budget2 used не считать публичным feature switch.
+Старые записи ниже о запуске GPU/отсутствии VPS — история. Последний итог GPU 24.10:
+27 новых jobs / 2 site jobs, offsite evidence сверено, VM SHELVED_OFFLOADED;
+последний backup 130607Z скачан с SHA, его isolated restore ещё не выполнен.
+
+---
+
+# 24.10.2026 — GPU окно и закрытый scope утверждены владельцем
+
+Сегодня после подготовки: максимум2часа/250₽/27новыхjobs, ставка86,74₽/ч,
+25qualification+2sitejobs(E2E/drain), безновыхплатныхretry. Пополнение неувеличивает
+лимит автоматически. Толькоf10-wreath:graphic допускаетсянасайт послеfreshPNGaccept
+иworkerproof; base/profile/SHA/условия в beget-ai-window-20261024/decision.json.
+DraftJSONреестры и два внешних Composeoverrides втойжепапке подготовлены,
+конфигурации проверены локально, наVPS не применены. Другиепарына сайте закрыты.
+Unshelve пока не подтверждён. Старт2часов фиксировать отначалаUnshelve, завершение
+GPUbilling требуетShelve/кабинета, не systemctlstop. Публичныйзапускотдельно.
+
+# 24.10.2026 — Beget tunnel files подготовлены, GPU окно ещё не согласовано
+
+Владелец подтвердил создание отдельного key на Beget:
+SHA256:9rfANttjzdEGuC93eSPMalQRvvv7KoJNXAfBhSVxH5c.
+Live GPU login/ограниченный user/Bearer/proof отсутствуют, GPU SHELVED_OFFLOADED.
+
+Локальные инструменты для следующего согласованного окна:
+- gpu_tunnel_account_20261024.py: по умолчанию plan-only; --apply на GPU создаёт
+  строго ограниченную учётку для этого publickey. До установки authorized_keys
+  обязательны hostpin/sshd-t/effective config/reload; live проверки NOT_RUN.
+- gpu_evidence_snapshot_20261024.py: при неактивном GPU service и свободном state
+  lock сохраняет raw allowlist и coherentSQLite в /srv/tatar-gpu-evidence, без token.
+  Потом download на Mac и manifestSHA. Не активирует/не останавливает service.
+Локальные проверки на temp/mock прошли; GPU runtime не изменён.
+После Unshelve новыеqualification UUID передаются реальному worker probe аргументами;
+старый sealed qualification-jobs.json не переписывать/не выдавать за новый proof.
+Предел2ч/250₽/27jobs лишь предложен, текущая ставка и решение владельца ожидаются.
+
+# 24.10.2026 — v2 restore PASS; следующий шаг transport
+
+Новый набор20261024T111907Z-452fae успешно восстановлен в tp-restore-b1d8516e:
+исходные SHA/counts сверены, guest status0 до API; нет worker/publicports;
+после проверки тестовые контейнеры/сети удалены. Evidence:
+/srv/tatar-pattern/staging-data/restore-checks/restore-ocdybtvc.
+Рабочий HTTPS/catalog110 доступен. Реальный AI drain ещё NOT_RUN.
+
+`beget_gpu_transport_prepare_20261024.py` — офлайн-подготовка на Beget root:
+отдельный новый ключ, known_hosts с ранее проверенным fingerprint, public output.
+Сохраняет в /etc/tatar-pattern/gpu, не перезаписывает чужие/частичные файлы,
+использует общий staging maintenance lock. Не меняет env/sshd, не читает Macключ,
+не создаёт Bearer, не соединяется с GPU. Передавать в incoming и выполнять python3 -B.
+Локальные temp checks PASS, на VPS пока NOT_RUN. Host pin исторический;
+ограниченный GPU account, текущий hostkey/boot, live transport и worker proof
+проверяются в отдельном согласованном платном окне.
+
+# 24.10.2026 — обслуживание v2 установлено; backup с AI=false PASS
+
+Владелец подтвердил check/install, успешные существующие cleanup/backup services
+и status установленного `/etc/tatar-pattern/staging-maintenance.py`.
+Новый backup: `/srv/tatar-pattern/staging-data/backups/20261024T111907Z-452fae`,
+завершён 11:19:59 UTC (14:19:59 МСК). HTTPS/catalog110 и status PASS;
+worker stopped/absent. Расписания и env сохранены, исходный wrapper сохранён
+как `/etc/tatar-pattern/staging-maintenance.flat-20261023.py`.
+Изолированный restore нового набора ещё ожидается. AI=true/GPU/drain NOT_RUN.
+Ниже статусы «не установлен» относятся к более ранней подготовке этого дня.
+
+# 24.10.2026 — HTTPS staging: подготовка обслуживания v2 для AI
+
+Актуальный закрытый staging: guest-20261020-1, tp-staging-20261023,
+/etc/tatar-pattern/staging.env, /srv/tatar-pattern/staging-data. По выводу владельца
+24.10 14:13 МСК: HTTPS/catalog110, LOCAL MAINTENANCE STATUS PASS; backup LAST
+24.10 00:15 UTC (03:15 МСК), три timers активны, свободно49468MiB.
+
+Внешний скрипт `beget_staging_maintenance_20261024.py` подготовлен локально;
+выпуск и VPS пока не изменены. Действия check/install/status/cleanup/retention/backup/
+restore-check/stop-ai. Использует sealed ops только для primitives и isolated restore,
+собственную последовательность snapshot/drain. TLS override включён всегда;
+AI_API_CONFIG=true добавляет compose.ai-api.yml/profileai, optional root0600
+/etc/tatar-pattern/staging-ai.yml читается последним. Config JSON читается в памяти,
+секреты не печатаются. Проверяет только loopback18080→443, Securecookie/CORS/guestTTL,
+отсутствие других publishedports, одинаковые API/worker flags/budget/origin/proof/versions,
+worker SIGTERM/grace960/restartno. Секреты/SSH ограничения готовятся отдельно.
+
+Общий `.maintenance.lock` сохраняется. При занятом lock cleanup/retention пропускают
+один запуск с exit0, следующие ticks сохраняются; прочие действия требуют повторного
+ручного запуска. Это исключает убийство cleanup по TimeoutStartSec120 при ожидании
+backup/drain960. Скрипт не меняет расписания и не отключает timers.
+
+Backup: закрывает flatwriters120 → работающийworker960 → exit0+новыйDRAINED изlogs
+точногоimmutablecontainerID → dump/storage/manifest. Внешний ledger
+staging-data/.worker-drain-v2.json привязан кcontainerId/StartedAt/FinishedAt/ExitCode.
+Уже остановленныйworker без совпадающего ledger, exit75/137/OOM, сменаcontainer/run,
+нетmarker: отказ доsnapshot, DB/tunnel сохраняются, автоматическогоrestartнет.
+Еслиworkerвообщеотсутствует, требуется0queued/submitting/polling вai_jobs.
+После успешного quiesce flatwriters восстанавливаются даже приошибкеdump;
+Возврат flat через start --wait без пересоздания контейнеров.
+worker намеренноостаётсяостановленным, resume — отдельныйявныйшагвокневладельца.
+Tunnelнеостанавливаетсяприbackup. stop-ai закрываетAPI→проверяетdrain→останавливает
+толькоtunnel15→возвращаетflatAPI; это неостанавливаеттарификациюВМ.
+Restore-check только для указанного локальногонабора: новыйprivateпроект,
+AI=false/безworker/публичныхпортов, checksum/counts доguestreset передAPI.
+
+Install заменяет только /etc/tatar-pattern/staging-maintenance.py атомарно после
+check, общегоlock, точногоSHA исходногоскрипта ипроверкипринадлежностиexistingunits.
+Сохраняет root0600 staging-maintenance.flat-20261023.py. Timers/env/containers
+не меняет. Откат кflatwrapper допустим лишь после AI_API_CONFIG=false и безопасной
+остановкиAI; приактивномAI старыйwrapper несовместим. Другуюверсиюнеперезаписывает.
+
+Локальнаяпроверка:7unit safetytests PASS (fakeDocker/DB), Composeconfigдвематрицы
+с синтетическимTLSoverride AIadapterfalse/true PASS; publicbind/insecurecookie отвергнуты.
+Python3.9grammarPASS. Никакихконтейнеров/GPU/jobs в этихпроверкахнезапускали.
+НастоящийVPScheck/install/новыйbackup/restore/drain ещё НЕ выполнены.
+
+## 20.10.2026 — R5: обязательная область полного npm audit
+
+Для полного source lock audit явно выполнять:
+
+```sh
+NODE_ENV=development npm audit --package-lock-only --include=dev --json
+```
+
+При запуске внутри production image передавать `docker run -e NODE_ENV=development`
+и `--include=dev` в npm. Runtime audit выполнять отдельно с `--omit=dev`.
+Metadata dev count и NODE_ENV=production audit0 не доказывают full0. Фиксировать
+command/scope/NODE_ENV, SHA package+lock, Node/npm versions, JSON и exit code.
+
+Для guest-20261020-1 корректный full-dev результат:5HIGHpackages одной dev-цепочки
+braces, GHSA-vfj7-8cjw-p6xm; runtime audit0 не опровергнут. Внешний addendum:
+`Выпуски/guest-20261020-1-SECURITY-ADDENDUM-2026-10-20.md`.
+Запечатанный runtime-checks script не копировать как full audit без этой поправки.
+Архив/images этого выпуска не меняются. Исключение не распространяется на dev/CI
+с недоверенными glob patterns/исходниками/config. Подробные границы в addendum.
+
+---
+
+# 20.10.2026 — guest-20261020-1, только локальный этап А
+
+Приоритет имеет новый выпуск `Выпуски/guest-20261020-1` и его `RELEASE-NOTES.md`,
+`INTEGRATOR-RECHECK.md`, deploy/RELEASE-MANIFEST.json и deploy/IMAGES.json.
+Backend R1/R2/SQL исправления и актуальный frontend включены в новые amd64 images.
+Точный GPU payload из guest-20261019-1 сохранён; R3 review лежит отдельно в
+release-evidence/gpu-review. Старый tp-img2img-http.tgz для восстановления не подходит.
+AI/public gates закрыты, GUEST_GPU_BUDGET=0; deployed worker proof отсутствует.
+VPS/SSH/GPU/public deploy/production restore не выполнялись. Legal placeholders и
+public catalog approved=false сохраняют блок публичного запуска. Свежий OSV выявил
+certifi advisory в dev-lock; подробное ограничение в SECURITY-EXCEPTIONS.md выпуска.
+Нижележащие датированные записи и результаты прежних выпусков — история.
+
+---
+
 # TATAR PATTERN — deploy на Beget
+
+## Провайдер и готовый комплект — 19.10.2026
+
+Beget подтвердил отсутствие ресурсов VPS без ETA; владелец выбирает альтернативу.
+Комплект guest-20261019-1 подходит для другого российского Ubuntu x86_64 VPS с Docker.
+Бюджет VPS + независимые копии — до 2500 ₽/мес, GPU и домен отдельно.
+Заменить имя провайдера/географию в legal DRAFT после фактического выбора, до публикации.
+
+Точный каталог передачи: `Выпуски/guest-20261019-1`.
+Проверка после распаковки: `python3 -B deploy/verify_release.py`.
+Загрузка образов: `gzip -dc deploy/images/guest-20261019-1-amd64.tar.gz | docker load`.
+Затем `python3 -B deploy/verify_release.py --images` — без запуска сервисов.
+Базовый Git commit не включает все рабочие изменения. Отдельный sourceCommit и Git bundle
+фиксируют исходники выпуска, не меняя общий Git. Большие catalog110.tgz/LoRA weights
+включены отдельно; их SHA входят в закоммиченный INPUT-SHA256.json. SOURCE-SHA256.json
+и IMAGES.json дополнительно проверяют полный комплект и готовые images. .env/ключи/БД/QA в комплект не входят. GPU payload не устанавливать поверх
+живого qualified deployment; он нужен для отдельного согласованного переноса/восстановления.
+APT-репозитории не заморожены: готовые images точны, будущая пересборка может иметь иной ID.
+
+## Приоритет 19.10.2026 — guest-20261019-1
+
+Текущий выпуск — снимок рабочей копии, включая изменённые/untracked assets/scripts/UI,
+не pilot11.10. `snapshot_release.py` создаёт allowlist-копию вне Git дерева, manifest
+с baseCommit+dirty status, lock SHA и полным SHA файлов. Image IDs фиксируются после
+linux/amd64 build; SOURCE_FROZEN не является серверной приёмкой. Без .env/QA/DB/storage.
+GPU service/профили/PEFTweights передаются отдельным payload; baseSDXL остаётся по exact
+revision/inventory на GPU ВМ. Нельзя автоматически перезаписывать qualified GPU runtime.
+
+Первый публичный режим — **PUBLIC_GUEST_MODE=true,COOKIE_SECURE=true,GUEST_GPU_BUDGET=0**,
+миграции001–013. Нет постоянной истории/аккаунтов; проверять текущую работу/экспорт,
+чужой доступ/expiry и сохранение неистёкших PNG/jobId после restart. Исторические
+аккаунтные сценарии ниже не являются требованиями публичного гостевого выпуска.
+Production import готов у backend: README «Подготовка релиза19.10»,110реальных элементов;
+комплект payload/catalog:110flat+110texture+49кадров. Pending decision ещё approved=false;
+конкретную запись public scope утверждает владелец, декларацию заново не запрашивать.
+
+### Закрытое staging в выбранное окно
+
+Сначала проверка release SHA и `docker load` новых images. Отдельный env0600:
+COMPOSE_PROJECT_NAME=tp-staging-20261019,DATA_ROOT=/srv/tatar-pattern/staging-data,
+STAGING_MODE=true,DOMAIN=localhost,AI_API_CONFIG=false,CALENDAR_LOGS=false.
+Создать каталоги storage/migration-backups UID10001; другие volumes/проекты не трогать.
+`python3 ops.py --env /etc/tatar-pattern/staging.env config`, затем up-internal,migrate.
+Мигратор делает pg_dump до SQL. В существующем окружении сначала штатный stop-ai+backup;
+exit75/nonzero/нет свежегоDRAINED: сохранить tunnel/DB, не переходить к копии/миграции.
+Production catalog apply/verify — **ровно backend/README**, с назначенной operation и
+отдельной утверждённой decision. Не импортировать рабочую БД или fixtures.
+Затем `python3 ops.py --env /etc/tatar-pattern/staging.env up-staging`.
+Доступ владельца: `ssh -N -L 18080:127.0.0.1:18080 ADMIN@VPS`, открыть
+http://localhost:18080. Порт опубликован только на VPSloopback; внешнийDNS не нужен.
+HTTP staging использует COOKIE_SECURE=false и не доказывает публичныеHTTPS/cookie.
+
+Приёмка: production_catalog verify publicRealUniqueElements=110+PNG/SHA/provenance;
+превью; принятаяflat схема→реальныйPNG/JPG→скачивание; два гостя не видят чужое;
+аккаунтныеAPI404; restart→тот же неистёкший файл/SHA; послеexpiry отказ+cleanup.
+Backup→restore-check в новый tp-restore проект: checksum/counts ДО reset, migrate,
+guest_maintenance reset-restored --offline-restore --designated-operation=<copy-ref>,
+затем status=0guestProcesses/guestGenerations/pendingGuestFiles,только после этого API.
+Ни worker,ни публичныепорты в restore не запускаются. При legacyusers restore-check
+останавливается: нужен latest independent erasure ledger по backendREADME. Не открывать.
+
+### Эксплуатация и фактические overrides
+
+AI_API_CONFIG=true в выбранном env **фактически добавляет compose.ai-api.yml и profileai**
+во всех ops/offsite/maintenance действиях. API видит тот же origin/Bearer_FILE/sharedproof,
+gates остаютсяfalse. GPU endpoint и readonly секреты готовит владелец в окне; известный
+ED25519 SHA256:2uI6K/NhT8SghAVz0mgX3QBGgF1nQmV7yrqS4p2s2pk,publickey в payload/gpu/evidence.
+Отдельная tunnel-учётка обязательна; ubuntu остаётся ownerlogin. Подготовка ограничений:
+отдельный user/ключ, PermitOpen127.0.0.1:8765,AllowTcpForwardinglocal,безTTY/agent/X11/
+shell-команд (authorized_keys command=/bin/false,restrict,port-forwarding,permitopen).
+ServerMatchuser дополнительно ограничивает forwarding доlocal; сначала sshd -t и
+вторая ownerсессия. Privatekey UID10001/0600,known_hosts readonly,внешнийBearer≥32символа;
+значения не отправлять в чат/repo. ssh-keyscan сам не подтверждает подлинность ключа.
+
+`maintenance.py --env ... proof` исполняет готовые25GET-probe UUID через **exec реального
+ai-worker**, затем gpu_proof_status; POST/submit0. Timer tatar-proof каждые20ч и послеboot
+включается только после живой приёмки. Он не продлевает GPU admissiondeadline/не включаетVM.
+Тот же GPUboot/deployment: новыйGETproof; новыйboot/deployment: новаяqualification иaccept
+поGPUправилам. Ошибкаrenew/normal503/просроченныйproof закрывают новыеAI; никаких paid retry.
+Следить за expiry и Result timer, GPU normaldeadline должен покрывать согласованный период.
+AI_EXPECTED_ONLINE=true задаётся только на согласованные часы доступностиGPU:
+monitor проверяет readiness,expiry,worker/tunnel и Result/active proof timer каждые5мин.
+При плановомGPUoff поставитьfalse; это не включает/выключаетVM и не разрешаетsubmit.
+AIне объявлять24/7 при GPUокнах30мин; цена/часыдоступности сообщаются владельцу явно.
+
+Установить rsyslog/restic и dedicated tatar-logs.service (конфиг rsyslog.conf), затем
+CALENDAR_LOGS=true. compose.logs.yml направляет только этотпроект в /var/log/tatar-pattern;
+Docker localcache disabled,accesslogsCaddy/Uvicorn выключены. WorkerDRAINED читается из
+точногоcontainerName и времени>=SIGTERM в этихлогах. Без свежегоmarker остановкаfailclosed.
+Обычный docker compose logs приэтом недоступен; читать защищённыеUTCdaily files.
+Включить tatar-guest-cleanup.timer(60с),tatar-backup.timer,tatar-retention.timer(1ч),
+tatar-monitor.timer. Systemdunits должны указывать на выбранный /srv/.../current;
+staging только с отдельным env/unit,не устанавливатьproductionunit наstagingпоумолчанию.
+Проверить systemctl --failed, journalctl -u tatar-guest-cleanup.service и statuspending=0.
+ОшибкиFS не считатьудалением. Retention:2локальныхполныхнабора и возраст≤7д+1ч,
+restic dedicatedrepository тотжевозраст,prune; migrationbackups тоже≤7д+1ч; logs<14д.
+КопииполногоDBвключаютtransient,поэтому **каждыйrestore reset**; копии закрыты,неwebroot.
+Providerbackup/WAL/snapshot/versioning и GPUTTL24ч/7д+qualificationисключения проверяются
+отдельно,кодBegetне подтверждаетихудаление. Никакихдвухмесячныхкопийподобещаниеmax30д.
+
+### Публичный gate
+
+Нужно окно владельца с точнымVPS/domain/release/env/портами, approvedcatalogscope,
+актуальныеутверждённыеlegal02/03/05(покаDRAFT),секреты/backuprepository+restoreevidence,
+проверкаproviderretention, реальныйworkerproof+AIrelease/transferрешенияприоткрытииAI.
+ГостевойGPUbudget0 менять тольконазначеннымокном/числомзадач. DNS/HTTPS/80/443 послеокна;
+STAGING_MODE=false,COOKIE_SECURE=true,CORS=https://DOMAIN,толькоpublished80/443.
+Снаружи проверитьHTTPS/главную/2логотипа/flat/AIошибкиилиразрешённыйE2E/текущуюработу/
+скачивание,SecureHttpOnlyStrictcookie,чужойOrigin/ownership,затемrestart/reboot/persistence.
+Серверной/публичнойприёмки в этомлокальномкомплекте пока нет.
+
+---
+
+## Воспроизводимая сборка комплекта
+
+1. `snapshot_release.py --output /ABS/Выпуски/NEW_RELEASE` копирует allowlist вне общего Git.
+2. Из снимка собрать backend/frontend/tunnel через штатные Dockerfile с `--platform linux/amd64`.
+3. PostgreSQL/Caddy закрепить по amd64 platform manifest, не по выбранному Mac ARM multiarch tag.
+4. `python3 -B deploy/commit_release.py --root .` создаёт отдельный source commit/bundle.
+5. `python3 -B deploy/finalize_release.py --root .` сохраняет images, IDs и полные SHA.
+6. `python3 -B deploy/verify_release.py --images`, затем `package_release.py --output ../RELEASE.tgz`.
+
+Имя выпуска в текущем builder/template фиксировано guest-20261019-1; для нового выпуска
+сначала задать новое имя в builder и .env.example, не перезаписывать старый tag/archive.
+Git bundle восстанавливается `git clone --branch release deploy/guest-20261019-1-source.bundle ../release-source`.
+Готовые images и большие отдельные payload брать из проверенного комплекта, не из старого GitHub.
+
+## Команды на выбранном VPS: подготовлено, ещё не выполнялось
+
+После назначения окна, установки Docker по официальной инструкции и передачи release
+(ниже root/sudo, путь current указывает на guest-20261019-1):
+
+```bash
+apt-get update
+apt-get install -y python3 restic rsyslog
+install -d -m 700 /etc/tatar-pattern /srv/tatar-pattern/data
+install -d -o 10001 -g 10001 -m 750 /srv/tatar-pattern/data/storage /srv/tatar-pattern/data/migration-backups
+cd /srv/tatar-pattern/current/deploy
+python3 -B ops.py --env /etc/tatar-pattern/production.env init
+# Владелец заполняет защищённый env: DOMAIN, ACME_EMAIL, DATA_ROOT, RELEASE.
+# Новый пароль БД генерирует init, его не копируют из примера.
+python3 -B ops.py --env /etc/tatar-pattern/production.env config
+```
+
+Для закрытого staging создавать отдельные staging.env и DATA_ROOT по разделу выше.
+Production env не подставлять в staging-команды. Для установки календарных логов и
+задач, только после настройки независимого restic repository и его credentials:
+
+```bash
+install -d -m 700 /run/tatar-pattern-logs /var/log/tatar-pattern
+rsyslogd -N1 -f /srv/tatar-pattern/current/deploy/rsyslog.conf
+install -m 644 systemd/tatar-*.service systemd/tatar-*.timer /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable --now tatar-logs.service
+# Только после появления /run/tatar-pattern-logs/syslog: CALENDAR_LOGS=true в env.
+# Действующие контейнеры получают logging override при согласованном пересоздании.
+# Сначала вручную проверить cleanup, offsite и retention на выбранном DATA_ROOT.
+python3 -B maintenance.py --env /etc/tatar-pattern/production.env cleanup
+# offsite.py/retention запускаются с credentials из защищённого restic.env через systemd.
+systemctl start tatar-backup.service
+systemctl start tatar-retention.service
+systemctl enable --now tatar-guest-cleanup.timer tatar-backup.timer tatar-retention.timer tatar-monitor.timer
+systemctl --failed
+```
+
+`rsyslogd -N1` требует созданных каталогов; systemd RuntimeDirectory/LogsDirectory создают
+их при старте. При первоначальной проверке сначала создать /run/tatar-pattern-logs и
+/var/log/tatar-pattern с правами0700 либо выполнять validation после старта service.
+Не включать tatar-proof.timer до действующего worker и успешного ручного GET-probe.
+Не применять эти production units на чужие/существующие проекты. Credentials не source
+из недоверенных файлов и не печатать в терминал/чат; systemd читает EnvironmentFile.
+
+После reboot VPS db/API/frontend/proxy восстанавливаются по restart policy. Worker с
+restart=no требует ручной сверки ai_jobs и запуска в назначенном окне — это осознанно.
+Из deploy, с тем же выбранным env, AI_API_CONFIG=true и реальными readonly секретами:
+
+```python
+from pathlib import Path
+from ops import read_env, compose
+p = Path('/etc/tatar-pattern/production.env')
+v = read_env(p)
+assert v['AI_API_CONFIG'] == 'true'
+dc = compose(p, v)
+dc('up', '-d', '--wait', '--no-build', 'gpu-tunnel', 'ai-worker')
+```
+
+Далее `python3 -B maintenance.py --env /etc/tatar-pattern/production.env proof`.
+Если GPU boot/deployment изменился, сначала qualification/accept по GPU handoff;
+если admission истёк — согласованное продление на GPU, timer этого не делает.
+При ошибках proof новые AI закрыты; jobId нельзя заменять новым paid submit.
+Проверить сохранённые неистёкшие PNG/SHA и текущую работу снаружи после каждого restart.
+
+## Историческая инструкция 11–18.10 (применять с поправками выше)
 
 11.10.2026. Статус: **комплект подготовки к запуску; сайт не опубликован**. Результаты локальной проверки — [VERIFICATION.md](VERIFICATION.md), выбор/стоимость/действия владельца — [BEGET.md](BEGET.md), обязательные стыки — [HANDOFF.md](HANDOFF.md). Всё создано только в deploy/ и собственном summary. Нет аккаунта, VPS, домена или утвержденного бюджета.
 

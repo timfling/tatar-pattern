@@ -1,0 +1,12 @@
+{
+  "source": "\u0412\u044b\u043f\u0443\u0441\u043a\u0438/guest-20261020-1/backend/app/ai_provider.py",
+  "sourceSha256": "b125caa33bfb2d2f6c0fc445fdc480f6bac199ed29fdaadaaef5c40c6d6a85b9",
+  "overrideSha256": "7776b706ed864472d89f48bd9eed346a871c8e5f4eb5263d0027b76e39607546",
+  "change": "Stop reading when HTTPResponse body is closed; preserve deadlines/size/SHA/metadata checks",
+  "sealedReleaseChanged": false,
+  "gpuPayloadChanged": false,
+  "runtimeApplied": true,
+  "localTests": "7PASS: original HTTP1.0 failure, fixed1.0/1.1,1MiB,truncation,size,redirect,deadline",
+  "nativeDefectConfirmation": "OWNER_OUTPUT_OSError_errno9_CONFIRMED",
+  "deployedWorkerProof": "PASS_2026-10-24T12:40:37.269598Z_25currentGETjobs"
+}

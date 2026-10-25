@@ -33,8 +33,10 @@ def main():
         if sha256(ROOT/name) != expected_hash:
             raise SystemExit(f'SHA-256 mismatch: {name}')
     manifest = json.loads((ROOT/'deploy/RELEASE-MANIFEST.json').read_text())
-    if manifest['release'] != 'pilot-20261011-2':
-        raise SystemExit('Unexpected release')
+    template = dict(line.split('=', 1) for line in (ROOT/'deploy/.env.example').read_text().splitlines()
+                    if line and not line.startswith('#') and '=' in line)
+    if manifest['release'] != template['RELEASE'] or manifest.get('platform') != 'linux/amd64':
+        raise SystemExit('Release/template/platform mismatch')
     if args.images:
         images = json.loads((ROOT/'deploy/IMAGES.json').read_text())['images']
         for item in images:

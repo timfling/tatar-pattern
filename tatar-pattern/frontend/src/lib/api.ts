@@ -48,8 +48,10 @@ export type AiBaseCatalog = {
   schemaVersion: string; catalogVersion: string; palettePolicy: "source"; freePrompt: false;
   outputSize: [number, number]; available: boolean; bases: AiBase[];
 };
-export type AiGenerateRequest = { mode: "ai"; ai: AiSelection; seed: number; requestId: string; projectId?: string };
+export type AiGenerateRequest = { mode: "ai"; ai: AiSelection; seed: number; requestId: string };
+export type GuestRequest = AiGenerateRequest | { mode: "flat"; selections: Selections; seed: number; requestId: string };
 export type Generation = {
+  expiresAt: string;
   description?: string | null;
   descriptionDetails?: { text?: string; basis?: string; claimType?: string; templateVersion?: string; schemaVersion?: string; facts?: Record<string,unknown>; evidence?: Evidence[] } | null;
   culturalNote?: CulturalNote | null;
@@ -65,6 +67,7 @@ export type Generation = {
   recipe?: { isFixture?: boolean; [key: string]: unknown };
   error?: { code: string; message: string } | string | null;
 };
+export type GuestGeneration = Omit<Generation, "title" | "rating" | "projectId" | "prompt" | "deletedAt">;
 export type Project = { id: string; title: string; createdAt: string };
 export type Element = { code: string; nameRu: string; motifClass: string; motifKey?: string; imageUrl: string; isFixture?: boolean; motifIdentity?: string; provenanceStatus?: string; artifactCode?: string; sourceFrame?: string; qualityAcceptance?: unknown; compositionMetadata?: CompositionMetadata | null };
 export class ApiError extends Error {
@@ -93,7 +96,7 @@ export function createApi(transport: typeof fetch = fetch) {
     const data = await response.json().catch(() => null);
     if (!response.ok) {
       const e = data?.error;
-      if (response.status === 401 && typeof window !== "undefined") window.dispatchEvent(new Event("tp-session-expired"));
+
       throw new ApiError(e?.code ?? "HTTP_ERROR", e?.message ?? `Сервис вернул ошибку (${response.status}).`, response.status, e?.details);
     }
     if (!data) throw new ApiError("INVALID_RESPONSE", "Сервис вернул пустой ответ.");
@@ -113,10 +116,13 @@ export function createApi(transport: typeof fetch = fetch) {
     health: () => request<{ ok: boolean }>("/health"),
     capabilities: () => request<Capabilities>("/capabilities"),
     aiBases: (signal?: AbortSignal) => request<AiBaseCatalog>("/ai-bases", { signal }),
-    generateAi: (body: AiGenerateRequest, signal?: AbortSignal) => request<{ generation: Generation }>("/generations", { ...json("POST", body), signal }),
+    guestSession: () => request<{ expiresAt: string }>("/guest/session", json("POST", {})),
+    guestPreflight: (body: GuestRequest, signal?: AbortSignal) => request<Preflight & { expiresAt: string }>("/guest/preflight", { ...json("POST", body), signal }),
+    guestCreate: (body: GuestRequest, signal?: AbortSignal) => request<{ generation: GuestGeneration }>("/guest/generations", { ...json("POST", body), signal }),
     compositionSchemes: (signal?: AbortSignal) => request<SchemeCatalog>("/composition-schemes", { signal }),
     preflight: (selections: Selections, seed: number, signal?: AbortSignal) => request<Preflight>("/composition-preflight", { ...json("POST", { mode: "flat", selections, seed }), signal }),
     generate: (selections: Selections, prompt = "", projectId?: string, signal?: AbortSignal, mode?: GenerationMode, seed?: number) => request<{ generation: Generation }>("/generations", { ...json("POST", { selections, prompt, ...(seed !== undefined ? { seed } : {}), ...(mode ? { mode } : {}), ...(projectId ? { projectId } : {}) }), signal }),
+    guestGeneration: (id: string, signal?: AbortSignal) => request<{ generation: GuestGeneration }>(`/guest/generations/${encodeURIComponent(id)}`, { signal }),
     generation: (id: string, signal?: AbortSignal) => request<{ generation: Generation }>(`/generations/${encodeURIComponent(id)}`, { signal }),
     generations: (offset = 0, projectId?: string) => request<{ items: Generation[]; total: number }>(`/generations?limit=100&offset=${offset}${projectId ? `&projectId=${encodeURIComponent(projectId)}` : ""}`),
     patchGeneration: (id: string, patch: Partial<Pick<Generation, "title" | "rating" | "projectId">>) => request<{ generation: Generation }>(`/generations/${encodeURIComponent(id)}`, json("PATCH", patch)),
@@ -128,6 +134,7 @@ export function createApi(transport: typeof fetch = fetch) {
 }
 export const api = createApi();
 export function apiMessage(error: unknown) {
+  if (error instanceof ApiError && ["GUEST_ACCESS_REQUIRED", "GUEST_ACCESS_EXPIRED", "GUEST_RESULT_EXPIRED", "NOT_FOUND"].includes(error.code)) return "Срок доступа истёк или доступ к работе утрачен. Восстановить её по одному номеру нельзя. Новое создание возможно только отдельным действием.";
   if (error instanceof ApiError && error.code === "VALIDATION_ERROR" && Array.isArray(error.details)) {
     const fields = error.details.map((d: { field?: string }) => d.field ?? "");
     if (fields.some((f) => f.includes("email"))) return "Проверьте адрес электронной почты.";
@@ -142,5 +149,5 @@ export function toApiSelections(value: ConstructorSelections): Selections {
   return { style: value.style as string, composition: value.composition as string, parameters: value.parameters as string, palette: value.palette as string, usage: value.usage as string, motifs: value.motifs };
 }
 export function exportUrl(id: string, format: "png" | "jpg") {
-  return apiUrl(`/api/generations/${encodeURIComponent(id)}/file?format=${format}&download=true`);
+  return apiUrl(`/api/guest/generations/${encodeURIComponent(id)}/file?format=${format}&artifact=output&download=true`);
 }

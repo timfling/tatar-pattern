@@ -1,5 +1,2 @@
-import { LoginScreen } from "@/components/auth/LoginScreen";
-
-export default function LoginPage() {
-  return <LoginScreen />;
-}
+import { redirect } from "next/navigation";
+export default function Page() { redirect("/constructor"); }

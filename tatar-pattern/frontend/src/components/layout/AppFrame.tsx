@@ -2,10 +2,10 @@
 
 /* eslint-disable react-hooks/refs -- useShell exposes context data and event callbacks, not a ref read during render. */
 
-import { useSession } from "@/components/auth/RequireAuth";
+import { GuestCleanup } from "@/components/guest/GuestCleanup";
 import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { loadPreferences } from "@/lib/preferences";
+
 import { Sidebar, NAV_ITEMS } from "@/components/layout/Sidebar";
 import { MobileHeader } from "@/components/layout/MobileHeader";
 import { MobileMenu } from "@/components/layout/MobileMenu";
@@ -19,8 +19,7 @@ function activeFromPath(pathname: string) {
 }
 
 function AppFrameInner({ children }: { children: React.ReactNode }) {
-  const session = useSession();
-  useEffect(() => { document.documentElement.dataset.reducedMotion = String(loadPreferences().reducedMotion); }, []);
+
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
@@ -35,15 +34,13 @@ function AppFrameInner({ children }: { children: React.ReactNode }) {
   const active = activeFromPath(pathname);
 
   return (
-    <div className="app-viewport">
+    <div className="app-viewport"><GuestCleanup />
       <main
         ref={shell.setScreenEl}
         className="app-screen relative flex bg-[image:var(--gradient-canvas)] pt-[14px] max-md:flex-col max-md:bg-surface max-md:bg-none max-md:pt-[max(13px,env(safe-area-inset-top))]"
       >
         <Sidebar
           active={active}
-          avatar={session?.avatar}
-          userName={session?.firstName ? `${session.firstName} ${session.lastName ?? ""}` : session?.email ?? "Аккаунт"}
           className="hidden md:flex"
           onConstructorClick={shell.runConstructorClick}
         />

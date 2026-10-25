@@ -1,3 +1,198 @@
+# Адресные исправления приёмки А — 20.10.2026
+
+Локальные backend-исправления R1/R2 и воспроизведённого SQL lock-order риска.
+Требуют **нового backend image для API и worker**; старый `guest-20261019-1`
+не исправлен. Гостевой объём первого релиза ниже сохраняется.
+
+- `AI_MVP_ENABLED=false`: GET capabilities/ai-bases не выполняют сетевую readiness
+  проверку. При включённом AI один ответ каталога использует один health/proof
+  snapshot, включая отказ; не более одного HTTP health с общим deadline5сек,
+  без retry по парам. Отказ health кешируется5сек **после** завершения попытки
+  внутри adapter instance. Это не межпроцессный cache и не production latency SLA.
+  Proof/boot/deployment/profileDigest/promptVersion/qualified, release и material
+  gates сохраняются; preflight не обещает последующую доступность GPU.
+- GET одного element file выбирает только заданный code из прежнего approved SQL
+  view; неизвестный code не читает PNG/source. Preview схемы проверяет только её
+  defaultElementCodes, неизвестная/непринятая схема — без проверки файлов каталога.
+  Полный список/capabilities по-прежнему проверяют все разрешённые записи, используя
+  общий ограниченный кэш верификации файлов. Public approval/provenance читаются
+  из БД **каждый раз**, в кэш не попадают.
+- Кэш на API/worker процесс: максимум512 entries, TTL60сек; ключ включает resolved
+  path, dev/inode/size/mtime_ns/ctime_ns и ожидаемый SHA. Изменение файла/пути/SHA
+  инвалидирует проверку немедленно. Сохраняются PNG/alpha/4096px/source SHA и safe_path
+  gates; файл каталога ограничен32MiB. Положительный и отрицательный результат
+  верификации ограничены TTL. Полная явная инвалидация:
+  `app.catalog.invalidate_catalog_cache()` в каждом использующем каталог процессе;
+  при операторской замене каталога предпочтителен restart API/worker. Выполнение
+  этой функции в отдельном CLI процессе не очищает кэш запущенного API.
+- Не более2 одновременных холодных проверок файлов на процесс; лишний запрос
+  получает503 `CATALOG_BUSY` без ожидания. Тёплый cache hit не занимает проверочный
+  слот. Это лимит декодирования/хеширования, не общий rate limit открытых GET;
+  предел трафика/нагрузки на целевом сервере ещё требует проверки.
+- Worker failure берёт generations перед ai_jobs, как guest cleanup. На временные
+  PostgreSQL `40P01`/`55P03`/`57014` в step worker делает rollback и продолжает
+  из durable state на следующем проходе; submitting не превращается в queued,
+  provider_request_id/известный jobId не заменяются, resubmit не вводится.
+
+Для этих исправлений новых env/миграций нет; гостевому первому выпуску по-прежнему
+нужны001–013, `PUBLIC_GUEST_MODE=true`, `GUEST_GPU_BUDGET=0` и выключенные AI gates
+до отдельного разрешённого окна. Production backup/migration/runtime/deploy не запускались.
+
+---
+
+# Первый публичный релиз: гостевой API — 19.10.2026
+
+**Локально реализовано; production/облачная приёмка и правовые DRAFT не закрыты.**
+Этот раздел имеет приоритет над аккаунтными разделами ниже. По умолчанию
+`PUBLIC_GUEST_MODE=true`: аккаунты, профиль, проекты, история и корзина отключены
+прямым HTTP; старый `tp_session` не даёт доступа. Старые ownership-проверки сохранены
+для отдельного закрытого аккаунтного режима (`PUBLIC_GUEST_MODE=false`). Никаких
+скрытых users/общего аккаунта нет. Каталог/preview/source/release/qualification gates
+не ослаблены: backend registry28, cloud owner-accepted25, rejected2, старый f08 вне
+qualification; releaseApproved/externalTransferApproved/AI_MVP_ENABLED не изменены.
+
+## Endpoints и браузерный доступ
+
+Все запросы из браузера — `credentials: 'include'`, предпочтительно один HTTPS origin.
+POST требует `Content-Type: application/json`, body ≤16384 bytes, допустимый Origin.
+
+| Метод / путь | Запрос / ответ |
+| --- | --- |
+| POST `/api/guest/session` | Только `{}`. Ответ200 `{"expiresAt":"UTC ISO8601"}` и новая cookie при отсутствии действующей. Повтор с действующей cookie возвращает прежний срок **без Set-Cookie/продления** |
+| POST `/api/guest/preflight` | То же тело, что create. Flat: существующий composition-v2 preflight + expiresAt; AI:200 `{available:true,expiresAt}` или503; очередь/оплата не создаются |
+| POST `/api/guest/generations` |201 `{generation:{...}}`. Flat синхронный done; AI durable queued/processing/done/failed, progress=null до done. Повтор возвращает ту же generation |
+| GET `/api/guest/generations/{id}` |200 `{generation:{...}}`; только процессу, создавшему задачу, до expiresAt |
+| GET `/api/guest/generations/{id}/file?format=png&artifact=output&download=true` | PNG/JPG: format=png\|jpg, artifact=output\|module, download=true для attachment; module только существующий PNG модуля. Тот же доступ, что status; секретов в URL нет |
+
+Остаются GET health/capabilities/elements + разрешённые element files,
+composition-schemes/previews и ai-bases/previews. Нет guest list/history/delete/restore,
+переименования/оценок/профиля. Legacy `/api/auth/*`, `/api/projects*`,
+`/api/generations*`, `/api/composition-preflight`, profile/history/trash в публичном
+режиме →404 `ACCOUNT_API_DISABLED` (либо404 для несуществующего маршрута).
+Они также исключены из публичной OpenAPI-схемы.
+
+Cookie **tp_guest**: случайные256бит (`token_urlsafe(32)`), HttpOnly,
+SameSite=Strict, Path=/api/guest, без Domain. В production обязательно Secure=true
+(`COOKIE_SECURE=true`) и HTTPS; startup с TP_ENVIRONMENT=production и insecure cookie
+отклоняется. На локальном HTTP Secure=false. В БД только SHA256 токена, UUID процесса,
+created_at/expires_at. Процесс ограничивает доступ к его временным задачам;
+ID/requestId без этой cookie не авторизация. Два независимых cookie jar изолированы.
+Не передавать cookie/секреты в query/URL/localStorage/аналитику/ошибки/логи.
+GPU Bearer остаётся только на сервере. Ответы `Cache-Control:no-store`,
+`Referrer-Policy:no-referrer`; proxy/CDN не должен кешировать /api/guest или раздавать
+STORAGE_ROOT как static. После потери cookie восстановление по одному ID невозможно.
+
+## JSON и идемпотентность
+
+Flat: прежние поддержанные `selections` без изменений renderer/каталога, новый
+обязательный UUID requestId. Например (elementCodes брать из живого каталога схемы):
+
+```json
+{"mode":"flat","requestId":"cce0bfd4-f61d-44fe-9717-f75041e14b93","seed":42,
+ "selections":{"renderer":"composition-v2","schemeId":"f10-wreath",
+ "style":"heritage","composition":"medallion","palette":"emerald","usage":"web",
+ "registryVersion":"tp-schemes/2.1.0",
+ "elementCodes":["TP-E-050","TP-E-051","TP-E-052"],"colorMode":"original"}}
+```
+
+Пример показывает форму; конкретный набор/registryVersion/min/max/roles нужно брать
+из GET composition-schemes и проверять preflight, а не копировать произвольный код.
+
+```json
+{"mode":"ai","requestId":"7bb2e57c-2088-4f57-afb1-70cd98255f75","seed":42,
+ "ai":{"baseId":"f10-wreath","ornamentStyle":"graphic","profileVersion":"2026-10-18.local-v1"}}
+```
+
+GuestGenerate допускает **только mode/requestId/seed/selections/ai** и поддержанные
+строгие вложенные модели. Даже пустые prompt/projectId/email/password/profile/avatar/
+title/notes/rating, upload и произвольные AI-параметры →422. Для AI selections
+неприменимы; для flat ai неприменим. Никакого свободного prompt/пользовательского названия.
+
+UUID создаётся один раз на явное создание, сохраняется вместе с точным запросом
+только в состоянии текущей вкладки (при необходимости sessionStorage до expiresAt).
+После timeout/5xx/reload повторять **тот же POST, тело и requestId с прежней cookie**.
+Для GPU worker использует отдельный durable server UUID provider_request_id как
+Idempotency-Key существующего HTTP контракта; это не client requestId, cookie или
+числовая sequence. Browser его не получает; restore/reuse sequence не совпадёт со
+старой внешней операцией. Сервер сериализует admission в PostgreSQL; unique(process,requestId) и fingerprint
+исключают повторную оплачиваемую задачу. Изменённое тело с прежним UUID →409
+`IDEMPOTENCY_CONFLICT`. Новый UUID — только явное новое создание. После потери доступа/
+restore/expiry не делать автоматический POST с новым UUID. Cookie bootstrap завершить
+до create; параллельные первичные bootstrap не использовать. Дедупликация между двумя
+разными гостями не производится. Неизвестный submit →failed AI_SUBMISSION_UNCERTAIN,
+автоматического resubmit нет, даже если GPU позже завершилась. Повтор failed возвращает
+тот же failed. requestId сам по себе не открывает чужой статус/файл.
+
+`generation`: id(string), requestId(UUID), mode, seed, status/progress,
+createdAt/finishedAt, **expiresAt**, imageUrl/moduleUrl(относительные URL или null),
+ai/selections, recipe/warnings/error и прежние description/outputKind/seamless/repeat/
+modelVersion/algorithmVersion. Аккаунтных title/rating/projectId/prompt/deletedAt нет.
+В UI показывать expiresAt сервера; PNG/JPG скачиваются обычным fetch/blob или ссылкой
+на URL файла с cookie — без выдачи секретной ссылки.
+
+Ошибки: `{error:{code,message,details?}}` без входных значений/секретов.
+401 GUEST_ACCESS_REQUIRED/GUEST_ACCESS_EXPIRED — cookie отсутствует/неверна/истекла;
+404 NOT_FOUND — чужой/отсутствующий/истёкший результат;404 FILE_NOT_FOUND — ещё нет файла
+или формат/module отсутствует;410 GUEST_RESULT_EXPIRED — срок пересёкся во время flat;
+409 IDEMPOTENCY_CONFLICT;413 REQUEST_TOO_LARGE;415 JSON_REQUIRED;422 VALIDATION_ERROR
+и прежние preflight/catalog ошибки;429 REQUEST_RATE_LIMIT/GUEST_RATE_LIMIT/
+GUEST_CONCURRENCY_LIMIT;503 AI_UNAVAILABLE/AI_BUDGET_EXHAUSTED/AI_QUEUE_FULL/
+GENERATOR_BUSY/DATABASE_UNAVAILABLE. Preflight не резервирует capacity/readiness.
+Недоступный AI никогда не заменяется flat.
+
+## Сроки, лимиты, worker и restore
+
+`GUEST_TTL_SECONDS=86400`, допустимо1..86400. Фиксированный процесс начинается при
+bootstrap; задачи наследуют его срок (следовательно могут жить меньше24ч от создания).
+Polling/download/повтор POST срок не продлевают. После срока сервер отказывает сразу,
+даже до физической очистки. Начатая до срока передача файла может закончиться после
+него. Новый bootstrap после expiry не возвращает старые задачи.
+
+`GUEST_CONCURRENT_JOBS=2` активных задач на процесс; прежняя глобальная AI очередь20,
+одна удалённая worker-задача, deadline15мин и930/950/960сек drain сохранены.
+`GUEST_CREATES_PER_MINUTE=20` — общий DB лимит новых процессов+задач всех экземпляров;
+готовый replay не расходует его. Flat admission сериализован DB lock; render semaphore2
+остаётся дополнительным локальным ограничением. Bootstrap/preflight/create также
+20запросов/IP/минуту в памяти одного API процесса; публикация использует один API worker.
+`GUEST_GPU_BUDGET=0` по умолчанию: абсолютный потолок числа принятых AI задач, счётчик
+`guest_budget['gpu-total']` durable, не обнуляется cleanup/reset/restart. Увеличение
+потолка — отдельное решение окна/бюджета владельца; это cap задач, **не денежный счётчик**.
+Принятая, затем failed/uncertain задача считается потраченной. Нулевой бюджет не
+отменяет уже известную GPU задачу. Existing release/transfer/proof gates обязательны.
+
+Состояние: guest_processes + nullable-user generations с guest_process_id/expiry/
+requestId/fingerprint + прежняя ai_jobs; файлы только STORAGE_ROOT/guest-results/.
+API lifespan и worker раз в60с очищают expired строки/ключи/ai_jobs/файлы. Независимая
+операторская команда `python -m scripts.guest_maintenance cleanup` обязательна при
+остановленных сервисах/контроле ошибок. Durable storage_deletions повторяет unlink;
+успешные гостевые entries удаляются. Крах до SQL commit: orphan/temp файлы
+собираются по исходному expiry в серверном имени (без cookie/ID человека); старые
+неформатные orphan дополнительно по mtime≤TTL. Обычная физическая задержка — до60с; filesystem errors требуют
+retry/оператора и могут увеличить её. При остановленных API/worker автоматический
+cleanup не исполняется, нужен внешний запуск CLI. Access expiry от этого не зависит.
+
+Только незавершённые/неопределённые внешние операции оставляют guest_reconciliations:
+local generation + server UUID provider_request_id, provider/jobId/uncertain, expiresAt≤creation+7д,
+без payload/картинки/cookie. Late ack добавляет внешний ID в этот след, не возвращает
+задачу. Worker повторно проверяет expiry перед submit/output/commit; late done не
+публикует/не скачивает истёкшее. Нет придуманного GPU cancel/delete. До истечения7д
+оператор сверяет request reference/knownId с фактическим GPU state, контролирует
+штатный GPU TTL либо выполняет подтверждённую адресную локальную очистку на ВМ по
+порядку LoRA/Beget. Подробные команды/подтверждение/restore — backend/README ниже.
+
+Полный dump и storage backup существующего ops **включают transient данные**;
+автоматическое исключение/календарная ротация пока не внедрены в deploy. До старта
+восстановленных API/worker обязателен полный reset guest зоны, не per-account ledger.
+Каталог/evidence/qualification/source files/миграции не очищаются. Старые аккаунтные
+данные не импортировать и не удалять вслепую. Инфраструктурные сроки backup/WAL/logs и
+реальное GPU удаление остаются зависимостью Beget/владельца;24ч сайта не обещание их
+уничтожения. Юридические02/03/05 остаются DRAFT; termsAcceptance/legal_events/document
+API/универсальное AI consent ради гостевого выпуска не вводились.
+
+---
+
+# Предыдущий аккаунтный контракт и история подготовки (для закрытого режима)
+
 # Дополнение backend к релизу — 19.10.2026
 
 ## Flat: принятый публичный поднабор существующего контракта

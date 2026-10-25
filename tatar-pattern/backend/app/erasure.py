@@ -16,6 +16,9 @@ def enqueue_files(conn,relative):
         conn.execute("INSERT INTO storage_deletions(path) VALUES(%s) ON CONFLICT(path) DO UPDATE SET state='pending',last_error=NULL,updated_at=now()",(str(path),))
 
 def remember_provider(conn,job,cloud_id=None):
+    if job.get('guest_process_id'):
+        from .guest import remember_external
+        return remember_external(conn,job,cloud_id)
     if job['state']=='queued' and not cloud_id:return
     conn.execute("""INSERT INTO provider_deletions(generation_id,provider,provider_job_id,submit_uncertain)
       VALUES(%s,%s,%s,%s) ON CONFLICT(generation_id) DO UPDATE SET
@@ -37,8 +40,12 @@ def erase_generation(conn,row,reason):
     conn.execute('DELETE FROM ai_jobs WHERE generation_id=%s',(current['id'],))
     conn.execute('DELETE FROM generations WHERE id=%s',(current['id'],))
 
-def drain_files(conn,root,limit=200):
-    rows=conn.execute("SELECT * FROM storage_deletions WHERE state='pending' ORDER BY updated_at,path LIMIT %s FOR UPDATE SKIP LOCKED",(limit,)).fetchall()
+def drain_files(conn,root,limit=200,*,path_prefix=None):
+    where="state='pending'"
+    args=[]
+    if path_prefix is not None:
+        where+=' AND starts_with(path,%s)';args.append(path_prefix)
+    rows=conn.execute(f"SELECT * FROM storage_deletions WHERE {where} ORDER BY updated_at,path LIMIT %s FOR UPDATE SKIP LOCKED",(*args,limit)).fetchall()
     for row in rows:
         error=None
         try:

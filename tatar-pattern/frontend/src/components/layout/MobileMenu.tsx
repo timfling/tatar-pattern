@@ -56,16 +56,7 @@ export function MobileMenu({
         <button type="button" aria-label="Закрыть меню" onClick={close}>
           <Icon name="menu-close" width={42} height={42} />
         </button>
-        <Link
-          href="/profile"
-          onClick={close}
-          className="flex items-center gap-[10px] rounded-[48px] bg-white/20 py-[4px] pl-[12px] pr-[4px] outline outline-[0.5px] -outline-offset-[0.5px] outline-white/50"
-        >
-          <span className="text-[15px] font-bold leading-[15px] text-[#585858]">
-            Настройки
-          </span>
-          <Icon name="user" width={42} height={42} />
-        </Link>
+
       </div>
 
       <div className="mt-[65px] flex w-full max-w-[349px] flex-col items-center gap-[47px]">
@@ -109,7 +100,7 @@ export function MobileMenu({
               ))}
             </div>
           ) : null}
-        </nav>
+        </nav><nav aria-label="Документы" className="flex flex-wrap justify-center gap-3 text-sm"><Link href="/legal/terms" onClick={close}>Правила</Link><Link href="/legal/privacy" onClick={close}>Обработка данных</Link><Link href="/legal/cookies" onClick={close}>Хранилище</Link></nav>
 
         <Link
           href="/"

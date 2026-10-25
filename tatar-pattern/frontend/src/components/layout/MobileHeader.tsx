@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 
 type MobileHeaderProps = {
@@ -17,7 +16,7 @@ export function MobileHeader({
   onMenu,
 }: MobileHeaderProps) {
   return (
-    <header className="flex h-[50px] w-full shrink-0 items-center justify-between px-[22px] md:hidden">
+    <header className="studio-mobile-header relative flex h-[50px] w-full shrink-0 items-center justify-between px-[22px] md:hidden">
       <button
         type="button"
         aria-label="Открыть меню"
@@ -31,10 +30,10 @@ export function MobileHeader({
         <button
           type="button"
           onClick={onBack}
-          className="pressable-quiet flex items-center gap-[6px] rounded-[24px] px-[16px] py-[12px]"
+          className="studio-mobile-back pressable-quiet absolute left-1/2 flex -translate-x-1/2 items-center gap-[5px] whitespace-nowrap rounded-[24px] px-[10px] py-[9px]"
         >
           <Icon name="chevron-back" width={8} height={15} />
-          <span className="text-[15px] font-bold leading-[15px] text-ink-subtle">
+          <span className="text-[13px] font-semibold leading-[15px] text-ink-subtle">
             Вернуться назад
           </span>
         </button>
@@ -42,9 +41,7 @@ export function MobileHeader({
         <span className="min-w-0 flex-1" />
       )}
 
-      <Link href="/profile" aria-label="Профиль" className="pressable-icon shrink-0">
-        <Icon name="user" width={50} height={50} />
-      </Link>
+
     </header>
   );
 }

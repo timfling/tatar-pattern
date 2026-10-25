@@ -1,3 +1,197 @@
+# Гостевой первый релиз — актуальное продолжение19.10.2026
+
+**LOCAL IMPLEMENTED; production/облачная приёмка не выполнены, legal DRAFT сохранён.**
+Приоритет этого раздела над исторической аккаунтной README ниже.
+Точный браузерный контракт/JSON/ошибки — верх [API-CONTRACT](../API-CONTRACT.md).
+Нет users для гостей; миграция **013_guest_transient.sql** additive,001–012 не изменены.
+Рабочая5432/production/SSH/GPU/frontend/deploy/чужие summary в этой работе не менялись.
+
+## Запуск и конфигурация
+
+Перед изменениями существующего окружения — принятый backup/storage/drain порядок.
+Мигратор сам делает pg_dump **до** SQL. Образ должен содержать013 и новые app/scripts.
+Не запускать новый worker/API со старой схемой012. QA schema без полного migration
+ledger требует отдельной проверенной patch процедуры; общий migrate поверх неё
+вслепую не использовать. Локальные тесты создают новую schema в отдельной55432.
+
+```bash
+# Из backend, с заранее безопасно настроенными DATABASE_URL/STORAGE_ROOT/PG_BIN:
+.venv/bin/python -m scripts.migrate
+# Для публичного HTTPS окружения:
+export PUBLIC_GUEST_MODE=true
+export COOKIE_SECURE=true
+export GUEST_TTL_SECONDS=86400
+export GUEST_CONCURRENT_JOBS=2
+export GUEST_CREATES_PER_MINUTE=20
+export GUEST_GPU_BUDGET=0
+.venv/bin/uvicorn app.main:create_app --factory --host 127.0.0.1 --port 8000 --workers 1 --no-access-log
+```
+
+В production `TP_ENVIRONMENT=production`, HTTPS и правильный CORS_ORIGINS/один origin.
+В изолированном local HTTP COOKIE_SECURE=false; это не проверка production HTTPS.
+Старые account пути возвращают404 даже с действительной tp_session, cookie удаляется
+при обращении к API. Закрытый прежний режим допускается только явно
+PUBLIC_GUEST_MODE=false и вне публичного релиза. Это не команда удаления старых users.
+
+GUEST_GPU_BUDGET — cumulative cap **принятых задач**, default0, не рубли.
+Счётчик guest_budget/gpu-total увеличивается атомарно с durable enqueue и не
+обнуляется очисткой. Значение потолка увеличивают только для разрешённого окна;
+replay/failed/uncertain не возвращает израсходованный слот. Учесть худшую стоимость
+профилей/существующие GPU admission ограничения до выбора числа. Release/transfer/
+AI_MVP_ENABLED/proof не меняются этим env. При выключенных gates AI_UNAVAILABLE,
+при исчерпанном cap AI_BUDGET_EXHAUSTED; fallback отсутствует.
+
+## Что и где хранится
+
+- PostgreSQL: guest_processes UUID/hash/created/expiry, generations с user_id=NULL и
+  guest owner/expiry/requestId/fingerprint/строгими параметрами/recipe/status/error;
+  ai_jobs — прежний durable payload/deadline/externalID и случайный server UUID provider_request_id (GPU Idempotency-Key). Он не зависит от числовой sequence, client requestId или cookie и не попадает в браузер. Аккаунтные таблицы/FK и
+  прежние ownership проверки сохранены. Никаких email/password/profile/visitor ID.
+- Files: только STORAGE_ROOT/**guest-results/**, PNG/JPG/module/tmp. Этот каталог
+  не раздавать через nginx/static/alias. Отдельные каталог/source/AI qualification
+  evidence остаются на прежних путях и не являются transient results.
+- Browser: tp_guest256бит HttpOnly SameSite=Strict Path=/api/guest, production Secure;
+  сервер хранит SHA256. Fixed до24ч от bootstrap, задачи могут жить меньше24ч.
+  Poll/download/replay не продлевают. requestId не секрет/не авторизация; UI может
+  держать только текущий запрос/ID/expiry в sessionStorage до срока, очищая свои
+  старые аккаунтные keys. Backend не создаёт localStorage/долгий visitor ID.
+- IP: request.client.host используется только для rate buckets в RAM API (20/min,
+  ≤10000 адресов; удаление без активности при минутном sweep, обычно≤120сек).
+  В БД гостевых IP/UA/Referer нет. За proxy фактический client.host зависит от
+  доверенных proxy headers: проверить на Beget; без этого bucket может быть общим
+  IP proxy. Не доверять произвольным внешним X-Forwarded-For.
+- App ошибки логируют тип исключения/фиксированный код, без cookie/Bearer/JSON/URL
+  секретов. Uvicorn по умолчанию может писать IP/path/status; команда выше выключает
+  access-log, reverse proxy/provider logs остаются инфраструктурным фактом. Их14дней
+  календарной ротации этим кодом **не реализованы**; Docker size rotation не срок.
+- guest_budget содержит только агрегаты: минутные удаляются спустя1–2мин, gpu-total
+  сохраняется без персональных данных, чтобы restart/reset не восстанавливал бюджет.
+
+## Expiry и регулярная очистка
+
+HTTP проверяет clock_timestamp при каждом допуске/status/file. Файлы не выдаются
+после expiry даже если unlink ещё pending. Передача, начатая до срока, может
+закончиться позже. Worker проверяет срок до submit, после poll/download и перед
+commit; поздние ответы не воскрешают доступ/строки/файлы. Истёкшая queued не submit.
+Deadline15мин/reconcile/неповторяемый uncertain submit и930/950/960сек drain сохранены.
+
+API lifespan и worker sweep60сек: expired поколения →durable file queue →DELETE
+ai_jobs/generations/process hash →commit→unlink. Обычная физическая задержка≤60с;
+ошибки FS сохраняют pending/attempts/error-type для retry и требуют контроля оператора.
+Orphan/temp без committed строки имеют исходный expiry в серверном имени и
+удаляются по нему, даже с новым mtime; старые неформатные orphan — по mtime≤TTL. Успешные
+гостевые file queue entries удаляются. Гостевой sweep не трогает account file queue.
+При остановленных сервисах организовать внешний минутный запуск этой **готовой CLI**:
+
+```bash
+.venv/bin/python -m scripts.guest_maintenance cleanup
+.venv/bin/python -m scripts.guest_maintenance status
+# Только оператору: минимальные внешние reference, без ключей/изображений
+.venv/bin/python -m scripts.guest_maintenance reconcile-list
+```
+
+`pendingGuestFiles>0` — устранить права/диск/FS, повторить cleanup и убедиться в0.
+CLI ошибки/ненулевой exit нельзя считать удалением. Настройку cron/systemd делает
+Beget в своей зоне. Простой API/worker не означает исполнение фоновой очистки.
+
+Только pending/failed/неопределённая внешняя операция может оставить минимальный
+`guest_reconciliations`: generation_id и отдельный server UUID provider_request_id, provider,
+provider_job_id или uncertain, expiry от создания≤7дней. Полного payload/PNG/key нет.
+Late ack дописывает jobId в этот след, не создаёт новую generation. Cleanup удаляет
+просроченный след; это окно сверки, а не очередь нового submit/скачивания картинки.
+
+### GPU cleanup: реальная ручная процедура, ещё не приёмка на ВМ
+
+GPU API cancel/delete отсутствуют — никакие такие HTTP вызовы не реализованы.
+До7дней оператор по provider_request_id и известному jobId сверяет
+существующий state/log с LoRA/Beget, фиксирует фактическое состояние и время expiry.
+Uncertain без jobId ищется по **тому же provider request reference**, без нового POST.
+Если штатный TTL GPU подтвердился, получить фактическое отсутствие обычного PNG и
+записи после соответствующего срока (GET image404 сам по себе не доказывает удаление
+SQLite/logs/snapshot). При адресном досрочном удалении оператор сначала корректно
+останавливает/дренирует сервис, применяет проверенную LoRA процедуру к конкретному
+обычному job/PNG/state, проверяет отсутствие после restart; qualification не удаляет.
+Точные SQL/path команды не выдумываются без фактической GPU схемы/согласованного
+исполнения. Подтверждение хранится в защищённом операционном протоколе отдельно от
+transient zone; не записывать там cookie/Bearer/изображение.
+
+Только после фактической проверки, с reference на этот протокол:
+
+```bash
+.venv/bin/python -m scripts.guest_maintenance confirm-external \
+  --provider-request-id 'server-uuid-from-reconcile-list' --confirmation-ref 'ops-verified-reference' \
+  --designated-operation 'assigned-operation'
+```
+
+Команда удаляет минимальный след, не вызывает GPU delete и не подтверждает его
+сама; перед изменением делает существующие storage+DB backups. Если за7дней нельзя
+закончить сверку/подтвердить GPU TTL, это конкретный блокер владельцу/юристу до окна,
+не основание оставить весь guest payload/изображение бессрочно. Обычный GPU current
+TTL24ч от finished/7д state, qualification исключение и snapshots — подтвердить отдельно.
+
+## Restore: обязательный полный сброс guest зоны до public start/worker
+
+Обычные ops full dump/storage backup **пока включают guest rows/files/hash/payload**.
+Исключение transient из штатных copies/сроки/география/ротация backup/WAL — задача
+Beget/владельца. Старые dumps не раздавать, не импортировать users/QA в production.
+Этот backend даёт реальное удаление восстановленной guest зоны без аккаунтного ledger.
+
+1. Закрыть внешний доступ и остановить API→worker по существующему порядку
+   (930/950/960сек не менять), получить exit0+новый DRAINED; при nonzero сохранить
+   DB/tunnel, следовать прежнему failure handling. Backup по существующему ops.
+2. Восстановить DB+storage **офлайн** в выделенное окружение. Включить в образ013;
+   применить миграции через существующий мигратор с backup, если их нет.
+   Выставить GUEST_GPU_BUDGET=0. Не запускать worker/public API даже «для проверки».
+3. Из backend с DB/storage именно восстановленной копии выполнить:
+
+```bash
+export TP_ENVIRONMENT=production   # isolated_test только для отдельной тестовой БД
+export PUBLIC_GUEST_MODE=true
+export COOKIE_SECURE=true
+export GUEST_GPU_BUDGET=0
+.venv/bin/python -m scripts.guest_maintenance reset-restored \
+  --offline-restore --designated-operation 'assigned-restore-operation'
+.venv/bin/python -m scripts.guest_maintenance status
+```
+
+Команда сначала делает storage+pg_dump backup по прежнему порядку, проверяет отсутствие
+живого worker через advisory lock, полностью удаляет guest generations/ai_jobs/process
+hashes, все guest-results файлы (включая незарегистрированные/restored tmp), повторяет
+file queue и отказывает при остатке. API должен быть остановлен оператором;
+`--offline-restore` — обязательное утверждение этого условия, не автоматический stop.
+Каталог, источники, release decisions, qualification, миграции и старые account rows
+не стираются. gpu-total не обнуляется. Минимальные внешние reference сохраняются≤7д;
+восстановленную queued не submit, submitting/knownId только передаются для ручной сверки.
+Повтор безопасен. При FS/symlink/error — **оставить offline**, устранить и повторить.
+
+4. Успех: guestProcesses=0, guestGenerations=0, pendingGuestFiles=0, guest-results
+   не содержит файлов; externalReconciliation может быть>0 и требует сверки.
+   Старые cookie/ID дают401/404, ai_jobs гостевых нет, provider submissions=0.
+   Только после этого открывать сайт/worker. Устаревший gpu-total из backup может не
+   знать более поздние расходы: новый ненулевой потолок требует сверки оператора,
+   автоматическое пополнение cap после restore запрещено.
+
+Backup перед reset тоже содержит старые transient данные: держать его закрытым по
+операционному порядку; **любое** его последующее восстановление повторяет этот reset.
+Уничтожение файлов сайта не означает уничтожения всех инфраструктурных копий.
+
+## Адресная локальная проверка
+
+```bash
+.venv/bin/python -m scripts.local_environment isolated_test .venv/bin/pytest -q \
+  tests/test_guest.py tests/test_gpu_worker.py tests/test_worker_signal_deadline.py
+```
+
+Только PostgreSQL55432/новая schema/temp storage; обязательный backup до миграций.
+Real110 flat PNG/JPG/module и real loopback HTTP; AI только явные isolated mocks,
+release flags меняются только в tmp JSON тестов. HTTP smoke без cookie/секретов:
+`local-test/guest-release-2026-10-19/http-smoke.json`. Итог и ограничения в backend summary.
+Никакие local mocks не являются cloud/site E2E или готовностью публичного релиза.
+
+---
+
+# Историческая README аккаунтного режима
+
 # Backend TATAR PATTERN — рабочая версия 0
 
 FastAPI + PostgreSQL 16 + Pillow. Алгоритмическая генерация синхронная: ответ

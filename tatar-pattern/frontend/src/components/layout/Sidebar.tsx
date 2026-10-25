@@ -1,17 +1,14 @@
 "use client";
-/* eslint-disable @next/next/no-img-element -- Avatar is a bounded local data URL. */
 
-import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Icon } from "@/components/ui/Icon";
 
 export const NAV_ITEMS = [
-  { href: "/constructor", label: "AI-конструктор", icon: "constructor", w: 27, h: 26 },
-  { href: "/flat", label: "Параметрический рисунок", icon: "constructor", w: 27, h: 26 },
+  { href: "/constructor", label: "Конструктор", icon: "constructor", w: 27, h: 26 },
   { href: "/about-pattern", label: "Про татарский узор", icon: "about-pattern", w: 23, h: 23 },
   { href: "/help", label: "Помощь", icon: "help", w: 26, h: 23 },
-  { href: "/library", label: "Библиотека", icon: "library", w: 22, h: 22 },
+  { href: "/library", label: "Недавние генерации", icon: "library", w: 22, h: 22 },
 ] as const;
 
 export type NavItem = (typeof NAV_ITEMS)[number];
@@ -94,18 +91,15 @@ export function SideNav({
 type SidebarProps = {
   /** href активного пункта меню. */
   active: string;
-  userName: string; avatar?: string | null;
   className?: string;
   onConstructorClick?: () => void;
 };
 
 export function Sidebar({
   active,
-  userName, avatar,
   className = "",
   onConstructorClick,
 }: SidebarProps) {
-  const [accountOpen, setAccountOpen] = useState(false);
   return (
     <aside
       className={[
@@ -137,23 +131,7 @@ export function Sidebar({
           </span>
         </Link>
 
-        {accountOpen ? <><button aria-label="Закрыть меню аккаунта" className="fixed inset-0 z-40 cursor-default" onClick={() => setAccountOpen(false)} /><nav aria-label="Меню аккаунта" className="account-popover absolute bottom-[88px] left-0 right-0 z-50 flex flex-col gap-2 rounded-3xl bg-white/95 p-3 shadow-xl">{[["/profile", "Аккаунт"], ["/settings", "Настройки конструктора"], ["/trash", "Корзина"], ["/rules", "Правила сервиса"]].map(([href,label]) => <Link key={href} href={href} onClick={() => setAccountOpen(false)} className="rounded-2xl px-4 py-3 hover:bg-surface">{label}</Link>)}</nav></> : null}
-        <button type="button" aria-expanded={accountOpen} onClick={() => setAccountOpen(v => !v)}
-          className="studio-account-v2 pressable flex w-full items-center justify-between overflow-hidden rounded-[24px] px-[9px] py-[8px] shadow-[0px_1px_28px_rgba(0,0,0,0.10)] outline outline-[0.5px] -outline-offset-[0.5px] outline-white/50"
-        >
-          <span className="flex items-center gap-[9px]">
-            {avatar ?  <img src={avatar} width={57} height={57} alt="" className="size-[57px] shrink-0 rounded-full object-cover" /> : <Icon name="user" width={57} height={57} className="shrink-0" />}
-            <span className="flex flex-col gap-px">
-              <span className="break-all text-[16px] font-semibold text-[#343434]">
-                {userName}
-              </span>
-              <span className="text-[13px] font-medium text-ink-muted opacity-80">
-                Аккаунт и настройки
-              </span>
-            </span>
-          </span>
-          <Icon name="chevron-up" width={21} height={11} className="mr-[12px] shrink-0" />
-        </button>
+        <div className="flex flex-wrap gap-3 px-3 text-sm"><Link href="/legal/terms">Правила</Link><Link href="/legal/privacy">Обработка данных</Link><Link href="/legal/cookies">Хранилище</Link></div>
       </div>
     </aside>
   );

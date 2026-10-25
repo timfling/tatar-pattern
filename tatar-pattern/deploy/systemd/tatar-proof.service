@@ -1,0 +1,9 @@
+[Unit]
+Description=Renew GPU proof from actual worker by GET only, no inference
+After=docker.service
+[Service]
+Type=oneshot
+UMask=0077
+WorkingDirectory=/srv/tatar-pattern/current/deploy
+ExecStart=/usr/bin/python3 /srv/tatar-pattern/current/deploy/maintenance.py --env /etc/tatar-pattern/production.env proof
+TimeoutStartSec=30min

@@ -1,4 +1,4 @@
-# Optional future API adapter config; NOT part of the ordinary deploy commands.
+# API adapter config; ops --ai-api applies this to all selected operations.
 # Apply only with mounted real secret and the reviewed backend release.
 # AI release flags stay false even when this file is applied.
 services:

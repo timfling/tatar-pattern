@@ -124,3 +124,23 @@ class PatchGeneration(Input):
         if value is None or not value.strip():
             raise ValueError('Название не должно быть пустым')
         return value.strip()
+
+class GuestGenerate(Input):
+    mode: Literal['flat','ai'] = 'flat'
+    requestId: UUID
+    seed: int = Field(default=0,ge=0,le=2147483647)
+    selections: Selections | None = None
+    ai: AISelection | None = None
+
+    @model_validator(mode='after')
+    def supported(self):
+        self.internal()
+        return self
+
+    def internal(self):
+        data=self.model_dump()
+        if self.mode=='flat':data.pop('requestId')
+        return Generate.model_validate(data)
+
+class GuestSession(Input):
+    pass

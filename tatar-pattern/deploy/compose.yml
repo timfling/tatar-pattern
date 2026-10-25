@@ -40,6 +40,9 @@ services:
       ALLOW_FIXTURES: "false"
       TP_ENVIRONMENT: production
       SESSION_DAYS: "7"
+      PUBLIC_GUEST_MODE: "true"
+      GUEST_TTL_SECONDS: "86400"
+      GUEST_GPU_BUDGET: "0"
     volumes:
       - ${DATA_ROOT}/storage:/data/storage
       - ${DATA_ROOT}/migration-backups:/app/db/backups
@@ -71,6 +74,10 @@ services:
       STORAGE_ROOT: /data/storage
       TP_ENVIRONMENT: production
       ALLOW_FIXTURES: "false"
+      PUBLIC_GUEST_MODE: "true"
+      COOKIE_SECURE: "true"
+      GUEST_TTL_SECONDS: "86400"
+      GUEST_GPU_BUDGET: "0"
       AI_MVP_ENABLED: "false"
       # Names accepted in the backend handoff; file-only Bearer source.
       AI_GPU_BASE_URL: http://gpu-tunnel:18765

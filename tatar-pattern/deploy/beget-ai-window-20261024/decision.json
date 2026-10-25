@@ -1,0 +1,36 @@
+{
+  "decisionId": "beget-closed-ai-e2e-20261024",
+  "ownerApprovalStatus": "APPROVED_CONDITIONAL_ON_FRESH_QUALIFICATION_AND_WORKER_PROOF",
+  "scope": "closed SSH-only staging; no public publication",
+  "provider": "immers.cloud; owner VM tp-sdxl-smoke-20261016",
+  "baseId": "f10-wreath",
+  "baseTitleRu": "Пестречинский медальон",
+  "baseSha256": "5032b6b6ad6365873c147b72b2642326b261db2888c50be2f08014814699d25b",
+  "ornamentStyle": "graphic",
+  "profileVersion": "2026-10-18.local-v1",
+  "gpuProfileDigest": "a34ee005b8bd27cd3a6505a8f32130bd137a38ab75a7c0b7c1fdf0162950412a",
+  "purpose": "two real site jobs: E2E and active worker drain; JSON recipe/IDs via protected SSH HTTP; no arbitrary uploads",
+  "releaseApprovalConditions": [
+    "current runtime inventory reviewed",
+    "new-boot qualification PNG explicitly accepted",
+    "normal health and admission valid",
+    "fresh real deployed-worker GET proof for current boot/deployment",
+    "restricted SSH transport and readonly Bearer verified"
+  ],
+  "limits": {
+    "windowHours": 2,
+    "maxRubles": 250,
+    "hourlyRateRubles": 86.74,
+    "maxNewGpuJobs": 27,
+    "qualificationJobs": 25,
+    "siteJobs": 2,
+    "paidRetries": 0
+  },
+  "proposedFileSha256": {
+    "ai-bases-index.proposed.json": "ebd92b971b9fad46c61f552b70272575cbd78ac8bac4a263b380187776adc3fc",
+    "ai-profiles.proposed.json": "cd34ac176fa07f863f0b1fbd1033e788b814fa803d14c4b9d52ce4e156d94718"
+  },
+  "appliedToVps": false,
+  "ownerApprovalDateMoscow": "2026-10-24",
+  "windowTiming": "today after preparation, owner participates"
+}

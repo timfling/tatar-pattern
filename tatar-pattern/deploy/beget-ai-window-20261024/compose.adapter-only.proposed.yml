@@ -1,0 +1,22 @@
+# External override draft preserving the verified HTTP1.0 runtime correction.
+services:
+  backend:
+    environment:
+      AI_MVP_ENABLED: "false"
+      GUEST_GPU_BUDGET: "0"
+    volumes:
+      - type: bind
+        source: /etc/tatar-pattern/runtime-hotfix/ai_provider.py
+        target: /app/backend/app/ai_provider.py
+        read_only: true
+        bind: {create_host_path: false}
+  ai-worker:
+    environment:
+      AI_MVP_ENABLED: "false"
+      GUEST_GPU_BUDGET: "0"
+    volumes:
+      - type: bind
+        source: /etc/tatar-pattern/runtime-hotfix/ai_provider.py
+        target: /app/backend/app/ai_provider.py
+        read_only: true
+        bind: {create_host_path: false}

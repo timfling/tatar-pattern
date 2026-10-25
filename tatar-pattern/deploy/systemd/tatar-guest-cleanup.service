@@ -1,0 +1,9 @@
+[Unit]
+Description=TATAR PATTERN minute guest expiry and retry (errors fail unit)
+After=docker.service tatar-logs.service
+[Service]
+Type=oneshot
+UMask=0077
+WorkingDirectory=/srv/tatar-pattern/current/deploy
+ExecStart=/usr/bin/python3 /srv/tatar-pattern/current/deploy/maintenance.py --env /etc/tatar-pattern/production.env cleanup
+TimeoutStartSec=120

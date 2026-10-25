@@ -17,3 +17,9 @@ Assets copied unchanged from the owner’s Figma export. Decorative examples onl
 
 gradient-mobile.png ← original mobile step 2/assets/surfaces/n-rectangle-39-316-1454.png
 circle-pattern-d.svg / circle-pattern-m.svg ← original step 4, circle groups; reconstructed by qa/home-2026-10-14/extract-pattern.py, with embedded unchanged PNGs and exported domTransform matrices.
+2026-10-20 frontend fixes:
+example-0.webp … example-7.webp ← Разработка/ИИ/draw-things/results/mvp-batch2-2026-10-19/01…08 PNG results; resized to 640px and encoded as WebP (quality 86), decorative examples only.
+circle-ring-{d,m}-{0,1,2}.svg ← original circle-pattern-{d,m}.svg ring groups; original matrices and embedded PNGs retained. Removed the fourth rectangular wash; each ring rotates uniformly at 240 / 195 / 150 seconds. Bounded CSS radial wash replaces the rectangular layer.
+../icons/mode-{ai,flat,info}.svg ← owner exports in «Обновленный дизайн + недостающие иконки» / three «Иконка …» directories, copied unchanged. Color inherited through CSS masks.
+
+2026-10-20 revision 2: Hero restored to full bleed. About canvas uses six existing examples, two vertically repeating tiles, 100-second vertical animation. No source artwork changed.

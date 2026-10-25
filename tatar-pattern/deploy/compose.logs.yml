@@ -1,0 +1,15 @@
+# Install tatar-logs.service before enabling CALENDAR_LOGS=true.
+x-calendar: &calendar
+  driver: syslog
+  options:
+    syslog-address: unixgram:///run/tatar-pattern-logs/syslog
+    syslog-format: rfc5424micro
+    cache-disabled: "true"
+    tag: "tp-{{.Name}}"
+services:
+  db: {logging: *calendar}
+  backend: {logging: *calendar}
+  ai-worker: {logging: *calendar}
+  gpu-tunnel: {logging: *calendar}
+  frontend: {logging: *calendar}
+  proxy: {logging: *calendar}

@@ -7,7 +7,7 @@ import { PatternCanvas } from "@/components/constructor/PatternCanvas";
 import { LikeButton, DislikeButton } from "@/components/constructor/LikeButton";
 import { GenerationInfo } from "@/components/constructor/GenerationInfo";
 import type { ParameterTile, ConstructorSelections } from "@/components/constructor/parameters";
-import type { Generation } from "@/lib/api";
+import type { GuestGeneration as Generation } from "@/lib/api";
 import type { PatternRating } from "@/lib/library";
 
 import {
@@ -18,7 +18,7 @@ type ResultViewProps = {
   editLabel?: string;
   generation?: Generation | null;
   infoDetails?: { title: string; value: string }[];
-  imageUrl: string | null; imageSize?: number[] | null; onDelete: () => Promise<void>;
+  imageUrl: string | null; imageSize?: number[] | null; onDelete?: () => Promise<void>;
   repeatPreview?: boolean; onImageError?: () => void; exportDisabled?: boolean; tiles?: ParameterTile[];
   stamp: string;
   name: string;
@@ -32,8 +32,8 @@ type ResultViewProps = {
   onSubmitEdit: (text: string) => void;
   onExpand: () => void;
   onExport: () => void;
-  onRename: (name: string) => void;
-  onRate: (rating: PatternRating) => void;
+  onRename?: (name: string) => void;
+  onRate?: (rating: PatternRating) => void;
 };
 
 export function ResultView({
@@ -61,7 +61,7 @@ export function ResultView({
         <BackButton onClick={onBack} />
         <PatternMeta name={name} stamp={stamp} onRename={onRename} />
         <div className="absolute right-[25px] top-[25px] flex items-center gap-3">
-          <DeleteButton onDelete={onDelete} /><GenerationInfo generation={generation} details={infoDetails} tiles={tiles} selections={selections} prompt={prompt} />
+          {onDelete ? <DeleteButton onDelete={onDelete} /> : null}<GenerationInfo generation={generation} details={infoDetails} tiles={tiles} selections={selections} prompt={prompt} />
         </div>
       </div>
 
@@ -84,7 +84,7 @@ export function ResultView({
             <div
               className={[
                 "mt-[18px] hidden w-full max-w-[966px] shrink-0 items-center md:flex",
-                editOpen ? "justify-center" : "justify-between px-[12px] sm:px-[34px]",
+                editOpen || !onRate ? "justify-center" : "justify-between px-[12px] sm:px-[34px]",
               ].join(" ")}
             >
               {editOpen ? (
@@ -114,7 +114,7 @@ export function ResultView({
                     </button>
                   </div>
 
-                  <RatingButtons rating={rating} onRate={onRate} size={45} />
+                  {onRate ? <RatingButtons rating={rating} onRate={onRate} size={45} /> : null}
                 </>
               )}
             </div>
@@ -137,8 +137,8 @@ export function ResultView({
           </button>
 
           <div className="mt-[14px] flex w-full items-center justify-between px-[10px]">
-            <div className="flex gap-3"><GenerationInfo generation={generation} details={infoDetails} tiles={tiles} selections={selections} prompt={prompt} compact /><DeleteButton onDelete={onDelete} compact /></div>
-            <RatingButtons rating={rating} onRate={onRate} size={32} />
+            <div className="flex gap-3"><GenerationInfo generation={generation} details={infoDetails} tiles={tiles} selections={selections} prompt={prompt} compact />{onDelete ? <DeleteButton onDelete={onDelete} compact /> : null}</div>
+            {onRate ? <RatingButtons rating={rating} onRate={onRate} size={32} /> : null}
           </div>
 
           <div className="mt-[30px] flex w-full flex-col items-center gap-[9px]">
@@ -169,7 +169,7 @@ function PatternMeta({
 }: {
   name: string;
   stamp: string;
-  onRename: (name: string) => void;
+  onRename?: (name: string) => void;
   compact?: boolean;
 }) {
   const [editing, setEditing] = useState(false);
@@ -184,7 +184,7 @@ function PatternMeta({
   function commit() {
     const next = draft.trim() || DEFAULT_PATTERN_NAME;
     setDraft(next);
-    onRename(next);
+    onRename?.(next);
     setEditing(false);
   }
 
@@ -229,9 +229,10 @@ function PatternMeta({
         ) : (
           <button
             type="button"
+            disabled={!onRename}
             onClick={() => { setDraft(name); setEditing(true); }}
             className="pressable-quiet cursor-text"
-            aria-label="Переименовать паттерн"
+            aria-label={onRename ? "Переименовать паттерн" : undefined}
           >
             <p
               className={
@@ -264,19 +265,19 @@ function RatingButtons({
   size,
 }: {
   rating: PatternRating;
-  onRate: (rating: PatternRating) => void;
+  onRate?: (rating: PatternRating) => void;
   size: 32 | 45;
 }) {
   return (
     <div className="flex items-center gap-[12px]">
       <LikeButton
         pressed={rating === "like"}
-        onToggle={() => onRate(rating === "like" ? null : "like")}
+        onToggle={() => onRate?.(rating === "like" ? null : "like")}
         size={size}
       />
       <DislikeButton
         pressed={rating === "dislike"}
-        onToggle={() => onRate(rating === "dislike" ? null : "dislike")}
+        onToggle={() => onRate?.(rating === "dislike" ? null : "dislike")}
         size={size}
       />
     </div>

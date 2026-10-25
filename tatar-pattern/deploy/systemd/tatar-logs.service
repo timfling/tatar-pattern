@@ -1,0 +1,15 @@
+[Unit]
+Description=Dedicated TATAR PATTERN Docker logs with UTC daily files
+Before=tatar-backup.service tatar-guest-cleanup.service
+[Service]
+Type=simple
+UMask=0077
+RuntimeDirectory=tatar-pattern-logs
+RuntimeDirectoryMode=0700
+LogsDirectory=tatar-pattern
+LogsDirectoryMode=0700
+Environment=TZ=UTC
+ExecStart=/usr/sbin/rsyslogd -n -f /srv/tatar-pattern/current/deploy/rsyslog.conf -i /run/tatar-pattern-logs/rsyslog.pid
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,1221 @@
+{
+  "schemaVersion": "tp-ai-bases/1.0.0",
+  "catalogVersion": "2026-10-18.1",
+  "bases": [
+    {
+      "id": "f10-wreath",
+      "titleRu": "Пестречинский медальон",
+      "schemeId": "f10-wreath",
+      "familyId": "F10",
+      "familyTitleRu": "Пестречинская керамика",
+      "elementCodes": [
+        "TP-E-050",
+        "TP-E-051",
+        "TP-E-052"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-050",
+          "sha256": "685c12df334b4861b285cd3c07a17432b9f35e63f38bdf0e780926aaeee7e3f4",
+          "motif": "class-a18bb267928c4919",
+          "artifactCode": "NM-9577",
+          "sourceFrame": "DSC9577"
+        },
+        {
+          "code": "TP-E-051",
+          "sha256": "705114b8686be038ad09b4ff95d9ddb2c09db9190372ec4f4da070d5b592d241",
+          "motif": "palmette",
+          "artifactCode": "NM-9577",
+          "sourceFrame": "DSC9577"
+        },
+        {
+          "code": "TP-E-052",
+          "sha256": "d1a9a2412d59c28d9befb175178419138322d827aa0ba161a7dfd361c6c7020f",
+          "motif": "vine",
+          "artifactCode": "NM-9577",
+          "sourceFrame": "DSC9577"
+        }
+      ],
+      "roles": {
+        "TP-E-050": "center",
+        "TP-E-051": "support",
+        "TP-E-052": "frame"
+      },
+      "modernAdditions": [
+        {
+          "kind": "circle_guide",
+          "bounds": [
+            204.8,
+            204.8,
+            819.2,
+            819.2
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            65
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f10-wreath.png",
+      "sha256": "5032b6b6ad6365873c147b72b2642326b261db2888c50be2f08014814699d25b",
+      "recipe": "f10-wreath.recipe.json",
+      "recipeSha256": "54817fbc4d43eb5607dfec432e5c3b649175d8d59d420858e88fb786596aad04",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#836656",
+          "#b3b2aa",
+          "#f6eede",
+          "#ded9cc",
+          "#f2ebdb"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f10-wreath-paper.png",
+      "originalSha256": "cd4a5a9848491cbf543bdc9a825664ee40e4b499d2190f322d2481107c63ce22",
+      "aiSeamless": false,
+      "aiQualityStatus": "local_candidates",
+      "externalTransferApproved": true
+    },
+    {
+      "id": "f14-directed",
+      "titleRu": "Полотенечный бордюр",
+      "schemeId": "f14-directed",
+      "familyId": "F14",
+      "familyTitleRu": "Полосы полотенец NM-9590/9591",
+      "elementCodes": [
+        "TP-E-067",
+        "TP-E-068",
+        "TP-E-069"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-067",
+          "sha256": "f9c7ce702176756d5ba915c5fea4b1938886b8f9892fc07b343a10f4ae35ba85",
+          "motif": "class-4bb2b3916544f34b",
+          "artifactCode": "NM-9590",
+          "sourceFrame": "DSC9590"
+        },
+        {
+          "code": "TP-E-068",
+          "sha256": "70957ca83d356817578ba6839c090ade14395e022b4ea486fb45f4f284148cd1",
+          "motif": "class-019cd843a5c5255b",
+          "artifactCode": "NM-9590",
+          "sourceFrame": "DSC9590"
+        },
+        {
+          "code": "TP-E-069",
+          "sha256": "65fa9d5539f5e2dcdc5b8c1a88a1b2e3a6451cd73510701c68e6a8f4203f9929",
+          "motif": "class-cd50c9c7459faeea",
+          "artifactCode": "NM-9590",
+          "sourceFrame": "DSC9590"
+        }
+      ],
+      "roles": {
+        "TP-E-067": "primary",
+        "TP-E-068": "frame",
+        "TP-E-069": "frame"
+      },
+      "modernAdditions": [
+        {
+          "kind": "horizontal_border_rules",
+          "xRange": [
+            54,
+            1146
+          ],
+          "yPositions": [
+            143,
+            757
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            95
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f14-directed.png",
+      "sha256": "8eee57a9476705e2d09c134906162878ea7dc45811c9f96da219c363c7d6ba9a",
+      "recipe": "f14-directed.recipe.json",
+      "recipeSha256": "79f81c9c4b32d33123c23fd91e849cba2c35d81627f1ff775b358fe5f7d2de7e",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#ac5a63",
+          "#efe8d8",
+          "#f5efde",
+          "#e4cdc3",
+          "#f4ebdb"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f14-directed-paper.png",
+      "originalSha256": "43366efb0da64c501905ab6fdaad45092f8d9b03e335cfed3882973ca1e14778",
+      "aiSeamless": false,
+      "aiQualityStatus": "local_candidates",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f08-directed",
+      "titleRu": "Цветочные ветви",
+      "schemeId": "f08-directed",
+      "familyId": "F08",
+      "familyTitleRu": "Вышивка футляра гребня",
+      "elementCodes": [
+        "TP-E-041",
+        "TP-E-042"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-041",
+          "sha256": "d7df3f9d22c5edd2011ddd9acd325b117953fb0cf1553c15b585c8198203310a",
+          "motif": "class-c6ef73341b9b257e",
+          "artifactCode": "NM-9558",
+          "sourceFrame": "DSC9559"
+        },
+        {
+          "code": "TP-E-042",
+          "sha256": "736e59f2bb161b0edee27e66ee1f21e9089b2602249596498b645e03504cf019",
+          "motif": "class-c6ef73341b9b257e",
+          "artifactCode": "NM-9558",
+          "sourceFrame": "DSC9559"
+        }
+      ],
+      "roles": {
+        "TP-E-041": "primary",
+        "TP-E-042": "branch"
+      },
+      "modernAdditions": [
+        {
+          "kind": "horizontal_border_rules",
+          "xRange": [
+            54,
+            1146
+          ],
+          "yPositions": [
+            330,
+            570
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            95
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f08-directed.png",
+      "sha256": "01a8c335b36b5e81f72dfb407d7f12f29fbc61ad224a79c2a4b33489172fb1d4",
+      "recipe": "f08-directed.recipe.json",
+      "recipeSha256": "3d17650bb7aa89153e28976a4e419f39df735bf51f74722291138b7d3a8dc341",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#f2ebdb",
+          "#c2bdac",
+          "#f4ebdb",
+          "#f6eede",
+          "#f3ebda"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f08-directed-paper.png",
+      "originalSha256": "a2d12eaf4cf8bd149a0f51ae91bb52f271328ea6399e463e939a3b609eb898f1",
+      "aiSeamless": false,
+      "aiQualityStatus": "local_candidates",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f03-wreath",
+      "titleRu": "Керамический цветок",
+      "schemeId": "f03-wreath",
+      "familyId": "F03",
+      "familyTitleRu": "Средневековые керамические фрагменты",
+      "elementCodes": [
+        "TP-E-014"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-014",
+          "sha256": "af3f9cc25b8eeb0399735770f29e6d523d11a3d16b4d8269397189d6f13c7439",
+          "motif": "class-a18bb267928c4919",
+          "artifactCode": "KS-9407",
+          "sourceFrame": "DSC9407"
+        }
+      ],
+      "roles": {
+        "TP-E-014": "center"
+      },
+      "modernAdditions": [
+        {
+          "kind": "circle_guide",
+          "bounds": [
+            204.8,
+            204.8,
+            819.2,
+            819.2
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            65
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f03-wreath.png",
+      "sha256": "819bec8c84bbf7316694ad1cb60feafa18a87bf2219115e2709cdaf6facfbf60",
+      "recipe": "f03-wreath.recipe.json",
+      "recipeSha256": "fb1e612138b7fb6f47222435d5889f2f941e4be0afa033e0d247016bcbd531f2",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#3c4f80",
+          "#b5b5b7",
+          "#f8f0dd",
+          "#f2ebdb",
+          "#f4ebdb"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f03-wreath-paper.png",
+      "originalSha256": "8e36617467b846a510f43efa13a874c5ea702158710e6f7e4522b078df981e08",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f16-wreath",
+      "titleRu": "Медальон мужского костюма",
+      "schemeId": "f16-wreath",
+      "familyId": "F16",
+      "familyTitleRu": "Мужской костюм NM-9652",
+      "elementCodes": [
+        "TP-E-077"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-077",
+          "sha256": "c087018fa1f5fdc2e8e0e0b9a45b492397a2edc84e5a1f015d575c79fe6e6db0",
+          "motif": "class-96c7adde07fe3467",
+          "artifactCode": "NM-9652",
+          "sourceFrame": "DSC9652"
+        }
+      ],
+      "roles": {
+        "TP-E-077": "center"
+      },
+      "modernAdditions": [
+        {
+          "kind": "circle_guide",
+          "bounds": [
+            204.8,
+            204.8,
+            819.2,
+            819.2
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            65
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f16-wreath.png",
+      "sha256": "2bc0dc229164940d8b9959e76d9a787340b8304cb1ea569e9812489698aef6c9",
+      "recipe": "f16-wreath.recipe.json",
+      "recipeSha256": "44f91d64c2f2b771ffdfe191cc5789ac6d8622ab2f89c0750e0b05b77460ebc8",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#ad9b70",
+          "#f3ebda",
+          "#f5eede",
+          "#f4ebdc",
+          "#f3ebdc"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f16-wreath-paper.png",
+      "originalSha256": "10bf0ca240a7e693eedae67c16891e96994fbad46cda99bcf6e6b6a918b2c69a",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f17-wreath",
+      "titleRu": "Медальон застёжки",
+      "schemeId": "f17-wreath",
+      "familyId": "F17",
+      "familyTitleRu": "Модули застёжек и браслетов",
+      "elementCodes": [
+        "TP-E-078"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-078",
+          "sha256": "b0ad4cb76f464db2c348d26948c43623efc0c89fc0ef2bf7d304151ee206587f",
+          "motif": "class-a5d16ecf15a0fbab",
+          "artifactCode": "NM-9679",
+          "sourceFrame": "DSC9679"
+        }
+      ],
+      "roles": {
+        "TP-E-078": "center"
+      },
+      "modernAdditions": [
+        {
+          "kind": "circle_guide",
+          "bounds": [
+            204.8,
+            204.8,
+            819.2,
+            819.2
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            65
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f17-wreath.png",
+      "sha256": "08b811a9bb04dba3e2144d5c76640fcb197ba94aa2fbf17e8c491bdba9d2689b",
+      "recipe": "f17-wreath.recipe.json",
+      "recipeSha256": "2abd366b229922a7996917b7950714296ed39c23b6ffb5a00a54122a6327829f",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#8b98a2",
+          "#f7eede",
+          "#f3ebda",
+          "#f2ebdb",
+          "#f3ebdc"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f17-wreath-paper.png",
+      "originalSha256": "0a8898a89e62977334ed04a1e516d141eda5a1d22763da811d98a21a6bbe3e62",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f24-wreath",
+      "titleRu": "Обрамление шамаиля",
+      "schemeId": "f24-wreath",
+      "familyId": "F24",
+      "familyTitleRu": "Обрамление коронного шамаиля",
+      "elementCodes": [
+        "TP-E-120",
+        "TP-E-121",
+        "TP-E-122",
+        "TP-E-123"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-120",
+          "sha256": "3f9c44254815548c7157338ffde17d2f9cb736b8017f763aab707ea58c60865f",
+          "motif": "class-47e23c0adb8d5390",
+          "artifactCode": "H-9495",
+          "sourceFrame": "DSC9495"
+        },
+        {
+          "code": "TP-E-121",
+          "sha256": "19c07dd4145fbd7eb073992889922401275337eb5df08cb67b0c808dea0f75cf",
+          "motif": "bud",
+          "artifactCode": "H-9495",
+          "sourceFrame": "DSC9495"
+        },
+        {
+          "code": "TP-E-122",
+          "sha256": "a27328761dfeeba238139d26e022119278556ff67ad9cb30beed26d908c8a2d0",
+          "motif": "class-0aadd8402ea039a1",
+          "artifactCode": "H-9495",
+          "sourceFrame": "DSC9495"
+        },
+        {
+          "code": "TP-E-123",
+          "sha256": "78781fd2e3b42bcce1cac285b65ad28c73f005bb919f583238d34c78a69bc1d3",
+          "motif": "class-50e89f14200dab7d",
+          "artifactCode": "H-9495",
+          "sourceFrame": "DSC9495"
+        }
+      ],
+      "roles": {
+        "TP-E-120": "center",
+        "TP-E-121": "support",
+        "TP-E-122": "leaf",
+        "TP-E-123": "frame"
+      },
+      "modernAdditions": [
+        {
+          "kind": "circle_guide",
+          "bounds": [
+            204.8,
+            204.8,
+            819.2,
+            819.2
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            65
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f24-wreath.png",
+      "sha256": "76d781b54f19b5e7c2dbdfeb983ac7011b3d5e817831f6fb0d7020acc960b8f9",
+      "recipe": "f24-wreath.recipe.json",
+      "recipeSha256": "50100cfaea677725e3de942648d75bc7482cc7d9ca836a16bdbea4fdb8d76eaa",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#172d24",
+        "swatches": [
+          "#172d24",
+          "#d1b867",
+          "#614d29",
+          "#152d24",
+          "#2a2d1f",
+          "#172d25"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f24-wreath-dark.png",
+      "originalSha256": "32bb6b3ed303ce568a371fa4403c55eba98e2a2deb51c2d9c667c0916ba7e842",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f14-panel",
+      "titleRu": "Геометрия полотенца",
+      "schemeId": "f14-panel",
+      "familyId": "F14",
+      "familyTitleRu": "Полосы полотенец NM-9590/9591",
+      "elementCodes": [
+        "TP-E-067"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-067",
+          "sha256": "f9c7ce702176756d5ba915c5fea4b1938886b8f9892fc07b343a10f4ae35ba85",
+          "motif": "class-4bb2b3916544f34b",
+          "artifactCode": "NM-9590",
+          "sourceFrame": "DSC9590"
+        }
+      ],
+      "roles": {
+        "TP-E-067": "primary"
+      },
+      "modernAdditions": [
+        {
+          "kind": "circle_guide",
+          "bounds": [
+            204.8,
+            204.8,
+            819.2,
+            819.2
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            65
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f14-panel.png",
+      "sha256": "a41b2fe83eabfa9df69efe6b698d377d2b44fb81c2fbe0202eb89fd849585471",
+      "recipe": "f14-panel.recipe.json",
+      "recipeSha256": "8449d45888ba5b50f52c682cff3250f3aa5a45d1941edd4c4e3d7babd98902aa",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#b54a4e",
+          "#f0e8d8",
+          "#e7ccbf",
+          "#f5efdf",
+          "#f4ebdb"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f14-panel-paper.png",
+      "originalSha256": "464946bf2f1b709a8fae57dad76c17eed1a5135c17cf8be218a7d82f7e430e54",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f21-panel",
+      "titleRu": "Многоцветное поле",
+      "schemeId": "f21-panel",
+      "familyId": "F21",
+      "familyTitleRu": "Многоцветные полосы H-9482",
+      "elementCodes": [
+        "TP-E-099",
+        "TP-E-101"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-099",
+          "sha256": "0bdc9d6ef23689d67b07011b3c49147296d275d8b2f86fdfaca3021d528945d2",
+          "motif": "class-352e2770dc14e09e",
+          "artifactCode": "H-9482",
+          "sourceFrame": "DSC9482"
+        },
+        {
+          "code": "TP-E-101",
+          "sha256": "03932de025992856d6378860c4e09f5dd2de70e70147bf5e4aacae414905af81",
+          "motif": "class-4e2f8d162780c5bb",
+          "artifactCode": "H-9482",
+          "sourceFrame": "DSC9482"
+        }
+      ],
+      "roles": {
+        "TP-E-099": "primary",
+        "TP-E-101": "support"
+      },
+      "modernAdditions": [
+        {
+          "kind": "circle_guide",
+          "bounds": [
+            204.8,
+            204.8,
+            819.2,
+            819.2
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            65
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f21-panel.png",
+      "sha256": "84f00097bfafd4ac252e50707da39b521e6732f70a05ea8c290e5813b4ad8678",
+      "recipe": "f21-panel.recipe.json",
+      "recipeSha256": "ce51e9f0a2b62176b34f2baba1f40c5253209df4e14acce8f5fefa2d2999511c",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#dbac93",
+          "#f3ebd9",
+          "#f4efdf",
+          "#f1ebdb",
+          "#f3ebdc"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f21-panel-paper.png",
+      "originalSha256": "0fb413c27b2dc848fa5a79022db57e60c8ebd16bf1925685a218981edb7ceaca",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f25-panel",
+      "titleRu": "Праздничная панель",
+      "schemeId": "f25-panel",
+      "familyId": "F25",
+      "familyTitleRu": "Современная праздничная рамка",
+      "elementCodes": [
+        "TP-E-124",
+        "TP-E-125"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-124",
+          "sha256": "154da13043ed883ac64b7fc74834c40567d7ada5c9441c9a29e366a0d90e7839",
+          "motif": "class-ac305c5fd82b20d0",
+          "artifactCode": "KS-9455",
+          "sourceFrame": "DSC9455"
+        },
+        {
+          "code": "TP-E-125",
+          "sha256": "189cdcdd87cb6c38fd742f3b42280f5fee21fe1d67d175e2a3d21e8ffb4905ba",
+          "motif": "class-a94c09da0feb7d01",
+          "artifactCode": "KS-9455",
+          "sourceFrame": "DSC9455"
+        }
+      ],
+      "roles": {
+        "TP-E-124": "support",
+        "TP-E-125": "primary"
+      },
+      "modernAdditions": [
+        {
+          "kind": "circle_guide",
+          "bounds": [
+            204.8,
+            204.8,
+            819.2,
+            819.2
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            65
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f25-panel.png",
+      "sha256": "1bebbe8cec764d7373deb8dc2fc4aabe4f03d2694deba7f08e4fee4ed3407fdf",
+      "recipe": "f25-panel.recipe.json",
+      "recipeSha256": "d99215b40292f04a92b1cf1290dd6b3fa1e6f31401d03f523b32fcac518c8608",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#7e7253",
+          "#b5cbc0",
+          "#f2ebdb",
+          "#f9efdf",
+          "#f4ebdb"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f25-panel-paper.png",
+      "originalSha256": "b20ffe637d26fac747399e35f47922dd2229f492f3effad84f7c4e41da11ee1d",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f07-hanging",
+      "titleRu": "Подвесы учкура",
+      "schemeId": "f07-hanging",
+      "familyId": "F07",
+      "familyTitleRu": "Рисунок учкура NM-9557",
+      "elementCodes": [
+        "TP-E-039"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-039",
+          "sha256": "edab86cbe6da05eaa02c6c02d1134e72d4206429e65094eb0cbdd0310c630b58",
+          "motif": "class-f4bdaf9f34a1ea8b",
+          "artifactCode": "NM-9557",
+          "sourceFrame": "DSC9557"
+        }
+      ],
+      "roles": {
+        "TP-E-039": "pendant"
+      },
+      "modernAdditions": [
+        {
+          "kind": "horizontal_border_rules",
+          "xRange": [
+            54,
+            1146
+          ],
+          "yPositions": [
+            326,
+            574
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            95
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f07-hanging.png",
+      "sha256": "ee76b52fa7d694344b1f09e2804bc5c40b813af954f13327d63d5016fa8cf060",
+      "recipe": "f07-hanging.recipe.json",
+      "recipeSha256": "2abc6c4cdf7b5f0cb681c6467e1415d125ae5be781552e9f70a543f356437763",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#b0a692",
+          "#f3ebd8",
+          "#f4ebdb",
+          "#f7efdf",
+          "#f2ebdb"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f07-hanging-paper.png",
+      "originalSha256": "8cd74bfa4cd4dc226ee5deda9a9641220c4c113e5b79bf9eb6fb8989af2dc28b",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f18-hanging",
+      "titleRu": "Подвесные украшения",
+      "schemeId": "f18-hanging",
+      "familyId": "F18",
+      "familyTitleRu": "Щитки и подвесные украшения",
+      "elementCodes": [
+        "TP-E-079"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-079",
+          "sha256": "f0787f52c34b537ab049dec408ad74223e5f9a1577356a111db659fd599e9da9",
+          "motif": "class-3aa3670de9eb0e8f",
+          "artifactCode": "NM-9684",
+          "sourceFrame": "DSC9684"
+        }
+      ],
+      "roles": {
+        "TP-E-079": "pendant"
+      },
+      "modernAdditions": [
+        {
+          "kind": "horizontal_border_rules",
+          "xRange": [
+            54,
+            1146
+          ],
+          "yPositions": [
+            328,
+            572
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            95
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f18-hanging.png",
+      "sha256": "4b434444ff92edf1d82b466cebba07fd5c3a93b147d361d6fc36c0d8b53323d9",
+      "recipe": "f18-hanging.recipe.json",
+      "recipeSha256": "9f31630e13046afe6ca7ef844ed5aa4e4a90c9d8e5b5f8b91a8b7f90392bb6fd",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#aaa27c",
+          "#f3ebda",
+          "#f4ebdb",
+          "#e6deca",
+          "#f5edde"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f18-hanging-paper.png",
+      "originalSha256": "b118d08afe7e7067446428d7f6218bf63fec11c1758ec59a4de8122034039948",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f07-repeat",
+      "titleRu": "Декоративное поле учкура",
+      "schemeId": "f07-repeat",
+      "familyId": "F07",
+      "familyTitleRu": "Рисунок учкура NM-9557",
+      "elementCodes": [
+        "TP-E-034",
+        "TP-E-035",
+        "TP-E-036",
+        "TP-E-037"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-034",
+          "sha256": "a29fbe7043b922eaf8dcbec5d7d502d4cb0ff8565fe8d9190872e9a6bba4a9b5",
+          "motif": "class-70b2dc77522370ce",
+          "artifactCode": "NM-9557",
+          "sourceFrame": "DSC9557"
+        },
+        {
+          "code": "TP-E-035",
+          "sha256": "32354c0bc7421046c4805705084afb00ed1a1829be7df1af2a44ef97d13fad5a",
+          "motif": "class-f5694af260f2a426",
+          "artifactCode": "NM-9557",
+          "sourceFrame": "DSC9557"
+        },
+        {
+          "code": "TP-E-036",
+          "sha256": "2261619462b2dac6c19f15161c3f1ba515735e68cb474fdd55963054bb97e371",
+          "motif": "class-3171afd0741b768f",
+          "artifactCode": "NM-9557",
+          "sourceFrame": "DSC9557"
+        },
+        {
+          "code": "TP-E-037",
+          "sha256": "c1117747d27b52094e38c055498bc9dc307ad4878433857b13f89d8e8d1b52e4",
+          "motif": "class-5719a8dd095f4f7c",
+          "artifactCode": "NM-9557",
+          "sourceFrame": "DSC9557"
+        }
+      ],
+      "roles": {
+        "TP-E-034": "primary",
+        "TP-E-035": "branch",
+        "TP-E-036": "support",
+        "TP-E-037": "leaf"
+      },
+      "modernAdditions": [],
+      "image": "f07-repeat.png",
+      "sha256": "91213803d6da70a30f57cf72dda187651018109eaa2a85b7ab281c08ffedb5eb",
+      "recipe": "f07-repeat.recipe.json",
+      "recipeSha256": "47e95765b15ac187e18a6309ae7e1075fb9b50b66fa806820e51fb506ef432dd",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#9a805b",
+          "#f6eede",
+          "#f3ebda",
+          "#f4ebdc",
+          "#f3ebdc"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f07-repeat-paper.png",
+      "originalSha256": "8369bccb026021278084c6081a3845c591f345f41be5995b7834de5cbaada89f",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f10-directed",
+      "titleRu": "Керамический бордюр",
+      "schemeId": "f10-directed",
+      "familyId": "F10",
+      "familyTitleRu": "Пестречинская керамика",
+      "elementCodes": [
+        "TP-E-046",
+        "TP-E-047",
+        "TP-E-117"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-046",
+          "sha256": "f5302a48c0ea2e5cf2f90680d7f654ee9dd0bde1c10fbf0616cd607c8663f79f",
+          "motif": "class-3171afd0741b768f",
+          "artifactCode": "NM-9574",
+          "sourceFrame": "DSC9574"
+        },
+        {
+          "code": "TP-E-047",
+          "sha256": "a8ccd4e878e946dc7e14e2cc76fda24ce1629f0ba89683df955c28f54fba7dcf",
+          "motif": "vine",
+          "artifactCode": "NM-9574",
+          "sourceFrame": "DSC9574"
+        },
+        {
+          "code": "TP-E-117",
+          "sha256": "34bc023e3031da0e49d7de178aa35394865c657d97b87c67c53910007f61f824",
+          "motif": "vine",
+          "artifactCode": "NM-9574",
+          "sourceFrame": "DSC9574"
+        }
+      ],
+      "roles": {
+        "TP-E-046": "primary",
+        "TP-E-047": "support",
+        "TP-E-117": "support"
+      },
+      "modernAdditions": [
+        {
+          "kind": "horizontal_border_rules",
+          "xRange": [
+            54,
+            1146
+          ],
+          "yPositions": [
+            254,
+            646
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            95
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f10-directed.png",
+      "sha256": "2c4566b5fc57aff7aca75bad23c2c2fdee307a8b8f755ecb9de6fdd210098d7f",
+      "recipe": "f10-directed.recipe.json",
+      "recipeSha256": "18174c9e88eeb4374a24d7316cb5926c9ed5f73b1442a67bbd4d8d1f6eb883eb",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#172d24",
+        "swatches": [
+          "#172d24",
+          "#987c4d",
+          "#e3dbcc",
+          "#293729",
+          "#152a22",
+          "#162d24"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f10-directed-dark.png",
+      "originalSha256": "23268c8699e25b7c2baf2b5d5d9046b6e799a1e841b1c5913e69572d28cd5649",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    },
+    {
+      "id": "f25-directed",
+      "titleRu": "Праздничная рамка",
+      "schemeId": "f25-directed",
+      "familyId": "F25",
+      "familyTitleRu": "Современная праздничная рамка",
+      "elementCodes": [
+        "TP-E-124",
+        "TP-E-125"
+      ],
+      "sources": [
+        {
+          "code": "TP-E-124",
+          "sha256": "154da13043ed883ac64b7fc74834c40567d7ada5c9441c9a29e366a0d90e7839",
+          "motif": "class-ac305c5fd82b20d0",
+          "artifactCode": "KS-9455",
+          "sourceFrame": "DSC9455"
+        },
+        {
+          "code": "TP-E-125",
+          "sha256": "189cdcdd87cb6c38fd742f3b42280f5fee21fe1d67d175e2a3d21e8ffb4905ba",
+          "motif": "class-a94c09da0feb7d01",
+          "artifactCode": "KS-9455",
+          "sourceFrame": "DSC9455"
+        }
+      ],
+      "roles": {
+        "TP-E-124": "support",
+        "TP-E-125": "primary"
+      },
+      "modernAdditions": [
+        {
+          "kind": "horizontal_border_rules",
+          "xRange": [
+            54,
+            1146
+          ],
+          "yPositions": [
+            324,
+            576
+          ],
+          "rgba": [
+            53,
+            86,
+            70,
+            95
+          ],
+          "width": 1,
+          "claimType": "contemporary_design",
+          "evidence": [
+            "D01"
+          ]
+        }
+      ],
+      "image": "f25-directed.png",
+      "sha256": "996079ec6d183c155fea51fa594c013956528734e72cd3736b45b98cf9e40ced",
+      "recipe": "f25-directed.recipe.json",
+      "recipeSha256": "f283d8f4e01dc394b318830b058562996e89e24c6c35ba0789d8920e01ce8348",
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGB",
+      "palette": {
+        "policy": "source",
+        "background": "#f3ebdb",
+        "swatches": [
+          "#f3ebdb",
+          "#7e785e",
+          "#f2ebdb",
+          "#b5cec6",
+          "#f9eede",
+          "#f4ebdb"
+        ]
+      },
+      "ownerStatus": "owner_accepted_2026_10_13",
+      "acceptanceScope": "original composition SHA; proportional export not separately reviewed",
+      "originalPath": "tatar-pattern/backend/local-test/design-revision-2026-10-13/runtime-examples/f25-directed-paper.png",
+      "originalSha256": "1198a93420e1876378da32392791628316f80fca3e5066c2d566c2f48a086f13",
+      "aiSeamless": false,
+      "aiQualityStatus": "pending_artistic_tests",
+      "externalTransferApproved": false
+    }
+  ]
+}

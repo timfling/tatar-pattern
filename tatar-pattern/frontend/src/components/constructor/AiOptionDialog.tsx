@@ -60,7 +60,7 @@ export function AiOptionDialog({ label, options, selected, confirmLabel, onSelec
             {items.map((item, i) => <div key={item.id} id={`${id}-${item.id}`} role="option" aria-selected={item.id === current?.id} className="ai-carousel-option" data-current={i === index} data-near={Math.abs(i-index) === 1} onClick={() => setCurrentId(item.id)}>{item.title}</div>)}
           </div>
         </div>
-        {items.length > 3 ? <div className="ai-carousel-navigation"><button aria-label="Предыдущая основа" disabled={index === 0} onClick={() => move(-1)}>↑</button><span>{items.length ? index+1 : 0} / {items.length}</span><button aria-label="Следующая основа" disabled={index === items.length-1} onClick={() => move(1)}>↓</button></div> : null}
+        {items.length > 3 ? <div className="ai-carousel-navigation"><span>{items.length ? index+1 : 0} / {items.length}</span></div> : null}
       </div>
     </div>
     <button className="ai-confirm ai-confirm-mobile" data-selected={current?.id === selected} disabled={!current} onClick={() => current && onSelect(current.id)}>{current?.id === selected ? "Выбрано ✓" : confirmLabel}</button>

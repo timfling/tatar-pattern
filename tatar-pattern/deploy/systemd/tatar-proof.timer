@@ -1,0 +1,8 @@
+[Unit]
+Description=GET-only GPU proof renewal before 24h expiry (enable after live acceptance)
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=20h
+AccuracySec=1min
+[Install]
+WantedBy=timers.target

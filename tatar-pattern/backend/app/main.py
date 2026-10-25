@@ -2,6 +2,7 @@ import asyncio
 from contextlib import asynccontextmanager, suppress
 import hashlib
 import logging
+import os
 import secrets
 import threading
 import time
@@ -34,7 +35,8 @@ from . import generator_v2
 from .scheme_catalog import registry, ASSETS, release_catalog
 from .descriptions import describe, saved_or_fallback
 from .trash import purge
-from .models import Credentials, Registration, Profile, Generate, PatchGeneration, Project
+from . import guest
+from .models import GuestGenerate, GuestSession, Credentials, Registration, Profile, Generate, PatchGeneration, Project
 
 COOKIE='tp_session'
 ID=Annotated[str,Path(pattern=r'^[1-9][0-9]{0,17}$')]
@@ -43,16 +45,24 @@ logger=logging.getLogger(__name__)
 
 def create_app(settings=None):
     settings=settings or Settings.from_env()
+    if os.getenv('TP_ENVIRONMENT')=='production' and settings.public_guest_mode and not settings.cookie_secure:
+        raise RuntimeError('Public guest production requires COOKIE_SECURE=true and HTTPS')
     settings.storage_root.mkdir(parents=True,exist_ok=True)
     @asynccontextmanager
     async def lifespan(app):
         async def cleanup():
             while True:
                 try:
-                    await asyncio.to_thread(purge, settings)
+                    with attempts_lock:
+                        for ip in list(attempts):
+                            if not attempts[ip] or attempts[ip][-1]<time.monotonic()-60:
+                                del attempts[ip]
+                    await asyncio.to_thread(guest.clean, settings)
+                    if not settings.public_guest_mode:
+                        await asyncio.to_thread(purge, settings)
                 except Exception as exc:
                     logger.warning('Trash cleanup deferred (%s)',type(exc).__name__)
-                await asyncio.sleep(3600)
+                await asyncio.sleep(60)
         task=asyncio.create_task(cleanup())
         try:
             yield
@@ -71,6 +81,12 @@ def create_app(settings=None):
 
     @app.middleware('http')
     async def guards(request, call_next):
+        path=request.url.path
+        if settings.public_guest_mode and (path.startswith(('/api/auth/','/api/projects','/api/generations','/api/profile','/api/history','/api/trash')) or path=='/api/composition-preflight'):
+            response=JSONResponse({'error':{'code':'ACCOUNT_API_DISABLED','message':'Аккаунтные маршруты отключены.'}},status_code=404)
+            response.headers['Cache-Control']='no-store'
+            response.delete_cookie(COOKIE,path='/api')
+            return response
         if request.method in ('POST','PATCH','DELETE'):
             origin=request.headers.get('origin')
             own_origin=f'{request.url.scheme}://{request.url.netloc}'
@@ -92,6 +108,9 @@ def create_app(settings=None):
                     return JSONResponse({'error':{'code':'REQUEST_TOO_LARGE','message':'Запрос слишком большой.'}},status_code=413)
             request._body=bytes(body)
         response=await call_next(request)
+        response.headers['Referrer-Policy']='no-referrer'
+        if settings.public_guest_mode and COOKIE in request.cookies:
+            response.delete_cookie(COOKIE,path='/api')
         response.headers['X-Content-Type-Options']='nosniff'
         response.headers['Cache-Control']='no-store'
         return response
@@ -122,6 +141,8 @@ def create_app(settings=None):
             yield conn
 
     def current_user(request:Request,conn=Depends(db)):
+        if settings.public_guest_mode:
+            raise APIError(404,'ACCOUNT_API_DISABLED','Аккаунтные маршруты отключены.')
         token=request.cookies.get(COOKIE,'')
         if not token or len(token)>200:
             raise APIError(401,'UNAUTHENTICATED','Войдите в аккаунт.')
@@ -138,11 +159,13 @@ def create_app(settings=None):
             for ip in list(attempts):
                 if not attempts[ip] or attempts[ip][-1]<now-60:
                     del attempts[ip]
+            if key not in attempts and len(attempts)>=10000:
+                raise APIError(429,'REQUEST_RATE_LIMIT','Слишком много запросов.')
             queue=attempts[key]
             while queue and queue[0]<now-60:
                 queue.popleft()
             if len(queue)>=20:
-                raise APIError(429,'AUTH_RATE_LIMIT','Слишком много попыток входа. Повторите через минуту.')
+                raise APIError(429,'REQUEST_RATE_LIMIT','Слишком много запросов. Повторите через минуту.')
             queue.append(now)
 
     def issue_session(conn,row,response,request):
@@ -214,7 +237,7 @@ def create_app(settings=None):
         return {'generationMode':'synchronous','formats':['png','jpg'],'motifs':{**MOTIFS,**{r['motif_key']:r['motif_class'] for r in rows}},'realUniqueElements':len({r['content_sha256'] for r in rows if not r['is_fixture']}),'modes':{'flat':{'available':True,'generationMode':'synchronous'},'ai':{'available':catalog_response(settings,configured_provider())['available'],'generationMode':'persistent_jobs','catalogUrl':'/api/ai-bases','reason':'Requires released base/style profile, material authorization and verified GPU provider'}},'elementSelection':'elementCodes','scaleRange':[0.3,2.0],'transparentPng':True,'colorModes':['original','silhouette'],
                 'renderers':{'default':'legacy','legacy':VERSION,'composition-v2':{'version':generator_v2.VERSION,'status':'owner_accepted_subset' if not settings.local_catalog else 'catalog_expanded','registryVersion':registry()['registryVersion'],'catalogUrl':'/api/composition-schemes','preflightUrl':'/api/composition-preflight','colorModes':['original'],'rapportOutputs':['module','sample'],'moduleSizeRange':[256,2048]},'composition-v1':{'version':COMPOSITION_VERSION,'status':'owner_accepted_pilot','visualReview':{'medallion':'accepted_with_density_controls_condition','rapport':'accepted','border':'accepted_contemporary_design'},'borderLayouts':['registers','interwoven'],'borderVisualReview':{'registers':'satisfactory_owner_reviewed','interwoven':'owner_accepted'},'pilotRecipes':review()[0]['families.json']['pilot_recipes'],'rapportOutputs':['module','sample'],'moduleSizeRange':[256,2048],'colorModes':['original']}},
                 'compositionCatalog':{'acceptedSchemes':release_catalog(settings)['acceptedSchemeCount'],'acceptedCoveredElements':release_catalog(settings)['acceptedCoveredElementCount'],'url':'/api/composition-schemes','preflightUrl':'/api/composition-preflight','registryVersion':registry()['registryVersion']},
-                'outputSizes':[[1024,1024],[900,1200],[800,1200],[720,1280]],'profile':True,'trash':True,'compositions':['medallion','border','rapport'],'palettes':['emerald','porcelain','leather'],
+                'outputSizes':[[1024,1024],[900,1200],[800,1200],[720,1280]],'publicGuestMode':settings.public_guest_mode,'guest':{'sessionUrl':'/api/guest/session','preflightUrl':'/api/guest/preflight','createUrl':'/api/guest/generations','ttlSeconds':settings.guest_ttl_seconds},'profile':not settings.public_guest_mode,'trash':not settings.public_guest_mode,'compositions':['medallion','border','rapport'],'palettes':['emerald','porcelain','leather'],
                 'styles':{'heritage':'Исходные цвета PNG; силуэт по отдельному выбору','modern':'Крупный одноцветный силуэт','porcelain-sign':'Синий контур','leather-mosaic':'Заливка и пунктирный шов','festive':'Чередующиеся цвета'},
                 'parameters':['default','sparse','dense'],'usageSizes':{'architecture':[1024,1024],'textile':[1024,1024],'packaging':[1200,900],'interior':[1200,900],'web':[800,600]},
                 'unsupported':['prompt-driven-generation','ai-editing','cancellation'], 'allowFixtures':settings.allow_fixtures}
@@ -280,7 +303,7 @@ def create_app(settings=None):
 
     @app.get('/api/elements/{code}/file')
     def element_file(code:str,conn=Depends(db)):
-        row=next((r for r in catalog(conn,settings) if r['code']==code),None)
+        row=next((r for r in catalog(conn,settings,[code]) if r['code']==code),None)
         if row is None:
             raise APIError(404,'NOT_FOUND','Проверенный файл не найден.')
         return FileResponse(row['local_path'],media_type='image/png')
@@ -320,7 +343,7 @@ def create_app(settings=None):
     @app.get('/api/composition-schemes/{sid}/preview')
     def composition_preview(sid:str,conn=Depends(db)):
         scheme=next((s for s in release_catalog(settings)['schemes'] if s['id']==sid),None)
-        if not scheme or not set(scheme['defaultElementCodes']).issubset({r['code'] for r in catalog(conn,settings)}):
+        if not scheme or not set(scheme['defaultElementCodes']).issubset({r['code'] for r in catalog(conn,settings,scheme['defaultElementCodes'])}):
             raise APIError(404,'NOT_FOUND','Пример схемы недоступен для текущего каталога.')
         path=ASSETS/(sid+'.png')
         if not path.is_file():
@@ -377,12 +400,12 @@ def create_app(settings=None):
             raise APIError(503,'PRESETS_MISSING','Примените миграцию 006 с палитрами и композициями.')
         if not render_slots.acquire(blocking=False):
             raise APIError(503,'GENERATOR_BUSY','Генератор занят. Повторите запрос позже.')
-        relative=f'results/{uuid4().hex}.png'
+        relative=f"guest-results/{int(user['expires_at'].timestamp()*1000000)}-{uuid4().hex}.png" if user.get('guest_id') else f'results/{uuid4().hex}.png'
         png=safe_path(settings.storage_root,relative)
         jpg=png.with_suffix('.jpg')
         row=None
         try:
-            row=conn.execute("INSERT INTO generations(user_id,project_id,status,params,user_prompt,model_version) VALUES(%s,%s,'processing',%s,%s,%s) RETURNING *",(user['id'],body.projectId,Jsonb({'selections':body.selections.model_dump()}),body.prompt,version)).fetchone()
+            row=conn.execute("INSERT INTO generations(user_id,project_id,status,params,user_prompt,model_version,guest_process_id,guest_expires_at,guest_request_id,guest_fingerprint) VALUES(%s,%s,'processing',%s,%s,%s,%s,%s,%s,%s) RETURNING *",(user['id'],body.projectId,Jsonb({'selections':body.selections.model_dump()}),body.prompt,version,*guest.metadata(user))).fetchone()
             if use_v2:
                 recipe,warnings=generator_v2.render(rows,selections,palette['colors'],png,jpg,body.seed)
             elif use_pilot:
@@ -402,15 +425,23 @@ def create_app(settings=None):
                 warnings.append({'code':'TEST_FIXTURE','message':'Использованы синтетические тестовые элементы; это не рабочий каталог и не подтверждение 100+.'})
             params={'mode':'flat','seed':body.seed,'selections':body.selections.model_dump(),'recipe':recipe,'warnings':warnings}
             row=conn.execute("UPDATE generations SET status='done',progress=100,finished_at=now(),result_path=%s,params=%s WHERE id=%s RETURNING *",(relative,Jsonb(params),row['id'])).fetchone()
+            if user.get('expires_at') and datetime.now(timezone.utc)>=user['expires_at']:
+                raise APIError(410,'GUEST_RESULT_EXPIRED','Срок результата истёк.')
             conn.commit()
         except Exception as exc:
             logger.error('Generation failed (%s)',type(exc).__name__)
             conn.rollback()
-            for path in (png,jpg,png.with_name(png.stem+'.module.png')):
-                path.unlink(missing_ok=True)
+            if user.get('guest_id'):
+                from .erasure import enqueue_files
+                enqueue_files(conn,relative);conn.commit()
+            else:
+                for path in (png,jpg,png.with_name(png.stem+'.module.png')):
+                    path.unlink(missing_ok=True)
             if isinstance(exc,APIError):
                 raise
             error={'code':'GENERATION_FAILED','message':'Не удалось создать файл результата. Проверьте каталог и хранилище.'}
+            if user.get('guest_id'):
+                raise APIError(503,error['code'],error['message'])
             conn.execute("INSERT INTO generations(user_id,project_id,status,params,user_prompt,model_version,error,finished_at) VALUES(%s,%s,'failed',%s,%s,%s,%s,now())",(user['id'],body.projectId,Jsonb({'selections':body.selections.model_dump()}),body.prompt,version,Jsonb(error)))
             conn.commit()
             raise APIError(503,error['code'],error['message'])
@@ -469,6 +500,9 @@ def create_app(settings=None):
     @app.get('/api/generations/{gid}/file')
     def result_file(gid:ID,format:Literal['png','jpg']='png',artifact:Literal['output','module']='output',download:bool=False,user=Depends(current_user),conn=Depends(db)):
         row=owned_generation(conn,gid,user['id'])
+        return file_response(row,gid,format,artifact,download)
+
+    def file_response(row,gid,format,artifact,download):
         if row['status']!='done' or not row['result_path']:
             raise APIError(404,'FILE_NOT_FOUND','Файл результата отсутствует.')
         try:
@@ -484,4 +518,89 @@ def create_app(settings=None):
             raise APIError(404,'FILE_NOT_FOUND','Файл результата отсутствует.')
         return FileResponse(path,media_type='image/png' if format=='png' else 'image/jpeg',filename=f'tatar-pattern-{gid}{"-module" if artifact=="module" else ""}.{format}',content_disposition_type='attachment' if download else 'inline')
 
+    def guest_access(request:Request,conn=Depends(db)):
+        token=request.cookies.get(guest.COOKIE,'')
+        if len(token)!=43:
+            raise APIError(401,'GUEST_ACCESS_REQUIRED','Начните временный гостевой процесс.')
+        row=conn.execute('SELECT * FROM guest_processes WHERE token_hash=%s AND expires_at>clock_timestamp()', (hashlib.sha256(token.encode()).hexdigest(),)).fetchone()
+        if not row:
+            raise APIError(401,'GUEST_ACCESS_EXPIRED','Временный доступ недействителен или истёк.')
+        return {'id':None,'guest_id':row['id'],'expires_at':row['expires_at']}
+
+    def guest_owned(conn,gid,access):
+        row=conn.execute('SELECT * FROM generations WHERE id=%s AND guest_process_id=%s AND guest_expires_at>clock_timestamp() AND deleted_at IS NULL',(gid,access['guest_id'])).fetchone()
+        if not row:
+            raise APIError(404,'NOT_FOUND','Временный результат недоступен.')
+        return row
+
+    def guest_json(row):
+        value=generation_json(row)
+        for key in ('title','rating','projectId','prompt','deletedAt'):
+            value.pop(key,None)
+        for key in ('imageUrl','moduleUrl'):
+            if value.get(key):value[key]=value[key].replace('/api/generations/','/api/guest/generations/')
+        value['requestId']=str(row['guest_request_id'])
+        value['expiresAt']=row['guest_expires_at'].isoformat()
+        return value
+
+    @app.post('/api/guest/session')
+    def guest_session(body:GuestSession,request:Request,response:Response,conn=Depends(db)):
+        auth_limit(request)
+        token=request.cookies.get(guest.COOKIE,'')
+        prior=conn.execute('SELECT * FROM guest_processes WHERE token_hash=%s AND expires_at>clock_timestamp()', (hashlib.sha256(token.encode()).hexdigest(),)).fetchone() if len(token)==43 else None
+        if prior:
+            return {'expiresAt':prior['expires_at'].isoformat()}
+        conn.execute('SELECT pg_advisory_xact_lock(%s)',(guest.ADMISSION_LOCK,))
+        key='minute:'+str(int(datetime.now(timezone.utc).timestamp())//60)
+        count=conn.execute('INSERT INTO guest_budget(key,used) VALUES(%s,1) ON CONFLICT(key) DO UPDATE SET used=guest_budget.used+1 RETURNING used',(key,)).fetchone()['used']
+        if count>settings.guest_creates_per_minute:
+            raise APIError(429,'GUEST_RATE_LIMIT','Слишком много запросов. Повторите позже.')
+        created=datetime.now(timezone.utc)
+        expires=created+timedelta(seconds=settings.guest_ttl_seconds)
+        token=secrets.token_urlsafe(32)
+        conn.execute('INSERT INTO guest_processes(id,token_hash,created_at,expires_at) VALUES(%s,%s,%s,%s)',(uuid4(),hashlib.sha256(token.encode()).hexdigest(),created,expires))
+        conn.commit()
+        response.set_cookie(guest.COOKIE,token,max_age=settings.guest_ttl_seconds,expires=expires,httponly=True,secure=settings.cookie_secure,samesite='strict',path='/api/guest')
+        return {'expiresAt':expires.isoformat()}
+
+    @app.post('/api/guest/preflight')
+    def guest_preflight(body:GuestGenerate,request:Request,access=Depends(guest_access),conn=Depends(db)):
+        auth_limit(request)
+        if body.mode=='ai':
+            from .ai_catalog import select_profile,unavailable_reasons
+            base,profile=select_profile(body.ai.baseId,body.ai.ornamentStyle,body.ai.profileVersion)
+            reasons=unavailable_reasons(base,profile,configured_provider(),settings)
+            if reasons:raise APIError(503,'AI_UNAVAILABLE','AI-сочетание пока недоступно.',{'reasons':reasons})
+            used=conn.execute("SELECT used FROM guest_budget WHERE key='gpu-total'").fetchone()
+            if (used['used'] if used else 0)>=settings.guest_gpu_budget:
+                raise APIError(503,'AI_BUDGET_EXHAUSTED','Лимит AI исчерпан.')
+            return {'available':True,'expiresAt':access['expires_at'].isoformat()}
+        return {**composition_preflight(body.internal(),access,conn),'expiresAt':access['expires_at'].isoformat()}
+
+    @app.post('/api/guest/generations',status_code=201)
+    def guest_create(body:GuestGenerate,request:Request,access=Depends(guest_access),conn=Depends(db)):
+        auth_limit(request)
+        conn.execute('SELECT pg_advisory_xact_lock(%s)',(guest.ADMISSION_LOCK,))
+        prior=conn.execute('SELECT * FROM generations WHERE guest_process_id=%s AND guest_request_id=%s',(access['guest_id'],body.requestId)).fetchone()
+        digest=guest.fingerprint(body)
+        if prior:
+            if prior['guest_fingerprint']!=digest:
+                raise APIError(409,'IDEMPOTENCY_CONFLICT','requestId уже использован с другими параметрами.')
+            return {'generation':guest_json(guest_owned(conn,prior['id'],access))}
+        guest.admit(conn,settings,access)
+        internal={**access,'request_id':body.requestId,'fingerprint':digest}
+        result=generate(body.internal(),internal,conn)
+        row=guest_owned(conn,result['generation']['id'],access)
+        return {'generation':guest_json(row)}
+
+    @app.get('/api/guest/generations/{gid}')
+    def guest_status(gid:ID,access=Depends(guest_access),conn=Depends(db)):
+        return {'generation':guest_json(guest_owned(conn,gid,access))}
+
+    @app.get('/api/guest/generations/{gid}/file')
+    def guest_file(gid:ID,format:Literal['png','jpg']='png',artifact:Literal['output','module']='output',download:bool=False,access=Depends(guest_access),conn=Depends(db)):
+        return file_response(guest_owned(conn,gid,access),gid,format,artifact,download)
+
+    if settings.public_guest_mode:
+        app.router.routes[:]=[route for route in app.router.routes if not (getattr(route,'path','').startswith(('/api/auth/','/api/projects','/api/generations')) or getattr(route,'path','')=='/api/composition-preflight')]
     return app

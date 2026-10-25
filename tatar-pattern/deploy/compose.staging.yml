@@ -1,0 +1,11 @@
+# Closed functional staging, reached through owner SSH local forwarding only.
+services:
+  backend:
+    environment:
+      COOKIE_SECURE: "false"
+      CORS_ORIGINS: http://localhost:18080
+      ALLOW_FIXTURES: "false"
+  proxy:
+    volumes:
+      - ./Caddyfile.staging:/etc/caddy/Caddyfile:ro
+    ports: ["127.0.0.1:18080:80"]

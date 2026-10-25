@@ -38,11 +38,11 @@ class ReleaseGateTests(unittest.TestCase):
             self.assertEqual(docker.call_count, 1)
 
     def test_failed_gate_never_starts_public_services(self):
-        values = {'DOMAIN': 'test.example', 'RELEASE': 'test'}
+        values = {'DOMAIN': 'test.example', 'RELEASE': 'test', 'DATA_ROOT': '/unused-test-path'}
         with patch.object(sys, 'argv', ['ops.py', 'publish', '--confirm-public']), \
              patch.object(ops, 'read_env', return_value=values), \
              patch.object(ops, 'compose') as compose, \
-             patch.object(ops, 'check_frontend', side_effect=RuntimeError('blocked')):
+             patch.object(ops, 'check_frontend', side_effect=RuntimeError('blocked')), patch('maintenance.lock'):
             with self.assertRaises(RuntimeError):
                 ops.main()
             compose.return_value.assert_not_called()

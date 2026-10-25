@@ -131,6 +131,7 @@ class HTTPProvider:
         self.proof_file = Path(proof_file) if proof_file else None
         self._health = None
         self._health_at = 0
+        self._health_lock = threading.Lock()
         self._tasks, self._results = {}, {}
 
     def _request(self, method, route, *, timeout, limit=MAX_JSON, payload=None, request_id=None):
@@ -222,10 +223,22 @@ class HTTPProvider:
         return body
 
     def health(self, *, refresh=False):
+        # Concurrent callers fail closed while the single bounded probe runs.
+        if not self._health_lock.acquire(blocking=False):
+            raise ProviderError('AI_GPU_UNAVAILABLE')
+        try:
+            return self._cached_health(refresh=refresh)
+        finally:
+            self._health_lock.release()
+
+    def _cached_health(self, *, refresh=False):
         if refresh or time.monotonic() - self._health_at >= 5:
             self._health = None
-            self._health_at = time.monotonic()
-            body = self._json('GET', '/v1/health', timeout=5)
+            try:
+                body = self._json('GET', '/v1/health', timeout=5)
+            finally:
+                # Cache refusal from completion, not from the start of a timeout.
+                self._health_at = time.monotonic()
             if (not versions(body, self.workflow_version, self.model_version)
                     or body.get('status') != 'ready' or body.get('qualificationMode') is not False
                     or body.get('draining') is not False or not SHA.fullmatch(str(body.get('deploymentDigest', '')))
@@ -263,15 +276,19 @@ class HTTPProvider:
 
     @property
     def ready(self):
+        return self.readiness_snapshot().ready
+
+    def readiness_snapshot(self):
+        pairs=()
         try:
-            if not self._proof_possible():
-                return False
-            health = self.health()
-            proof = self._proof(health)
-            return bool(proof and any(self._pair_matches(p, q) for p in ai_catalog.profiles()
-                                     for q in health['profiles'] if q in proof['profiles']))
+            if self._proof_possible():
+                health=self.health()
+                proof=self._proof(health)
+                if proof:
+                    pairs=tuple(q for q in health['profiles'] if q in proof['profiles'])
         except (ProviderError, ValueError, KeyError, TypeError, OSError):
-            return False
+            pass
+        return ReadinessSnapshot(pairs)
 
     @staticmethod
     def _pair_matches(profile, remote):
@@ -285,14 +302,7 @@ class HTTPProvider:
                     and all(remote.get(k) == v for k, v in expected.items()))
 
     def ready_for(self, base, profile):
-        try:
-            if not self._proof_possible() or not profile or profile['baseSha256'] != base['sha256']:
-                return False
-            health = self.health()
-            proof = self._proof(health)
-            return bool(proof and any(self._pair_matches(profile, q) for q in health['profiles'] if q in proof['profiles']))
-        except (ProviderError, ValueError, KeyError, TypeError, OSError):
-            return False
+        return self.readiness_snapshot().ready_for(base,profile)
 
     def wire_payload(self, payload):
         ai_catalog.validate_task(payload)
@@ -405,6 +415,19 @@ class HTTPProvider:
         except Exception:
             raise ProviderError('AI_GPU_RESULT_INVALID', definitive=True) from None
         return data
+
+
+class ReadinessSnapshot:
+    """Request-local proof/boot/deployment/pair decision; no network methods."""
+    contract_version = ai_catalog.TASK_SCHEMA
+
+    def __init__(self,pairs):
+        self.pairs=pairs
+        self.ready=any(HTTPProvider._pair_matches(p,q) for p in ai_catalog.profiles() for q in pairs)
+
+    def ready_for(self,base,profile):
+        return bool(profile and profile['baseSha256']==base['sha256']
+                    and any(HTTPProvider._pair_matches(profile,q) for q in self.pairs))
 
 
 def configured_provider():

@@ -1,0 +1,13 @@
+# Apply LAST, including after any previous AI window override.
+# The global flag is the feature switch; budget=0 is an additional limit.
+# This file does not start/stop services or change the historical usage ledger.
+services:
+  backend:
+    environment:
+      AI_MVP_ENABLED: "false"
+      GUEST_GPU_BUDGET: "0"
+  ai-worker:
+    environment:
+      AI_MVP_ENABLED: "false"
+      GUEST_GPU_BUDGET: "0"
+    restart: "no"
