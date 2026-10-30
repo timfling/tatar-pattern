@@ -1,0 +1,3428 @@
+[
+ {
+  "code": "TP-E-008",
+  "name": "Синий угловой растительный узор вокруг белого поля",
+  "motifClass": "угол рамки",
+  "artifact": "KS-9295",
+  "source": "Кита. Сура № 2 «Аль-Бакара», аят № 185",
+  "technique": "Бумага, темперные краски, золотой пигмент",
+  "angle": null,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "corner_accent"
+  ],
+  "categories": [
+   "corner"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   541,
+   640
+  ],
+  "ink": [
+   59,
+   43,
+   37
+  ]
+ },
+ {
+  "code": "TP-E-009",
+  "name": "Угловая композиция: красно-коричневый остроконечный медальон с охристым полем и малым сине-белым цветком, окружённый золотистыми завитками на зелёном поле",
+  "motifClass": "угол рамки",
+  "artifact": "KS-9309",
+  "source": "Кита с сурой № 114 «Ан-Нас»",
+  "technique": "Бумага, темперные краски, золотой пигмент",
+  "angle": 40.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "corner_accent"
+  ],
+  "categories": [
+   "corner"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   528,
+   640
+  ],
+  "ink": [
+   94,
+   34,
+   27
+  ]
+ },
+ {
+  "code": "TP-E-010",
+  "name": "Разветвленная многоцветная растительная верхушка",
+  "motifClass": "растительная композиция",
+  "artifact": "KS-9312",
+  "source": "Кита. Сура № 113 «Аль-Фаляк»",
+  "technique": "Бумага, темперные краски, золотой пигмент",
+  "angle": -35.0,
+  "attach": [
+   0.92,
+   0.8
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "branch"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   640,
+   636
+  ],
+  "ink": [
+   64,
+   35,
+   24
+  ]
+ },
+ {
+  "code": "TP-E-011",
+  "name": "Сине-зеленая вертикальная цветочная кайма листа",
+  "motifClass": "рамочный орнамент",
+  "artifact": "KS-9342",
+  "source": "Коран",
+  "technique": null,
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   511,
+   640
+  ],
+  "ink": [
+   85,
+   50,
+   20
+  ]
+ },
+ {
+  "code": "TP-E-012",
+  "name": "Две встречные завитковые фигуры с цепью ромбов",
+  "motifClass": "геометрический узор",
+  "artifact": "KS-9376",
+  "source": "Чехол к шамаилю дорожному",
+  "technique": "Кожа натуральная, металл желтого цвета, ручная работа",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   640,
+   499
+  ],
+  "ink": [
+   92,
+   60,
+   31
+  ]
+ },
+ {
+  "code": "TP-E-013",
+  "name": "Парные спиральные завитки на фрагменте керамики",
+  "motifClass": "завиток",
+  "artifact": "KS-9390",
+  "source": "Фрагмент керамики. Глина. Биляр. X–XIII вв.",
+  "technique": "Глина",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "approx_rot2",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   640,
+   506
+  ],
+  "ink": [
+   84,
+   61,
+   48
+  ]
+ },
+ {
+  "code": "TP-E-014",
+  "name": "Радиальная синяя розетка с каплевидными лепестками",
+  "motifClass": "розетка",
+  "artifact": "KS-9407",
+  "source": "Кольцевой поддон чаши.",
+  "technique": null,
+  "angle": null,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "medallion_center",
+   "primary_repeat"
+  ],
+  "categories": [
+   "flower",
+   "rosette"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   640,
+   623
+  ],
+  "ink": [
+   4,
+   21,
+   81
+  ]
+ },
+ {
+  "code": "TP-E-015",
+  "name": "Горизонтальная пара синих спиралей",
+  "motifClass": "завиток",
+  "artifact": "KS-9410",
+  "source": "Венчик поливного сосуда (фрагмент).",
+  "technique": null,
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "approx_rot2",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   640,
+   433
+  ],
+  "ink": [
+   22,
+   22,
+   21
+  ]
+ },
+ {
+  "code": "TP-E-019",
+  "name": "Изогнутая ветвь с мелкими листьями и цветками",
+  "motifClass": "цветочная ветвь",
+  "artifact": "KS-9451",
+  "source": "Намазлык (коврик молитвенный).",
+  "technique": "ткань, вышивка",
+  "angle": 30.0,
+  "attach": [
+   0.05,
+   0.95
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "branch"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   622
+  ],
+  "ink": [
+   119,
+   86,
+   86
+  ]
+ },
+ {
+  "code": "TP-E-020",
+  "name": "Синий округлый цветок с малым красным цветком внутри",
+  "motifClass": "цветок",
+  "artifact": "KS-9451",
+  "source": "Намазлык (коврик молитвенный).",
+  "technique": "ткань, вышивка",
+  "angle": null,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   558
+  ],
+  "ink": [
+   132,
+   32,
+   55
+  ]
+ },
+ {
+  "code": "TP-E-021",
+  "name": "Красный чашевидный цветок на изогнутом стебле",
+  "motifClass": "цветок",
+  "artifact": "KS-9451",
+  "source": "Намазлык (коврик молитвенный).",
+  "technique": "ткань, вышивка",
+  "angle": -35.0,
+  "attach": [
+   0.82,
+   0.93
+  ],
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   584
+  ],
+  "ink": [
+   98,
+   30,
+   37
+  ]
+ },
+ {
+  "code": "TP-E-022",
+  "name": "Сине-красная вьющаяся полоса с одиночным цветком",
+  "motifClass": "бордюр",
+  "artifact": "KS-9451",
+  "source": "Намазлык (коврик молитвенный).",
+  "technique": "ткань, вышивка",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   357
+  ],
+  "ink": [
+   23,
+   55,
+   86
+  ]
+ },
+ {
+  "code": "TP-E-030",
+  "name": "Радиальные золотистые и пурпурные лучи на головном уборе",
+  "motifClass": "лучевой узор",
+  "artifact": "NM-9542",
+  "source": "Татарские мужские головные уборы — образцы продукции артели «Азат хатын»",
+  "technique": null,
+  "angle": null,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "medallion_center",
+   "primary_repeat"
+  ],
+  "categories": [
+   "rosette"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   640,
+   586
+  ],
+  "ink": [
+   122,
+   81,
+   112
+  ]
+ },
+ {
+  "code": "TP-E-031",
+  "name": "Гравированный лист с двумя завитками на серебристой бляхе",
+  "motifClass": "листовой узор",
+  "artifact": "NM-9552",
+  "source": "Бляха",
+  "technique": "серебро, сердолик, бирюза, стекло, чеканка",
+  "angle": 25.0,
+  "attach": null,
+  "symmetry": "approx_rot2",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   531,
+   640
+  ],
+  "ink": [
+   122,
+   111,
+   93
+  ]
+ },
+ {
+  "code": "TP-E-032",
+  "name": "Рельефная симметричная пальметта в нижнем поле бляхи",
+  "motifClass": "пальметта",
+  "artifact": "NM-9552",
+  "source": "Бляха",
+  "technique": "серебро, сердолик, бирюза, стекло, чеканка",
+  "angle": 0.0,
+  "attach": [
+   0.5,
+   0.95
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "axial_apex",
+   "primary_repeat"
+  ],
+  "categories": [
+   "palmette"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   640,
+   581
+  ],
+  "ink": [
+   113,
+   96,
+   66
+  ]
+ },
+ {
+  "code": "TP-E-034",
+  "name": "Веерообразная золотистая форма с разноцветными круглыми окончаниями",
+  "motifClass": "веер",
+  "artifact": "NM-9557",
+  "source": "Рисунок для вышивки на мужском поясе учкур",
+  "technique": "Бумага, акварель, тушь, золотая краска",
+  "angle": 0.0,
+  "attach": [
+   0.5,
+   0.98
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "axial_apex",
+   "primary_repeat"
+  ],
+  "categories": [
+   "palmette"
+  ],
+  "traditions": [
+   "embroidery",
+   "gold"
+  ],
+  "size": [
+   640,
+   635
+  ],
+  "ink": [
+   60,
+   54,
+   103
+  ]
+ },
+ {
+  "code": "TP-E-035",
+  "name": "Пучок длинных штрихованных листьев на левом отводе",
+  "motifClass": "листовая ветвь",
+  "artifact": "NM-9557",
+  "source": "Рисунок для вышивки на мужском поясе учкур",
+  "technique": "Бумага, акварель, тушь, золотая краска",
+  "angle": -40.0,
+  "attach": [
+   0.64,
+   0.51
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "embroidery",
+   "gold"
+  ],
+  "size": [
+   548,
+   640
+  ],
+  "ink": [
+   123,
+   88,
+   38
+  ]
+ },
+ {
+  "code": "TP-E-036",
+  "name": "Крупный округлый семилепестковый цветок",
+  "motifClass": "цветок",
+  "artifact": "NM-9557",
+  "source": "Рисунок для вышивки на мужском поясе учкур",
+  "technique": "Бумага, акварель, тушь, золотая краска",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "embroidery",
+   "gold"
+  ],
+  "size": [
+   601,
+   640
+  ],
+  "ink": [
+   121,
+   83,
+   32
+  ]
+ },
+ {
+  "code": "TP-E-037",
+  "name": "Вертикальный тройной лист с зубчатыми краями",
+  "motifClass": "лист",
+  "artifact": "NM-9557",
+  "source": "Рисунок для вышивки на мужском поясе учкур",
+  "technique": "Бумага, акварель, тушь, золотая краска",
+  "angle": 0.0,
+  "attach": [
+   0.5,
+   0.98
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "supporting_leaf",
+   "directional_accent"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "embroidery",
+   "gold"
+  ],
+  "size": [
+   581,
+   640
+  ],
+  "ink": [
+   64,
+   46,
+   10
+  ]
+ },
+ {
+  "code": "TP-E-038",
+  "name": "Тонкий спиральный завиток с круглым окончанием",
+  "motifClass": "завиток",
+  "artifact": "NM-9557",
+  "source": "Рисунок для вышивки на мужском поясе учкур",
+  "technique": "Бумага, акварель, тушь, золотая краска",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "embroidery",
+   "gold"
+  ],
+  "size": [
+   634,
+   640
+  ],
+  "ink": [
+   68,
+   22,
+   33
+  ]
+ },
+ {
+  "code": "TP-E-039",
+  "name": "Парные овальные петли и группа нижних капель",
+  "motifClass": "подвески",
+  "artifact": "NM-9557",
+  "source": "Рисунок для вышивки на мужском поясе учкур",
+  "technique": "Бумага, акварель, тушь, золотая краска",
+  "angle": 180.0,
+  "attach": [
+   0.5,
+   0.12
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "hanging_accent",
+   "vertical_panel"
+  ],
+  "categories": [
+   "pendant"
+  ],
+  "traditions": [
+   "embroidery",
+   "gold"
+  ],
+  "size": [
+   640,
+   628
+  ],
+  "ink": [
+   35,
+   29,
+   101
+  ]
+ },
+ {
+  "code": "TP-E-040",
+  "name": "Нижняя цепь чередующихся волнистых и зубчатых форм",
+  "motifClass": "бордюр",
+  "artifact": "NM-9557",
+  "source": "Рисунок для вышивки на мужском поясе учкур",
+  "technique": "Бумага, акварель, тушь, золотая краска",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "embroidery",
+   "gold"
+  ],
+  "size": [
+   640,
+   573
+  ],
+  "ink": [
+   101,
+   56,
+   80
+  ]
+ },
+ {
+  "code": "TP-E-041",
+  "name": "Золотистая ветка с синими круглыми вставками",
+  "motifClass": "цветочная ветвь",
+  "artifact": "NM-9558",
+  "source": "Футляр для гребня",
+  "technique": "Хлопчатобумажные нити, шёлковые нити, золотные нити, кружево, ручное ткачество, вязание крючком, вышивка «татар ишлиме» пятью видами шитья",
+  "angle": -30.0,
+  "attach": [
+   0.86,
+   0.8
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "branch"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   598
+  ],
+  "ink": [
+   28,
+   59,
+   94
+  ]
+ },
+ {
+  "code": "TP-E-042",
+  "name": "Малая наклонная ветка с тремя синими вставками",
+  "motifClass": "цветочная ветвь",
+  "artifact": "NM-9558",
+  "source": "Футляр для гребня",
+  "technique": "Хлопчатобумажные нити, шёлковые нити, золотные нити, кружево, ручное ткачество, вязание крючком, вышивка «татар ишлиме» пятью видами шитья",
+  "angle": -35.0,
+  "attach": [
+   0.63,
+   0.96
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "branch"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   626
+  ],
+  "ink": [
+   1,
+   45,
+   105
+  ]
+ },
+ {
+  "code": "TP-E-043",
+  "name": "Плотное переплетение диагональных полос",
+  "motifClass": "плетенка",
+  "artifact": "NM-9564",
+  "source": "Пояс мужской, «кушак»",
+  "technique": "Хлопчатобумажные нити, шёлковые нити, плошенка, ручное ткачество, вышивка тремя видами шитья (тарлеу, татар ишлиме, телли)",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   378,
+   640
+  ],
+  "ink": [
+   76,
+   51,
+   42
+  ]
+ },
+ {
+  "code": "TP-E-044",
+  "name": "Мелкая цепь округлых завитков вдоль края плетенки",
+  "motifClass": "геометрическая кайма",
+  "artifact": "NM-9564",
+  "source": "Пояс мужской, «кушак»",
+  "technique": "Хлопчатобумажные нити, шёлковые нити, плошенка, ручное ткачество, вышивка тремя видами шитья (тарлеу, татар ишлиме, телли)",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   233,
+   640
+  ],
+  "ink": [
+   89,
+   65,
+   58
+  ]
+ },
+ {
+  "code": "TP-E-045",
+  "name": "Завитковая листовая кайма серебряной подвески",
+  "motifClass": "листовой узор",
+  "artifact": "NM-9569",
+  "source": "Нагрудное украшение",
+  "technique": "Парча, металл, серебро, золото, стекло, агат, аметист, бирюза, горный хрусталь, лазурит, нефрит, сердолик",
+  "angle": 15.0,
+  "attach": null,
+  "symmetry": "approx_rot2",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   278,
+   640
+  ],
+  "ink": [
+   59,
+   59,
+   58
+  ]
+ },
+ {
+  "code": "TP-E-046",
+  "name": "Белый шестилепестковый цветок с желтой сердцевиной и шестью малыми синими долями",
+  "motifClass": "цветок",
+  "artifact": "NM-9574",
+  "source": "Образцы Пестречинской художественной керамики",
+  "technique": null,
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower",
+   "rosette"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   640,
+   639
+  ],
+  "ink": [
+   60,
+   40,
+   30
+  ]
+ },
+ {
+  "code": "TP-E-047",
+  "name": "Парные золотистые волюты над белым цветком",
+  "motifClass": "завиток",
+  "artifact": "NM-9574",
+  "source": "Образцы Пестречинской художественной керамики",
+  "technique": null,
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   640,
+   625
+  ],
+  "ink": [
+   70,
+   38,
+   14
+  ]
+ },
+ {
+  "code": "TP-E-048",
+  "name": "Вертикальный зеленый лист с тройным наконечником",
+  "motifClass": "каплевидный узор",
+  "artifact": "NM-9575",
+  "source": "Образцы Пестречинской художественной керамики",
+  "technique": null,
+  "angle": 180.0,
+  "attach": [
+   0.5,
+   0.02
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "supporting_leaf",
+   "directional_accent"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   316,
+   640
+  ],
+  "ink": [
+   73,
+   41,
+   27
+  ]
+ },
+ {
+  "code": "TP-E-049",
+  "name": "Светлая трехлопастная форма на плечике сосуда",
+  "motifClass": "пальметта",
+  "artifact": "NM-9575",
+  "source": "Образцы Пестречинской художественной керамики",
+  "technique": null,
+  "angle": 0.0,
+  "attach": [
+   0.5,
+   0.94
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "axial_apex",
+   "primary_repeat"
+  ],
+  "categories": [
+   "palmette"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   640,
+   548
+  ],
+  "ink": [
+   89,
+   55,
+   35
+  ]
+ },
+ {
+  "code": "TP-E-050",
+  "name": "Двенадцать вытянутых лепестков вокруг светлого центра",
+  "motifClass": "розетка",
+  "artifact": "NM-9577",
+  "source": "Образцы Пестречинской художественной керамики",
+  "technique": null,
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "medallion_center",
+   "primary_repeat"
+  ],
+  "categories": [
+   "flower",
+   "rosette"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   637,
+   640
+  ],
+  "ink": [
+   131,
+   115,
+   108
+  ]
+ },
+ {
+  "code": "TP-E-051",
+  "name": "Верхняя симметричная трехчастная растительная фигура",
+  "motifClass": "пальметта",
+  "artifact": "NM-9577",
+  "source": "Образцы Пестречинской художественной керамики",
+  "technique": null,
+  "angle": 0.0,
+  "attach": [
+   0.5,
+   0.97
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "axial_apex",
+   "primary_repeat"
+  ],
+  "categories": [
+   "palmette"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   624,
+   640
+  ],
+  "ink": [
+   75,
+   58,
+   48
+  ]
+ },
+ {
+  "code": "TP-E-052",
+  "name": "Нижняя пара S-образных листовых завитков",
+  "motifClass": "завиток",
+  "artifact": "NM-9577",
+  "source": "Образцы Пестречинской художественной керамики",
+  "technique": null,
+  "angle": 180.0,
+  "attach": [
+   0.5,
+   0.18
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   640,
+   531
+  ],
+  "ink": [
+   61,
+   57,
+   51
+  ]
+ },
+ {
+  "code": "TP-E-053",
+  "name": "Большой контурный цветок с малым внутренним венчиком",
+  "motifClass": "цветок",
+  "artifact": "NM-9578",
+  "source": "Молитвенный коврик – «намазлык»",
+  "technique": "Хлопчатобумажная ткань, нити шелковые; вышивка тамбурным швом",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   626,
+   640
+  ],
+  "ink": [
+   247,
+   227,
+   122
+  ]
+ },
+ {
+  "code": "TP-E-054",
+  "name": "Тонкая разветвленная ветвь с округлыми почками",
+  "motifClass": "ветвь",
+  "artifact": "NM-9578",
+  "source": "Молитвенный коврик – «намазлык»",
+  "technique": "Хлопчатобумажная ткань, нити шелковые; вышивка тамбурным швом",
+  "angle": 90.0,
+  "attach": [
+   0.02,
+   0.52
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "branch"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   592
+  ],
+  "ink": [
+   165,
+   156,
+   65
+  ]
+ },
+ {
+  "code": "TP-E-055",
+  "name": "Открытый цветок с зубчатой дугой и листьями",
+  "motifClass": "серповидный цветок",
+  "artifact": "NM-9578",
+  "source": "Молитвенный коврик – «намазлык»",
+  "technique": "Хлопчатобумажная ткань, нити шелковые; вышивка тамбурным швом",
+  "angle": null,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   638
+  ],
+  "ink": [
+   214,
+   192,
+   84
+  ]
+ },
+ {
+  "code": "TP-E-056",
+  "name": "Ветвь с узкими листьями и малым цветком у треугольной каймы",
+  "motifClass": "цветок",
+  "artifact": "NM-9578",
+  "source": "Молитвенный коврик – «намазлык»",
+  "technique": "Хлопчатобумажная ткань, нити шелковые; вышивка тамбурным швом",
+  "angle": 160.0,
+  "attach": [
+   0.34,
+   0.08
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "branch"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   584,
+   640
+  ],
+  "ink": [
+   201,
+   172,
+   73
+  ]
+ },
+ {
+  "code": "TP-E-057",
+  "name": "Непрерывный ряд спиральных изгибов арочной каймы",
+  "motifClass": "волюта",
+  "artifact": "NM-9578",
+  "source": "Молитвенный коврик – «намазлык»",
+  "technique": "Хлопчатобумажная ткань, нити шелковые; вышивка тамбурным швом",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   292,
+   640
+  ],
+  "ink": [
+   136,
+   120,
+   65
+  ]
+ },
+ {
+  "code": "TP-E-058",
+  "name": "Наклонная ветка с мелкими листьями и цветком",
+  "motifClass": "ветвь",
+  "artifact": "NM-9578",
+  "source": "Молитвенный коврик – «намазлык»",
+  "technique": "Хлопчатобумажная ткань, нити шелковые; вышивка тамбурным швом",
+  "angle": 140.0,
+  "attach": [
+   0.02,
+   0.02
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "branch"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   610
+  ],
+  "ink": [
+   170,
+   151,
+   60
+  ]
+ },
+ {
+  "code": "TP-E-059",
+  "name": "Оранжевая волнистая полоса с крупными встречными завитками",
+  "motifClass": "волюта",
+  "artifact": "NM-9580",
+  "source": "Молитвенный коврик – «намазлык»",
+  "technique": "Хлопчатобумажная ткань, нити шелковые; вышивка тамбурным швом",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   514,
+   640
+  ],
+  "ink": [
+   221,
+   115,
+   30
+  ]
+ },
+ {
+  "code": "TP-E-060",
+  "name": "Светлая узкая цепь крючков вдоль левого края",
+  "motifClass": "бордюр",
+  "artifact": "NM-9580",
+  "source": "Молитвенный коврик – «намазлык»",
+  "technique": "Хлопчатобумажная ткань, нити шелковые; вышивка тамбурным швом",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   198,
+   640
+  ],
+  "ink": [
+   180,
+   179,
+   178
+  ]
+ },
+ {
+  "code": "TP-E-061",
+  "name": "Волнистый круг с плотной оранжевой серединой",
+  "motifClass": "цветок",
+  "artifact": "NM-9585",
+  "source": "Сельский женский костюм",
+  "technique": "Хлопчатобумажная ткань; шитье, вышивка тамбурным швом",
+  "angle": null,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   584
+  ],
+  "ink": [
+   131,
+   17,
+   38
+  ]
+ },
+ {
+  "code": "TP-E-062",
+  "name": "Двойной зубчатый контур с парой розовых лепестков",
+  "motifClass": "цветок",
+  "artifact": "NM-9585",
+  "source": "Сельский женский костюм",
+  "technique": "Хлопчатобумажная ткань; шитье, вышивка тамбурным швом",
+  "angle": 0.0,
+  "attach": [
+   0.5,
+   0.94
+  ],
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   569
+  ],
+  "ink": [
+   1,
+   47,
+   48
+  ]
+ },
+ {
+  "code": "TP-E-063",
+  "name": "Большая зеленая трехлучевая спиральная форма",
+  "motifClass": "завиток",
+  "artifact": "NM-9585",
+  "source": "Сельский женский костюм",
+  "technique": "Хлопчатобумажная ткань; шитье, вышивка тамбурным швом",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   629
+  ],
+  "ink": [
+   1,
+   49,
+   31
+  ]
+ },
+ {
+  "code": "TP-E-064",
+  "name": "Красный зубчатый контур со спиралью внутри",
+  "motifClass": "завиток",
+  "artifact": "NM-9585",
+  "source": "Сельский женский костюм",
+  "technique": "Хлопчатобумажная ткань; шитье, вышивка тамбурным швом",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   594,
+   640
+  ],
+  "ink": [
+   195,
+   8,
+   76
+  ]
+ },
+ {
+  "code": "TP-E-065",
+  "name": "Розовый ступенчатый лист с двойной спиралью",
+  "motifClass": "завиток",
+  "artifact": "NM-9585",
+  "source": "Сельский женский костюм",
+  "technique": "Хлопчатобумажная ткань; шитье, вышивка тамбурным швом",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   591,
+   640
+  ],
+  "ink": [
+   227,
+   40,
+   90
+  ]
+ },
+ {
+  "code": "TP-E-066",
+  "name": "Малый оранжевый пятилепестковый контурный цветок",
+  "motifClass": "малый цветок",
+  "artifact": "NM-9585",
+  "source": "Сельский женский костюм",
+  "technique": "Хлопчатобумажная ткань; шитье, вышивка тамбурным швом",
+  "angle": null,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower",
+   "rosette"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   624,
+   640
+  ],
+  "ink": [
+   182,
+   1,
+   5
+  ]
+ },
+ {
+  "code": "TP-E-067",
+  "name": "Красный ромб с четырьмя угловыми ответвлениями",
+  "motifClass": "ромб",
+  "artifact": "NM-9590",
+  "source": "Полотенца",
+  "technique": "Холст, ткачество",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   640,
+   634
+  ],
+  "ink": [
+   159,
+   24,
+   33
+  ]
+ },
+ {
+  "code": "TP-E-068",
+  "name": "Парная цепь синих точек между красными ромбовыми полосами",
+  "motifClass": "сетчатый ромб",
+  "artifact": "NM-9590",
+  "source": "Полотенца",
+  "technique": "Холст, ткачество",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   640,
+   68
+  ],
+  "ink": [
+   34,
+   53,
+   116
+  ]
+ },
+ {
+  "code": "TP-E-069",
+  "name": "Узкая цепь наклонных красных зубцов",
+  "motifClass": "бордюр",
+  "artifact": "NM-9590",
+  "source": "Полотенца",
+  "technique": "Холст, ткачество",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   640,
+   469
+  ],
+  "ink": [
+   148,
+   8,
+   23
+  ]
+ },
+ {
+  "code": "TP-E-070",
+  "name": "Красная полоса с чередующимися ломаными стрелками",
+  "motifClass": "ломаная полоса",
+  "artifact": "NM-9591",
+  "source": "Полотенца",
+  "technique": "Холст, ткачество",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   640,
+   246
+  ],
+  "ink": [
+   174,
+   12,
+   16
+  ]
+ },
+ {
+  "code": "TP-E-071",
+  "name": "Серая диагональная решетка из коротких штрихов",
+  "motifClass": "диагональный узор",
+  "artifact": "NM-9591",
+  "source": "Полотенца",
+  "technique": "Холст, ткачество",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   640,
+   477
+  ],
+  "ink": [
+   89,
+   97,
+   123
+  ]
+ },
+ {
+  "code": "TP-E-072",
+  "name": "Большой светлый многорядный цветок с острыми краями",
+  "motifClass": "цветок",
+  "artifact": "NM-9626",
+  "source": "Татарский праздничный женский костюм: рубаха, камзол, калфак, воротниковая застежка",
+  "technique": null,
+  "angle": null,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   579,
+   640
+  ],
+  "ink": [
+   151,
+   134,
+   111
+  ]
+ },
+ {
+  "code": "TP-E-073",
+  "name": "Малый светлый цветок с плотно заполненным центром",
+  "motifClass": "цветок",
+  "artifact": "NM-9626",
+  "source": "Татарский праздничный женский костюм: рубаха, камзол, калфак, воротниковая застежка",
+  "technique": null,
+  "angle": null,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   640,
+   636
+  ],
+  "ink": [
+   182,
+   145,
+   95
+  ]
+ },
+ {
+  "code": "TP-E-074",
+  "name": "Зубчатый раскрытый цветок с расходящимися лепестками",
+  "motifClass": "цветок",
+  "artifact": "NM-9626",
+  "source": "Татарский праздничный женский костюм: рубаха, камзол, калфак, воротниковая застежка",
+  "technique": null,
+  "angle": -40.0,
+  "attach": [
+   0.93,
+   0.94
+  ],
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   640,
+   624
+  ],
+  "ink": [
+   92,
+   95,
+   90
+  ]
+ },
+ {
+  "code": "TP-E-075",
+  "name": "Светлая ветка из листьев и округлых бутонов",
+  "motifClass": "листовая ветвь",
+  "artifact": "NM-9626",
+  "source": "Татарский праздничный женский костюм: рубаха, камзол, калфак, воротниковая застежка",
+  "technique": null,
+  "angle": -35.0,
+  "attach": [
+   0.56,
+   0.97
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "branch"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   516,
+   640
+  ],
+  "ink": [
+   68,
+   61,
+   53
+  ]
+ },
+ {
+  "code": "TP-E-076",
+  "name": "Вертикальная золотистая цепь ступенчатых ромбов",
+  "motifClass": "геометрическая кайма",
+  "artifact": "NM-9652",
+  "source": "Татарский праздничный мужской костюм: рубаха, халат, тюбетей",
+  "technique": "Полотно, парча, позумент, золотные нити",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   617,
+   640
+  ],
+  "ink": [
+   125,
+   70,
+   38
+  ]
+ },
+ {
+  "code": "TP-E-077",
+  "name": "Золотистые шести- и восьмилепестковые звездочки",
+  "motifClass": "малый цветок",
+  "artifact": "NM-9652",
+  "source": "Татарский праздничный мужской костюм: рубаха, халат, тюбетей",
+  "technique": "Полотно, парча, позумент, золотные нити",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "medallion_center",
+   "primary_repeat"
+  ],
+  "categories": [
+   "rosette"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   639,
+   640
+  ],
+  "ink": [
+   94,
+   72,
+   17
+  ]
+ },
+ {
+  "code": "TP-E-078",
+  "name": "Круглая розетка из голубых вставок вокруг розового квадрата",
+  "motifClass": "ажурная розетка",
+  "artifact": "NM-9679",
+  "source": "Застежки для браслетов",
+  "technique": "Серебро, скань плоская, скань бугорчатая, золочение; поделочные камни, инкрустация",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "medallion_center",
+   "primary_repeat"
+  ],
+  "categories": [
+   "rosette"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   640,
+   604
+  ],
+  "ink": [
+   182,
+   15,
+   93
+  ]
+ },
+ {
+  "code": "TP-E-079",
+  "name": "Вытянутая каплевидная ажурная решетка с круглыми вставками",
+  "motifClass": "каплевидная решетка",
+  "artifact": "NM-9684",
+  "source": "Серьги ажурные",
+  "technique": "Серебро, скань плоская, зернь; бирюза, сердолик, инкрустация",
+  "angle": 180.0,
+  "attach": [
+   0.5,
+   0.02
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "hanging_accent",
+   "vertical_panel"
+  ],
+  "categories": [
+   "pendant"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   640,
+   610
+  ],
+  "ink": [
+   117,
+   107,
+   59
+  ]
+ },
+ {
+  "code": "TP-E-080",
+  "name": "Круглая ажурная розетка с нижними подвесками",
+  "motifClass": "подвесная розетка",
+  "artifact": "NM-9685",
+  "source": "Серьги ажурные",
+  "technique": "Серебро, скань плоская, зернь; бирюза, сердолик, инкрустация",
+  "angle": 180.0,
+  "attach": [
+   0.5,
+   0.03
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "hanging_accent",
+   "vertical_panel"
+  ],
+  "categories": [
+   "pendant"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   627,
+   640
+  ],
+  "ink": [
+   125,
+   118,
+   105
+  ]
+ },
+ {
+  "code": "TP-E-081",
+  "name": "Ажурное кольцо с центральной вставкой и нижними каплями",
+  "motifClass": "круглая решетка",
+  "artifact": "NM-9686",
+  "source": "Серьги ажурные",
+  "technique": "Серебро, скань плоская, зернь; бирюза, сердолик, инкрустация",
+  "angle": 180.0,
+  "attach": [
+   0.5,
+   0.02
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "hanging_accent",
+   "vertical_panel"
+  ],
+  "categories": [
+   "pendant"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   627,
+   640
+  ],
+  "ink": [
+   63,
+   141,
+   130
+  ]
+ },
+ {
+  "code": "TP-E-082",
+  "name": "Ажурный треугольный контур с красной вставкой и каплями",
+  "motifClass": "подвесная фигура",
+  "artifact": "NM-9687",
+  "source": "Серьги ажурные",
+  "technique": "Серебро, скань плоская, зернь; бирюза, сердолик, инкрустация",
+  "angle": 180.0,
+  "attach": [
+   0.5,
+   0.02
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "hanging_accent",
+   "vertical_panel"
+  ],
+  "categories": [
+   "pendant"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   640,
+   638
+  ],
+  "ink": [
+   127,
+   93,
+   77
+  ]
+ },
+ {
+  "code": "TP-E-083",
+  "name": "Один серебряный цветок с фиолетовым кругом из цепи",
+  "motifClass": "цепь розеток",
+  "artifact": "NM-9694",
+  "source": "Браслеты составные",
+  "technique": "Серебро, ковка, гравировка, скань плоская, золочение; поделочные камни, инкрустация",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "medallion_center",
+   "primary_repeat"
+  ],
+  "categories": [
+   "rosette"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   636,
+   640
+  ],
+  "ink": [
+   108,
+   58,
+   122
+  ]
+ },
+ {
+  "code": "TP-E-084",
+  "name": "Овальный зеленоватый модуль с малыми шариками",
+  "motifClass": "овальная цепь",
+  "artifact": "NM-9695",
+  "source": "Браслеты составные",
+  "technique": "Серебро, ковка, гравировка, скань плоская, золочение; поделочные камни, инкрустация",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   640,
+   511
+  ],
+  "ink": [
+   91,
+   90,
+   86
+  ]
+ },
+ {
+  "code": "TP-E-085",
+  "name": "Коричневый овал с голубой зернистой каймой",
+  "motifClass": "овальная цепь",
+  "artifact": "NM-9697",
+  "source": "Браслеты составные",
+  "technique": "Серебро, ковка, гравировка, скань плоская, золочение; поделочные камни, инкрустация",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   614,
+   640
+  ],
+  "ink": [
+   106,
+   53,
+   28
+  ]
+ },
+ {
+  "code": "TP-E-086",
+  "name": "Прямоугольная пластина с круглым центром и голубыми точками",
+  "motifClass": "пластинчатый узор",
+  "artifact": "NM-9698",
+  "source": "Браслеты составные",
+  "technique": "Серебро, ковка, гравировка, скань плоская, золочение; поделочные камни, инкрустация",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   625,
+   640
+  ],
+  "ink": [
+   71,
+   63,
+   36
+  ]
+ },
+ {
+  "code": "TP-E-087",
+  "name": "Квадратная синяя вставка с серебряной завитковой каймой",
+  "motifClass": "цветная цепь",
+  "artifact": "NM-9699",
+  "source": "Браслеты составные",
+  "technique": "Серебро, ковка, гравировка, скань плоская, золочение; поделочные камни, инкрустация",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   640,
+   611
+  ],
+  "ink": [
+   19,
+   43,
+   111
+  ]
+ },
+ {
+  "code": "TP-E-088",
+  "name": "Овальные ярусы с круглыми вставками",
+  "motifClass": "подвесная фигура",
+  "artifact": "NM-9701",
+  "source": "Накосники — украшения для кос",
+  "technique": "Серебро, скань плоская, зернь, серебряные монеты, золочение; бирюза, сердолик, хрусталь, инкрустация",
+  "angle": 180.0,
+  "attach": [
+   0.5,
+   0.02
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "hanging_accent",
+   "vertical_panel"
+  ],
+  "categories": [
+   "pendant"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   630,
+   640
+  ],
+  "ink": [
+   68,
+   49,
+   26
+  ]
+ },
+ {
+  "code": "TP-E-089",
+  "name": "Широкий ажурный щиток с круглой центральной вставкой",
+  "motifClass": "подвесная фигура",
+  "artifact": "NM-9702",
+  "source": "Накосники — украшения для кос",
+  "technique": "Серебро, скань плоская, зернь, серебряные монеты, золочение; бирюза, сердолик, хрусталь, инкрустация",
+  "angle": 180.0,
+  "attach": [
+   0.5,
+   0.03
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "hanging_accent",
+   "vertical_panel"
+  ],
+  "categories": [
+   "pendant"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   640,
+   640
+  ],
+  "ink": [
+   96,
+   90,
+   89
+  ]
+ },
+ {
+  "code": "TP-E-090",
+  "name": "Чередование зубчатого ромба и малой ступенчатой фигуры",
+  "motifClass": "ромбовый бордюр",
+  "artifact": "H-9477",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": null,
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   640,
+   532
+  ],
+  "ink": [
+   154,
+   33,
+   24
+  ]
+ },
+ {
+  "code": "TP-E-091",
+  "name": "Белый ромб с несколькими вложенными красными контурами",
+  "motifClass": "вложенный ромб",
+  "artifact": "H-9477",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": null,
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   640,
+   606
+  ],
+  "ink": [
+   152,
+   32,
+   21
+  ]
+ },
+ {
+  "code": "TP-E-092",
+  "name": "Крупный сетчатый ромб среди диагональных белых шевронов",
+  "motifClass": "сетчатый ромб",
+  "artifact": "H-9477",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": null,
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   609,
+   640
+  ],
+  "ink": [
+   179,
+   36,
+   16
+  ]
+ },
+ {
+  "code": "TP-E-093",
+  "name": "Контурный фиолетовый цветок с лучевыми лепестками",
+  "motifClass": "цветок",
+  "artifact": "H-9479",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": "Холст домотканый, вышивка тамбуром, ткачество браное",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "medallion_center",
+   "primary_repeat"
+  ],
+  "categories": [
+   "flower",
+   "rosette"
+  ],
+  "traditions": [
+   "embroidery",
+   "weaving"
+  ],
+  "size": [
+   640,
+   635
+  ],
+  "ink": [
+   106,
+   47,
+   93
+  ]
+ },
+ {
+  "code": "TP-E-094",
+  "name": "Светлый зубчатый цветок с плотной серединой",
+  "motifClass": "цветок",
+  "artifact": "H-9479",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": "Холст домотканый, вышивка тамбуром, ткачество браное",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "medallion_center",
+   "primary_repeat"
+  ],
+  "categories": [
+   "flower",
+   "rosette"
+  ],
+  "traditions": [
+   "embroidery",
+   "weaving"
+  ],
+  "size": [
+   640,
+   624
+  ],
+  "ink": [
+   174,
+   143,
+   102
+  ]
+ },
+ {
+  "code": "TP-E-095",
+  "name": "Желтая вертикальная связка завитков и листьев",
+  "motifClass": "растительная вязь",
+  "artifact": "H-9479",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": "Холст домотканый, вышивка тамбуром, ткачество браное",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_rot2",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "embroidery",
+   "weaving"
+  ],
+  "size": [
+   326,
+   640
+  ],
+  "ink": [
+   195,
+   157,
+   28
+  ]
+ },
+ {
+  "code": "TP-E-096",
+  "name": "Красный ромб с зубчатой внешней каймой",
+  "motifClass": "зубчатый бордюр",
+  "artifact": "H-9480",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": null,
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   640,
+   634
+  ],
+  "ink": [
+   154,
+   40,
+   27
+  ]
+ },
+ {
+  "code": "TP-E-097",
+  "name": "Белый диагональный крючковый узор вокруг ромбов",
+  "motifClass": "ломаная вязь",
+  "artifact": "H-9480",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": null,
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_rot4",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   621,
+   640
+  ],
+  "ink": [
+   234,
+   216,
+   188
+  ]
+ },
+ {
+  "code": "TP-E-099",
+  "name": "Темный ромб с четырьмя загнутыми отводами",
+  "motifClass": "ромб с завитками",
+  "artifact": "H-9482",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": "Холст домотканый, ткачество браное, ткачество выборное",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   639,
+   640
+  ],
+  "ink": [
+   51,
+   29,
+   5
+  ]
+ },
+ {
+  "code": "TP-E-101",
+  "name": "Розовая вытянутая фигура с темным внутренним ромбом",
+  "motifClass": "ступенчатая фигура",
+  "artifact": "H-9482",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": "Холст домотканый, ткачество браное, ткачество выборное",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   458,
+   640
+  ],
+  "ink": [
+   114,
+   54,
+   65
+  ]
+ },
+ {
+  "code": "TP-E-102",
+  "name": "Ряд раздельных многоцветных бутонов на светлой кайме",
+  "motifClass": "малый бутон",
+  "artifact": "H-9482",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": "Холст домотканый, ткачество браное, ткачество выборное",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   640,
+   582
+  ],
+  "ink": [
+   59,
+   59,
+   47
+  ]
+ },
+ {
+  "code": "TP-E-103",
+  "name": "Цветная стрелка из вложенных шевронов",
+  "motifClass": "треугольный бордюр",
+  "artifact": "H-9482",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": null,
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   640,
+   495
+  ],
+  "ink": [
+   116,
+   97,
+   98
+  ]
+ },
+ {
+  "code": "TP-E-104",
+  "name": "Красная четырехлепестковая фигура внутри белого ромба",
+  "motifClass": "геометрический цветок",
+  "artifact": "H-9484",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": null,
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   639,
+   640
+  ],
+  "ink": [
+   172,
+   43,
+   21
+  ]
+ },
+ {
+  "code": "TP-E-105",
+  "name": "Белая диагональная решетка с малыми красными ромбами",
+  "motifClass": "ромбовая решетка",
+  "artifact": "H-9484",
+  "source": "ПОЛОТЕНЦЕ",
+  "technique": null,
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "geo"
+  ],
+  "traditions": [
+   "weaving"
+  ],
+  "size": [
+   634,
+   640
+  ],
+  "ink": [
+   202,
+   85,
+   56
+  ]
+ },
+ {
+  "code": "TP-E-106",
+  "name": "Верхний золотистый цветок с круглой сердцевиной",
+  "motifClass": "цветок",
+  "artifact": "H-9492",
+  "source": "КАЛФАК МАЛИНОВЫЙ",
+  "technique": "Бархат, шитьё золотное",
+  "angle": 180.0,
+  "attach": [
+   0.5,
+   0.12
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   638,
+   640
+  ],
+  "ink": [
+   152,
+   117,
+   28
+  ]
+ },
+ {
+  "code": "TP-E-107",
+  "name": "Поникший колокольчатый цветок с зернистой серединой",
+  "motifClass": "цветок",
+  "artifact": "H-9492",
+  "source": "КАЛФАК МАЛИНОВЫЙ",
+  "technique": "Бархат, шитьё золотное",
+  "angle": 180.0,
+  "attach": [
+   0.42,
+   0.03
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower",
+   "palmette"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   605,
+   640
+  ],
+  "ink": [
+   111,
+   81,
+   39
+  ]
+ },
+ {
+  "code": "TP-E-108",
+  "name": "Наклонный золотистый перистый лист",
+  "motifClass": "лист",
+  "artifact": "H-9492",
+  "source": "КАЛФАК МАЛИНОВЫЙ",
+  "technique": "Бархат, шитьё золотное",
+  "angle": 170.0,
+  "attach": [
+   0.45,
+   0.03
+  ],
+  "symmetry": "none",
+  "roles": [
+   "supporting_leaf",
+   "directional_accent"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   606,
+   640
+  ],
+  "ink": [
+   172,
+   141,
+   62
+  ]
+ },
+ {
+  "code": "TP-E-109",
+  "name": "Нижняя непрерывная полоса листьев и овальных бутонов",
+  "motifClass": "растительный бордюр",
+  "artifact": "H-9492",
+  "source": "КАЛФАК МАЛИНОВЫЙ",
+  "technique": "Бархат, шитьё золотное",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   640,
+   559
+  ],
+  "ink": [
+   163,
+   135,
+   80
+  ]
+ },
+ {
+  "code": "TP-E-114",
+  "name": "Темная пятилопастная кожаная фигура с овальной сердцевиной и желтой кромкой",
+  "motifClass": "пятилопастной цветок",
+  "artifact": "H-9517",
+  "source": "ДЕТСКИЙ ЧИГ",
+  "technique": "Кожа, мозаика",
+  "angle": null,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   640,
+   607
+  ],
+  "ink": [
+   100,
+   92,
+   82
+  ]
+ },
+ {
+  "code": "TP-E-115",
+  "name": "Двухцветная волна с завитком у конца",
+  "motifClass": "завиток",
+  "artifact": "H-9517",
+  "source": "ДЕТСКИЙ ЧИГ",
+  "technique": "Кожа, мозаика",
+  "angle": 180.0,
+  "attach": [
+   0.2,
+   0.02
+  ],
+  "symmetry": "none",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   599,
+   640
+  ],
+  "ink": [
+   104,
+   66,
+   52
+  ]
+ },
+ {
+  "code": "TP-E-116",
+  "name": "Верхняя цепь округлых гравированных завитков и бутонов",
+  "motifClass": "листовой узор",
+  "artifact": "NM-9552",
+  "source": "Бляха",
+  "technique": "серебро, сердолик, бирюза, стекло, чеканка",
+  "angle": 90.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "border_segment"
+  ],
+  "categories": [
+   "strip"
+  ],
+  "traditions": [
+   "jewelry"
+  ],
+  "size": [
+   640,
+   572
+  ],
+  "ink": [
+   155,
+   127,
+   99
+  ]
+ },
+ {
+  "code": "TP-E-117",
+  "name": "Парные нижние волюты с зелеными окончаниями",
+  "motifClass": "завиток",
+  "artifact": "NM-9574",
+  "source": "Образцы Пестречинской художественной керамики",
+  "technique": null,
+  "angle": 180.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "ceramics"
+  ],
+  "size": [
+   640,
+   347
+  ],
+  "ink": [
+   57,
+   41,
+   32
+  ]
+ },
+ {
+  "code": "TP-E-119",
+  "name": "Малый зубчатый круг со звездчатой серединой",
+  "motifClass": "малая розетка",
+  "artifact": "NM-9557",
+  "source": "Рисунок для вышивки на мужском поясе учкур",
+  "technique": "Бумага, акварель, тушь, золотая краска",
+  "angle": null,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "embroidery",
+   "gold"
+  ],
+  "size": [
+   629,
+   640
+  ],
+  "ink": [
+   86,
+   49,
+   42
+  ]
+ },
+ {
+  "code": "TP-E-120",
+  "name": "Лучевой цветок с чередованием светлых и красно-золотистых лепестков",
+  "motifClass": "лучевой цветок",
+  "artifact": "H-9495",
+  "source": "ШАМАИЛЬ КОРОННЫЙ ИЗ МЕЧЕТИ МАРДЖАНИ",
+  "technique": "Стекло, фольга, краска",
+  "angle": null,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "medallion_center",
+   "primary_repeat"
+  ],
+  "categories": [
+   "flower",
+   "rosette"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   637,
+   640
+  ],
+  "ink": [
+   136,
+   11,
+   13
+  ]
+ },
+ {
+  "code": "TP-E-121",
+  "name": "Вытянутый трехчастный светло-золотистый бутон в красном контуре",
+  "motifClass": "бутон",
+  "artifact": "H-9495",
+  "source": "ШАМАИЛЬ КОРОННЫЙ ИЗ МЕЧЕТИ МАРДЖАНИ",
+  "technique": "Стекло, фольга, краска",
+  "angle": 30.0,
+  "attach": [
+   0.04,
+   0.96
+  ],
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower",
+   "palmette"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   601,
+   640
+  ],
+  "ink": [
+   61,
+   35,
+   17
+  ]
+ },
+ {
+  "code": "TP-E-122",
+  "name": "Золотистый лопастной лист с темными расходящимися жилками",
+  "motifClass": "лопастной лист",
+  "artifact": "H-9495",
+  "source": "ШАМАИЛЬ КОРОННЫЙ ИЗ МЕЧЕТИ МАРДЖАНИ",
+  "technique": "Стекло, фольга, краска",
+  "angle": null,
+  "attach": [
+   0.04,
+   0.23
+  ],
+  "symmetry": "none",
+  "roles": [
+   "supporting_leaf",
+   "directional_accent"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   640,
+   593
+  ],
+  "ink": [
+   74,
+   59,
+   18
+  ]
+ },
+ {
+  "code": "TP-E-123",
+  "name": "Светлая разветвленная волюта с крупной спиралью и малым завитком",
+  "motifClass": "разветвленный завиток",
+  "artifact": "H-9495",
+  "source": "ШАМАИЛЬ КОРОННЫЙ ИЗ МЕЧЕТИ МАРДЖАНИ",
+  "technique": "Стекло, фольга, краска",
+  "angle": 55.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "connector_accent",
+   "framing_pair"
+  ],
+  "categories": [
+   "curl"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   640,
+   450
+  ],
+  "ink": [
+   89,
+   45,
+   26
+  ]
+ },
+ {
+  "code": "TP-E-124",
+  "name": "Зеленая звездчатая фигура с синим контуром и светлым внутренним цветком",
+  "motifClass": "звездчатый цветок",
+  "artifact": "KS-9455",
+  "source": "«С праздником Рамадан байрам»!»",
+  "technique": "бумага, акварель, темпера",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "rosette",
+   "geo"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   640,
+   639
+  ],
+  "ink": [
+   95,
+   37,
+   33
+  ]
+ },
+ {
+  "code": "TP-E-125",
+  "name": "Красно-золотистый остролепестковый цветок в светло-синей наружной фигуре",
+  "motifClass": "остролепестковый цветок",
+  "artifact": "KS-9455",
+  "source": "«С праздником Рамадан байрам»!»",
+  "technique": "бумага, акварель, темпера",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "none",
+  "roles": [
+   "geometric_module",
+   "primary_repeat"
+  ],
+  "categories": [
+   "rosette",
+   "geo"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   637,
+   640
+  ],
+  "ink": [
+   65,
+   67,
+   72
+  ]
+ },
+ {
+  "code": "TP-E-126",
+  "name": "Узкий розовый лист с несколькими внутренними волнистыми линиями",
+  "motifClass": "вытянутый лист",
+  "artifact": "NM-9585",
+  "source": "Сельский женский костюм",
+  "technique": "Хлопчатобумажная ткань; шитье, вышивка тамбурным швом",
+  "angle": -30.0,
+  "attach": [
+   0.98,
+   0.98
+  ],
+  "symmetry": "approx_bilateral",
+  "roles": [
+   "supporting_leaf",
+   "directional_accent"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   485,
+   640
+  ],
+  "ink": [
+   31,
+   22,
+   21
+  ]
+ },
+ {
+  "code": "TP-E-127",
+  "name": "Розовая стреловидная контурная фигура с внутренними загнутыми ответвлениями",
+  "motifClass": "стреловидный лист",
+  "artifact": "NM-9585",
+  "source": "Сельский женский костюм",
+  "technique": "Хлопчатобумажная ткань; шитье, вышивка тамбурным швом",
+  "angle": -90.0,
+  "attach": [
+   0.98,
+   0.51
+  ],
+  "symmetry": "none",
+  "roles": [
+   "supporting_leaf",
+   "directional_accent"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   637,
+   640
+  ],
+  "ink": [
+   196,
+   26,
+   103
+  ]
+ },
+ {
+  "code": "TP-E-128",
+  "name": "Небольшой светлый округлый цветок с охристым центром и отдельными лепестками",
+  "motifClass": "округлый цветок",
+  "artifact": "NM-9626",
+  "source": "Татарский праздничный женский костюм: рубаха, камзол, калфак, воротниковая застежка",
+  "technique": null,
+  "angle": null,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower",
+   "rosette"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   495,
+   640
+  ],
+  "ink": [
+   28,
+   36,
+   44
+  ]
+ },
+ {
+  "code": "TP-E-129",
+  "name": "Нижний золотистый пятилепестковый цветок с округлыми лепестками",
+  "motifClass": "пятилепестковый цветок",
+  "artifact": "H-9492",
+  "source": "КАЛФАК МАЛИНОВЫЙ",
+  "technique": "Бархат, шитьё золотное",
+  "angle": 0.0,
+  "attach": null,
+  "symmetry": "approx_radial",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower",
+   "rosette"
+  ],
+  "traditions": [
+   "gold"
+  ],
+  "size": [
+   620,
+   640
+  ],
+  "ink": [
+   199,
+   158,
+   65
+  ]
+ },
+ {
+  "code": "TP-E-130",
+  "name": "Две каплевидные формы с оранжевой окантовкой на коротком разветвленном стебле",
+  "motifClass": "парные каплевидные формы",
+  "artifact": "KS-9451",
+  "source": "Намазлык (коврик молитвенный).",
+  "technique": "ткань, вышивка",
+  "angle": 150.0,
+  "attach": [
+   0.12,
+   0.08
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "branch"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   637,
+   640
+  ],
+  "ink": [
+   103,
+   85,
+   79
+  ]
+ },
+ {
+  "code": "TP-E-131",
+  "name": "Золотистая лопастная кожаная форма с зеленой внутренней перемычкой",
+  "motifClass": "лопастной лист",
+  "artifact": "H-9517",
+  "source": "ДЕТСКИЙ ЧИГ",
+  "technique": "Кожа, мозаика",
+  "angle": -45.0,
+  "attach": [
+   0.82,
+   0.98
+  ],
+  "symmetry": "none",
+  "roles": [
+   "supporting_leaf",
+   "directional_accent"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   584,
+   640
+  ],
+  "ink": [
+   174,
+   151,
+   72
+  ]
+ },
+ {
+  "code": "TP-E-132",
+  "name": "Изогнутый каплевидный лист с золотистой штриховкой и зеленой нижней частью",
+  "motifClass": "каплевидный лист",
+  "artifact": "NM-9557",
+  "source": "Рисунок для вышивки на мужском поясе учкур",
+  "technique": "Бумага, акварель, тушь, золотая краска",
+  "angle": -40.0,
+  "attach": [
+   0.62,
+   0.96
+  ],
+  "symmetry": "none",
+  "roles": [
+   "supporting_leaf",
+   "directional_accent"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "embroidery",
+   "gold"
+  ],
+  "size": [
+   640,
+   639
+  ],
+  "ink": [
+   34,
+   95,
+   65
+  ]
+ },
+ {
+  "code": "TP-E-133",
+  "name": "Три красных каплевидных листа на короткой развилке",
+  "motifClass": "трехлистная фигура",
+  "artifact": "NM-9557",
+  "source": "Рисунок для вышивки на мужском поясе учкур",
+  "technique": "Бумага, акварель, тушь, золотая краска",
+  "angle": 140.0,
+  "attach": [
+   0.31,
+   0.25
+  ],
+  "symmetry": "none",
+  "roles": [
+   "directed_branch",
+   "supporting_foliage"
+  ],
+  "categories": [
+   "leaf",
+   "branch"
+  ],
+  "traditions": [
+   "embroidery",
+   "gold"
+  ],
+  "size": [
+   640,
+   596
+  ],
+  "ink": [
+   78,
+   13,
+   22
+  ]
+ },
+ {
+  "code": "TP-E-134",
+  "name": "Красно-золотистый лопастной цветок с двумя нижними округлыми частями",
+  "motifClass": "лопастной цветок",
+  "artifact": "H-9495",
+  "source": "ШАМАИЛЬ КОРОННЫЙ ИЗ МЕЧЕТИ МАРДЖАНИ",
+  "technique": "Стекло, фольга, краска",
+  "angle": 150.0,
+  "attach": [
+   0.45,
+   0.16
+  ],
+  "symmetry": "none",
+  "roles": [
+   "supporting_leaf",
+   "directional_accent"
+  ],
+  "categories": [
+   "leaf"
+  ],
+  "traditions": [
+   "shamail"
+  ],
+  "size": [
+   640,
+   605
+  ],
+  "ink": [
+   85,
+   18,
+   5
+  ]
+ },
+ {
+  "code": "TP-E-135",
+  "name": "Поникший трехчастный бутон с золотистой серединой и темно-розовыми контурами",
+  "motifClass": "поникший трехчастный бутон",
+  "artifact": "KS-9451",
+  "source": "Намазлык (коврик молитвенный).",
+  "technique": "ткань, вышивка",
+  "angle": 150.0,
+  "attach": [
+   0.26,
+   0.1
+  ],
+  "symmetry": "none",
+  "roles": [
+   "primary_flower",
+   "directional_accent"
+  ],
+  "categories": [
+   "flower"
+  ],
+  "traditions": [
+   "embroidery"
+  ],
+  "size": [
+   640,
+   512
+  ],
+  "ink": [
+   122,
+   34,
+   59
+  ]
+ }
+]

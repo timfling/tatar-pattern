@@ -37,15 +37,15 @@ function Hero() {
 function About({ href }: { href: string }) {
   return <section className="home-about" id="about" aria-labelledby="home-about-title">
     <div className="home-app-window">
-      <div className="home-about-art"><div className="home-placeholder-canvas" aria-hidden="true"><div className="home-example-track">{Array.from({ length: 2 }, (_, repeat) => <div className="home-example-tile" key={repeat}>{Array.from({ length: 6 }, (_, i) => <span className={`home-placeholder home-placeholder-${i}`} key={i}><img src={`/home-v2/example-${i}.webp`} alt="" width="640" height="640" loading="lazy" /></span>)}</div>)}</div></div><div className="home-canvas-wash" aria-hidden="true" /></div>
+      <div className="home-about-art"><div className="home-placeholder-canvas" aria-hidden="true"><div className="home-example-track">{Array.from({ length: 2 }, (_, repeat) => <div className="home-example-tile" key={repeat}>{Array.from({ length: 10 }, (_, i) => <span className={`home-placeholder home-placeholder-${i}`} key={i}><img src={`/home-v2/example-${i}.webp`} alt="" width="640" height="640" loading="lazy" /></span>)}</div>)}</div></div><div className="home-canvas-wash" aria-hidden="true" /></div>
       <div className="home-window-bar" aria-hidden="true"><span /><span /><span /><small>TATAR PATTERN LAB</small></div>
-      <div className="home-about-copy"><h2 id="home-about-title">Ваш узор<br />с персональным<br /><em>характером</em></h2><div><p>Орнамент живет в деталях. В линиях лепестка,<br className="home-desktop-break" /> в симметрии и чередовании форм.</p><p>Татар Паттерн помогает перенести этот язык<br className="home-desktop-break" /> в современный и воспроизводимый дизайн.</p></div></div>
+      <div className="home-about-copy"><h2 id="home-about-title">Ваш узор<br />с персональным<br /><em>характером</em></h2><div><p>В татарском орнаменте у каждого мотива своё место и свой смысл. Выбирайте мотивы, задавайте ритм и фон, и вы получите узор, в котором узнаётся традиция, а характер ваш.</p></div></div>
       <Link href={href} className="home-paint-button" aria-label="Перейти в конструктор"><span>Перейти в конструктор</span><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="m12 21 12-15c2-2 5 1 3 3L15 23M12 21c-7-2-3 7-9 6 5 5 12 0 12-4l-3-2ZM20 11l5 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg></Link>
     </div>
   </section>;
 }
 export default function HomePage() {
-  const href = "/constructor";
+  const href = "/flat";
   return <MotionConfig reducedMotion="user"><div className="home-v2">
     <a className="home-skip" href="#main">К содержанию</a>
     <GuestCleanup /><HomeHeader studioHref={href} />

@@ -2,6 +2,12 @@ import { api, ApiError, type GuestGeneration as Generation, type GuestRequest } 
 
 // One current work per tab. No cookie/token, user identifier or history is stored here.
 export const WORK_KEY = "tp-guest-work-v1";
+const CREATED_KEY = "tp-created-in-tab";
+let createdInTab = false;
+export function hasCreatedInTab() {
+  try { return createdInTab || sessionStorage.getItem(CREATED_KEY) === "1"; }
+  catch { return createdInTab; }
+}
 export type CurrentWork = { body: GuestRequest; expiresAt: string; id?: string; submitted?: boolean; blocked?: boolean };
 export function readWork(): CurrentWork | null {
   try {
@@ -19,16 +25,30 @@ function writeWork(work: CurrentWork) {
   window.dispatchEvent(new Event("tp-guest-work"));
 }
 export function forgetWork() { sessionStorage.removeItem(WORK_KEY); window.dispatchEvent(new Event("tp-guest-work")); }
-const recent = new Map<string, Pick<Generation, "id" | "mode" | "expiresAt" | "createdAt" | "imageUrl">>();
+// «Недавние генерации» живут только в памяти вкладки: после перезагрузки страницы список пуст.
+// href/title задаются для записей, которые открываются не по id серверной работы (наборы вариантов v3).
+export type RecentWork = Pick<Generation, "id" | "mode" | "expiresAt" | "createdAt" | "imageUrl"> & { href?: string; title?: string };
+const recent = new Map<string, RecentWork>();
+const RECENT_LIMIT = 20;
 export function recentWorks() {
   for (const [id,g] of recent) if (Date.parse(g.expiresAt) <= Date.now()) recent.delete(id);
   return [...recent.values()].reverse();
 }
+export function rememberRecent(item: RecentWork) {
+  recent.set(item.id, { ...recent.get(item.id), ...item });
+  while (recent.size > RECENT_LIMIT) recent.delete(recent.keys().next().value!);
+}
+export function forgetRecent(id: string) { recent.delete(id); }
+export function markCreatedInTab() {
+  if (hasCreatedInTab()) return;
+  createdInTab = true;
+  try { sessionStorage.setItem(CREATED_KEY, "1"); } catch { /* Keep the current page state if storage is unavailable. */ }
+  window.dispatchEvent(new Event("tp-created-in-tab"));
+}
 export function rememberGeneration(g: Generation) {
   if (g.status === "done" && g.imageUrl && Date.parse(g.expiresAt) > Date.now()) {
-    setTimeout(() => recent.delete(g.id), Math.max(0,Date.parse(g.expiresAt)-Date.now()));
-    recent.set(g.id,{id:g.id,mode:g.mode,expiresAt:g.expiresAt,createdAt:g.createdAt,imageUrl:g.imageUrl});
-    if(recent.size > 20) recent.delete(recent.keys().next().value!);
+    markCreatedInTab();
+    rememberRecent({id:g.id,mode:g.mode,expiresAt:g.expiresAt,createdAt:g.createdAt,imageUrl:g.imageUrl});
   }
   const work = readWork();
   if (work && work.body.requestId === g.requestId) writeWork({ ...work, id: g.id, expiresAt: g.expiresAt });

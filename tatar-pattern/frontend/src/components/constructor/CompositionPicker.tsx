@@ -1,6 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element -- Local, proven renderer examples; no image optimization needed. */
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { AiModal } from "./AiOptionDialog";
 import { apiUrl, type SchemeCatalog, type CompositionScheme, type Renderer, type Capabilities, type Element, type PilotRecipe } from "@/lib/api";
 export const ROLE_LABELS: Record<string,string> = { center: "Небольшой центр", outer_axial_accent: "Направленные пальметты", lower_framing_pair: "Нижняя парная опора", primary_flower: "Крупный цветок", horizontal_connector_accent: "Завитковый блок", small_accent: "Малый цветок", framing_band: "Рамочная полоса", small_secondary_module: "Вспомогательный ромб", large_primary_module: "Главный ромб" };
 export const COMPOSITION_LABELS: Record<string,string> = { medallion: "Венок", border: "Бордюр", rapport: "Раппорт" };
@@ -12,15 +13,13 @@ export function CompositionPicker({ acceptedOnly = false, capabilities, items, r
   const current = schemeCatalog?.schemes.find(s => s.id === schemeId);
   const [kind, setKind] = useState(composition ?? "medallion");
   const [family, setFamily] = useState(current?.familyId ?? "");
-  const dialog = useRef<HTMLDialogElement>(null);
-  useEffect(() => { dialog.current?.showModal(); }, []);
   const pilot = capabilities?.renderers?.["composition-v1"];
-  return <dialog ref={dialog} className="studio-dialog" aria-labelledby="composition-heading" onCancel={onClose} onClick={e => { if(e.target === e.currentTarget) onClose(); }}>
+  return <AiModal label="Выберите композицию" onClose={onClose} className="flat-picker-modal"><div className="studio-picker-surface">
     <header className="mb-4 flex items-center justify-between gap-3"><h2 id="composition-heading" className="font-display text-3xl italic">Выберите композицию</h2><button className="studio-button" onClick={onClose}>Готово</button></header>
-    <h3 className="mb-3 font-semibold">Схемы композиции</h3>
+    <p className="option-explanation">Схема задаёт расположение мотивов. При выборе применяется её готовый набор, который можно изменить в «Мотивах».</p>
     {schemeCatalog ? <>
       <div className="mb-4 flex flex-wrap gap-2">{["medallion","border","rapport"].map(k => <button key={k} className="studio-button" aria-pressed={kind === k} onClick={() => setKind(k)}>{k === "medallion" ? "Медальон / поле" : COMPOSITION_LABELS[k]}</button>)}</div>
-      <label className="mb-4 flex flex-col gap-2 text-sm">Семейство · {schemeCatalog.totalFamilies}<select className="w-full rounded-xl bg-white p-3" value={family} onChange={e => setFamily(e.target.value)}><option value="">Все семейства</option>{schemeCatalog.families.map(f => <option key={f.id} value={f.id}>{f.id} · {f.titleRu}</option>)}</select></label>
+      <label className="mb-4 flex flex-col gap-2 text-sm">Семейство · {schemeCatalog.totalFamilies}<select className="w-full rounded-xl bg-white p-3" value={family} onChange={e => setFamily(e.target.value)}><option value="">Все семейства</option>{schemeCatalog.families.map(f => <option key={f.id} value={f.id}>{f.titleRu}</option>)}</select></label>
       {!schemeCatalog.schemes.some(s => s.composition === kind && (!family || s.familyId === family)) ? <p className="mb-4 text-sm">В этом семействе нет схем выбранного типа. Выберите другой тип композиции или семейство.</p> : null}
       <div className="grid gap-4 sm:grid-cols-2">{schemeCatalog.schemes.filter(s => s.composition === kind && (!family || s.familyId === family)).map(s => <article key={s.id} className="rounded-2xl border border-hairline/40 bg-white/65 p-4">
         {s.available && s.previewUrl ? <img loading="lazy" src={apiUrl(s.previewUrl)} alt={`Пример предложенного набора: ${s.titleRu}`} className="mb-3 h-40 w-full rounded-xl object-contain" /> : null}
@@ -45,5 +44,5 @@ export function CompositionPicker({ acceptedOnly = false, capabilities, items, r
     <p className="mb-3 text-sm">Сохраняет ваш набор. Роли и культурная совместимость новой расстановки не проверены.</p>
     <div className="flex flex-wrap gap-3">{(capabilities?.compositions ?? []).map(value => <button key={value} className="studio-button" aria-pressed={renderer === "legacy" && value === composition} onClick={() => onSelect("legacy",value)}>{COMPOSITION_LABELS[value] ?? value}</button>)}</div>
     </> : null}
-  </dialog>;
+  </div></AiModal>;
 }

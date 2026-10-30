@@ -27,7 +27,7 @@ function AppFrameInner({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const aside = document.querySelector('.app-screen > aside');
     if(!aside) return;
-    const update = () => document.documentElement.style.setProperty('--studio-sidebar-width', `${aside.getBoundingClientRect().right}px`);
+    const update = () => { document.documentElement.style.setProperty('--studio-sidebar-width', `${aside.getBoundingClientRect().right}px`); };
     const observer = new ResizeObserver(update); observer.observe(aside); window.addEventListener('resize', update); update();
     return () => { observer.disconnect(); window.removeEventListener('resize', update); };
   }, []);

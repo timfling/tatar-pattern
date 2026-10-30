@@ -4,6 +4,7 @@
 Python 3.9+ standard library only. SSH prompts for the key passphrase normally.
 No scheduler installation, secrets export, or existing-backup deletion.
 """
+import argparse
 from datetime import datetime, timezone
 import fcntl
 import hashlib
@@ -22,7 +23,7 @@ OPTIONAL = {'ISOLATED-RESTORE-PASS.json'}
 TRANSFER = 'MAC-TRANSFER.json'
 NAME = re.compile(r'\d{8}T\d{6}Z-[a-f0-9]{6}')
 HOST = 'root@159.194.210.167'
-DESTINATION = Path(__file__).resolve().parents[2] / 'Резервные копии с Beget'
+DESTINATION = Path('/Users/timfling/TATAR PATTERN backups')
 
 # The same VPS lock used by backup, cleanup and retention remains held until the
 # stream is sent. Only the last *successful* backup marker can select a directory.
@@ -43,7 +44,7 @@ with (root/'.maintenance.lock').open('a') as lock:
         p=source/name
         assert p.is_file() and not p.is_symlink(),'Backup file missing or symlink'
     m=json.loads((source/'manifest.json').read_text())
-    assert m['version']==1 and m['release']=='guest-20261020-1','Wrong backup release'
+    assert m['version']==1 and m['release'] in ('guest-20261020-1','guest-20261026-1','guest-20261026-2'),'Wrong backup release'
     assert m['createdAt']==source.name,'Backup identity mismatch'
     assert set(m['sha256'])=={'database.dump','storage.tar.gz'},'Unexpected checksum set'
     for name,expected in m['sha256'].items():
@@ -78,7 +79,7 @@ def digest(path):
 def validate(directory):
     require(not directory.is_symlink(), 'Папка копии является ссылкой')
     manifest = json.loads((directory / 'manifest.json').read_text())
-    require(manifest.get('version') == 1 and manifest.get('release') == 'guest-20261020-1',
+    require(manifest.get('version') == 1 and manifest.get('release') in ('guest-20261020-1','guest-20261026-1','guest-20261026-2'),
             'Неожиданная версия резервной копии')
     require(NAME.fullmatch(manifest['createdAt']), 'Неверное имя резервной копии')
     require(set(manifest['sha256']) == REQUIRED - {'manifest.json'}, 'Неверный список SHA-256')
@@ -133,7 +134,10 @@ def store_verified(incoming, destination):
 def main():
     require(sys.platform == 'darwin', 'Запусти скрипт на Mac, в локальной вкладке timfling@…')
     os.umask(0o077)
-    destination = DESTINATION
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--destination", type=Path, help="Folder outside cloud synchronization")
+    args = parser.parse_args()
+    destination = args.destination.expanduser().absolute() if args.destination else DESTINATION
     require(not destination.is_symlink(), 'Каталог копий не должен быть ссылкой')
     destination.mkdir(parents=True, mode=0o700, exist_ok=True)
     lock = (destination / '.manual-download.lock').open('a')

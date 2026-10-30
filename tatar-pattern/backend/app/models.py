@@ -29,6 +29,34 @@ class Registration(Credentials, Profile):
     def nonblank(cls, value):
         return value.strip()
 
+class V3Params(Input):
+    composition: Literal['bouquet','rosette','vine','towel','corner','pattern'] = 'bouquet'
+    motifs: list[str] = Field(default_factory=list, max_length=6)
+    tradition: Literal['auto','embroidery','gold','ceramics','weaving','jewelry','shamail'] = 'auto'
+    density: int = Field(default=2, ge=1, le=3)
+    palette: Literal['original','tambour','kalfak','towel','ceramics','emerald','shamail','terracotta'] = 'original'
+    background: Literal['palette','light','white','green','burgundy','dark','transparent'] = 'palette'
+    format: Literal['square','portrait','landscape','story','wide','band'] = 'square'
+    frame: Literal['none','line','kaima'] = 'none'
+
+    @field_validator('motifs')
+    @classmethod
+    def v3_codes(cls, value):
+        if len(set(value)) != len(value) or any(not v.startswith('TP-E-') or len(v) > 20 for v in value):
+            raise ValueError('Нужны разные коды элементов TP-E-…')
+        return value
+
+class V3Variants(Input):
+    params: V3Params
+    seeds: list[int] = Field(min_length=1, max_length=4)
+
+    @field_validator('seeds')
+    @classmethod
+    def seed_range(cls, value):
+        if any(v < 0 or v > 2147483647 for v in value):
+            raise ValueError('seed 0..2147483647')
+        return value
+
 class Selections(Input):
     style: Literal['heritage','modern','porcelain-sign','leather-mosaic','festive']
     composition: Literal['medallion','border','rapport']
@@ -38,7 +66,8 @@ class Selections(Input):
     scale: float = Field(default=1.0,ge=0.3,le=2.0)
     transparentBackground: bool = False
     backgroundColor: str | None = Field(default=None,pattern=r'^#[0-9a-fA-F]{6}$')
-    renderer: Literal['legacy','composition-v1','composition-v2'] = 'legacy'
+    renderer: Literal['legacy','composition-v1','composition-v2','composition-v3'] = 'legacy'
+    v3: V3Params | None = None
     schemeId: str | None = Field(default=None, max_length=100, pattern=r'^[a-z0-9-]+$')
     registryVersion: str | None = Field(default=None, max_length=80)
     primaryElementCode: str | None = Field(default=None, max_length=100)

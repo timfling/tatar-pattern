@@ -29,9 +29,8 @@ export type AiOption = { id: string; title: string; description: string; preview
 export function AiOptionDialog({ label, options, selected, confirmLabel, onSelect, onClose }: {
   label: string; options: AiOption[]; selected: string | null; confirmLabel: string; onSelect: (id: string) => void; onClose: () => void;
 }) {
-  const [query, setQuery] = useState("");
   const [currentId, setCurrentId] = useState(selected ?? options[0]?.id ?? "");
-  const items = options.filter(item => item.title.toLocaleLowerCase("ru").includes(query.toLocaleLowerCase("ru")));
+  const items = options;
   const found = items.findIndex(item => item.id === currentId);
   const index = found < 0 ? 0 : found;
   const current = items[index];
@@ -51,7 +50,6 @@ export function AiOptionDialog({ label, options, selected, confirmLabel, onSelec
       <div className="ai-option-divider" />
       <div className="ai-options-column">
         <h2 className="sr-only">{label}</h2>
-        {options.length > 8 ? <input className="ai-base-search" aria-label="Найти основу" placeholder="Найти основу" value={query} onChange={e => setQuery(e.target.value)} /> : null}
         <div className="ai-carousel" role="listbox" tabIndex={0} aria-label={label} aria-activedescendant={current ? `${id}-${current.id}` : undefined}
           onKeyDown={e => { if (["ArrowUp","ArrowDown","Home","End"].includes(e.key)) { e.preventDefault(); if(e.key === "Home") setCurrentId(items[0]?.id ?? ""); else if(e.key === "End") setCurrentId(items.at(-1)?.id ?? ""); else move(e.key === "ArrowUp" ? -1 : 1); } if(e.key === "Enter" && current) { e.preventDefault(); onSelect(current.id); } }}
           onWheel={e => { if(Math.abs(e.deltaY) > 8 && Date.now() - lastWheel.current > 170) { lastWheel.current = Date.now(); move(e.deltaY > 0 ? 1 : -1); } }}

@@ -5,11 +5,11 @@ export const ORNAMENT_STYLES = {
   textured: { label: "Фактурный стиль", description: "Декоративная поверхность и мягкий рельеф. Детали композиции могут изменяться" },
 } as const;
 const REASONS: Record<string, string> = {
-  AI_DISABLED: "AI-сервис пока выключен",
-  AI_PROVIDER_UNVERIFIED: "Подключение GPU ещё не подтверждено",
+  AI_DISABLED: "ИИ-генерация временно недоступна",
+  AI_PROVIDER_UNVERIFIED: "ИИ-генерация временно недоступна",
   AI_PROFILE_NOT_RELEASED: "Оформление этой основы ещё не готово к запуску",
   MATERIAL_TRANSFER_NOT_AUTHORIZED: "Передача материалов сервису ещё не разрешена",
-  AI_PROVIDER_UNCONFIGURED: "GPU-сервис ещё не подключён",
+  AI_PROVIDER_UNCONFIGURED: "ИИ-генерация временно недоступна",
 };
 export function unavailableText(reasons: string[] = []) {
   return REASONS[reasons[0]] ?? "Эта связка пока недоступна";

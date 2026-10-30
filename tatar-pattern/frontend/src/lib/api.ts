@@ -23,7 +23,7 @@ export type Capabilities = {
   compositions?: string[]; parameters?: string[]; palettes?: string[]; styles?: Record<string, string>;
   formats?: ("png" | "jpg")[]; maxSelectedElements?: number; unsupported?: string[];
 };
-export type Renderer = "legacy" | "composition-v1" | "composition-v2";
+export type Renderer = "legacy" | "composition-v1" | "composition-v2" | "composition-v3";
 export type CompositionFamily = { id: string; titleRu: string; elementCodes: string[]; subgroups: { artifactCode: string; elementCodes: string[] }[]; basis: unknown; mixingPolicy: unknown; evidence: unknown[] };
 export type CompositionScheme = { id: string; familyId: string; composition: string; layout: string; titleRu: string; descriptionRu: string; allowedElementCodes: string[]; defaultElementCodes: string[]; availableElementCodes: string[]; available: boolean; minimumSelected: number; maximumSelected: number; requiredRoles: string[]; centerCandidates: string[]; roleOptions: Record<string,string[]>; previewUrl: string; reviewStatus: string; design?: Record<string,unknown>; applicationRu?: string; previewKind?: string; previewDescriptionRu?: string };
 export type SchemeCatalog = { registeredSchemeCount?: number; acceptedSchemeCount?: number; acceptedCoveredElementCount?: number; registryVersion: string; roleLabelsRu: Record<string,string>; families: CompositionFamily[]; schemes: CompositionScheme[]; totalFamilies: number; totalSchemes: number; totalElements: number };
@@ -35,6 +35,7 @@ export type Selections = {
   elementCodes?: string[]; scale?: number; transparentBackground?: boolean;
   outputSize?: [number, number] | null;
   backgroundColor?: string | null; colorMode?: "original" | "silhouette";
+  v3?: { composition: string; motifs: string[]; tradition: string; density: number; palette: string; background: string; format: string; frame: string };
 };
 export type OrnamentStyle = "graphic" | "textured";
 export type AiSelection = { baseId: string; ornamentStyle: OrnamentStyle; profileVersion: string };
@@ -77,7 +78,7 @@ export class ApiError extends Error {
 }
 const origin = (process.env.NEXT_PUBLIC_API_ORIGIN ?? "").replace(/\/$/, "");
 export function apiUrl(path: string) {
-  if (/^https?:\/\//.test(path)) return path;
+  if (/^(https?:\/\/|data:|blob:)/.test(path)) return path;
   return `${origin}${path.startsWith("/") ? path : `/${path}`}`;
 }
 // Injectable transport for isolated contract tests; production always uses fetch.

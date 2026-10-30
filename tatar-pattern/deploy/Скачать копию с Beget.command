@@ -1,10 +1,10 @@
 #!/bin/zsh
 SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
-/usr/bin/python3 "$SCRIPT_DIR/mac_manual_backup.py"
+/usr/bin/python3 "$SCRIPT_DIR/beget_daily_backup.py" --run
 result=$?
 print
 if (( result == 0 )); then
-  print 'Проверенная резервная копия на Mac готова.'
+  print 'Ежедневное обслуживание Beget и Mac завершено.'
 else
   print "Проверка завершилась с кодом $result. Сохрани вывод для чата Beget."
 fi

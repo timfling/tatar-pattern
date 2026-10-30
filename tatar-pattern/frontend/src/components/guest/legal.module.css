@@ -1,0 +1,11 @@
+.page { height: 100dvh; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; border-radius: 0; }
+.article { overflow-wrap: anywhere; }
+.article > button { display: inline-block; margin-bottom: 32px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.article p { margin-bottom: 20px; }
+.article h2 { margin-top: 36px; }
+.article a { text-decoration: underline; text-underline-offset: 3px; }
+.article :global(.legal-table) { max-width: 100%; overflow-x: auto; margin: 24px 0; }
+.article table { min-width: 720px; border-collapse: collapse; font-size: 15px; line-height: 1.65; }
+.article th, .article td { padding: 12px; border: 1px solid #aaa8; text-align: left; vertical-align: top; }
+.article th { font-weight: 600; }
+.article footer { margin-top: 40px; }

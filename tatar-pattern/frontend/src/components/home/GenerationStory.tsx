@@ -39,7 +39,7 @@ function SelectedTile({ order, progress, scene }: { order: number; progress: Mot
   });
   const width = useTransform(morph, [0, 1], [tw, dot]);
   const height = useTransform(morph, [0, 1], [th, dot]);
-  const opacity = useTransform(progress, [ACTIVATION[order], ACTIVATION[order] + .014, .785, .825], [0, 1, 1, 0]);
+  const opacity = useTransform(progress, [ACTIVATION[order], ACTIVATION[order] + .014, .765, .805], [0, 1, 1, 0]);
   const color = useTransform(progress, [.52, .64], ["#f39a5d", "#ffffff"]);
   const radius = useTransform(morph, [0, 1], [mobile ? 20 : 14, dot / 2]);
   const glow = useTransform(progress, [.51, .64], ["0px 1px 8px #00000026", "0px 0px 18px #ffffff, 0px 0px 36px #ffffff, 0px 0px 6px #ffffff"]);
@@ -51,7 +51,7 @@ function StoryStep({ i, progress, width }: { i: number; progress: MotionValue<nu
   return <motion.article className="story-step" style={{ opacity, width }}><h2 tabIndex={-1}>{HOME.steps[i].title}</h2><svg viewBox="0 0 650 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20H645M624 1l21 19-21 19" fill="none" stroke="currentColor" strokeWidth="3" /></svg><motion.p style={{ opacity: bodyOpacity }}>{HOME.steps[i].body}</motion.p></motion.article>;
 }
 export function CirclePattern() {
-  return <div className="story-circle-pattern" aria-hidden="true">{[0, 1, 2].map(i => <picture key={i}><source media="(max-width: 767px)" srcSet={`/home-v2/circle-ring-m-${i}.svg`} /><img src={`/home-v2/circle-ring-d-${i}.svg`} alt="" width="930" height="633" loading="lazy" /></picture>)}</div>;
+  return <div className="story-circle-pattern" aria-hidden="true">{[0, 1, 2].map(i => <picture key={i}><source media="(max-width: 767px)" srcSet={`/home-v2/circle-ring-m-${i}.webp`} /><img src={`/home-v2/circle-ring-d-${i}.webp`} alt="" width="930" height="633" loading="lazy" /></picture>)}</div>;
 }
 function LibraryShell() {
   return <><div className="story-library-sidebar"><i /><i /><i /><i /></div><div className="story-library-grid">{Array.from({ length: 28 }, (_, i) => <span key={i} />)}</div></>;
@@ -63,6 +63,8 @@ export function GenerationStory({ href }: { href: string }) {
   const root = useRef<HTMLElement>(null);
   const visual = useRef<HTMLDivElement>(null);
   const sendButton = useRef<HTMLButtonElement>(null);
+  const resultCell = useRef<HTMLSpanElement>(null);
+  const [destination, setDestination] = useState({x:230,y:20,width:80,height:90});
   const [scene, setScene] = useState<Scene>({ width: 968, height: 436, mobile: false, viewportWidth: 1728, viewportHeight: 1229, sendX: 1100, sendY: 218 });
   const [finalActive, setFinalActive] = useState(false);
   const [nextActive, setNextActive] = useState(false);
@@ -76,11 +78,17 @@ export function GenerationStory({ href }: { href: string }) {
     if (!node) return;
     const update = () => {
       const rect = node.getBoundingClientRect(), send = sendButton.current?.getBoundingClientRect();
+      const cell=resultCell.current;
+      if(cell) {
+        const cells=cell.offsetParent as HTMLElement, content=cells.offsetParent as HTMLElement;
+        setDestination({x:cell.offsetLeft+cells.offsetLeft+content.offsetLeft+content.clientLeft,y:cell.offsetTop+cells.offsetTop+content.offsetTop+content.clientTop,width:cell.offsetWidth,height:cell.offsetHeight});
+      }
       setScene({ width: rect.width, height: rect.height, mobile: matchMedia("(max-width: 767px)").matches, viewportWidth: node.parentElement!.clientWidth, viewportHeight: node.parentElement!.clientHeight, sendX: send ? send.left + send.width / 2 - rect.left - 3 : rect.width, sendY: send ? send.top + send.height / 2 - rect.top - 2 : rect.height / 2 });
     };
     const resize = new ResizeObserver(update);
     resize.observe(node); resize.observe(node.parentElement!);
     if (sendButton.current) resize.observe(sendButton.current);
+    if (resultCell.current) resize.observe(resultCell.current);
     window.addEventListener("resize", update); update();
     return () => { resize.disconnect(); window.removeEventListener("resize", update); };
   }, []);
@@ -98,11 +106,11 @@ export function GenerationStory({ href }: { href: string }) {
   const cursorScale = useTransform(progress, [.475, .49, .5, .515], scene.mobile ? [1, 1, 1, 1] : [1, .8, .8, 1]);
   const gridOpacity = useTransform(progress, [.07, .13, .51, .6], [0, 1, 1, 0]);
   const gridX = useTransform(progress, [.51, .64], [0, -w * .45], { ease: EASE });
-  const gradientOpacity = useTransform(progress, [.53, .625, .91, .955], [0, 1, 1, 0]);
-  const gradientScaleX = useTransform(progress, [.775, .87], [1, scene.mobile ? .269 : .10], { ease: EASE });
-  const gradientScaleY = useTransform(progress, [.775, .87], [1, scene.mobile ? .215 : .22], { ease: EASE });
-  const gradientX = useTransform(progress, [.775, .87], [0, w * (scene.mobile ? .05 : .215)], { ease: EASE });
-  const gradientY = useTransform(progress, [.775, .87], [0, h * .06], { ease: EASE });
+  const gradientOpacity = useTransform(progress, [.53, .625, .915, .97], [0, 1, 1, 0]);
+  const gradientScaleX = useTransform(progress, [.775, .87], [1, destination.width / w], { ease: EASE });
+  const gradientScaleY = useTransform(progress, [.775, .87], [1, destination.height / h], { ease: EASE });
+  const gradientX = useTransform(progress, [.775, .87], [0, destination.x], { ease: EASE });
+  const gradientY = useTransform(progress, [.775, .87], [0, destination.y], { ease: EASE });
   const labelOpacity = useTransform(progress, [.60, .65, .765, .805], [0, 1, 1, 0]);
   const libraryOpacity = useTransform(progress, [.79, .86], [0, 1]);
   const libraryBackground = useTransform(progress, [.91, .985], ["#dad7d5", scene.mobile ? "#f7f5f6" : "#dad7d5"]);
@@ -111,7 +119,6 @@ export function GenerationStory({ href }: { href: string }) {
   const libraryY = useTransform(progress, [.91, .985], [0, scene.viewportHeight * (.5 - (scene.mobile ? .1487 : .1456)) - h * (scene.mobile ? 1.06 : 1.25) / 2], { ease: EASE });
   const finalOpacity = useTransform(progress, [.92, .98], [0, 1]);
   const cellsOpacity = useTransform(progress, [.915, .97], [1, 0]);
-  const cellsScale = useTransform(progress, [.915, .98], [1, .92], { ease: EASE });
   const stepWidth = w * (scene.mobile ? .9 : .672);
   const stepGap = w * (scene.mobile ? .1 : .0723);
   const railX = useTransform(progress, [.51, .64, .775, .87], [0, -(stepWidth + stepGap), -(stepWidth + stepGap), -2 * (stepWidth + stepGap)], { ease: EASE });
@@ -127,8 +134,6 @@ export function GenerationStory({ href }: { href: string }) {
       <a className="story-skip" href="#support">Пропустить анимацию</a>
       <div ref={visual} className="story-visual" aria-hidden="true">
         <motion.div className="story-grid" style={{ opacity: gridOpacity, x: gridX }}>{Array.from({ length: 12 }, (_, i) => <span key={i} />)}</motion.div>
-        <motion.div className="story-gradient" style={{ opacity: gradientOpacity, scaleX: gradientScaleX, scaleY: gradientScaleY, x: gradientX, y: gradientY }}><div className="story-gradient-drift" /><motion.span className="story-generating-label" style={{ opacity: labelOpacity }}>Генерируем узор</motion.span></motion.div>
-        {[0, 1, 2, 3].map(order => <SelectedTile key={order} order={order} progress={progress} scene={scene} />)}
 
         <motion.div className="story-cursor" style={{ x: cursorX, y: cursorY, opacity: cursorOpacity, scale: cursorScale }} />
       </div>
@@ -138,9 +143,15 @@ export function GenerationStory({ href }: { href: string }) {
         <motion.div className="story-shared-window" style={{ opacity: libraryOpacity, scale: libraryScale, x: libraryX, y: libraryY, backgroundColor: libraryBackground }} inert={!finalActive}>
           <div className="story-library-sidebar" aria-hidden="true"><i /><i /><i /><i /></div>
           <div className="story-shared-content">
-            <motion.div className="story-shared-cells" style={{ opacity: cellsOpacity, scale: cellsScale }} aria-hidden="true">{Array.from({ length: 28 }, (_, i) => <span key={i} className={i === 0 ? "story-library-result" : undefined} />)}</motion.div>
+            <motion.div className="story-shared-cells" style={{ opacity: cellsOpacity }} aria-hidden="true">{Array.from({ length: 28 }, (_, i) => <span key={i} ref={i === 0 ? resultCell : undefined} className={i === 0 ? "story-library-result" : undefined} />)}</motion.div>
             <motion.div className="story-final-scene" style={{ opacity: finalOpacity }}><CirclePattern /><div className="story-final-copy"><h2>Создайте свой узор</h2><Link href={href} className="story-cta-link"><ModeIcon mode="ai" /> Перейти в мастерскую <span className="story-cta-arrow" aria-hidden="true"><svg viewBox="0 0 36 18"><path d="M1 9h32M26 2l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" /></svg></span></Link></div></motion.div>
           </div>
+        </motion.div>
+        <motion.div className="story-generating-frame" style={{scale:libraryScale,x:libraryX,y:libraryY}} aria-hidden="true">
+          <motion.div className="story-generating-object" style={{scaleX:gradientScaleX,scaleY:gradientScaleY,x:gradientX,y:gradientY}}>
+            <motion.div className="story-gradient" style={{opacity:gradientOpacity}}><div className="story-gradient-drift" /><motion.span className="story-generating-label" style={{opacity:labelOpacity}}>Генерируем узор</motion.span></motion.div>
+            {[0,1,2,3].map(order=><SelectedTile key={order} order={order} progress={progress} scene={scene} />)}
+          </motion.div>
         </motion.div>
       </div>
     </div>

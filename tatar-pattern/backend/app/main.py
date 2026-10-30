@@ -32,11 +32,12 @@ from .ai_catalog import catalog_response, find_base, asset_file
 from .composition import render_composition, VERSION as COMPOSITION_VERSION
 from .composition_metadata import metadata, review
 from . import generator_v2
+from .v3 import service as v3_service
 from .scheme_catalog import registry, ASSETS, release_catalog
 from .descriptions import describe, saved_or_fallback
 from .trash import purge
 from . import guest
-from .models import GuestGenerate, GuestSession, Credentials, Registration, Profile, Generate, PatchGeneration, Project
+from .models import V3Variants, GuestGenerate, GuestSession, Credentials, Registration, Profile, Generate, PatchGeneration, Project
 
 COOKIE='tp_session'
 ID=Annotated[str,Path(pattern=r'^[1-9][0-9]{0,17}$')]
@@ -112,7 +113,10 @@ def create_app(settings=None):
         if settings.public_guest_mode and COOKIE in request.cookies:
             response.delete_cookie(COOKIE,path='/api')
         response.headers['X-Content-Type-Options']='nosniff'
-        response.headers['Cache-Control']='no-store'
+        if path.startswith(('/api/v3/previews/','/api/v3/thumbs/')) and response.status_code==200:
+            response.headers['Cache-Control']='public, max-age=86400'
+        else:
+            response.headers['Cache-Control']='no-store'
         return response
 
     @app.exception_handler(APIError)
@@ -340,6 +344,67 @@ def create_app(settings=None):
             {**scheme,'availableElementCodes':[c for c in scheme['allowedElementCodes'] if c in available],
              'available':set(scheme['defaultElementCodes']).issubset(available)} for scheme in reg['schemes']]}
 
+    def v3_rows(conn):
+        rows=catalog(conn,settings)
+        if not rows:
+            raise APIError(409,'CATALOG_EMPTY','Каталог пуст: загрузите разрешенные элементы после человеческой проверки.')
+        v3_service.bind(rows)
+        return rows
+
+    @app.get('/api/v3/catalog')
+    def v3_catalog(conn=Depends(db)):
+        v3_rows(conn)
+        return v3_service.catalog()
+
+    v3_attempts=defaultdict(deque)
+    def v3_limit(request,limit=40):
+        key=request.client.host if request.client else 'local'
+        now=time.monotonic()
+        with attempts_lock:
+            if len(v3_attempts)>=10000:
+                for ip in list(v3_attempts):
+                    if not v3_attempts[ip] or v3_attempts[ip][-1]<now-60: del v3_attempts[ip]
+            queue=v3_attempts[key]
+            while queue and queue[0]<now-60: queue.popleft()
+            if len(queue)>=limit:
+                raise APIError(429,'REQUEST_RATE_LIMIT','Слишком много запросов. Повторите через минуту.')
+            queue.append(now)
+
+    @app.post('/api/v3/variants')
+    def v3_variants(body:V3Variants,request:Request,conn=Depends(db)):
+        v3_limit(request)
+        v3_rows(conn)
+        missing=[c for c in body.params.motifs if c not in v3_service.available()]
+        if missing:
+            raise APIError(422,'ELEMENTS_UNAVAILABLE','Некоторые выбранные мотивы недоступны в каталоге.',{'codes':missing})
+        if not render_slots.acquire(timeout=30):
+            raise APIError(503,'GENERATOR_BUSY','Генератор занят. Повторите запрос позже.')
+        try:
+            return {'results':[v3_service.variant(body.params.model_dump(),seed) for seed in body.seeds]}
+        finally:
+            render_slots.release()
+
+    @app.get('/api/v3/previews/{name}')
+    def v3_preview(name:Annotated[str,Path(pattern=r'^(comp|den|pal)-[a-z0-9-]{1,40}\.jpg$')],conn=Depends(db)):
+        v3_rows(conn)
+        if not render_slots.acquire(timeout=30):
+            raise APIError(503,'GENERATOR_BUSY','Генератор занят. Повторите запрос позже.')
+        try:
+            data=v3_service.preview(name)
+        finally:
+            render_slots.release()
+        if data is None:
+            raise APIError(404,'NOT_FOUND','Превью не найдено.')
+        return Response(data,media_type='image/jpeg',headers={'Cache-Control':'public, max-age=86400'})
+
+    @app.get('/api/v3/thumbs/{name}')
+    def v3_thumb(name:Annotated[str,Path(pattern=r'^TP-E-[0-9]{3}\.png$')],conn=Depends(db)):
+        v3_rows(conn)
+        data=v3_service.thumb(name[:-4])
+        if data is None:
+            raise APIError(404,'NOT_FOUND','Элемент недоступен.')
+        return Response(data,media_type='image/png',headers={'Cache-Control':'public, max-age=86400'})
+
     @app.get('/api/composition-schemes/{sid}/preview')
     def composition_preview(sid:str,conn=Depends(db)):
         scheme=next((s for s in release_catalog(settings)['schemes'] if s['id']==sid),None)
@@ -386,14 +451,24 @@ def create_app(settings=None):
             owned_project(conn,body.projectId,user['id'])
         if body.mode=='ai':
             return {'generation':generation_json(enqueue_ai(conn,settings,user,body))}
-        if not body.selections.elementCodes and not body.selections.motifs:
+        if body.selections.renderer!='composition-v3' and not body.selections.elementCodes and not body.selections.motifs:
             raise APIError(422,'ELEMENTS_REQUIRED','Выберите элементы или классы мотивов.')
-        rows=selected_elements(conn,settings,body.selections.motifs,body.selections.elementCodes)
+        use_v3=body.selections.renderer=='composition-v3'
+        if use_v3:
+            if body.selections.v3 is None:
+                raise APIError(422,'V3_PARAMS_REQUIRED','Для конструктора v3 нужны параметры v3.')
+            rows=v3_rows(conn)
+            missing=[c for c in body.selections.v3.motifs if c not in v3_service.available()]
+            if missing:
+                raise APIError(422,'ELEMENTS_UNAVAILABLE','Некоторые выбранные мотивы недоступны в каталоге.',{'codes':missing})
+        else:
+            rows=selected_elements(conn,settings,body.selections.motifs,body.selections.elementCodes)
         selections=body.selections.model_dump()
-        validate_renderer(selections)
+        if not use_v3:
+            validate_renderer(selections)
         use_pilot=selections['renderer']=='composition-v1'
         use_v2=selections['renderer']=='composition-v2'
-        version=generator_v2.VERSION if use_v2 else COMPOSITION_VERSION if use_pilot else VERSION
+        version=v3_service.VERSION if use_v3 else generator_v2.VERSION if use_v2 else COMPOSITION_VERSION if use_pilot else VERSION
         palette=conn.execute('SELECT colors FROM palettes WHERE code=%s',(body.selections.palette,)).fetchone()
         scheme=conn.execute('SELECT rules FROM composition_schemes WHERE code=%s',(body.selections.composition,)).fetchone()
         if not palette or not scheme:
@@ -406,7 +481,9 @@ def create_app(settings=None):
         row=None
         try:
             row=conn.execute("INSERT INTO generations(user_id,project_id,status,params,user_prompt,model_version,guest_process_id,guest_expires_at,guest_request_id,guest_fingerprint) VALUES(%s,%s,'processing',%s,%s,%s,%s,%s,%s,%s) RETURNING *",(user['id'],body.projectId,Jsonb({'selections':body.selections.model_dump()}),body.prompt,version,*guest.metadata(user))).fetchone()
-            if use_v2:
+            if use_v3:
+                recipe,warnings=v3_service.render(selections['v3'],body.seed,png,jpg)
+            elif use_v2:
                 recipe,warnings=generator_v2.render(rows,selections,palette['colors'],png,jpg,body.seed)
             elif use_pilot:
                 recipe,warnings=render_composition(rows,selections,palette['colors'],png,jpg,body.seed)
@@ -417,7 +494,7 @@ def create_app(settings=None):
             recipe.setdefault('selectedElementCodes',selections['elementCodes'])
             recipe.setdefault('selectedMotifKeys',selections['motifs'])
             recipe.setdefault('usedElementCodes',[r['code'] for r in rows])
-            recipe['description']=describe(recipe,selections)
+            recipe['description']=v3_service.describe(recipe) if use_v3 else describe(recipe,selections)
             recipe['outputSha256']={'png':hashlib.sha256(png.read_bytes()).hexdigest(),'jpg':hashlib.sha256(jpg.read_bytes()).hexdigest()}
             if body.prompt.strip():
                 warnings.append({'code':'PROMPT_UNSUPPORTED','message':'Текст сохранен, но алгоритмическая генерация не интерпретирует запросы словами.'})
@@ -575,6 +652,9 @@ def create_app(settings=None):
             if (used['used'] if used else 0)>=settings.guest_gpu_budget:
                 raise APIError(503,'AI_BUDGET_EXHAUSTED','Лимит AI исчерпан.')
             return {'available':True,'expiresAt':access['expires_at'].isoformat()}
+        if body.selections and body.selections.renderer=='composition-v3':
+            v3_rows(conn)
+            return {'available':True,'renderer':'composition-v3','expiresAt':access['expires_at'].isoformat()}
         return {**composition_preflight(body.internal(),access,conn),'expiresAt':access['expires_at'].isoformat()}
 
     @app.post('/api/guest/generations',status_code=201)
